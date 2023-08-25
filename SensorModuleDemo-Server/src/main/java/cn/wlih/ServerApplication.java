@@ -1,6 +1,6 @@
 package cn.wlih;
 
-import cn.wlih.video.VideoDemo001;
+import cn.wlih.demo.video.VideoDemo001;
 
 /**
  * Created by IntelliJ IDEA.

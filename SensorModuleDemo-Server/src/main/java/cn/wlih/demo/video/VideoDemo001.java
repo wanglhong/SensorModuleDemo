@@ -1,4 +1,4 @@
-package cn.wlih.video;
+package cn.wlih.demo.video;
 
 import java.io.File;
 import java.io.FileOutputStream;
