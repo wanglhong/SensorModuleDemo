@@ -1,5 +1,7 @@
 package cn.wlih;
 
+import cn.wlih.video.VideoDemo001;
+
 /**
  * Created by IntelliJ IDEA.
  *
@@ -11,5 +13,9 @@ package cn.wlih;
 public class ServerApplication {
     public static void main(String[] args) {
         System.out.println("=========================> 服务端启动成功！ <=========================");
+        System.out.println("--->" + VideoDemo001.PROJECT_PATH);
+        System.out.println("--->" + VideoDemo001.VIDEO_PATH);
+        System.out.println("--->" + System.getProperty("file.separator"));
+        System.out.println();
     }
 }
