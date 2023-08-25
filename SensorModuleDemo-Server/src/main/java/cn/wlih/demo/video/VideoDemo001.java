@@ -12,7 +12,7 @@ import java.net.Socket;
  *
  * @author 王立宏
  * 描述: 接收树莓怕视频Demo001（https://blog.csdn.net/weixin_42534940/article/details/89426240）
- * 树莓派操作：raspivid -w 640 -h 480 -t 5000 -o tcp://IP:Port
+ * 树莓派操作：raspivid -w 1920 -h 1080 -t 5000 -o tcp://IP:Port
  *      录制 格式640*480， 时长 5 S的视频并已TCP协议发送到192.168.1.101的3333端口（长时间录制：-t 的参数5000设置为0）
  * 服务端接收处理视频（本类中）
  * path: SensorModuleDemo-cn.wlih.video-VideoDemo001
@@ -56,6 +56,8 @@ public class VideoDemo001 {
                 content = cameraStream.read();
                 outputStream.flush();
             }
+            cameraStream.close();
+            outputStream.close();
         }
     }
 
