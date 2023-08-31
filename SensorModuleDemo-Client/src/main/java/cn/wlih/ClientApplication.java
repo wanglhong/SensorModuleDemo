@@ -1,5 +1,7 @@
 package cn.wlih;
 
+import cn.wlih.demo.Pi4j.Pi4jDemo001;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -16,9 +18,11 @@ public class ClientApplication {
     private static final String IP = "192.168.251.231";
     private static final Integer PORT = 8080;
 
-    public static void main(String[] args) throws IOException {
-        System.out.println("=========================> 客户端启动成功！ <=========================");
-        new ClientApplication().buile();
+    public static void main(String[] args) throws IOException, InterruptedException {
+        System.out.println("=========================> 客户端启动成功！ <=========================\n");
+        Pi4jDemo001 pi4jDemo001 = new Pi4jDemo001();
+        pi4jDemo001.demo01();
+        System.out.println("\n=========================> 客户端推出成功！ <=========================");
     }
 
     public void buile() throws IOException {
