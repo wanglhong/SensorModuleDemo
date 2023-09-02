@@ -5,25 +5,24 @@ import com.pi4j.context.Context;
 import com.pi4j.io.gpio.digital.DigitalOutput;
 import com.pi4j.io.gpio.digital.DigitalOutputConfigBuilder;
 import com.pi4j.io.gpio.digital.DigitalState;
-import com.pi4j.platform.Platforms;
 import com.pi4j.util.Console;
 
 /**
  * Created by IntelliJ IDEA.
  *
  * @author 王立宏
- * 描述: Hello Pi4j
- * path: SensorModuleDemo-cn.wlih.demo.Pi4j-Pi4jDemo001
+ * 描述: HA有源嗡鸣器测试
+ * path: SensorModuleDemo-cn.wlih.demo.Pi4j-Pi4jDemoOfHA
  * date: 2023/9/1 0:11
  */
-public class Pi4jDemo001 {
+public class Pi4jDemoOfHA {
 
     //嗡鸣器（H/HA）IO口 ---> 低电平触发
     private static final int PIN_HA = 17; // PIN 11 = BCM 17
     private static Console console = new Console();
 
     public void demo01() throws InterruptedException {
-        console.title("<-- The Pi4J Project -->", "最小示例项目");
+        console.title("<-- The Pi4J Project -->", "有源嗡鸣器 Demo");
         //初始化Pi4j
         Context pi4j = Pi4J.newAutoContext();
 

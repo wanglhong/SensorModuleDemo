@@ -1,6 +1,7 @@
 package cn.wlih;
 
-import cn.wlih.demo.Pi4j.Pi4jDemo001;
+import cn.wlih.demo.Pi4j.Pi4jDemoOfHA;
+import cn.wlih.demo.Pi4j.PyroelectricSensorDemo;
 
 import java.io.*;
 import java.net.Socket;
@@ -20,9 +21,10 @@ public class ClientApplication {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         System.out.println("=========================> 客户端启动成功！ <=========================\n");
-        Pi4jDemo001 pi4jDemo001 = new Pi4jDemo001();
-        pi4jDemo001.demo01();
-        System.out.println("\n=========================> 客户端推出成功！ <=========================");
+        PyroelectricSensorDemo pyroelectricSensorDemo = new PyroelectricSensorDemo();
+        pyroelectricSensorDemo.psDemo();
+//        pyroelectricSensorDemo.demo02();
+        System.out.println("\n=========================> 客户端退出成功！ <=========================");
     }
 
     public void buile() throws IOException {
