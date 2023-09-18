@@ -1,67 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration debug="true">
-    <!-- 应用名称 -->
-    <property name="APP_NAME" value="logtest" />
-    <!--日志文件的保存路径,首先查找系统属性-Dlog.dir,如果存在就使用其；否则，在当前目录下创建名为logs目录做日志存放的目录 -->
-    <property name="LOG_HOME" value="${log.dir:-logs}/${APP_NAME}" />
-    <!-- 日志输出格式 -->
-    <property name="ENCODER_PATTERN"
-              value="%d{yyyy-MM-dd  HH:mm:ss.SSS} [%thread] %-5level %logger{80} - %msg%n" />
-    <contextName>${APP_NAME}</contextName>
+<!--
+scan：当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。
+scanPeriod：设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒当scan为true时，此属性生效。默认的时间间隔为1分钟。
+debug：当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。
+-->
+<configuration scan="false" scanPeriod="60 seconds" debug="false">
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
 
-    <!-- 控制台日志：输出全部日志到控制台 -->
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>${ENCODER_PATTERN}</Pattern>
-        </encoder>
+    <!-- 定义日志的根目录 -->
+    <property name="LOG_HOME" value="./SysFile/logs/" />
+    <!-- 定义日志文件名称 -->
+    <property name="LOG_NAME" value="application-webadmin"></property>
+    <property name="LOG_PATTERN" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss}] [%thread] ===> %msg%n" />
+    <property name="LOG_PATTERN_EX" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss}] T:[%X{traceId}] S:[%X{sessionId}] U:[%X{userId}] [%thread] ===> %msg%n" />
+
+    <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <!--
+        日志输出格式：
+			%-5level：级别从左显示5个字符宽度
+			%d表示日期时间，
+			%thread表示线程名，
+			%msg：日志消息，
+			%n是换行符
+        -->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>${LOG_PATTERN}</pattern>
+        </layout>
     </appender>
 
-    <!-- 文件日志：输出全部日志到文件 -->
-    <appender name="FILE"
-              class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件 -->
+    <appender name="file_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 这里为缺省log文件命名配置。注意，如果需要支持基于flume的日志搬运，为了防止文件名滚动过程中，
+        重复搬运数据，请将下面两行配置注释掉，从而保证每次生成的日志文件均包含日期信息且不会变化。-->
+        <file>${LOG_HOME}/${LOG_NAME}.log</file>
+        <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_HOME}/output.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>7</maxHistory>
+            <!--
+            滚动时产生的文件的存放位置及文件名称 %d{yyyy-MM-dd}：按天进行日志滚动
+            %i：当文件大小超过maxFileSize时，按照i进行文件滚动
+            -->
+            <fileNamePattern>${LOG_HOME}/${LOG_NAME}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <!--
+            可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件。假设设置每天滚动，
+            且maxHistory是365，则只保存最近365天的文件，删除之前的旧文件。注意，删除旧文件是，
+            那些为了归档而创建的目录也会被删除。
+            -->
+            <!-- 保存31天数据 -->
+            <MaxHistory>31</MaxHistory>
+            <!--
+            当日志文件超过maxFileSize指定的大小是，根据上面提到的%i进行日志文件滚动 注意此处配置SizeBasedTriggeringPolicy是无法实现按文件大小进行滚动的，必须配置timeBasedFileNamingAndTriggeringPolicy
+            -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>20MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>${ENCODER_PATTERN}</pattern>
-        </encoder>
+        <!-- 日志输出格式： -->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>${LOG_PATTERN_EX}</pattern>
+        </layout>
     </appender>
 
-    <!-- 错误日志：用于将错误日志输出到独立文件 -->
-    <appender name="ERROR_FILE"
-              class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_HOME}/error.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>7</maxHistory>
-        </rollingPolicy>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>${ENCODER_PATTERN}</pattern>
-        </encoder>
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>WARN</level>
-        </filter>
-    </appender>
-
-    <!-- 独立输出的同步日志 -->
-    <appender name="SYNC_FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_HOME}/sync.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>7</maxHistory>
-        </rollingPolicy>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>${ENCODER_PATTERN}</pattern>
-        </encoder>
-    </appender>
-
-    <logger name="log.sync" level="DEBUG" addtivity="true">
-        <appender-ref ref="SYNC_FILE" />
+    <!-- 然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
+    <!-- 这里我们把输出到控制台appender的日志级别设置为DEBUG，便于调试。但是输出文件我们缺省为INFO，两者均可随时修改。-->
+    <root level="${logging.level}">
+        <appender-ref ref="console" />
+        <appender-ref ref="file_log" />
+    </root>
+    <logger name="cn.wlih" additivity="false" level="level">
+        <appender-ref ref="console" />
+        <appender-ref ref="file_log" />
     </logger>
 
-    <root>
-        <level value="DEBUG" />
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="FILE" />
-        <appender-ref ref="ERROR_FILE" />
-    </root>
+<!--    <logger name="cn.wlih" additivity="false" level="info">-->
+<!--        <appender-ref ref="console" />-->
+<!--        <appender-ref ref="file_log" />-->
+<!--    </logger>-->
+<!--    &lt;!&ndash; 这里将mapper的日志级别设置为DEBUG，是为了SQL语句的输出 &ndash;&gt;-->
+<!--    <logger name="cn.wlih.mapper" additivity="false" level="debug">-->
+<!--        <appender-ref ref="console" />-->
+<!--        <appender-ref ref="file_log" />-->
+<!--    </logger>-->
+<!--    <logger name="org.flowable" additivity="false" level="info">-->
+<!--        <appender-ref ref="console" />-->
+<!--        <appender-ref ref="file_log" />-->
+<!--    </logger>-->
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
 </configuration>

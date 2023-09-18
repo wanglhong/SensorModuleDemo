@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
  */
 public class ServiceDemo {
 
-    private static final Integer PORT = 8080;
+    private static final Integer PORT = 8888;
 
     //建一个线程池
     private ExecutorService pool = Executors.newFixedThreadPool(20);
