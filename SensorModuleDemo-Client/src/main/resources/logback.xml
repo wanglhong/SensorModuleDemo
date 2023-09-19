@@ -61,6 +61,77 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         </layout>
     </appender>
 
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%highlight([%5level]) %d{HH:mm:ss.SSS} %black([%thread]) - %msg %n</pattern>
+        </encoder>
+    </appender>
+    <appender name="boldRed" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%highlight([%5level]) %d{HH:mm:ss.SSS} %boldRed([%thread]) - %msg %n</pattern>
+        </encoder>
+    </appender>
+    <appender name="boldBlue" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%highlight([%5level]) %d{HH:mm:ss.SSS} %boldBlue([%thread]) - %msg %n</pattern>
+        </encoder>
+    </appender>
+    <appender name="boldGreen" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%highlight([%5level]) %d{HH:mm:ss.SSS} %boldGreen([%thread]) - %msg %n</pattern>
+        </encoder>
+    </appender>
+    <appender name="boldYellow" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%highlight([%5level]) %d{HH:mm:ss.SSS} %boldYellow([%thread]) - %msg %n</pattern>
+        </encoder>
+    </appender>
+    <appender name="boldMagenta" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%highlight([%5level]) %d{HH:mm:ss.SSS} %boldMagenta([%thread]) - %msg %n</pattern>
+        </encoder>
+    </appender>
+    <appender name="boldCyan" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%highlight([%5level]) %d{HH:mm:ss.SSS} %boldCyan([%thread]) - %msg %n</pattern>
+        </encoder>
+    </appender>
+    <appender name="boldWhite" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%highlight([%5level]) %d{HH:mm:ss.SSS} %boldWhite([%thread]) - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <!--    <logger name="org.springframework.beans.factory.annotation.InjectionMetadata" level="TRACE" additivity="false">
+         <appender-ref ref="STDOUT"/>
+     </logger>
+
+     <logger name="org.springframework.beans.factory.support.DefaultListableBeanFactory" level="TRACE" additivity="false">
+         <appender-ref ref="STDOUT"/>
+     </logger>-->
+
+    <logger name="Red" level="DEBUG" additivity="false">
+        <appender-ref ref="boldRed"/>
+    </logger>
+    <logger name="Blue" level="DEBUG" additivity="false">
+        <appender-ref ref="boldBlue"/>
+    </logger>
+    <logger name="Green" level="DEBUG" additivity="false">
+        <appender-ref ref="boldGreen"/>
+    </logger>
+    <logger name="Yellow" level="DEBUG" additivity="false">
+        <appender-ref ref="boldYellow"/>
+    </logger>
+    <logger name="Magenta" level="DEBUG" additivity="false">
+        <appender-ref ref="boldMagenta"/>
+    </logger>
+    <logger name="Cyan" level="DEBUG" additivity="false">
+        <appender-ref ref="boldCyan"/>
+    </logger>
+    <logger name="White" level="DEBUG" additivity="false">
+        <appender-ref ref="boldWhite"/>
+    </logger>
+
     <!-- 然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
     <!-- 这里我们把输出到控制台appender的日志级别设置为DEBUG，便于调试。但是输出文件我们缺省为INFO，两者均可随时修改。-->
     <root level="${logging.level}">
@@ -72,10 +143,10 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
 <!--        <appender-ref ref="file_log" />-->
 <!--    </logger>-->
 
-    <logger name="cn.wlih" additivity="false" level="info">
-        <appender-ref ref="console" />
-        <appender-ref ref="file_log" />
-    </logger>
+<!--    <logger name="cn.wlih" additivity="false" level="info">-->
+<!--        <appender-ref ref="console" />-->
+<!--        <appender-ref ref="file_log" />-->
+<!--    </logger>-->
 <!--    &lt;!&ndash; 这里将mapper的日志级别设置为DEBUG，是为了SQL语句的输出 &ndash;&gt;-->
 <!--    <logger name="cn.wlih.mapper" additivity="false" level="debug">-->
 <!--        <appender-ref ref="console" />-->
