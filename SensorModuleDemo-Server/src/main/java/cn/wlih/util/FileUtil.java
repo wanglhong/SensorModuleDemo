@@ -10,20 +10,18 @@ package cn.wlih.util;
  */
 public class FileUtil {
 
-
-    /**
-     * 项目路径
-     */
-    public static final String PROJECT_PATH = System.getProperty("user.dir");
     /**
      * 路径分隔符
      */
     public static final String PATH_SEPARATOR = System.getProperty("file.separator");
     /**
+     * 项目路径
+     */
+    public static final String PROJECT_PATH = System.getProperty("user.dir") + PATH_SEPARATOR + "SysFile";
+    /**
      * 视频存储路径
      */
     public static final String VIDEO_PATH = PROJECT_PATH + PATH_SEPARATOR + "video";
-
     /**
      * 视频测试存储文件
      */

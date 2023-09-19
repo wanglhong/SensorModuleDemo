@@ -10,7 +10,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <!-- 定义日志的根目录 -->
     <property name="LOG_HOME" value="./SysFile/logs/" />
     <!-- 定义日志文件名称 -->
-    <property name="LOG_NAME" value="application-webadmin"></property>
+    <property name="LOG_NAME" value="SensorModuleLog"></property>
     <property name="LOG_PATTERN" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss}] [%thread] ===> %msg%n" />
     <property name="LOG_PATTERN_EX" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss}] T:[%X{traceId}] S:[%X{sessionId}] U:[%X{userId}] [%thread] ===> %msg%n" />
 
@@ -67,15 +67,15 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         <appender-ref ref="console" />
         <appender-ref ref="file_log" />
     </root>
-    <logger name="cn.wlih" additivity="false" level="level">
-        <appender-ref ref="console" />
-        <appender-ref ref="file_log" />
-    </logger>
-
-<!--    <logger name="cn.wlih" additivity="false" level="info">-->
+<!--    <logger name="cn.wlih" additivity="false" level="level">-->
 <!--        <appender-ref ref="console" />-->
 <!--        <appender-ref ref="file_log" />-->
 <!--    </logger>-->
+
+    <logger name="cn.wlih" additivity="false" level="info">
+        <appender-ref ref="console" />
+        <appender-ref ref="file_log" />
+    </logger>
 <!--    &lt;!&ndash; 这里将mapper的日志级别设置为DEBUG，是为了SQL语句的输出 &ndash;&gt;-->
 <!--    <logger name="cn.wlih.mapper" additivity="false" level="debug">-->
 <!--        <appender-ref ref="console" />-->
