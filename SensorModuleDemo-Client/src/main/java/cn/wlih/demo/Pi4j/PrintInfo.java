@@ -21,15 +21,9 @@ public class PrintInfo {
 
     /**
      * Pi4J Platforms.
-     * <p>Platforms are intended to represent the hardware platform where Pi4J is running.  In most cases this will be
-     * the 'RaspberryPi' platform, but Pi4J supports and extensible set of platforms thus additional platforms such as
-     * 'BananaPi', 'Odroid', etc can be added.
-     * </p>
-     * <p>Platforms represent the physical layout of a system's hardware I/O
-     * capabilities and what I/O providers the target platform supports.  For example, a 'RaspberryPi' platform supports
-     * `Digital` inputs and outputs, PWM, I2C, SPI, and Serial but does not support a default provider for 'Analog'
-     * inputs and outputs.</p>
-     * <p>Platforms also provide validation for the I/O pins and their capabilities for the target hardware.</p>
+     * <p>平台旨在表示运行 Pi4J 的硬件平台。在大多数情况下，这将是“RaspberryPi”平台，但Pi4J支持和可扩展的平台集，因此可以添加其他平台，如“BananaPi”，“Odroid”等。</p>
+     * <p>平台表示系统硬件 IO 功能的物理布局以及目标平台支持的 IO 提供程序。例如，“RaspberryPi”平台支持“数字”输入和输出、PWM、I2C、SPI 和串行，但不支持“模拟”输入和输出的默认提供程序。</p>
+     * <p>平台还提供 IO 引脚及其对目标硬件的功能的验证。</p>
      *
      * @param console {@link Console}
      * @param pi4j    {@link Context}
@@ -46,13 +40,9 @@ public class PrintInfo {
     }
 
     /**
-     * Pi4J Platform (Default Platform)
-     * <p>A single 'default' platform is auto-assigned during Pi4J initialization based on a weighting value provided
-     * by each platform implementation at runtime. Additionally, you can override this behavior and assign your own
-     * 'default' platform anytime after initialization.</p>
-     * <p>The default platform is a single platform instance from the managed platforms collection that will serve to
-     * define the default I/O providers that Pi4J will use for each given I/O interface when creating and registering
-     * I/O instances.</p>
+     * Pi4J 平台（默认平台）
+     * <p>在Pi4J初始化期间，根据每个平台实现在运行时提供的加权值自动分配单个“默认”平台。此外，您可以在初始化后随时覆盖此行为并分配自己的“默认”平台。</p>
+     * <p>默认平台是托管平台集合中的单个平台实例，用于定义 Pi4J 在创建和注册 IO 实例时将用于每个给定 IO 接口的默认 IO 提供程序。</p>
      *
      * @param console {@link Console}
      * @param pi4j    {@link Context}
@@ -69,28 +59,29 @@ public class PrintInfo {
     }
 
     /**
-     * Pi4J Providers
-     * <p>Providers are intended to represent I/O implementations and provide access to the I/O interfaces available on
-     * the system. Providers 'provide' concrete runtime implementations of I/O interfaces such as:
+     * Pi4J 供应商
+     * <p>
+     * 提供程序旨在表示 IO 实现，并提供对系统上可用的 IO 接口的访问。提供程序“提供”IO 接口的具体运行时实现，例如：
      * <ul>
-     * <li>DigitalInput</li>
-     * <li>DigitalOutput</li>
-     * <li>AnalogInput</li>
-     * <li>AnalogOutput</li>
-     * <li>PWM</li>
-     * <li>I2C</li>
-     * <li>SPI</li>
-     * <li>SERIAL</li>
-     * </ul></p>
-     * <p>Each platform will have a default set of providers assigned to it to serve as the default providers that
-     * will be used on a given platform's hardware I/O.  However, you are not limited to the providers that a
-     * platform provides, you can instantiate I/O interfaces using any provider that has been registered on the
-     * Pi4J system.  A good example of this is the 'AnalogInput' and 'AnalogOutput' I/O interfaces. The
-     * 'RaspberryPi' does not inherently support analog I/O hardware, but with an attached ADC (Analog to Digital
-     * Converter) or DAC (Digital to Analog converter) chip attached to a data bus (I2C/SPI) you may wish to use
-     * Pi4J to read/write to these analog hardware interfaces.</p>
-     * <p>Providers allow for a completely flexible and extensible infrastructure enabling third-parties to build and
-     * extend the capabilities of Pi4J by writing your/their own Provider implementation libraries.</p>
+     *  <li>DigitalInput（数字输入）</li>
+     *  <li>DigitalOutput（数字输出）</li>
+     *  <li>AnalogInput（模拟输入）</li>
+     *  <li>AnalogOutput（模拟输出）</li>
+     *  <li>PWM</li>
+     *  <li>I2C</li>
+     *  <li>SPI</li>
+     *  <li>SERIAL（串行）</li>
+     * </ul>
+     * </p>
+     * <p>
+     * 每个平台都将分配有一组默认提供程序，以用作将在给定平台的硬件 IO 上使用的默认提供程序。
+     * 但是，您不限于平台提供的提供程序，您可以使用已在 Pi4J 系统上注册的任何提供程序实例化 IO 接口。
+     * 一个很好的例子是“模拟输入”和“模拟输出”IO接口。“RaspberryPi”本身不支持模拟IO硬件，
+     * 但是将附加的ADC（模数转换器）或DAC（数模转换器）芯片连接到数据总线（I2CSPI），您可能希望使用Pi4J读取这些模拟硬件接口。
+     * </p>
+     * <p>
+     * 提供程序允许完全灵活且可扩展的基础架构，使第三方能够通过编写自己的提供程序实现库来构建和扩展Pi4J的功能。
+     * </p>
      *
      * @param console {@link Console}
      * @param pi4j    {@link Context}
@@ -107,8 +98,8 @@ public class PrintInfo {
     }
 
     /**
-     * Pi4J Registry
-     * <p>The registry stores the state of all the I/O managed by Pi4J.</p>
+     * Pi4J 注册表
+     * <p>注册表存储Pi4J管理的所有I/O的状态。</p>
      *
      * @param console {@link Console}
      * @param pi4j    {@link Context}
@@ -118,7 +109,7 @@ public class PrintInfo {
 
         // Let's print out to the console the detected and loaded
         // I/O interfaces registered with Pi4J and included in the 'Registry'.
-        console.box("Pi4J REGISTRY");
+        console.box("Pi4J 注册表");
         console.println();
         registry.describe().print(System.out);
         console.println();

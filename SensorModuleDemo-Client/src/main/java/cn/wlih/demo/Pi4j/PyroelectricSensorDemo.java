@@ -31,17 +31,22 @@ public class PyroelectricSensorDemo {
         //初始化pi4j
         Context pi4j = Pi4J.newAutoContext();
 
-        Properties properties = new Properties();
-        properties.put("id", "PS");
-        properties.put("address", PIN_PS);
-        properties.put("pull", "UP"); //上拉PullResistance.PULL_UP
-        properties.put("name", "PS Input");
+        //打印注册表
+        PrintInfo.printRegistry(console, pi4j);
+
+//        Properties properties = new Properties();
+//        properties.put("id", "PS");
+//        properties.put("address", PIN_PS);
+//        properties.put("pull", "UP"); //上拉PullResistance.PULL_UP
+//        properties.put("name", "PS Input");
 
         DigitalInputConfig config = DigitalInput.newConfigBuilder(pi4j)
-                //.id("my-digital-input")
-                .address(PIN_PS)
+                .id("my-digital-input")
+                .name("my-name")
+//                .address(PIN_PS)
                 //下拉
                 .pull(PullResistance.PULL_DOWN)
+                .provider("raspberrypi-digital-input")
                 .build();
 
         // 从 Pi4J 上下文中获取数字输入 IO 提供程序
@@ -50,7 +55,7 @@ public class PyroelectricSensorDemo {
         DigitalInput input = digitalInputProvider.create(config);
 
         //打印注册表
-//        PrintInfo.printRegistry(console, pi4j);
+        PrintInfo.printRegistry(console, pi4j);
 
         //监听输入 ----> 检测GPIO20的输入状态
 //        input.addListener(event -> {
@@ -69,17 +74,18 @@ public class PyroelectricSensorDemo {
 //            });
 //            Thread.sleep(500);
 //        }
-        for (int i = 0; i < 100; i++) {
-            console.println("准备开始监听！");
-            if (input.state() == DigitalState.HIGH) {
-                console.println("高电平输入 ----> 有人");
-            } else {
-                console.println("低电平输入 ----> 无人");
-            }
-            Thread.sleep(50);
-        }
 
-        console.waitForExit();
+//        for (int i = 0; i < 10; i++) {
+//            console.println("准备开始监听！");
+//            if (input.state() == DigitalState.HIGH) {
+//                console.println("高电平输入 ----> 有人");
+//            } else {
+//                console.println("低电平输入 ----> 无人");
+//            }
+//            Thread.sleep(500);
+//        }
+
+//        console.waitForExit();
 
         pi4j.shutdown();
     }

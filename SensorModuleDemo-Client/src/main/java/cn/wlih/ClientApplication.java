@@ -1,5 +1,6 @@
 package cn.wlih;
 
+import cn.wlih.demo.Pi4j.Pi4jDemoOfHA;
 import cn.wlih.demo.Pi4j.PyroelectricSensorDemo;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,16 +24,17 @@ public class ClientApplication {
 //    private static final Logger log = LoggerFactory.getLogger(ClientApplication.class);
 
     public static void main(String[] args) throws InterruptedException {
-        new ClientApplication().logTest();
+        new ClientApplication().sensorModule();
     }
 
     /**
      * 树莓派引脚测试
      */
     public void sensorModule() throws InterruptedException {
+//        Pi4jDemoOfHA pi4jDemoOfHA = new Pi4jDemoOfHA();
+//        pi4jDemoOfHA.demo01();
         PyroelectricSensorDemo pyroelectricSensorDemo = new PyroelectricSensorDemo();
         pyroelectricSensorDemo.psDemo();
-        pyroelectricSensorDemo.demo02();
     }
 
     /**

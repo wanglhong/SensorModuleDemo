@@ -27,6 +27,7 @@ public class Pi4jDemoOfHA {
         Context pi4j = Pi4J.newAutoContext();
 
         //输出 Pi4J 上下文信息
+        console.println("----------------> 输出 Pi4J 上下文信息 <---------------");
         PrintInfo.printLoadedPlatforms(console, pi4j);
         PrintInfo.printDefaultPlatform(console, pi4j);
         PrintInfo.printProviders(console, pi4j);
@@ -36,22 +37,24 @@ public class Pi4jDemoOfHA {
                 .id("HA")
                 .name("HA Beep")
                 .address(PIN_HA)
-                .shutdown(DigitalState.HIGH)
-                .initial(DigitalState.HIGH)
+                .shutdown(DigitalState.LOW)
+                .initial(DigitalState.LOW)
                 //供应商，不是随便写的pigpio-digital-output
                 .provider("raspberrypi-digital-output");
         DigitalOutput ha = pi4j.create(haConfig);
+
         //打印注册表
         PrintInfo.printRegistry(console, pi4j);
+
         for (int pressCount = 0; pressCount < 10; pressCount++) {
             if (ha.equals(DigitalState.LOW)) {
                 ha.high();
-                console.println("HA high ---> 关闭");
-                Thread.sleep(1000);
+                console.println("HA High ---> 触发");
+                Thread.sleep(500);
             } else {
                 ha.low();
-                console.println("HA low ---> 触发");
-                Thread.sleep(500);
+                console.println("HA Low  ---> 关闭");
+                Thread.sleep(1000);
             }
         }
 
