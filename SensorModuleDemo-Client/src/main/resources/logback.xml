@@ -5,14 +5,22 @@ scanPeriod：设置监测配置文件是否有修改的时间间隔，如果没�
 debug：当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。
 -->
 <configuration scan="false" scanPeriod="60 seconds" debug="false">
-    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+
+    <!--
+    配置关闭钩子：
+        当应用程序关闭时，Logback会执行该关闭钩子的stop()方法，延迟2000毫秒（即2秒钟）后再继续执行后续的关闭操作。
+        通过配置shutdownHook标签，可以在应用程序关闭时保证Logback进行必要的清理操作，以避免日志数据的丢失或其他问题的发生。
+    -->
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook">
+        <delay>2000</delay>
+    </shutdownHook>
 
     <!-- 定义日志的根目录 -->
-    <property name="LOG_HOME" value="./SysFile/logs/" />
+    <property name="LOG_HOME" value="./SysFile/logs/"/>
     <!-- 定义日志文件名称 -->
-    <property name="LOG_NAME" value="SensorModuleLog"></property>
-    <property name="LOG_PATTERN" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] ===> %msg%n" />
-    <property name="LOG_PATTERN_EX" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss.SSS}] T:[%X{traceId}] S:[%X{sessionId}] U:[%X{userId}] [%thread] ===> %msg%n" />
+    <property name="LOG_NAME" value="SensorModuleLog"/>
+    <property name="LOG_PATTERN" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] ===> %msg %n"/>
+    <property name="LOG_PATTERN_EX" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss.SSS}] T:[%X{traceId}] S:[%X{sessionId}] U:[%X{userId}] [%thread] ===> %msg %n"/>
     <!--
     日志输出格式：
         %-5level：级别从左显示5个字符宽度
@@ -21,14 +29,14 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         %msg：日志消息，
         %n：是换行符
     -->
-    <property name="STDOUT" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %black([%thread]) ===> %msg %n" />
-    <property name="boldRed" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldRed([%thread]) ===> %msg %n" />
-    <property name="boldBlue" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldBlue([%thread]) ===> %msg %n" />
-    <property name="boldGreen" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldGreen([%thread]) ===> %msg %n" />
-    <property name="boldYellow" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldYellow([%thread]) ===> %msg %n" />
-    <property name="boldMagenta" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldMagenta([%thread]) ===> %msg %n" />
-    <property name="boldCyan" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldCyan([%thread]) ===> %msg %n" />
-    <property name="boldWhite" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldWhite([%thread]) ===> %msg %n" />
+    <property name="STDOUT" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %black([%thread]) ===> %msg %n"/>
+    <property name="boldRed" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldRed([%thread]) ===> %msg %n"/>
+    <property name="boldBlue" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldBlue([%thread]) ===> %msg %n"/>
+    <property name="boldGreen" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldGreen([%thread]) ===> %msg %n"/>
+    <property name="boldYellow" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldYellow([%thread]) ===> %msg %n"/>
+    <property name="boldMagenta" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldMagenta([%thread]) ===> %msg %n"/>
+    <property name="boldCyan" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldCyan([%thread]) ===> %msg %n"/>
+    <property name="boldWhite" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldWhite([%thread]) ===> %msg %n"/>
 
     <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
@@ -70,13 +78,12 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         </layout>
     </appender>
 
-    <!--    <logger name="org.springframework.beans.factory.annotation.InjectionMetadata" level="TRACE" additivity="false">
-         <appender-ref ref="STDOUT"/>
-     </logger>
-
-     <logger name="org.springframework.beans.factory.support.DefaultListableBeanFactory" level="TRACE" additivity="false">
-         <appender-ref ref="STDOUT"/>
-     </logger>-->
+<!--    <logger name="org.springframework.beans.factory.annotation.InjectionMetadata" level="TRACE" additivity="false">-->
+<!--         <appender-ref ref="console"/>-->
+<!--     </logger>-->
+<!--     <logger name="org.springframework.beans.factory.support.DefaultListableBeanFactory" level="TRACE" additivity="false">-->
+<!--         <appender-ref ref="console"/>-->
+<!--     </logger>-->
 
     <logger name="Red" level="DEBUG" additivity="false">
         <appender-ref ref="boldRed"/>
@@ -100,29 +107,23 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         <appender-ref ref="boldWhite"/>
     </logger>
 
-    <!-- 然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
-    <!-- 这里我们把输出到控制台appender的日志级别设置为DEBUG，便于调试。但是输出文件我们缺省为INFO，两者均可随时修改。-->
-<!--    <root level="${logging.level}">-->
-<!--        <appender-ref ref="console" />-->
-<!--        <appender-ref ref="file_log" />-->
-<!--    </root>-->
-    <logger name="cn.wlih" additivity="false" level="level">
+    <!--
+    logger 和 root 的区别：
+        logger 用于对特定的包或类进行细粒度的日志记录配置，可以有多个，而root是全局的默认配置，用于处理所有未被具体日志记录器匹配的日志消息。
+        logger 可以根据需要进行更加灵活的配置，而root则提供了一个默认的配置，确保所有日志消息都能被处理到。
+    -->
+    <!-- 根日志记录器（root） -->
+    <!-- TRACE->DEBUG->INFO->WARN->ERROR -->
+    <root level="TRACE">
         <appender-ref ref="console" />
         <appender-ref ref="file_log" />
-    </logger>
-
-<!--    <logger name="cn.wlih" additivity="false" level="info">-->
+    </root>
+    <!-- 特定功能详细日志配置 -->
+    <!-- cn.wlih.mapper包下使用该配置。additivity日志级别是否向上传递。level日志级别 -->
+<!--    <logger name="cn.wlih.mapper" additivity="false" level="DEBUG">-->
 <!--        <appender-ref ref="console" />-->
 <!--        <appender-ref ref="file_log" />-->
 <!--    </logger>-->
-<!--    &lt;!&ndash; 这里将mapper的日志级别设置为DEBUG，是为了SQL语句的输出 &ndash;&gt;-->
-<!--    <logger name="cn.wlih.mapper" additivity="false" level="debug">-->
-<!--        <appender-ref ref="console" />-->
-<!--        <appender-ref ref="file_log" />-->
-<!--    </logger>-->
-<!--    <logger name="org.flowable" additivity="false" level="info">-->
-<!--        <appender-ref ref="console" />-->
-<!--        <appender-ref ref="file_log" />-->
-<!--    </logger>-->
+    <!-- 状态监听器。当Logback框架中发生状态变化事件时，该状态监听器的相应方法会被调用，以执行自定义的逻辑。 -->
     <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
 </configuration>
