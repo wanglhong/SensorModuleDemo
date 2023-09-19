@@ -11,21 +11,30 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <property name="LOG_HOME" value="./SysFile/logs/" />
     <!-- 定义日志文件名称 -->
     <property name="LOG_NAME" value="SensorModuleLog"></property>
-    <property name="LOG_PATTERN" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss}] [%thread] ===> %msg%n" />
-    <property name="LOG_PATTERN_EX" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss}] T:[%X{traceId}] S:[%X{sessionId}] U:[%X{userId}] [%thread] ===> %msg%n" />
+    <property name="LOG_PATTERN" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] ===> %msg%n" />
+    <property name="LOG_PATTERN_EX" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss.SSS}] T:[%X{traceId}] S:[%X{sessionId}] U:[%X{userId}] [%thread] ===> %msg%n" />
+    <!--
+    日志输出格式：
+        %-5level：级别从左显示5个字符宽度
+        %d：表示日期时间，
+        %thread：表示线程名，
+        %msg：日志消息，
+        %n：是换行符
+    -->
+    <property name="STDOUT" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %black([%thread]) ===> %msg %n" />
+    <property name="boldRed" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldRed([%thread]) ===> %msg %n" />
+    <property name="boldBlue" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldBlue([%thread]) ===> %msg %n" />
+    <property name="boldGreen" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldGreen([%thread]) ===> %msg %n" />
+    <property name="boldYellow" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldYellow([%thread]) ===> %msg %n" />
+    <property name="boldMagenta" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldMagenta([%thread]) ===> %msg %n" />
+    <property name="boldCyan" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldCyan([%thread]) ===> %msg %n" />
+    <property name="boldWhite" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldWhite([%thread]) ===> %msg %n" />
 
     <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-        <!--
-        日志输出格式：
-			%-5level：级别从左显示5个字符宽度
-			%d表示日期时间，
-			%thread表示线程名，
-			%msg：日志消息，
-			%n是换行符
-        -->
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>${LOG_PATTERN}</pattern>
+<!--            <pattern>${LOG_PATTERN}</pattern>-->
+            <pattern>${boldCyan}</pattern>
         </layout>
     </appender>
 
@@ -61,47 +70,6 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         </layout>
     </appender>
 
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%highlight([%5level]) %d{HH:mm:ss.SSS} %black([%thread]) - %msg %n</pattern>
-        </encoder>
-    </appender>
-    <appender name="boldRed" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%highlight([%5level]) %d{HH:mm:ss.SSS} %boldRed([%thread]) - %msg %n</pattern>
-        </encoder>
-    </appender>
-    <appender name="boldBlue" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%highlight([%5level]) %d{HH:mm:ss.SSS} %boldBlue([%thread]) - %msg %n</pattern>
-        </encoder>
-    </appender>
-    <appender name="boldGreen" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%highlight([%5level]) %d{HH:mm:ss.SSS} %boldGreen([%thread]) - %msg %n</pattern>
-        </encoder>
-    </appender>
-    <appender name="boldYellow" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%highlight([%5level]) %d{HH:mm:ss.SSS} %boldYellow([%thread]) - %msg %n</pattern>
-        </encoder>
-    </appender>
-    <appender name="boldMagenta" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%highlight([%5level]) %d{HH:mm:ss.SSS} %boldMagenta([%thread]) - %msg %n</pattern>
-        </encoder>
-    </appender>
-    <appender name="boldCyan" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%highlight([%5level]) %d{HH:mm:ss.SSS} %boldCyan([%thread]) - %msg %n</pattern>
-        </encoder>
-    </appender>
-    <appender name="boldWhite" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%highlight([%5level]) %d{HH:mm:ss.SSS} %boldWhite([%thread]) - %msg %n</pattern>
-        </encoder>
-    </appender>
-
     <!--    <logger name="org.springframework.beans.factory.annotation.InjectionMetadata" level="TRACE" additivity="false">
          <appender-ref ref="STDOUT"/>
      </logger>
@@ -134,14 +102,14 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
 
     <!-- 然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
     <!-- 这里我们把输出到控制台appender的日志级别设置为DEBUG，便于调试。但是输出文件我们缺省为INFO，两者均可随时修改。-->
-    <root level="${logging.level}">
-        <appender-ref ref="console" />
-        <appender-ref ref="file_log" />
-    </root>
-<!--    <logger name="cn.wlih" additivity="false" level="level">-->
+<!--    <root level="${logging.level}">-->
 <!--        <appender-ref ref="console" />-->
 <!--        <appender-ref ref="file_log" />-->
-<!--    </logger>-->
+<!--    </root>-->
+    <logger name="cn.wlih" additivity="false" level="level">
+        <appender-ref ref="console" />
+        <appender-ref ref="file_log" />
+    </logger>
 
 <!--    <logger name="cn.wlih" additivity="false" level="info">-->
 <!--        <appender-ref ref="console" />-->
