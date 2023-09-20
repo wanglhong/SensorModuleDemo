@@ -31,10 +31,10 @@ public class ClientApplication {
      * 树莓派引脚测试
      */
     public void sensorModule() throws InterruptedException {
-//        Pi4jDemoOfHA pi4jDemoOfHA = new Pi4jDemoOfHA();
-//        pi4jDemoOfHA.demo01();
-        PyroelectricSensorDemo pyroelectricSensorDemo = new PyroelectricSensorDemo();
-        pyroelectricSensorDemo.psDemo();
+        Pi4jDemoOfHA pi4jDemoOfHA = new Pi4jDemoOfHA();
+        pi4jDemoOfHA.demo01();
+//        PyroelectricSensorDemo pyroelectricSensorDemo = new PyroelectricSensorDemo();
+//        pyroelectricSensorDemo.psDemo();
     }
 
     /**

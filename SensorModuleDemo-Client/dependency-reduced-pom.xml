@@ -8,31 +8,55 @@
     <finalName>SensorModuleDemoClient</finalName>
     <plugins>
       <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+        <configuration>
+          <release>${java.version}</release>
+          <showDeprecation>true</showDeprecation>
+          <showWarnings>true</showWarnings>
+          <verbose>false</verbose>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>${maven-jar-plugin.version}</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>${main.class}</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>3.5.0</version>
+        <version>${maven-shade-plugin.version}</version>
         <executions>
           <execution>
             <phase>package</phase>
             <goals>
               <goal>shade</goal>
             </goals>
-            <configuration>
-              <transformers>
-                <transformer>
-                  <mainClass>cn.wlih.ClientApplication</mainClass>
-                </transformer>
-              </transformers>
-            </configuration>
           </execution>
         </executions>
+        <configuration>
+          <transformers>
+            <transformer />
+          </transformers>
+        </configuration>
       </plugin>
     </plugins>
   </build>
   <properties>
-    <maven.compiler.target>11</maven.compiler.target>
+    <maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <main.class>cn.wlih.ClientApplication</main.class>
     <slf4j.version>1.7.32</slf4j.version>
-    <maven.compiler.source>11</maven.compiler.source>
+    <java.version>11</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <pi4j.version>2.0</pi4j.version>
+    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
   </properties>
 </project>

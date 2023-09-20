@@ -18,10 +18,12 @@ import com.pi4j.util.Console;
 public class Pi4jDemoOfHA {
 
     //嗡鸣器（H/HA）IO口 ---> 低电平触发
-    private static final int PIN_HA = 17; // PIN 11 = BCM 17
+//    private static final int PIN_HA = 17; // PIN 11 = BCM 17
+    private static final int PIN_HA = 18; // PIN 11 = BCM 17
     private static Console console = new Console();
 
     public void demo01() throws InterruptedException {
+        System.setProperty("pi4j.library.path", "./pi4jlib");
         console.title("<-- The Pi4J Project -->", "有源嗡鸣器 Demo");
         //初始化Pi4j
         Context pi4j = Pi4J.newAutoContext();
@@ -39,8 +41,8 @@ public class Pi4jDemoOfHA {
                 .address(PIN_HA)
                 .shutdown(DigitalState.LOW)
                 .initial(DigitalState.LOW)
-                //供应商，不是随便写的pigpio-digital-output
-                .provider("raspberrypi-digital-output");
+                //供应商，不是随便写的pigpio-digital-output（raspberrypi-digital-output）
+                .provider("pigpio-digital-output");
         DigitalOutput ha = pi4j.create(haConfig);
 
         //打印注册表
