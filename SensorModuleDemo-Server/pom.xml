@@ -14,46 +14,102 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.0</version>
+    </parent>
+
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.jeecgframework.codegenerate</groupId>-->
-<!--            <artifactId>codegenerate</artifactId>-->
-<!--            <scope>system</scope>-->
-<!--            <version>1.8.0</version>-->
-<!--            <systemPath>${project.basedir}/lib/codegenerate-3.6.4.jar</systemPath>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!--junit依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <!--自定义登录接口-->
+        <!--redis依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--fastjson依赖-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.33</version>
+        </dependency>
+
+        <!--jwt依赖-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+
+        <!--MybatisPuls和mysql驱动的依赖-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.4.3</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
         <finalName>SensorModuleDemoServer</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.5.0</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>cn.wlih.ServerApplication</mainClass>
-                                </transformer>
-                            </transformers>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+        <!--        <plugins>-->
+        <!--            &lt;!&ndash; tomcate插件 &ndash;&gt;-->
+        <!--            <plugin>-->
+        <!--                <groupId>org.apache.tomcat.maven</groupId>-->
+        <!--                <artifactId>tomcat7-maven-plugin</artifactId>-->
+        <!--                <version>2.2</version>-->
+        <!--                &lt;!&ndash; 测试,没有也ok,会用默认值 &ndash;&gt;-->
+        <!--                <configuration>-->
+        <!--                    &lt;!&ndash; 端口 &ndash;&gt;-->
+        <!--                    <port>8080</port>-->
+        <!--                    &lt;!&ndash; 路径 &ndash;&gt;-->
+        <!--                    <path>/</path>-->
+        <!--                </configuration>-->
+        <!--            </plugin>-->
+        <!--            &lt;!&ndash; jdk插件（默认为1.7的） &ndash;&gt;-->
+        <!--            <plugin>-->
+        <!--                <groupId>org.apache.maven.plugins</groupId>-->
+        <!--                <artifactId>maven-compiler-plugin</artifactId>-->
+        <!--                <version>3.8.0</version>-->
+        <!--                <configuration>-->
+        <!--                    <source>1.8</source>-->
+        <!--                    <target>1.8</target>-->
+        <!--                </configuration>-->
+        <!--            </plugin>-->
+        <!--        </plugins>-->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
     </build>
 
 </project>

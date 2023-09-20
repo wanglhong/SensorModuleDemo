@@ -1,4 +1,4 @@
-package cn.wlih.util;
+package cn.wlih.sys.util;
 
 /**
  * Created by IntelliJ IDEA.
