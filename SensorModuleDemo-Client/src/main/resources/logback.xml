@@ -114,7 +114,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     -->
     <!-- 根日志记录器（root） -->
     <!-- TRACE->DEBUG->INFO->WARN->ERROR -->
-    <root level="TRACE">
+    <root level="INFO">
         <appender-ref ref="console" />
         <appender-ref ref="file_log" />
     </root>

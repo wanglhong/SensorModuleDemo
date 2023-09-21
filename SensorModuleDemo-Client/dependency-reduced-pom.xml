@@ -56,7 +56,7 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <pi4j.version>2.0</pi4j.version>
+    <pi4j.version>2.3.0</pi4j.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
   </properties>
 </project>

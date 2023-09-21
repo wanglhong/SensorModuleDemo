@@ -19,13 +19,7 @@ import java.net.Socket;
 public class ClientApplication {
 
     public static void main(String[] args) throws InterruptedException {
-        if (args.length < 1) {
-            new ClientApplication().sensorModule();
-        } else {
-            for (int i = 0; i < args.length; i++) {
-                new ClientApplication().buile();
-            }
-        }
+        new ClientApplication().sensorModule();
     }
 
     /**
@@ -34,8 +28,6 @@ public class ClientApplication {
     public void sensorModule() throws InterruptedException {
         Pi4jDemoOfHA pi4jDemoOfHA = new Pi4jDemoOfHA();
         pi4jDemoOfHA.demo01();
-//        PyroelectricSensorDemo pyroelectricSensorDemo = new PyroelectricSensorDemo();
-//        pyroelectricSensorDemo.psDemo();
     }
 
     /**
