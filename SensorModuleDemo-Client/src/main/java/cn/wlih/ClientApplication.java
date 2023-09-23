@@ -27,7 +27,7 @@ public class ClientApplication {
      */
     public void sensorModule() throws InterruptedException {
         Pi4jDemoOfHA pi4jDemoOfHA = new Pi4jDemoOfHA();
-        pi4jDemoOfHA.demo01();
+        pi4jDemoOfHA.demo02();
     }
 
     /**
