@@ -5,7 +5,9 @@ scanPeriod：设置监测配置文件是否有修改的时间间隔，如果没�
 debug：当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。
 -->
 <configuration scan="false" scanPeriod="60 seconds" debug="false">
-    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook">
+        <delay>2000</delay>
+    </shutdownHook>
     <springProperty scope="context" name="logging.level" source="logging.level" defaultValue="info"/>
 
     <!-- 定义日志的根目录 -->
@@ -50,10 +52,10 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
             <!-- 保存31天数据 -->
             <MaxHistory>31</MaxHistory>
             <!--
-            当日志文件超过maxFileSize指定的大小是，根据上面提到的%i进行日志文件滚动 注意此处配置SizeBasedTriggeringPolicy是无法实现按文件大小进行滚动的，必须配置timeBasedFileNamingAndTriggeringPolicy
+            当日志文件超过maxFileSize指定的大小时，根据上面提到的%i进行日志文件滚动 注意此处配置SizeBasedTriggeringPolicy是无法实现按文件大小进行滚动的，必须配置timeBasedFileNamingAndTriggeringPolicy
             -->
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>20MB</maxFileSize>
+                <maxFileSize>10MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
         <!-- 日志输出格式： -->

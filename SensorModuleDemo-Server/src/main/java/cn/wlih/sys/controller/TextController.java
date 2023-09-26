@@ -3,6 +3,7 @@ package cn.wlih.sys.controller;
 import cn.wlih.sys.model.SysUser;
 import cn.wlih.sys.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,8 @@ public class TextController {
 
     @GetMapping("/test01")
     public String test01() {
+        MDC.put("user-id", null);
+        log.error("Test");
         log.info("=============》test01《=============");
         return "测试成功！";
     }
