@@ -72,31 +72,6 @@
 
     <build>
         <finalName>SensorModuleDemoServer</finalName>
-        <!--        <plugins>-->
-        <!--            &lt;!&ndash; tomcate插件 &ndash;&gt;-->
-        <!--            <plugin>-->
-        <!--                <groupId>org.apache.tomcat.maven</groupId>-->
-        <!--                <artifactId>tomcat7-maven-plugin</artifactId>-->
-        <!--                <version>2.2</version>-->
-        <!--                &lt;!&ndash; 测试,没有也ok,会用默认值 &ndash;&gt;-->
-        <!--                <configuration>-->
-        <!--                    &lt;!&ndash; 端口 &ndash;&gt;-->
-        <!--                    <port>8080</port>-->
-        <!--                    &lt;!&ndash; 路径 &ndash;&gt;-->
-        <!--                    <path>/</path>-->
-        <!--                </configuration>-->
-        <!--            </plugin>-->
-        <!--            &lt;!&ndash; jdk插件（默认为1.7的） &ndash;&gt;-->
-        <!--            <plugin>-->
-        <!--                <groupId>org.apache.maven.plugins</groupId>-->
-        <!--                <artifactId>maven-compiler-plugin</artifactId>-->
-        <!--                <version>3.8.0</version>-->
-        <!--                <configuration>-->
-        <!--                    <source>1.8</source>-->
-        <!--                    <target>1.8</target>-->
-        <!--                </configuration>-->
-        <!--            </plugin>-->
-        <!--        </plugins>-->
         <resources>
             <resource>
                 <directory>src/main/java</directory>

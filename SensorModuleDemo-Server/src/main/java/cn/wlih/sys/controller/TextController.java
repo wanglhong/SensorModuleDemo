@@ -2,6 +2,7 @@ package cn.wlih.sys.controller;
 
 import cn.wlih.sys.model.SysUser;
 import cn.wlih.sys.service.SysUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import java.util.List;
  * path: SensorModuleDemo-cn.wlih.sys.controller-TextController
  * date: 2023/9/20 14:14
  */
+@Slf4j
 @RestController
 public class TextController {
 
@@ -25,11 +27,13 @@ public class TextController {
 
     @GetMapping("/test01")
     public String test01() {
+        log.info("=============》test01《=============");
         return "测试成功！";
     }
 
-    @PostMapping("/test02")
+    @GetMapping("/test02")
     public List<SysUser> test02() {
+        log.info("=============》test02《=============");
         return sysUserService.selectAll();
     }
 

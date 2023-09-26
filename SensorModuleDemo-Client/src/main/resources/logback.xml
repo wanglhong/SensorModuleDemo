@@ -16,9 +16,9 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     </shutdownHook>
 
     <!-- 定义日志的根目录 -->
-    <property name="LOG_HOME" value="./SysFile/logs/"/>
+    <property name="LOG_HOME" value="./SysFile/SensorModuleClientLogs/"/>
     <!-- 定义日志文件名称 -->
-    <property name="LOG_NAME" value="SensorModuleLog"/>
+    <property name="LOG_NAME" value="SensorModuleClientLog"/>
     <property name="LOG_PATTERN" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] ===> %msg %n"/>
     <property name="LOG_PATTERN_EX" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss.SSS}] T:[%X{traceId}] S:[%X{sessionId}] U:[%X{userId}] [%thread] ===> %msg %n"/>
     <!--
