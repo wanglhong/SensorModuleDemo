@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 /**
  * 描述:
  *
- * @author：王立宏
- * @date：2023/9/28 15:32
- * @path：SensorModuleDemo-PACKAGE_NAME-TestDemo01
+ * @author 王立宏
+ * @date 2023/9/28 15:32
+ * @path SensorModuleDemo-PACKAGE_NAME-TestDemo01
  */
 public class TestDemo01 {
 

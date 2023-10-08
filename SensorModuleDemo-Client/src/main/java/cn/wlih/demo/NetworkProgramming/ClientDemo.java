@@ -4,12 +4,10 @@ import java.io.*;
 import java.net.Socket;
 
 /**
- * Created by IntelliJ IDEA.
- *
- * @author 王立宏
  * 描述:
- * path: SensorModuleDemo-cn.wlih.demo.NetworkProgramming-ClientDemo
- * date: 2023/8/29 20:56
+ * @author 王立宏
+ * @date 2023/8/29 20:56
+ * @path SensorModuleDemo-cn.wlih.demo.NetworkProgramming-ClientDemo
  */
 public class ClientDemo {
 

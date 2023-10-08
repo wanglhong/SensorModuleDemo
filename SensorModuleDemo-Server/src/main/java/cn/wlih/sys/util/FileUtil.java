@@ -1,12 +1,10 @@
 package cn.wlih.sys.util;
 
 /**
- * Created by IntelliJ IDEA.
- *
- * @author 王立宏
  * 描述:
- * path: SensorModuleDemo-cn.wlih.util-FileUtil
- * date: 2023/8/29 21:25
+ * @author 王立宏
+ * @date 2023/8/29 21:25
+ * @path SensorModuleDemo-cn.wlih.util-FileUtil
  */
 public class FileUtil {
 

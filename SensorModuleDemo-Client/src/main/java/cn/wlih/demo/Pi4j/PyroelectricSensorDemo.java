@@ -6,13 +6,11 @@ import com.pi4j.io.gpio.digital.*;
 import com.pi4j.util.Console;
 
 /**
- * Created by IntelliJ IDEA.
- *
- * @author 王立宏
  * 描述: 热释电传感器（人体红外传感器：http://www.raspi.cc/read-66-1.html）
  * 有人时输出高电平 --- 无人时输出低电平
- * path: SensorModuleDemo-cn.wlih.demo.Pi4j-PyroelectricSensorDemo
- * date: 2023/9/1 21:39
+ * @author 王立宏
+ * @date 2023/9/1 21:39
+ * @path SensorModuleDemo-cn.wlih.demo.Pi4j-PyroelectricSensorDemo
  */
 public class PyroelectricSensorDemo {
 

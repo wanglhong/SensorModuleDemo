@@ -11,12 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by IntelliJ IDEA.
- *
- * @author 王立宏
  * 描述: HA有源嗡鸣器测试
- * path: SensorModuleDemo-cn.wlih.demo.Pi4j-Pi4jDemoOfHA
- * date: 2023/9/1 0:11
+ * @author 王立宏
+ * @date 2023/9/1 0:11
+ * @path SensorModuleDemo-cn.wlih.demo.Pi4j-Pi4jDemoOfHA
  */
 @Slf4j
 public class Pi4jDemoOfHA {

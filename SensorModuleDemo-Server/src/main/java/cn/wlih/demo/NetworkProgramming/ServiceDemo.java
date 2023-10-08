@@ -7,12 +7,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by IntelliJ IDEA.
- *
- * @author 王立宏
  * 描述: 网络编程Demo-服务端，配合SensorModuleDemo-Client客户端一起使用。
- * path: SensorModuleDemo-cn.wlih.demo.service-ServiceDemo
- * date: 2023/8/25 20:25
+ * @author 王立宏
+ * @date 2023/8/25 20:25
+ * @path SensorModuleDemo-cn.wlih.demo.service-ServiceDemo
  */
 public class ServiceDemo {
 

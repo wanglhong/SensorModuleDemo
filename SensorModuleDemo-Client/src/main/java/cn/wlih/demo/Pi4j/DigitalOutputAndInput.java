@@ -7,12 +7,10 @@ import com.pi4j.io.gpio.digital.*;
 import java.util.Properties;
 
 /**
- * Created by IntelliJ IDEA.
- *
- * @author 王立宏
  * 描述: 数字输出输入调用
- * path: SensorModuleDemo-cn.wlih.demo.Pi4j-DigitalOutputAndInput
- * date: 2023/9/23 1:13
+ * @author 王立宏
+ * @date 2023/9/23 1:13
+ * @path SensorModuleDemo-cn.wlih.demo.Pi4j-DigitalOutputAndInput
  */
 public class DigitalOutputAndInput {
 

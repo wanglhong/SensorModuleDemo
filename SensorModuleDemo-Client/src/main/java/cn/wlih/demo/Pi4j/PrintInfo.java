@@ -8,13 +8,11 @@ import com.pi4j.registry.Registry;
 import com.pi4j.util.Console;
 
 /**
- * Created by IntelliJ IDEA.
- *
- * @author 王立宏
  * 描述: 用于输出有关 Pi4J 上下文的信息的帮助程序类。
  * 初始化Pi4J后，我们可以访问系统的以下核心部分
- * path: SensorModuleDemo-cn.wlih.demo.Pi4j-PrintInfo
- * date: 2023/9/1 1:23
+ * @author 王立宏
+ * @date 2023/9/1 1:23
+ * @path SensorModuleDemo-cn.wlih.demo.Pi4j-PrintInfo
  */
 public class PrintInfo {
 

@@ -4,12 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Created by IntelliJ IDEA.
- *
- * @author 王立宏
  * 描述: 程序启动类
- * path: SensorModuleDemo-cn.wlih-ServerApplication
- * date: 2023/8/25 9:37
+ * @author 王立宏
+ * @date 2023/8/25 9:37
+ * @path SensorModuleDemo-cn.wlih-ServerApplication
  */
 @SpringBootApplication
 public class ServerApplication {

@@ -5,12 +5,10 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * Created by IntelliJ IDEA.
- *
- * @author 王立宏
  * 描述: 跨域（①先对SpringBoot配置，运行跨域请求）
- * path: SensorModuleDemo-cn.wlih.sys.config-CorsConfig
- * date: 2023/9/20 11:10
+ * @author 王立宏
+ * @date 2023/9/20 11:10
+ * @path SensorModuleDemo-cn.wlih.sys.config-CorsConfig
  */
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {

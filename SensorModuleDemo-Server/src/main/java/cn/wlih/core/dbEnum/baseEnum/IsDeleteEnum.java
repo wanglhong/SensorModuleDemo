@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * 描述:
  *
- * @author：王立宏
- * @date：2023/10/7 9:46
- * @path：SensorModuleDemo-cn.wlih.core.dbEnum.baseEnum-IsDeleteEnum
+ * @author 王立宏
+ * @date 2023/10/7 9:46
+ * @path SensorModuleDemo-cn.wlih.core.dbEnum.baseEnum-IsDeleteEnum
  */
 public enum IsDeleteEnum {
     /**

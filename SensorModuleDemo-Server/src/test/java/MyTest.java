@@ -1,16 +1,13 @@
-import cn.wlih.core.base.BaseModel;
-import lombok.Data;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
  * 描述:非SpringBoot自定义测试
  * @author 王立宏
- * path: SensorModuleDemo-PACKAGE_NAME-MyTest
- * date: 2023/8/31 11:20
+ * @date 2023/8/31 11:20
+ * @path SensorModuleDemo-PACKAGE_NAME-MyTest
  */
 public class MyTest {
 

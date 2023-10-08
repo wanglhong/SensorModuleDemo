@@ -12,12 +12,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by IntelliJ IDEA.
- *
- * @author 王立宏
  * 描述:
- * path: SensorModuleDemo-cn.wlih.demo.video-VideoDemo002
- * date: 2023/9/20 10:45
+ * @author 王立宏
+ * @date 2023/9/20 10:45
+ * @path SensorModuleDemo-cn.wlih.demo.video-VideoDemo002
  */
 public class VideoDemo002 {
 

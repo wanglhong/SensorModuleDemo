@@ -7,12 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by IntelliJ IDEA.
- *
- * @author 王立宏
  * 描述:
- * path: SensorModuleDemo-cn.wlih.utils-LoggerUtil
- * date: 2023/9/19 10:03
+ * @author 王立宏
+ * @date 2023/9/19 10:03
+ * @path SensorModuleDemo-cn.wlih.utils-LoggerUtil
  */
 public class LoggerUtil {
 

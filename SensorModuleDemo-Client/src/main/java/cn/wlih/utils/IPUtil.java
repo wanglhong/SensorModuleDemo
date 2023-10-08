@@ -6,12 +6,10 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * Created by IntelliJ IDEA.
- *
- * @author 王立宏
  * 描述:
- * path: SensorModuleDemo-cn.wlih.utils-IPUtil
- * date: 2023/9/20 22:52
+ * @author 王立宏
+ * @date 2023/9/20 22:52
+ * @path SensorModuleDemo-cn.wlih.utils-IPUtil
  */
 @Slf4j
 public class IPUtil {

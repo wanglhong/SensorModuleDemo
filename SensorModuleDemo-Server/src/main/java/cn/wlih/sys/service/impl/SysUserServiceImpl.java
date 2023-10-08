@@ -11,12 +11,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
- *
- * @author 王立宏
  * 描述:
- * path: SensorModuleDemo-cn.wlih.sys.service.impl-SysUserServiceImpl
- * date: 2023/9/20 17:19
+ * @author 王立宏
+ * @date 2023/9/20 17:19
+ * @path SensorModuleDemo-cn.wlih.sys.service.impl-SysUserServiceImpl
  */
 @Service
 public class SysUserServiceImpl implements SysUserService {
