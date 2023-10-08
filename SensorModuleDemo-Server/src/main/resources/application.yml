@@ -32,3 +32,7 @@ mybatis-plus:
     # 开启驼峰转下划线（默认为true）
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+  # 配置枚举 支持通配符 * 或者 ; 分割
+  type-enums-package: cn.wlih.core.dbEnum
+

@@ -1,5 +1,6 @@
 package cn.wlih.sys.model;
 
+import cn.wlih.core.base.BaseModel;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -13,8 +14,8 @@ import lombok.Data;
  * date: 2023/9/20 17:15
  */
 @Data
-@TableName("sus_user")
-public class SysUser {
+@TableName("sys_user")
+public class SysUser extends BaseModel {
 
     @TableId
     private Long id;
