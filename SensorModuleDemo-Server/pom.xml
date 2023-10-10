@@ -67,6 +67,11 @@
             <version>1.2.33</version>
         </dependency>
 
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.20</version>
+        </dependency>
         <!--自定义依赖结束-->
     </dependencies>
 
