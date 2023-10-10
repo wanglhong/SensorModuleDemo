@@ -1,5 +1,6 @@
 package cn.wlih;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2023/8/25 9:37
  * @path SensorModuleDemo-cn.wlih-ServerApplication
  */
+@Slf4j
 @SpringBootApplication
 public class ServerApplication {
     public static void main(String[] args) {

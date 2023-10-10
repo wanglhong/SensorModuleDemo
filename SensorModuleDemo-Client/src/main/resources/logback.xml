@@ -11,9 +11,9 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         当应用程序关闭时，Logback会执行该关闭钩子的stop()方法，延迟2000毫秒（即2秒钟）后再继续执行后续的关闭操作。
         通过配置shutdownHook标签，可以在应用程序关闭时保证Logback进行必要的清理操作，以避免日志数据的丢失或其他问题的发生。
     -->
-    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook">
-        <delay>2000</delay>
-    </shutdownHook>
+<!--    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook">-->
+<!--        <delay>2000</delay>-->
+<!--    </shutdownHook>-->
 
     <!-- 定义日志的根目录 -->
     <property name="LOG_HOME" value="./SysFile/SensorModuleClientLogs/"/>
