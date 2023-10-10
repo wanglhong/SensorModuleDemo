@@ -23,6 +23,11 @@ public class TextController {
     @Autowired
     private SysUserService sysUserService;
 
+    @GetMapping("/")
+    public String index() {
+        return "SUCCESS！";
+    }
+
     @GetMapping("/test01")
     public String test01() {
         MDC.put("user-id", null);
