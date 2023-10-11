@@ -32,13 +32,13 @@ public class TextController {
     public String test01() {
         MDC.put("user-id", null);
         log.error("Test");
-        log.info("=============》test01《=============");
+        log.info("=============> test01 <=============");
         return "测试成功！";
     }
 
     @GetMapping("/test02")
     public List<SysUser> test02() {
-        log.info("=============》test02《=============");
+        log.info("=============> test02 <=============");
         return sysUserService.selectAll();
     }
 
