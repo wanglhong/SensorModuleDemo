@@ -1,6 +1,8 @@
 package cn.wlih;
 
+import cn.wlih.core.util.LoggerUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
@@ -26,10 +28,14 @@ public class ServerApplication {
         ServerProperties.Servlet servlet = serverProperties.getServlet();
         String contextPath = servlet.getContextPath();
         String urlSuffix = StrUtil.isBlank(contextPath) ? String.valueOf(port) : port+contextPath;
-        log.info("==========================================================================================");
-        log.info("==\t \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \t==");
-        log.info("==\t SensorModuleDemo-Server 服务启动完成，耗时:{}s，演示页请访问: http://127.0.0.1:{}\t==", stopWatch.getTotalTimeSeconds(), urlSuffix);
-        log.info("==\t \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \t==");
-        log.info("==========================================================================================");
+
+        LoggerUtil.logTitle(log, null, "SensorModuleDemo-Server",
+                "Service startup complete.",
+                "Startup time: " + stopWatch.getTotalTimeSeconds() + "s.",
+                "Program Access Address: http://127.0.0.1:" + urlSuffix + ".");
+//        LoggerUtil.logBox(log, null,
+//                "Startup time: " + stopWatch.getTotalTimeSeconds() + "s",
+//                "Program Access Address: http://127.0.0.1:" + urlSuffix);
     }
+
 }
