@@ -1,11 +1,15 @@
 package cn.wlih;
 
 import cn.wlih.demo.Pi4j.Pi4jDemoOfHA;
+import cn.wlih.demo.javaspi.PersonService;
 import cn.wlih.utils.IPUtil;
+import cn.wlih.utils.LoggerUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Iterator;
+import java.util.ServiceLoader;
 
 /**
  * 描述: 客户端启动类
@@ -17,7 +21,15 @@ import java.net.Socket;
 public class ClientApplication {
 
     public static void main(String[] args) throws InterruptedException {
-        new ClientApplication().sensorModule();
+        new ClientApplication().javaSpi();
+    }
+
+    public void javaSpi() {
+        LoggerUtil.logTitle(log, null, "JavaSpiDemo");
+        ServiceLoader<PersonService> serviceLoader = ServiceLoader.load(PersonService.class);
+        for (PersonService service : serviceLoader) {
+            service.sayHello();
+        }
     }
 
     /**
@@ -25,7 +37,7 @@ public class ClientApplication {
      */
     public void sensorModule() throws InterruptedException {
         Pi4jDemoOfHA pi4jDemoOfHA = new Pi4jDemoOfHA();
-        pi4jDemoOfHA.demo02();
+        pi4jDemoOfHA.demo01();
     }
 
     /**

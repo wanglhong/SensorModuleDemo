@@ -54,8 +54,13 @@
             <artifactId>pi4j-plugin-pigpio</artifactId>
             <version>${pi4j.version}</version>
         </dependency>
-        
-<!--        <dependency>-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.20</version>
+        </dependency>
+
+        <!--        <dependency>-->
 <!--            <groupId>com.pi4j</groupId>-->
 <!--            <artifactId>pi4j-plugin-mock</artifactId>-->
 <!--            <version>${pi4j.version}</version>-->
