@@ -59,6 +59,11 @@
             <artifactId>hutool-all</artifactId>
             <version>5.8.20</version>
         </dependency>
+        <dependency>
+            <groupId>com.hierynomus</groupId>
+            <artifactId>sshj</artifactId>
+            <version>0.37.0</version>
+        </dependency>
 
         <!--        <dependency>-->
 <!--            <groupId>com.pi4j</groupId>-->

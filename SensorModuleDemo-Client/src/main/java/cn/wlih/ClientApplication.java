@@ -1,15 +1,15 @@
 package cn.wlih;
 
+import cn.hutool.json.JSONUtil;
 import cn.wlih.demo.Pi4j.Pi4jDemoOfHA;
-import cn.wlih.demo.javaspi.PersonService;
 import cn.wlih.utils.IPUtil;
 import cn.wlih.utils.LoggerUtil;
+import cn.wlih.utils.SSHConfig;
+import cn.wlih.utils.SSHJUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Iterator;
-import java.util.ServiceLoader;
 
 /**
  * 描述: 客户端启动类
@@ -21,15 +21,28 @@ import java.util.ServiceLoader;
 public class ClientApplication {
 
     public static void main(String[] args) throws InterruptedException {
-        new ClientApplication().javaSpi();
+        new ClientApplication().ssh();
     }
 
-    public void javaSpi() {
+    public void ssh() {
+        String jsonStr = JSONUtil.toJsonStr(new SSHConfig());
+        log.error(jsonStr);
+        SSHJUtil sshjUtil = new SSHJUtil();
+        String s = sshjUtil.execCommand("ls");
+        log.warn(s);
+    }
+
+    public void javaSpi() throws InterruptedException {
         LoggerUtil.logTitle(log, null, "JavaSpiDemo");
-        ServiceLoader<PersonService> serviceLoader = ServiceLoader.load(PersonService.class);
-        for (PersonService service : serviceLoader) {
-            service.sayHello();
+        for (int i = 0; i < 20; i++) {
+            // 系统休眠2秒
+            Thread.sleep(1000);
+            log.info("第[ " + i + " ]次执行！");
         }
+//        ServiceLoader<PersonService> serviceLoader = ServiceLoader.load(PersonService.class);
+//        for (PersonService service : serviceLoader) {
+//            service.sayHello();
+//        }
     }
 
     /**

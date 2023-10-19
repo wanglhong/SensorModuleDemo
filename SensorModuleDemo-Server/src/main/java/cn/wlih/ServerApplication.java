@@ -1,8 +1,8 @@
 package cn.wlih;
 
 import cn.wlih.core.util.LoggerUtil;
+import cn.wlih.util.JschUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
@@ -19,7 +19,19 @@ import cn.hutool.core.util.StrUtil;
 @Slf4j
 @SpringBootApplication
 public class ServerApplication {
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws Exception {
+        new ServerApplication().ssh();
+    }
+
+    public void ssh() throws Exception {
+        LoggerUtil.logTitle(log, null, "SSHJ-Demo");
+        // 配置远程数据
+        JschUtil jschUtil = new JschUtil();
+        jschUtil.executeRemoteCommand("ls /root/sshTest/");
+    }
+
+    public void runSpringBoot(String[] args) {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         ConfigurableApplicationContext context = SpringApplication.run(ServerApplication.class, args);
@@ -28,14 +40,10 @@ public class ServerApplication {
         ServerProperties.Servlet servlet = serverProperties.getServlet();
         String contextPath = servlet.getContextPath();
         String urlSuffix = StrUtil.isBlank(contextPath) ? String.valueOf(port) : port+contextPath;
-
         LoggerUtil.logTitle(log, null, "SensorModuleDemo-Server",
                 "Service startup complete.",
                 "Startup time: " + stopWatch.getTotalTimeSeconds() + "s.",
                 "Program Access Address: http://127.0.0.1:" + urlSuffix + ".");
-//        LoggerUtil.logBox(log, null,
-//                "Startup time: " + stopWatch.getTotalTimeSeconds() + "s",
-//                "Program Access Address: http://127.0.0.1:" + urlSuffix);
     }
 
 }
