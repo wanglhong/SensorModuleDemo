@@ -11,8 +11,8 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <property name="LOG_HOME" value="./SysFile/SensorModuleServerLogs/" />
     <!-- 定义日志文件名称 -->
     <property name="LOG_NAME" value="SensorModuleServerLog"></property>
-    <property name="LOG_PATTERN" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %black([%thread]) ===> %msg %n" />
-    <property name="LOG_PATTERN_EX" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss}] T:[%X{traceId}] S:[%X{sessionId}] U:[%X{userId}] [%thread] ===> %msg%n" />
+    <property name="LOG_PATTERN" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldCyan([%thread]) ==> %highlight(%msg %n)" />
+    <property name="LOG_PATTERN_EX" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss}] T:[%X{traceId}] S:[%X{sessionId}] U:[%X{userId}] [%thread] ==> %msg%n" />
 
     <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">

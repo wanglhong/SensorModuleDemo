@@ -19,8 +19,8 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <property name="LOG_HOME" value="./SysFile/SensorModuleClientLogs/"/>
     <!-- 定义日志文件名称 -->
     <property name="LOG_NAME" value="SensorModuleClientLog"/>
-    <property name="LOG_PATTERN" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] ===> %msg %n"/>
-    <property name="LOG_PATTERN_EX" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss.SSS}] T:[%X{traceId}] S:[%X{sessionId}] U:[%X{userId}] [%thread] ===> %msg %n"/>
+    <property name="LOG_PATTERN" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldCyan([%thread]) ==> %highlight(%msg %n)"/>
+    <property name="LOG_PATTERN_EX" value="[%-5level] [%d{yyyy-MM-dd HH:mm:ss.SSS}] T:[%X{traceId}] S:[%X{sessionId}] U:[%X{userId}] [%thread] ==> %msg %n"/>
     <!--
     日志输出格式：
         %-5level：级别从左显示5个字符宽度
@@ -29,20 +29,20 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         %msg：日志消息，
         %n：是换行符
     -->
-    <property name="STDOUT" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %black([%thread]) ===> %msg %n"/>
-    <property name="boldRed" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldRed([%thread]) ===> %msg %n"/>
-    <property name="boldBlue" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldBlue([%thread]) ===> %msg %n"/>
-    <property name="boldGreen" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldGreen([%thread]) ===> %msg %n"/>
-    <property name="boldYellow" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldYellow([%thread]) ===> %msg %n"/>
-    <property name="boldMagenta" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldMagenta([%thread]) ===> %msg %n"/>
-    <property name="boldCyan" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldCyan([%thread]) ===> %msg %n"/>
-    <property name="boldWhite" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldWhite([%thread]) ===> %msg %n"/>
+    <property name="STDOUT" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %black([%thread]) ==> %msg %n"/>
+    <property name="boldRed" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldRed([%thread]) ==> %msg %n"/>
+    <property name="boldBlue" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldBlue([%thread]) ==> %msg %n"/>
+    <property name="boldGreen" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldGreen([%thread]) ==> %msg %n"/>
+    <property name="boldYellow" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldYellow([%thread]) ==> %msg %n"/>
+    <property name="boldMagenta" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldMagenta([%thread]) ==> %msg %n"/>
+    <property name="boldCyan" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldCyan([%thread]) ==> %msg %n"/>
+    <property name="boldWhite" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS} %boldWhite([%thread]) ==> %msg %n"/>
 
     <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
-<!--            <pattern>${LOG_PATTERN}</pattern>-->
-            <pattern>${boldCyan}</pattern>
+            <pattern>${LOG_PATTERN}</pattern>
+<!--            <pattern>${boldCyan}</pattern>-->
         </layout>
     </appender>
 
