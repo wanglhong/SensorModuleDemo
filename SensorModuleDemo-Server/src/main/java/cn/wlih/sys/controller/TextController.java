@@ -2,13 +2,14 @@ package cn.wlih.sys.controller;
 
 import cn.wlih.sys.model.SysUser;
 import cn.wlih.sys.service.SysUserService;
+import cn.wlih.util.SshUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 描述:
@@ -22,6 +23,8 @@ public class TextController {
 
     @Autowired
     private SysUserService sysUserService;
+    @Autowired
+    private SshUtil sshUtil;
 
     @GetMapping("/")
     public String index() {
@@ -50,6 +53,18 @@ public class TextController {
         sysUser.setPhoneNumber("18888888888");
         sysUser = sysUserService.saveNew(sysUser);
         return sysUser;
+    }
+
+    @PostMapping(value = "/sshCommand", consumes = "application/json")
+    @ResponseBody
+    public String sshCommand(@RequestBody Map<String, List<String>> map) {
+        List<String> commands = map.get("commands");
+        return sshUtil.executeRemoteCommand(commands);
+    }
+
+    @PostMapping("/sshClose")
+    public void sshClose() {
+        sshUtil.close();
     }
 
 }

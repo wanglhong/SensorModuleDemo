@@ -17,20 +17,20 @@ import java.io.*;
 @Slf4j
 public class JschUtil {
 
-    private SSHConfig sshjConfig;
+    private SSHConfig sshConfig;
 
     public JschUtil() {
-        this.sshjConfig = new SSHConfig();
+        this.sshConfig = new SSHConfig();
     }
 
     public JschUtil(SSHConfig sshConfig) {
-        this.sshjConfig = sshConfig;
+        this.sshConfig = sshConfig;
     }
 
     public void executeRemoteCommand(String... command) throws Exception {
         JSch jsch = new JSch();
-        Session session = jsch.getSession(sshjConfig.getUserName(), sshjConfig.getIp(), sshjConfig.getPort());
-        session.setPassword(sshjConfig.getPassword());
+        Session session = jsch.getSession(sshConfig.getUserName(), sshConfig.getIp(), sshConfig.getPort());
+        session.setPassword(sshConfig.getPassword());
         session.setConfig("StrictHostKeyChecking", "no");
         session.connect();
 
@@ -57,7 +57,6 @@ public class JschUtil {
          */
         byte[] tmp = new byte[1024];
         while(true){
-
             while(inputStream.available() > 0){
                 int i = inputStream.read(tmp, 0, 1024);
                 if(i < 0) break;

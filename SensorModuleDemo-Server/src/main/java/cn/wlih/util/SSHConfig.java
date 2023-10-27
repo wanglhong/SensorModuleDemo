@@ -14,10 +14,10 @@ import lombok.Data;
 @Data
 public class SSHConfig {
 
-    private String ip = "wlih.cn";
-    private String userName = "root";
-    private String password;
-    private String key = "/Users/Data/.ssh/a.pem";
+    private String ip = "raspberrypi.local";
+    private String userName = "pi";
+    private String password = "raspberry";
+    private String key;
     private int port = 22;
 
     private int timeout = 3000;

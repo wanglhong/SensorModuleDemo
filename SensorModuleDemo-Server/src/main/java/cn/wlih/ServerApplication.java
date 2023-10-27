@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.util.StopWatch;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.lang.Console;
+import cn.hutool.core.lang.Matcher;
 
 /**
  * 描述: 程序启动类
@@ -21,14 +23,14 @@ import cn.hutool.core.util.StrUtil;
 public class ServerApplication {
 
     public static void main(String[] args) throws Exception {
-        new ServerApplication().ssh();
+        new ServerApplication().runSpringBoot(args);
     }
 
     public void ssh() throws Exception {
-        LoggerUtil.logTitle(log, null, "SSHJ-Demo");
+        LoggerUtil.logTitle(log, null, "SSH-Raspberrypi");
         // 配置远程数据
         JschUtil jschUtil = new JschUtil();
-        jschUtil.executeRemoteCommand("ls /root/sshTest/");
+        jschUtil.executeRemoteCommand("ls /home/pi/MyApps");
     }
 
     public void runSpringBoot(String[] args) {
