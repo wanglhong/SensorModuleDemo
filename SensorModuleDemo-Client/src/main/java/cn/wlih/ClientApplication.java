@@ -21,7 +21,7 @@ import java.net.Socket;
 public class ClientApplication {
 
     public static void main(String[] args) throws InterruptedException {
-        new ClientApplication().ssh();
+        new ClientApplication().sensorModule();
     }
 
     public void ssh() {

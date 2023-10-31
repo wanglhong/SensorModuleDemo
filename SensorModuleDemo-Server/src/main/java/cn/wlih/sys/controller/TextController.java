@@ -8,6 +8,7 @@ import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -62,9 +63,37 @@ public class TextController {
         return sshUtil.executeRemoteCommand(commands);
     }
 
+    @PostMapping(value = "/uploadFile", consumes = "application/json")
+    @ResponseBody
+    public String uploadFile(@RequestBody Map<String, String> map) {
+        if (map == null) {
+            map = new HashMap<>();
+            map.put("localFilePath", "./SensorModuleDemo-Client/target/SensorModuleDemoClient.jar");
+            map.put("remotePath", "/home/pi/MyApps/SensorModuleDemoClient.jar");
+        }
+        String localFilePath = map.get("localFilePath");
+        String remotePath = map.get("remotePath");
+        return sshUtil.uploadFile(localFilePath, remotePath);
+    }
+
+    @PostMapping(value = "/downloadFile", consumes = "application/json")
+    @ResponseBody
+    public String downloadFile(@RequestBody Map<String, String> map) {
+        if (map == null) {
+            map.put("localFilePath", "./SysFile/hostFile/");
+            map.put("remotePath", "");
+        }
+        String localFilePath = map.get("localFilePath");
+        String remotePath = map.get("remotePath");
+        return sshUtil.downloadFile(localFilePath, remotePath);
+    }
+
     @PostMapping("/sshClose")
-    public void sshClose() {
+    @ResponseBody
+    public String sshClose() {
         sshUtil.close();
+        log.info("Close ssh success.");
+        return "Close ssh success.";
     }
 
 }

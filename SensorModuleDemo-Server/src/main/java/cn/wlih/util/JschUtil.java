@@ -56,7 +56,7 @@ public class JschUtil {
          为了避免阻塞
          */
         byte[] tmp = new byte[1024];
-        while(true){
+        while (true) {
             while(inputStream.available() > 0){
                 int i = inputStream.read(tmp, 0, 1024);
                 if(i < 0) break;

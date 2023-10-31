@@ -1,16 +1,10 @@
 package cn.wlih.util;
 
-import com.jcraft.jsch.ChannelShell;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.Session;
+import com.jcraft.jsch.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -26,17 +20,13 @@ public class SshUtil {
     
     private static final SSHConfig SSH_CONFIG = new SSHConfig();
     private Session session;
-    private ChannelShell channelShell;
 
 //    {
 //        getShell();
 //    }
 
-    public void getShell() throws JSchException {
-        if (this.channelShell != null && this.channelShell.isConnected()) return;
-        if (this.session != null && !this.session.isConnected()) {
-            this.session.connect();
-        }
+    public void getSession() throws JSchException {
+        if (this.session != null && this.session.isConnected()) return;
         if (this.session == null) {
             // 重新获取 session
             JSch jsch = new JSch();
@@ -44,10 +34,8 @@ public class SshUtil {
                     SSH_CONFIG.getUserName(), SSH_CONFIG.getIp(), SSH_CONFIG.getPort());
             this.session.setPassword(SSH_CONFIG.getPassword());
             this.session.setConfig("StrictHostKeyChecking", "no");
-            this.session.connect();
         }
-        this.channelShell = (ChannelShell) this.session.openChannel("shell");
-//        if (this.channelShell.isClosed()) getShell();
+        this.session.connect();
     }
 
     /**
@@ -57,10 +45,6 @@ public class SshUtil {
      * @date 2023/10/28 02:13
      */
     public void close() {
-        if (this.channelShell != null) {
-            if (this.channelShell.isConnected()) this.channelShell.disconnect();
-            this.channelShell = null;
-        }
         if (this.session == null) return;
         if (this.session.isConnected()) this.session.disconnect();
         this.session = null;
@@ -68,30 +52,30 @@ public class SshUtil {
 
     public String executeRemoteCommand(List<String> commands) {
         if (commands == null || commands.size() < 1) return "命令参数（commands）不能为空！";
-        if (this.channelShell == null) {
+        if (this.session == null || !this.session.isConnected()) {
             try {
-                getShell();
+                getSession();
             } catch (JSchException e) {
                 log.error(e.getMessage());
-                return e.getMessage().contains("Connection timed out") ? "连接超时，请重试！" : e.getMessage();
+                return e.getMessage().contains("Connection timed out") ? "Error：连接超时，请重试！" : "Error：" + e.getMessage();
             }
         }
         StringBuilder resultMsg = new StringBuilder();
-        if (this.channelShell.isClosed()) {
-            try {
-                getShell();
-            } catch (JSchException e) {
-                log.error(e.getMessage());
-                return e.getMessage().contains("Connection timed out") ? "连接超时，请重试！" : e.getMessage();
-            }
+
+        ChannelShell channelShell = null;
+        try {
+            channelShell = (ChannelShell) this.session.openChannel("shell");
+        } catch (JSchException e) {
+            log.error(e.getMessage());
+            return e.getMessage().contains("Connection timed out") ? "Error：连接超时，请重试！" : "Error：" + e.getMessage();
         }
 
         try {
-            InputStream inputStream = this.channelShell.getInputStream();//从远端到达的数据  都能从这个流读取到
-            this.channelShell.setPty(true);
-            this.channelShell.connect();
+            InputStream inputStream = channelShell.getInputStream();//从远端到达的数据  都能从这个流读取到
+            channelShell.setPty(true);
+            channelShell.connect();
 
-            OutputStream outputStream = this.channelShell.getOutputStream();//写入该流的数据  都将发送到远程端
+            OutputStream outputStream = channelShell.getOutputStream();//写入该流的数据  都将发送到远程端
             //使用PrintWriter 就是为了使用println 这个方法
             //好处就是不需要每次手动给字符加\n
             PrintWriter printWriter = new PrintWriter(outputStream);
@@ -102,7 +86,7 @@ public class SshUtil {
             printWriter.flush();
 
             byte[] tmp = new byte[1024];
-            while(true){
+            while (true) {
                 while(inputStream.available() > 0){
                     int i = inputStream.read(tmp, 0, 1024);
                     if(i < 0) break;
@@ -124,8 +108,68 @@ public class SshUtil {
             inputStream.close();
         } catch (IOException | JSchException e) {
             throw new RuntimeException(e);
+        } finally {
+            channelShell.disconnect();
         }
         return resultMsg.toString();
+    }
+
+    /**
+     * 上传文件
+     *
+     * @param localFilePath 本地文件路径
+     * @param remotePath    远程路径
+     * @return 字符串
+     * @author 王立宏
+     * @date 2023/10/29 06:32
+     */
+    public String uploadFile(String localFilePath, String remotePath) {
+        if (this.session == null || !this.session.isConnected()) {
+            try {
+                getSession();
+            } catch (JSchException e) {
+                log.error(e.getMessage());
+                return e.getMessage().contains("Connection timed out") ? "连接超时，请重试！" : e.getMessage();
+            }
+        }
+        ChannelSftp channelSftp = null;
+        try {
+            channelSftp = (ChannelSftp) session.openChannel("sftp");
+            channelSftp.connect();
+            channelSftp.put(localFilePath, remotePath);
+        } catch (JSchException | SftpException e) {
+            log.error(e.getMessage());
+            return e.getMessage().contains("Connection timed out") ? "Error：连接超时，请重试！" : "Error：" + e.getMessage();
+        } finally {
+            channelSftp.disconnect();
+        }
+        return "SUCCESS";
+    }
+
+    /**
+     * 下载文件
+     */
+    public String downloadFile(String localFilePath, String remotePath) {
+        if (this.session == null || !this.session.isConnected()) {
+            try {
+                getSession();
+            } catch (JSchException e) {
+                log.error(e.getMessage());
+                return e.getMessage().contains("Connection timed out") ? "连接超时，请重试！" : e.getMessage();
+            }
+        }
+        ChannelSftp channelSftp = null;
+        try {
+            channelSftp = (ChannelSftp) session.openChannel("sftp");
+            channelSftp.connect();
+            channelSftp.get(remotePath, localFilePath);
+        } catch (JSchException | SftpException e) {
+            log.error(e.getMessage());
+            return e.getMessage().contains("Connection timed out") ? "Error：连接超时，请重试！" : "Error：" + e.getMessage();
+        } finally {
+            channelSftp.disconnect();
+        }
+        return "SUCCESS";
     }
 
 }
