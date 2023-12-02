@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 描述: 客户端启动类
@@ -16,8 +17,19 @@ import java.net.Socket;
 @Slf4j
 public class ClientApplication {
 
-    public static void main(String[] args) throws InterruptedException {
-        new ClientApplication().sensorModule();
+    public static void main(String[] args) throws InterruptedException, IOException {
+//        new ClientApplication().sensorModule();
+        ProcessBuilder pb = new ProcessBuilder("raspivid", "-o", "output.h264");
+        Process process = pb.start();
+
+        // 等待该过程完成
+        process.waitFor(5, TimeUnit.MINUTES);
+
+        // 检查进程是否超时
+        if (process.isAlive()) {
+            process.destroy();
+            throw new RuntimeException("录制超时");
+        }
     }
 
     /**
