@@ -3,8 +3,10 @@ package cn.wlih;
 import cn.wlih.demo.Pi4j.Pi4jDemoOfHA;
 import cn.wlih.demo.Pi4j.gpsDemo.SerialGps_App;
 import cn.wlih.utils.IPUtil;
+import cn.wlih.utils.LoggerUtil;
 import com.pi4j.Pi4J;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import java.io.*;
 import java.net.Socket;
@@ -20,7 +22,11 @@ import java.util.concurrent.TimeUnit;
 public class ClientApplication {
 
     public static void main(String[] args) throws InterruptedException, IOException {
-        new ClientApplication().sensorModule();
+        for (int i = 0; i < 10; i++) {
+            LoggerUtil.logTitle(log, null, "Maven Refactoring Tests");
+            Thread.sleep(1000);
+        }
+//        new ClientApplication().sensorModule();
 //        new ClientApplication().logTest();
 //        ProcessBuilder pb = new ProcessBuilder("raspivid", "-o", "output.h264");
 //        Process process = pb.start();

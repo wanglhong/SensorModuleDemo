@@ -6,125 +6,467 @@
 
     <groupId>cn.wlih</groupId>
     <artifactId>SensorModuleDemo-Client</artifactId>
+    <name>毕设 :: 客户端</name>
+    <description>大四毕设程序-客户端</description>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <main.class>cn.wlih.ClientApplication</main.class>
+        <!-- 项目属性 -->
+        <main.class>cn.wlih/cn.wlih.ClientApplication</main.class>
+        <main.args>--demo</main.args>
+        <!-- Raspberry 远程部署 -->
+        <pi.hostname>raspberrypi</pi.hostname>
+        <pi.ipnumber>${pi.hostname}.local</pi.ipnumber>
+        <pi.port>22</pi.port>
+        <pi.username>pi</pi.username>
+        <pi.password>raspberry</pi.password>
+        <pi.deploydirectory>/home/pi/appTest</pi.deploydirectory>
+        <pi.jvmOptions/>
+        <!-- 项目依赖关系 -->
         <java.version>17</java.version>
+        <junit.version>5.10.0</junit.version>
+        <mockito.version>5.4.0</mockito.version>
+        <ant-jsch.version>1.10.9</ant-jsch.version>
+        <!-- Maven 依赖项 -->
+        <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
+        <maven-jar-plugin.version>3.2.1</maven-jar-plugin.version>
+        <maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
+        <!-- Maven 属性 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <!-- DEPENDENCIES VERSIONS -->
-        <slf4j.version>1.7.32</slf4j.version>
-<!--        <pi4j.version>2.0</pi4j.version>-->
+        <!-- 以下为项目各模块依赖 -->
         <pi4j.version>2.4.0</pi4j.version>
-        <!-- BUILD PLUGIN VERSIONS -->
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
-        <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
+        <picocli.version>4.7.4</picocli.version>
+        <lombok.version>1.18.24</lombok.version>
     </properties>
 
     <dependencies>
+        <!-- 插件所需的依赖 -->
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant-jsch</artifactId>
+            <version>${ant-jsch.version}</version>
+        </dependency>
         <!-- 日志依赖 -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.4.8</version>
+            <version>1.4.12</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.26</version>
+            <version>${lombok.version}</version>
+<!--            <scope>provided</scope>-->
         </dependency>
-
-        <!-- include Pi4J Plugins (Platforms and I/O Providers) -->
+        <!-- JUnit测试相关依赖 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+            <scope>test</scope>
+        </dependency>
+        <!-- Pi4J相关依赖 (平台 和 I/O 提供程序) -->
+        <!-- Pi4J 内核 -->
         <dependency>
             <groupId>com.pi4j</groupId>
             <artifactId>pi4j-core</artifactId>
             <version>${pi4j.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+        <!-- Pi4J 树莓派平台 -->
         <dependency>
             <groupId>com.pi4j</groupId>
             <artifactId>pi4j-plugin-raspberrypi</artifactId>
             <version>${pi4j.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+        <!-- Pi4J 树莓派 GPIO -->
         <dependency>
             <groupId>com.pi4j</groupId>
             <artifactId>pi4j-plugin-pigpio</artifactId>
             <version>${pi4j.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>com.pi4j</groupId>-->
-        <!--            <artifactId>pi4j-plugin-mock</artifactId>-->
-        <!--            <version>${pi4j.version}</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>com.pi4j</groupId>-->
-        <!--            <artifactId>pi4j-plugin-linuxfs</artifactId>-->
-        <!--            <version>${pi4j.version}</version>-->
-        <!--        </dependency>-->
+        <!-- Pi4J 模拟平台 -->
+        <dependency>
+            <groupId>com.pi4j</groupId>
+            <artifactId>pi4j-plugin-mock</artifactId>
+            <version>${pi4j.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- I2C 插件 -->
+        <dependency>
+            <groupId>com.pi4j</groupId>
+            <artifactId>pi4j-plugin-linuxfs</artifactId>
+            <version>${pi4j.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- PicoCLI（CLI 峰值） -->
+        <dependency>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli</artifactId>
+            <version>${picocli.version}</version>
+        </dependency>
+        <!-- 工具 -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.8.20</version>
+            <version>5.8.24</version>
         </dependency>
-<!--        <dependency>-->
-<!--            &lt;!&ndash; raspivid &ndash;&gt;-->
-<!--            <groupId></groupId>-->
-<!--            <artifactId>raspivid</artifactId>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>
-        <finalName>SensorModuleDemoClient</finalName>
         <plugins>
-            <!-- 编译器插件用于编译项目的源代码。 -->
+            <!-- 指定编译器选项 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <release>${java.version}</release>
                     <showDeprecation>true</showDeprecation>
                     <showWarnings>true</showWarnings>
-                    <verbose>false</verbose>
+                    <!-- 将 Lombok 路径添加到maven-compiler-plugin注释处理器列表 -->
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>info.picocli</groupId>
+                            <artifactId>picocli-codegen</artifactId>
+                            <version>${picocli.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                    <compilerArgs>
+                        <!-- 由 PicoCLI 注解处理器使用 -->
+                        <arg>-Aproject=${main.class}</arg>
+                    </compilerArgs>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
-            <!-- 该插件提供了构建（可执行）jar 的功能，并在此处用于设置将启动应用程序的 mainClass。 -->
+            <!-- 将运行时依赖项复制到分发文件夹中 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>${maven-jar-plugin.version}</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>${main.class}</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-            <!-- 该插件提供了将工件打包在 uber-jar 中的能力，包括其依赖项，并对某些依赖项的包进行着色（即重命名）。
-            转换器会将多个具有相同包名的 Pi4J 插件的 META-INF.services 目录中的文件合并到一个文件中。 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>${maven-shade-plugin.version}</version>
-                <configuration>
-                    <transformers>
-                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
-                    </transformers>
-                </configuration>
+                <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <phase>package</phase>
+                        <id>copy-dependencies</id>
+                        <phase>process-sources</phase>
                         <goals>
-                            <goal>shade</goal>
+                            <goal>copy-dependencies</goal>
                         </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/distribution</outputDirectory>
+                            <includeScope>runtime</includeScope>
+                            <excludeTransitive>false</excludeTransitive>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
+            <!-- 构建最终的 JAR 文件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>${project.build.directory}/distribution</outputDirectory>
+                </configuration>
+            </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>${maven-antrun-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${maven-dependency-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>${exec-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
+
+    <profiles>
+<!--        &lt;!&ndash; 打包成JAR &ndash;&gt;-->
+<!--        <profile>-->
+<!--            <id>Build-JAR</id>-->
+<!--            <build>-->
+<!--                <finalName>SensorModuleDemoClient</finalName>-->
+<!--                <plugins>-->
+<!--                    &lt;!&ndash; 编译器插件用于编译项目的源代码。 &ndash;&gt;-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                        <version>${maven-compiler-plugin.version}</version>-->
+<!--                        <configuration>-->
+<!--                            <release>${java.version}</release>-->
+<!--                            <showDeprecation>true</showDeprecation>-->
+<!--                            <showWarnings>true</showWarnings>-->
+<!--                            <verbose>false</verbose>-->
+<!--                        </configuration>-->
+<!--                    </plugin>-->
+<!--                    &lt;!&ndash; 该插件提供了构建（可执行）jar 的功能，并在此处用于设置将启动应用程序的 mainClass。 &ndash;&gt;-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-jar-plugin</artifactId>-->
+<!--                        <version>${maven-jar-plugin.version}</version>-->
+<!--                        <configuration>-->
+<!--                            <archive>-->
+<!--                                <manifest>-->
+<!--                                    <mainClass>${main.class}</mainClass>-->
+<!--                                </manifest>-->
+<!--                            </archive>-->
+<!--                        </configuration>-->
+<!--                    </plugin>-->
+<!--                    &lt;!&ndash; 该插件提供了将工件打包在 uber-jar 中的能力，包括其依赖项，并对某些依赖项的包进行着色（即重命名）。-->
+<!--                    转换器会将多个具有相同包名的 Pi4J 插件的 META-INF.services 目录中的文件合并到一个文件中。 &ndash;&gt;-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-shade-plugin</artifactId>-->
+<!--                        <version>3.2.4</version>-->
+<!--                        <configuration>-->
+<!--                            <transformers>-->
+<!--                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>-->
+<!--                            </transformers>-->
+<!--                        </configuration>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <phase>package</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>shade</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+<!--                </plugins>-->
+<!--            </build>-->
+<!--        </profile>-->
+        <!-- 在本地运行 JAR 文件 -->
+        <profile>
+            <id>local-run</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <executable>sudo</executable>
+                            <commandlineArgs>java --module-path ${project.build.directory}/distribution --module ${main.class} ${main.args}</commandlineArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- 传输和运行依赖于远程 Raspberry 的 JAR -->
+        <profile>
+            <id>remote-run</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <!-- 插件执行过程配置 -->
+                        <executions>
+                            <execution>
+                                <!-- 执行标识符 -->
+                                <id>transfer</id>
+                                <!-- 执行阶段 -->
+                                <phase>install</phase>
+                                <!-- 执行目标 -->
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <!-- 执行配置 -->
+                                <configuration>
+                                    <!-- Ant目标 -->
+                                    <target>
+                                        <!-- 停止所有正在运行的 Java 进程 -->
+                                        <sshexec host="${pi.ipnumber}" port="${pi.port}"
+                                                 username="${pi.username}" password="${pi.password}" trust="true"
+                                                 failonerror="false" usepty="true" useSystemIn="false"
+                                                 suppresssystemerr="true" suppresssystemout="true"
+                                                 command="sudo killall -9 java"/>
+
+                                        <!-- 确保目标目录存在于 RaspPi 上 -->
+                                        <sshexec host="${pi.ipnumber}" port="${pi.port}"
+                                                 username="${pi.username}" password="${pi.password}"
+                                                 trust="true" command="mkdir --parents ${pi.deploydirectory}; rm -f ${pi.deploydirectory}/*"/>
+
+                                        <!-- 通过SCP传输文件夹到Raspberry Pi -->
+                                        <scp trust="true"
+                                             todir="${pi.username}:${pi.password}@${pi.ipnumber}:${pi.deploydirectory}"
+                                             port="${pi.port}">
+                                            <fileset dir="${project.build.directory}/distribution"/>
+                                        </scp>
+
+                                        <!-- 在 Raspberry Pi 上运行应用程序 -->
+                                        <sshexec host="${pi.ipnumber}" port="${pi.port}"
+                                                 username="${pi.username}" password="${pi.password}" trust="true"
+                                                 failonerror="false" usepty="true" useSystemIn="true"
+                                                 command="sudo java -XX:+UseZGC -Xmx1G  ${pi.jvmOptions} --module-path ${pi.deploydirectory} --module ${main.class} ${main.args}"/>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.apache.ant</groupId>
+                                <artifactId>ant-jsch</artifactId>
+                                <version>${ant-jsch.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- 在不部署任何更改的情况下在远程 Raspberry 上重新运行应用程序 -->
+        <profile>
+            <id>run-restart</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>transfer</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <!-- 停止所有正在运行的 Java 进程 -->
+                                        <sshexec host="${pi.ipnumber}" port="${pi.port}"
+                                                 username="${pi.username}" password="${pi.password}" trust="true"
+                                                 failonerror="false" usepty="true" useSystemIn="false"
+                                                 suppresssystemerr="true" suppresssystemout="true"
+                                                 command="sudo killall -9 java"/>
+
+                                        <!-- 在 Raspberry Pi 上运行应用程序 -->
+                                        <sshexec host="${pi.ipnumber}" port="${pi.port}"
+                                                 username="${pi.username}" password="${pi.password}" trust="true"
+                                                 failonerror="false" usepty="true" useSystemIn="true"
+                                                 command="sudo java -XX:+UseZGC -Xmx1G  ${pi.jvmOptions} --module-path ${pi.deploydirectory} --module ${main.class} ${main.args}"/>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.apache.ant</groupId>
+                                <artifactId>ant-jsch</artifactId>
+                                <version>${ant-jsch.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- 在树莓树上激活JDWP服务器，可用于本地和远程运行 -->
+        <profile>
+            <id>debug</id>
+            <!-- 用于在Raspberry Pi上激活JDWP调试服务器的配置 -->
+            <properties>
+                <!-- 配置JDWP调试选项 -->
+                <pi.jvmOptions>
+                    -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005
+                </pi.jvmOptions>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>

@@ -6,6 +6,8 @@
 
     <groupId>cn.wlih</groupId>
     <artifactId>SensorModuleDemo-Server</artifactId>
+    <name>毕设 :: 服务端</name>
+    <description>大四毕设程序-服务端</description>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
