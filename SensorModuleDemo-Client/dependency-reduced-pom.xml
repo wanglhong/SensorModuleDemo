@@ -52,11 +52,11 @@
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <main.class>cn.wlih.ClientApplication</main.class>
     <slf4j.version>1.7.32</slf4j.version>
-    <java.version>11</java.version>
+    <java.version>17</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <pi4j.version>2.3.0</pi4j.version>
+    <pi4j.version>2.4.0</pi4j.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
   </properties>
 </project>

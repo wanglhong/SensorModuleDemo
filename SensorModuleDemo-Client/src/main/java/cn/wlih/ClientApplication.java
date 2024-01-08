@@ -1,7 +1,9 @@
 package cn.wlih;
 
 import cn.wlih.demo.Pi4j.Pi4jDemoOfHA;
+import cn.wlih.demo.Pi4j.gpsDemo.SerialGps_App;
 import cn.wlih.utils.IPUtil;
+import com.pi4j.Pi4J;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
@@ -18,26 +20,28 @@ import java.util.concurrent.TimeUnit;
 public class ClientApplication {
 
     public static void main(String[] args) throws InterruptedException, IOException {
-//        new ClientApplication().sensorModule();
-        ProcessBuilder pb = new ProcessBuilder("raspivid", "-o", "output.h264");
-        Process process = pb.start();
-
-        // 等待该过程完成
-        process.waitFor(5, TimeUnit.MINUTES);
-
-        // 检查进程是否超时
-        if (process.isAlive()) {
-            process.destroy();
-            throw new RuntimeException("录制超时");
-        }
+        new ClientApplication().sensorModule();
+//        new ClientApplication().logTest();
+//        ProcessBuilder pb = new ProcessBuilder("raspivid", "-o", "output.h264");
+//        Process process = pb.start();
+//
+//        // 等待该过程完成
+//        process.waitFor(5, TimeUnit.MINUTES);
+//
+//        // 检查进程是否超时
+//        if (process.isAlive()) {
+//            process.destroy();
+//            throw new RuntimeException("录制超时");
+//        }
     }
 
     /**
      * 树莓派引脚测试
      */
     public void sensorModule() throws InterruptedException {
-        Pi4jDemoOfHA pi4jDemoOfHA = new Pi4jDemoOfHA();
-        pi4jDemoOfHA.demo01();
+//        Pi4jDemoOfHA pi4jDemoOfHA = new Pi4jDemoOfHA();
+//        pi4jDemoOfHA.demo01();
+        new SerialGps_App().execute(Pi4J.newAutoContext());
     }
 
     /**

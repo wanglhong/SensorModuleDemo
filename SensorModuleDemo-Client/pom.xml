@@ -12,13 +12,13 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <main.class>cn.wlih.ClientApplication</main.class>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <!-- DEPENDENCIES VERSIONS -->
         <slf4j.version>1.7.32</slf4j.version>
 <!--        <pi4j.version>2.0</pi4j.version>-->
-        <pi4j.version>2.3.0</pi4j.version>
+        <pi4j.version>2.4.0</pi4j.version>
         <!-- BUILD PLUGIN VERSIONS -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
