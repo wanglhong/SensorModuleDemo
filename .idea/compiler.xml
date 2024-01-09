@@ -13,11 +13,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <option name="project" value="cn.wlih/cn.wlih.ClientApplication" />
+        <option name="project" value="cn.wlih.ClientApplication" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/info/picocli/picocli-codegen/4.7.4/picocli-codegen-4.7.4.jar" />
           <entry name="$MAVEN_REPOSITORY$/info/picocli/picocli/4.7.4/picocli-4.7.4.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.18/lombok-1.18.18.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar" />
         </processorPath>
         <module name="SensorModuleDemo-Client" />
       </profile>
@@ -25,7 +25,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="SensorModuleDemo-Client" options="-Aproject=cn.wlih/cn.wlih.ClientApplication" />
+      <module name="SensorModuleDemo-Client" options="-Aproject=cn.wlih.ClientApplication" />
       <module name="SensorModuleDemo-Server" options="-parameters" />
     </option>
   </component>
