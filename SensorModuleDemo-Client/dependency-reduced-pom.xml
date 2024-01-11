@@ -281,7 +281,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <final.name>SensorModuleDemo-Client-1.0-SNAPSHOT</final.name>
     <junit.version>5.10.0</junit.version>
-    <pi.deploydirectory>/home/pi/appTest</pi.deploydirectory>
+    <pi.deploydirectory>/home/pi/SensorModuleDemo</pi.deploydirectory>
     <maven-jar-plugin.version>3.2.1</maven-jar-plugin.version>
     <pi.ipnumber>${pi.hostname}.local</pi.ipnumber>
     <main.class>cn.wlih.ClientApplication</main.class>

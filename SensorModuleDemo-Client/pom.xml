@@ -22,7 +22,7 @@
         <pi.port>22</pi.port>
         <pi.username>pi</pi.username>
         <pi.password>raspberry</pi.password>
-        <pi.deploydirectory>/home/pi/appTest</pi.deploydirectory>
+        <pi.deploydirectory>/home/pi/SensorModuleDemo</pi.deploydirectory>
         <pi.jvmOptions/>
         <!-- 项目依赖关系 -->
         <java.version>17</java.version>
@@ -414,14 +414,16 @@
                                         <scp trust="true"
                                              todir="${pi.username}:${pi.password}@${pi.ipnumber}:${pi.deploydirectory}"
                                              port="${pi.port}">
-                                            <fileset dir="${project.build.directory}/${final.name}"/>
+<!--                                            <fileset dir="${project.build.directory}/lib"/>-->
+                                            <fileset file="${project.build.directory}/${final.name}.jar"/>
                                         </scp>
 
                                         <!-- 在 Raspberry Pi 上运行应用程序 -->
                                         <sshexec host="${pi.ipnumber}" port="${pi.port}"
                                                  username="${pi.username}" password="${pi.password}" trust="true"
                                                  failonerror="false" usepty="true" useSystemIn="true"
-                                                 command="sudo java -XX:+UseZGC -Xmx1G  ${pi.jvmOptions} --module-path ${pi.deploydirectory} --module ${main.class} ${main.args}"/>
+                                                 command="sudo java -jar ${pi.deploydirectory}/${final.name}.jar ${main.args}"/>
+                                        <!--                                                 command="sudo java -XX:+UseZGC -Xmx1G  ${pi.jvmOptions} &#45;&#45;module-path ${pi.deploydirectory} &#45;&#45;module ${main.class} ${main.args}"/>-->
                                     </target>
                                 </configuration>
                             </execution>
@@ -466,7 +468,7 @@
                                         <sshexec host="${pi.ipnumber}" port="${pi.port}"
                                                  username="${pi.username}" password="${pi.password}" trust="true"
                                                  failonerror="false" usepty="true" useSystemIn="true"
-                                                 command="sudo java -XX:+UseZGC -Xmx1G  ${pi.jvmOptions} --module-path ${pi.deploydirectory} --module ${main.class} ${main.args}"/>
+                                                 command="sudo java -jar ${pi.deploydirectory}/${final.name}.jar ${main.args}"/>
                                     </target>
                                 </configuration>
                             </execution>

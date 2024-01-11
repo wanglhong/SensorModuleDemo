@@ -4,7 +4,7 @@ logging:
     # 这里设置的日志级别优先于logback-spring.xml文件Loggers中的日志级别。
     cn.wlih: trace
 server:
-  port: 8082
+  port: 8888
 spring:
 #  mvc:
 #    pathmatch:
