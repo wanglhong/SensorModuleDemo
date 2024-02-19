@@ -2,15 +2,11 @@ package cn.wlih.component.apps;
 
 import cn.wlih.component.ComponentApp;
 import cn.wlih.component.ComponentAppEnum;
+import cn.wlih.component.ComponentFactory;
 import cn.wlih.utils.factoryUtils.MyPostConstruct;
 import com.pi4j.context.Context;
 
 public class GpsComponentApp extends BaseApp implements ComponentApp {
-
-    @MyPostConstruct
-    public void register() {
-        this.componentAppEnum = ComponentAppEnum.GPS;
-    }
 
     /**
      * 初始化配置组件信息

@@ -1,6 +1,7 @@
 package cn.wlih.component;
 
 import cn.hutool.core.util.StrUtil;
+import cn.wlih.component.apps.GpsComponentApp;
 import com.pi4j.context.Context;
 
 import java.util.EnumMap;
@@ -12,6 +13,10 @@ import java.util.Map;
 public class ComponentFactory {
 
     private final Map<ComponentAppEnum, ComponentApp> componentMap = new EnumMap<>(ComponentAppEnum.class);
+
+    public ComponentFactory() {
+        registerComponentApp(ComponentAppEnum.GPS, new GpsComponentApp());
+    }
 
     /**
      * 注册组件到工厂
