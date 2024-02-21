@@ -1,7 +1,8 @@
 package cn.wlih.sys.model;
 
 import cn.wlih.core.base.BaseModel;
-import com.baomidou.mybatisplus.annotation.TableId;
+import cn.wlih.core.myAnnotate.ClassComment;
+import cn.wlih.core.myAnnotate.VariableComment;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,14 +14,16 @@ import lombok.EqualsAndHashCode;
  * @path SensorModuleDemo-cn.wlih.sys.model-SysUser
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @TableName("sys_user")
+@ClassComment("系统用户表")
+@EqualsAndHashCode(callSuper = true)
 public class SysUser extends BaseModel {
 
-    @TableId
-    private Long id;
+    @VariableComment("登录名")
     private String loginName;
+    @VariableComment("密码")
     private String password;
+    @VariableComment("电话号码")
     private String phoneNumber;
 
 }

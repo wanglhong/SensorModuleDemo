@@ -92,6 +92,13 @@
             <artifactId>ffmpeg</artifactId>
             <version>5.0-1.5.7</version>
         </dependency>
+
+        <!-- reflections 获取指定包下所有具有指定注解的类 -->
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.12</version>
+        </dependency>
     </dependencies>
 
     <build>

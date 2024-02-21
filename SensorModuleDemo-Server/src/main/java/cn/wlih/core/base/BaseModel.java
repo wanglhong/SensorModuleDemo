@@ -1,6 +1,9 @@
 package cn.wlih.core.base;
 
 import cn.wlih.core.dbEnum.baseEnum.IsDeleteEnum;
+import cn.wlih.core.myAnnotate.ClassComment;
+import cn.wlih.core.myAnnotate.VariableComment;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.util.Date;
@@ -13,27 +16,21 @@ import java.util.Date;
  * @path SensorModuleDemo-cn.wlih.core.base-BaseModel
  */
 @Data
+@ClassComment("基础模型")
 public class BaseModel {
 
-    /**
-     * 创建时间
-     */
+    @TableId
+    @VariableComment("主键ID")
+    private Long id;
+    @VariableComment("创建时间")
     private Date createTime;
-    /**
-     * 修改者ID
-     */
+    @VariableComment("创建者ID")
     private Long createUserId;
-    /**
-     * 修改时间
-     */
+    @VariableComment("修改时间")
     private Date updateTime;
-    /**
-     * 修改者ID
-     */
+    @VariableComment("修改者ID")
     private Long updateUserId;
-    /**
-     * 逻辑删除
-     */
+    @VariableComment("逻辑删除（1：存在。-1：逻辑删除）")
     private IsDeleteEnum isDelete;
 
 }

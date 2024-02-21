@@ -10,9 +10,9 @@ spring:
 #    pathmatch:
 #      matching-strategy: ant_path_matcher
   datasource:
-    url: jdbc:mysql://db.wlih.cn:3307/test?characterEncoding=utf-8&serverTimezone=UTC
-    username: testAdmin
-    password: testAdmin
+    url: jdbc:mysql://db.wlih.cn:3307/sensor_module?characterEncoding=utf-8&serverTimezone=UTC
+    username: SensorModule
+    password: SensorModule_mima202001040435
     driver-class-name: com.mysql.cj.jdbc.Driver
   redis:
     #数据库索引
