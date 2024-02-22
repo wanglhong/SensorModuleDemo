@@ -86,7 +86,7 @@ public class DbTableUtil {
      *  </p>
      * @return 返回主键ID的名称
      */
-    private static String collectDbFields(Class<?> clazz, String primaryKeyID, List<Map<String, String>> dbFieldList) {
+    public static String collectDbFields(Class<?> clazz, String primaryKeyID, List<Map<String, String>> dbFieldList) {
         // 递归终止条件：如果已经到达了Object类
         if (clazz == null || clazz == Object.class) {
             return primaryKeyID;
@@ -134,43 +134,4 @@ public class DbTableUtil {
         return reflections.getTypesAnnotatedWith(annotationClass);
     }
 
-}
-
-class JavaDatabaseType {
-
-    /**
-     * 获取Logger对象
-     */
-    private static final Logger log = LoggerFactory.getLogger(DbTableUtil.class);
-    private static final Map<Class<?>, String> typeMapping = new HashMap<>();
-
-    static {
-        // 初始化映射
-        typeMapping.put(String.class, "VARCHAR(255)");
-        typeMapping.put(int.class, "INT");
-        typeMapping.put(Integer.class, "INT");
-        typeMapping.put(long.class, "BIGINT");
-        typeMapping.put(Long.class, "BIGINT");
-        typeMapping.put(boolean.class, "BOOLEAN");
-        typeMapping.put(Boolean.class, "BOOLEAN");
-        typeMapping.put(java.util.Date.class, "DATETIME");
-        typeMapping.put(java.sql.Date.class, "DATE");
-        typeMapping.put(double.class, "DOUBLE");
-        typeMapping.put(Double.class, "DOUBLE");
-        typeMapping.put(float.class, "FLOAT");
-        typeMapping.put(Float.class, "FLOAT");
-        typeMapping.put(BigDecimal.class, "DECIMAL(19, 4)");
-    }
-
-    public static String getDatabaseType(Class<?> javaTypeClass) {
-        if (javaTypeClass.isEnum()) {
-            // 枚举类型
-            return "INT";
-        } else if (!typeMapping.containsKey(javaTypeClass)) {
-            log.warn("未知的Java类型[{}]，将映射为数据库[{}]类型",
-                    javaTypeClass.getName(), "VARCHAR(255)");
-        }
-        // 获取映射的数据库类型，如果不存在则返回默认值
-        return typeMapping.getOrDefault(javaTypeClass, "VARCHAR(255)");
-    }
 }

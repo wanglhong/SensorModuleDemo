@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.util.Map;
 
 @Slf4j
 public abstract class MyBaseController<M> {
@@ -55,11 +56,10 @@ public abstract class MyBaseController<M> {
      */
     @GetMapping("/getModelJson")
     @ResponseBody
-    public ResponseResult<M> get() {
+    public ResponseResult<Map<String, String>> getModelJson() {
         log.info("BaseController获取JSON数据");
-        // 实例化 modelClass 对象
-        M m = ReflectUtil.newInstance(modelClass);
-        return ResponseResult.success(m);
+        Map<String, String> resultData = getBaseService().getModelJson(modelClass);
+        return ResponseResult.success(resultData);
     }
 
     /**
