@@ -120,6 +120,35 @@ public class DbTableUtil {
     }
 
     /**
+     * 递归收集Java对象的数据库映射字段
+     * @param clazz Java对象
+     * @return {"${字段变量名}": {"fieldTypeClass": "Class<?> ${字段类型}", "fieldComment": "${字段注释}"}}
+     */
+    public static Map<String, Map<String, Object>> collectJavaFields(Class<?> clazz) {
+        // 递归终止条件：如果已经到达了Object类
+        if (clazz == null || clazz == Object.class) {
+            return new LinkedHashMap<>();
+        }
+        // 先递归调用，确保父类的字段先被添加
+        Map<String, Map<String, Object>> resultDataMap = collectJavaFields(clazz.getSuperclass());
+        // 添加当前类声明的字段
+        for (Field field : clazz.getDeclaredFields()) {
+            TableField tableField = field.getAnnotation(TableField.class);
+            if (null != tableField && !tableField.exist()) {
+                continue;
+            }
+            Map<String, Object> dbFieldMap = new HashMap<>(2);
+            // 字段类型
+            dbFieldMap.put("fieldTypeClass", field.getType());
+            // 字段注释
+            dbFieldMap.put("fieldComment", field.getAnnotation(VariableComment.class).value());
+            // key 为字段名称
+            resultDataMap.put(NameFormatConversionUtil.convertCamelToSnake(field.getName()), dbFieldMap);
+        }
+        return resultDataMap;
+    }
+
+    /**
      * 查找带指定注解的类
      * @param packageName 包名
      * @param annotationClass 指定的类

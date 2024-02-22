@@ -7,6 +7,7 @@ import cn.wlih.core.myEnum.DbBaseFieldType;
 import cn.wlih.core.myEnum.dbEnum.IsDeleteEnum;
 import cn.wlih.core.util.NameFormatConversionUtil;
 import cn.wlih.core.util.dbUtil.DbTableUtil;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.extern.slf4j.Slf4j;
 import supie.common.sequence.wrapper.IdGeneratorWrapper;
 
@@ -19,14 +20,63 @@ public abstract class MyBaseServiceImpl<M> implements MyBaseService<M> {
 
     @Override
     public Map<String, String> getModelJson(Class<M> modelClass) {
-        List<Map<String, String>> classFieldMapList = new LinkedList<>();
-        DbTableUtil.collectDbFields(modelClass, null, classFieldMapList);
+        Map<String, Map<String, Object>> modelClassFieldsMap = DbTableUtil.collectJavaFields(modelClass);
+        Set<String> modelClassFieldsMapKeySet = modelClassFieldsMap.keySet();
         Map<String, String> resultData = new LinkedHashMap<>();
-        for (Map<String, String> classFieldMap : classFieldMapList) {
-            resultData.put(classFieldMap.get("fieldName"),
-                    classFieldMap.get("fieldComment") + " —— " + classFieldMap.get("fieldType"));
+        for (String modelClassFieldsMapKey : modelClassFieldsMapKeySet) {
+            Map<String, Object> modelClassField = modelClassFieldsMap.get(modelClassFieldsMapKey);
+            StringBuilder fieldComment = new StringBuilder((String) modelClassField.get("fieldComment"));
+            Class<?> fieldTypeClass = (Class<?>) modelClassField.get("fieldTypeClass");
+            StringBuilder fieldTypeStr = new StringBuilder();
+            // 判断 fieldTypeClass 是否属于枚举
+            if (fieldTypeClass.isEnum()) {
+                List<Object> enumFieldValueByFieldAnnotationList = getEnumFieldValueByFieldAnnotation(fieldTypeClass, JsonValue.class);
+                for (int i = 0, listSize = enumFieldValueByFieldAnnotationList.size(); i < listSize; i++) {
+                    if (i == 0) {
+                        fieldTypeStr.append("['");
+                    } else {
+                        fieldTypeStr.append(", '");
+                    }
+                    fieldTypeStr.append(String.valueOf(enumFieldValueByFieldAnnotationList.get(i))).append("'");
+                    if (i == listSize - 1) {
+                        fieldTypeStr.append("]");
+                    }
+                }
+            } else {
+                fieldTypeStr.append(fieldTypeClass.getSimpleName());
+            }
+            resultData.put(modelClassFieldsMapKey, fieldComment.append(" —— ").append(fieldTypeStr).toString());
         }
         return resultData;
+    }
+
+    /**
+     * 获取枚举中具有指定注解的字段的值
+     * @param enumClass 枚举类
+     * @param annotationClass 注解类
+     * @return
+     * @param <A>
+     */
+    public static <A extends Annotation> List<Object> getEnumFieldValueByFieldAnnotation(Class<?> enumClass, Class<A> annotationClass) {
+        List<Object> enumFieldValueList = new ArrayList<>();
+        if (enumClass.isEnum()) {
+            for (Object enumConstant : enumClass.getEnumConstants()) {
+                Field[] fields = enumConstant.getClass().getDeclaredFields();
+                for (Field field : fields) {
+                    if (field.isAnnotationPresent(annotationClass)) {
+                        // 枚举中获取该字段的值，并添加到 enumFieldValueList 中
+                        field.setAccessible(true); // 确保私有字段也可以访问
+                        try {
+                            enumFieldValueList.add(field.get(enumConstant));
+                        } catch (IllegalAccessException e) {
+                            throw new RuntimeException(e);
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        return enumFieldValueList;
     }
 
     /**
