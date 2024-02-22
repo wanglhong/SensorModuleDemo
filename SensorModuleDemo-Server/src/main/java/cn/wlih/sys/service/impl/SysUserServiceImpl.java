@@ -1,15 +1,11 @@
 package cn.wlih.sys.service.impl;
 
 import cn.wlih.core.base.service.impl.MyBaseServiceImpl;
-import cn.wlih.core.dbEnum.baseEnum.IsDeleteEnum;
 import cn.wlih.sys.mapper.SysUserMapper;
 import cn.wlih.sys.model.SysUser;
 import cn.wlih.sys.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * 描述:

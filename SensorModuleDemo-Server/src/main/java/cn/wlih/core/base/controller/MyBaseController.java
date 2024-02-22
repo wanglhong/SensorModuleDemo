@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.lang.reflect.Field;
@@ -57,7 +58,7 @@ public abstract class MyBaseController<M> {
     @GetMapping("/getModelJson")
     @ResponseBody
     public ResponseResult<Map<String, String>> getModelJson() {
-        log.info("BaseController获取JSON数据");
+        log.debug("BaseController 获取JSON数据");
         Map<String, String> resultData = getBaseService().getModelJson(modelClass);
         return ResponseResult.success(resultData);
     }
@@ -67,9 +68,9 @@ public abstract class MyBaseController<M> {
      * @param m 实体
      */
     @PostMapping("/add")
-    public void add(M m) {
-        log.info("BaseController新增接口");
-        Boolean result = getBaseService().add(m);
+    public ResponseResult<M> add(@RequestBody M m) {
+        // TODO 统一异常处理
+        return ResponseResult.success(getBaseService().add(m));
     }
 
     /**

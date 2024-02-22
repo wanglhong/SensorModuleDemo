@@ -11,5 +11,6 @@ public interface MyBaseService<M> {
      * @param m 需要新增的数据
      * @return 成功返回true，失败返回false
      */
-    Boolean add(M m);
+    M add(M m);
+
 }

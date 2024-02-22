@@ -8,6 +8,11 @@ import lombok.Data;
 @ClassComment("统一响应对象")
 public class ResponseResult<T> {
 
+    /**
+     * 为了优化性能，所有没有携带数据的正确结果，均可用该对象表示。
+     */
+    private static final ResponseResult<Void> OK = new ResponseResult<>();
+
     @VariableComment("请求成功与否")
     private boolean success = true;
     @VariableComment("响应信息")
@@ -19,8 +24,8 @@ public class ResponseResult<T> {
      * 成功响应
      * @return 响应对象
      */
-    public static ResponseResult success() {
-        return new ResponseResult<>();
+    public static ResponseResult<Void> success() {
+        return OK;
     }
 
     /**
