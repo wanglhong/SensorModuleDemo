@@ -1,6 +1,6 @@
 package cn.wlih.sys.model;
 
-import cn.wlih.core.base.BaseModel;
+import cn.wlih.core.base.model.BaseModel;
 import cn.wlih.core.myAnnotate.ClassComment;
 import cn.wlih.core.myAnnotate.VariableComment;
 import com.baomidou.mybatisplus.annotation.TableName;

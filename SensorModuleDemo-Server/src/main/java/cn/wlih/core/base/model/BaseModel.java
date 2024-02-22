@@ -1,4 +1,4 @@
-package cn.wlih.core.base;
+package cn.wlih.core.base.model;
 
 import cn.wlih.core.dbEnum.baseEnum.IsDeleteEnum;
 import cn.wlih.core.myAnnotate.ClassComment;
@@ -17,7 +17,7 @@ import java.util.Date;
  */
 @Data
 @ClassComment("基础模型")
-public class BaseModel {
+public abstract class BaseModel {
 
     @TableId
     @VariableComment("主键ID")

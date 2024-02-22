@@ -1,7 +1,7 @@
 package cn.wlih.sys.mapper;
 
+import cn.wlih.core.base.mapper.MyBaseMapper;
 import cn.wlih.sys.model.SysUser;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -11,5 +11,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @path SensorModuleDemo-cn.wlih.sys.mapper-SysUserMapper
  */
 @Mapper
-public interface SysUserMapper extends BaseMapper<SysUser> {
+public interface SysUserMapper extends MyBaseMapper<SysUser> {
 }
