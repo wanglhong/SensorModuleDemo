@@ -1,8 +1,10 @@
 package cn.wlih.core.base.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
+
 import java.util.Map;
 
-public interface MyBaseService<M> {
+public interface MyBaseService<M> extends IService<M> {
 
     Map<String, String> getModelJson(Class<M> modelClass);
 

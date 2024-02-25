@@ -9,8 +9,6 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.util.StopWatch;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.core.lang.Console;
-import cn.hutool.core.lang.Matcher;
 
 /**
  * 描述: 程序启动类

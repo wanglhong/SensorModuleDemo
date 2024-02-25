@@ -1,5 +1,6 @@
 package cn.wlih.sys.service.impl;
 
+import cn.wlih.core.base.mapper.MyBaseMapper;
 import cn.wlih.core.base.service.impl.MyBaseServiceImpl;
 import cn.wlih.sys.mapper.SysUserMapper;
 import cn.wlih.sys.model.SysUser;
@@ -18,5 +19,14 @@ public class SysUserServiceImpl extends MyBaseServiceImpl<SysUser> implements Sy
 
     @Autowired
     private SysUserMapper sysUserMapper;
+
+    /**
+     * 返回当前Service的主表Mapper对象
+     * @return
+     */
+    @Override
+    protected MyBaseMapper<SysUser> mapper() {
+        return sysUserMapper;
+    }
 
 }

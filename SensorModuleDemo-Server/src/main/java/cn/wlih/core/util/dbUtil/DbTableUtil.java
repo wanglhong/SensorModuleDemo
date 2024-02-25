@@ -143,7 +143,7 @@ public class DbTableUtil {
             // 字段注释
             dbFieldMap.put("fieldComment", field.getAnnotation(VariableComment.class).value());
             // key 为字段名称
-            resultDataMap.put(NameFormatConversionUtil.convertCamelToSnake(field.getName()), dbFieldMap);
+            resultDataMap.put(field.getName(), dbFieldMap);
         }
         return resultDataMap;
     }

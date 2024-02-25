@@ -1,22 +1,40 @@
 package cn.wlih.core.base.service.impl;
 
+import cn.wlih.core.base.mapper.MyBaseMapper;
 import cn.wlih.core.base.service.MyBaseService;
 import cn.wlih.core.config.ApplicationContextHolder;
 import cn.wlih.core.myAnnotate.DbBaseField;
+import cn.wlih.core.myAnnotate.VariableComment;
 import cn.wlih.core.myEnum.DbBaseFieldType;
 import cn.wlih.core.myEnum.dbEnum.IsDeleteEnum;
-import cn.wlih.core.util.NameFormatConversionUtil;
 import cn.wlih.core.util.dbUtil.DbTableUtil;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.extern.slf4j.Slf4j;
 import supie.common.sequence.wrapper.IdGeneratorWrapper;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
 import java.util.*;
 
 @Slf4j
-public abstract class MyBaseServiceImpl<M> implements MyBaseService<M> {
+public abstract class MyBaseServiceImpl<M> extends ServiceImpl<MyBaseMapper<M>, M> implements MyBaseService<M> {
+
+    @VariableComment("当前Service关联的主Model实体对象的Class")
+    private final Class<M> modelClass;
+
+    public MyBaseServiceImpl() {
+        modelClass = (Class<M>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    }
+
+    @VariableComment("获取子类中注入的Mapper类")
+    protected abstract MyBaseMapper<M> mapper();
+
+    @Override
+    public MyBaseMapper<M> getBaseMapper() {
+        return mapper();
+    }
 
     @Override
     public Map<String, String> getModelJson(Class<M> modelClass) {
@@ -88,6 +106,9 @@ public abstract class MyBaseServiceImpl<M> implements MyBaseService<M> {
     @Override
     public M add(M m) {
         this.buildBaseFieldsValue(m, true);
+        if (mapper().insert(m) == 0) {
+            setDbBaseFieldValue(m, DbBaseFieldType.ID, null);
+        }
         return m;
     }
 
