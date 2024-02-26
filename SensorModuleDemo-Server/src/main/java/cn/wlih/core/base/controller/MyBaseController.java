@@ -77,8 +77,9 @@ public abstract class MyBaseController<M> {
      * 基础修改接口
      */
     @PostMapping("/updateById")
-    public void updateById(M m) {
-        log.warn("修改接口");
+    public ResponseResult<Void> updateById(M m) {
+        getBaseService().updateById(m);
+        return ResponseResult.success();
     }
 
     /**
@@ -86,6 +87,7 @@ public abstract class MyBaseController<M> {
      */
     @PostMapping("/delete")
     public void delete(M m) {
+        getBaseService().removeById(m);
         log.warn("删除接口");
     }
 

@@ -2,10 +2,10 @@ package cn.wlih.core.base.model;
 
 import cn.wlih.core.myAnnotate.DbBaseField;
 import cn.wlih.core.myEnum.DbBaseFieldType;
-import cn.wlih.core.myEnum.dbEnum.IsDeleteEnum;
+import cn.wlih.core.base.model.dbEnum.IsDeleteEnum;
 import cn.wlih.core.myAnnotate.ClassComment;
 import cn.wlih.core.myAnnotate.VariableComment;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -21,12 +21,14 @@ import java.util.Date;
 @ClassComment("基础模型")
 public abstract class BaseModel {
 
-    @TableId
+    @TableId(type = IdType.INPUT)
     @VariableComment("主键ID")
+    @TableField(fill = FieldFill.INSERT)
     @DbBaseField(type = DbBaseFieldType.ID)
     private Long id;
 
     @VariableComment("创建时间")
+    @TableField(fill = FieldFill.INSERT)
     @DbBaseField(type = DbBaseFieldType.CREATE_TIME)
     private Date createTime;
 
@@ -35,6 +37,7 @@ public abstract class BaseModel {
     private Long createUserId;
 
     @VariableComment("修改时间")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     @DbBaseField(type = DbBaseFieldType.UPDATE_TIME)
     private Date updateTime;
 
@@ -50,6 +53,7 @@ public abstract class BaseModel {
     @DbBaseField(type = DbBaseFieldType.DATA_DEPT_ID)
     private Long dataDeptId;
 
+    @TableLogic
     @VariableComment("逻辑删除（1：存在。-1：逻辑删除）")
     @DbBaseField(type = DbBaseFieldType.IS_DELETE)
     private IsDeleteEnum isDelete;
