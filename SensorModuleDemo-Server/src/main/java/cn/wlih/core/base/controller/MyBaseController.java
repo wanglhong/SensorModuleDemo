@@ -59,7 +59,6 @@ public abstract class MyBaseController<M> {
     @GetMapping("/getModelJson")
     @ResponseBody
     public ResponseResult<Map<String, String>> getModelJson() {
-        log.debug("BaseController 获取JSON数据");
         Map<String, String> resultData = getBaseService().getModelJson(modelClass);
         return ResponseResult.success(resultData);
     }
