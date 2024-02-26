@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -77,7 +78,7 @@ public abstract class MyBaseController<M> {
      * 基础修改接口
      */
     @PostMapping("/updateById")
-    public ResponseResult<Void> updateById(M m) {
+    public ResponseResult<Void> updateById(@RequestBody M m) {
         getBaseService().updateById(m);
         return ResponseResult.success();
     }
@@ -86,17 +87,18 @@ public abstract class MyBaseController<M> {
      * 基础删除接口
      */
     @PostMapping("/delete")
-    public void delete(M m) {
+    public ResponseResult<Void> delete(@RequestBody M m) {
         getBaseService().removeById(m);
-        log.warn("删除接口");
+        return ResponseResult.success();
     }
 
     /**
      * 基础查询接口
      */
-    @GetMapping("/list")
-    public void query(M m) {
-        log.warn("查询接口");
+    @PostMapping("/list")
+    public ResponseResult<List<M>> selectList(@RequestBody M m) {
+        List<M> list = getBaseService().selectList(m);
+        return ResponseResult.success(list);
     }
 
 }

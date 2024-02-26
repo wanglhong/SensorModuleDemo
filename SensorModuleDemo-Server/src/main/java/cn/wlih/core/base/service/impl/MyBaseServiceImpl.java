@@ -1,5 +1,7 @@
 package cn.wlih.core.base.service.impl;
 
+import cn.hutool.core.util.ObjUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.wlih.core.base.mapper.MyBaseMapper;
 import cn.wlih.core.base.service.MyBaseService;
 import cn.wlih.core.config.ApplicationContextHolder;
@@ -9,6 +11,8 @@ import cn.wlih.core.myEnum.DbBaseFieldType;
 import cn.wlih.core.base.model.dbEnum.IsDeleteEnum;
 import cn.wlih.core.util.MyClazzUtil;
 import cn.wlih.core.util.dbUtil.DbTableUtil;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.extern.slf4j.Slf4j;
@@ -82,6 +86,16 @@ public abstract class MyBaseServiceImpl<M> extends ServiceImpl<MyBaseMapper<M>, 
             MyClazzUtil.setDbBaseFieldValue(m, DbBaseFieldType.ID, null);
         }
         return m;
+    }
+
+    /**
+     * 查询所有数据
+     *
+     * @return 返回查询结果
+     */
+    @Override
+    public List<M> selectList(M m) {
+        return mapper().selectList(new QueryWrapper<M>(m));
     }
 
     /**

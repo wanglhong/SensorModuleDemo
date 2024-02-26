@@ -2,6 +2,7 @@ package cn.wlih.core.base.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
 import java.util.Map;
 
 public interface MyBaseService<M> extends IService<M> {
@@ -15,4 +16,9 @@ public interface MyBaseService<M> extends IService<M> {
      */
     M add(M m);
 
+    /**
+     * 查询所有数据
+     * @return 返回查询结果
+     */
+    List<M> selectList(M m);
 }
