@@ -18,6 +18,7 @@ import java.util.Date;
  * @date 2023/9/28 0:32
  * @path SensorModuleDemo-cn.wlih.core.base-BaseModel
  */
+@Data
 @Schema(defaultValue = "基础模型")
 public abstract class BaseModelVo {
 
