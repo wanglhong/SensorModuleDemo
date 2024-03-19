@@ -14,10 +14,10 @@ import lombok.EqualsAndHashCode;
 public class SysDept extends BaseModel {
 
     @VariableComment("所属组织ID（SysOrganization表主键ID）")
-    private String organizationId;
+    private Long organizationId;
 
     @VariableComment("部门负责人ID（SysUser表主键ID）")
-    private String userId;
+    private Long userId;
 
     @VariableComment("部门编码")
     private String deptCode;

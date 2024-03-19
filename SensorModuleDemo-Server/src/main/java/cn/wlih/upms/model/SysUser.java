@@ -20,7 +20,7 @@ import lombok.EqualsAndHashCode;
 public class SysUser extends BaseModel {
 
     @VariableComment("所属部门ID（SysDept表主键ID）")
-    private String deptId;
+    private Long deptId;
 
     @VariableComment("用户名称")
     private String userName;
