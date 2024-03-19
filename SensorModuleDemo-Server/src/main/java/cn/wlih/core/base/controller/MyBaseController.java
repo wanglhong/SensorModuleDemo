@@ -4,6 +4,7 @@ import cn.hutool.core.util.ReflectUtil;
 import cn.wlih.core.base.model.ResponseResult;
 import cn.wlih.core.base.service.MyBaseService;
 import cn.wlih.core.config.ApplicationContextHolder;
+import cn.wlih.core.util.MyModelUtil;
 import cn.wlih.core.util.NameFormatConversionUtil;
 import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,16 +17,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Slf4j
-public abstract class MyBaseController<M> {
+public abstract class MyBaseController<M, MDTO, MVO> {
 
     /**
      * 所属的模型实体类
      */
     private Class<M> modelClass;
+    private Class<MDTO> modelDtoClass;
+    private Class<MVO> modelVoClass;
     /**
      * 主键ID字段名称
      */
@@ -38,6 +42,8 @@ public abstract class MyBaseController<M> {
 
     public MyBaseController() {
         this.modelClass = (Class<M>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+        this.modelDtoClass = (Class<MDTO>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
+        this.modelVoClass = (Class<MVO>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[2];
         Field[] fields = ReflectUtil.getFields(modelClass);
         for (Field field : fields) {
             if (this.idFieldName == null && null != field.getAnnotation(TableId.class)) {
@@ -58,6 +64,7 @@ public abstract class MyBaseController<M> {
     /**
      * 获取基础数据对象JSON数据
      */
+    @Deprecated
     @Operation(summary = "获取对象的JSON描述接口", description = "方便用于传参")
     @GetMapping("/getModelJson")
     @ResponseBody
@@ -68,13 +75,16 @@ public abstract class MyBaseController<M> {
 
     /**
      * 基础新增接口
-     * @param m 实体
+     * @param mDto 实体
      */
     @Operation(summary = "基础新增接口")
     @PostMapping("/add")
-    public ResponseResult<M> add(@Parameter(description = "需要新增的对象信息") @RequestBody M m) {
+    public ResponseResult<MVO> add(@Parameter(description = "需要新增的对象信息") @RequestBody MDTO mDto) {
         // TODO 统一异常处理
-        return ResponseResult.success(getBaseService().add(m));
+        M m = MyModelUtil.copyTo(mDto, modelClass);
+        M mResult = getBaseService().add(m);
+        MVO mVo = MyModelUtil.copyTo(mResult, modelVoClass);
+        return ResponseResult.success(mVo);
     }
 
     /**
@@ -82,7 +92,8 @@ public abstract class MyBaseController<M> {
      */
     @Operation(summary = "基础修改接口（通过ID）")
     @PostMapping("/updateById")
-    public ResponseResult<Void> updateById(@RequestBody M m) {
+    public ResponseResult<Void> updateById(@RequestBody MDTO mDto) {
+        M m = MyModelUtil.copyTo(mDto, modelClass);
         getBaseService().updateById(m);
         return ResponseResult.success();
     }
@@ -92,7 +103,8 @@ public abstract class MyBaseController<M> {
      */
     @Operation(summary = "基础删除接口（通过ID）")
     @PostMapping("/delete")
-    public ResponseResult<Void> delete(@RequestBody M m) {
+    public ResponseResult<Void> delete(@RequestBody MDTO mDto) {
+        M m = MyModelUtil.copyTo(mDto, modelClass);
         getBaseService().removeById(m);
         return ResponseResult.success();
     }
@@ -103,9 +115,14 @@ public abstract class MyBaseController<M> {
      */
     @Operation(summary = "基础查询接口")
     @PostMapping("/list")
-    public ResponseResult<List<M>> selectList(@RequestBody M m) {
+    public ResponseResult<List<MVO>> selectList(@RequestBody MDTO mDto) {
+        M m = MyModelUtil.copyTo(mDto, modelClass);
         List<M> list = getBaseService().selectList(m);
-        return ResponseResult.success(list);
+        List<MVO> listVo = new ArrayList<>();
+        for (M m1 : list) {
+            listVo.add(MyModelUtil.copyTo(m1, modelVoClass));
+        }
+        return ResponseResult.success(listVo);
     }
 
 }

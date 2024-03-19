@@ -1,8 +1,10 @@
 package cn.wlih.upms.controller;
 
 import cn.wlih.core.base.controller.MyBaseController;
+import cn.wlih.upms.dto.SysOrganizationDto;
 import cn.wlih.upms.model.SysOrganization;
 import cn.wlih.upms.service.SysOrganizationService;
+import cn.wlih.upms.vo.SysOrganizationVo;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Tag(name = "系统组织管理")
 @RequestMapping("/api/upms/organization")
-public class SysOrganizationController extends MyBaseController<SysOrganization> {
+public class SysOrganizationController extends MyBaseController<SysOrganization, SysOrganizationDto, SysOrganizationVo> {
 
     @Autowired
     private SysOrganizationService sysOrganizationService;

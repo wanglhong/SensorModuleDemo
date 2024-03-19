@@ -1,8 +1,10 @@
 package cn.wlih.upms.controller;
 
 import cn.wlih.core.base.controller.MyBaseController;
+import cn.wlih.upms.dto.SysUserDto;
 import cn.wlih.upms.model.SysUser;
 import cn.wlih.upms.service.SysUserService;
+import cn.wlih.upms.vo.SysUserVo;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Tag(name = "系统用户管理")
 @RequestMapping("/api/upms/user")
-public class SysUserController extends MyBaseController<SysUser> {
+public class SysUserController extends MyBaseController<SysUser, SysUserDto, SysUserVo> {
 
     @Autowired
     private SysUserService sysUserService;
