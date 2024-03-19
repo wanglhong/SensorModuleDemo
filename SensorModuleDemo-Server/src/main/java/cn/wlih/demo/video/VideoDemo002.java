@@ -1,6 +1,6 @@
 package cn.wlih.demo.video;
 
-import cn.wlih.sys.util.FileUtil;
+import cn.wlih.upms.util.FileUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;

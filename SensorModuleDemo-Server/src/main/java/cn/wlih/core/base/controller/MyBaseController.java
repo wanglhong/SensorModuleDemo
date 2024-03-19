@@ -6,6 +6,8 @@ import cn.wlih.core.base.service.MyBaseService;
 import cn.wlih.core.config.ApplicationContextHolder;
 import cn.wlih.core.util.NameFormatConversionUtil;
 import com.baomidou.mybatisplus.annotation.TableId;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,6 +58,7 @@ public abstract class MyBaseController<M> {
     /**
      * 获取基础数据对象JSON数据
      */
+    @Operation(summary = "获取对象的JSON描述接口", description = "方便用于传参")
     @GetMapping("/getModelJson")
     @ResponseBody
     public ResponseResult<Map<String, String>> getModelJson() {
@@ -67,8 +70,9 @@ public abstract class MyBaseController<M> {
      * 基础新增接口
      * @param m 实体
      */
+    @Operation(summary = "基础新增接口")
     @PostMapping("/add")
-    public ResponseResult<M> add(@RequestBody M m) {
+    public ResponseResult<M> add(@Parameter(description = "需要新增的对象信息") @RequestBody M m) {
         // TODO 统一异常处理
         return ResponseResult.success(getBaseService().add(m));
     }
@@ -76,6 +80,7 @@ public abstract class MyBaseController<M> {
     /**
      * 基础修改接口
      */
+    @Operation(summary = "基础修改接口（通过ID）")
     @PostMapping("/updateById")
     public ResponseResult<Void> updateById(@RequestBody M m) {
         getBaseService().updateById(m);
@@ -85,6 +90,7 @@ public abstract class MyBaseController<M> {
     /**
      * 基础删除接口
      */
+    @Operation(summary = "基础删除接口（通过ID）")
     @PostMapping("/delete")
     public ResponseResult<Void> delete(@RequestBody M m) {
         getBaseService().removeById(m);
@@ -93,7 +99,9 @@ public abstract class MyBaseController<M> {
 
     /**
      * 基础查询接口
+     * TODO 分页查询
      */
+    @Operation(summary = "基础查询接口")
     @PostMapping("/list")
     public ResponseResult<List<M>> selectList(@RequestBody M m) {
         List<M> list = getBaseService().selectList(m);

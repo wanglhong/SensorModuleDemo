@@ -1,4 +1,4 @@
-package cn.wlih.sys.config;
+package cn.wlih.upms.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

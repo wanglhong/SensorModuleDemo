@@ -101,6 +101,7 @@
             <version>0.9.12</version>
         </dependency>
 
+        <!-- 主键ID生成器 -->
         <dependency>
             <groupId>supie</groupId>
             <artifactId>common-sequence</artifactId>
@@ -108,6 +109,14 @@
             <scope>system</scope>
             <systemPath>${basedir}/lib/common-sequence-1.0.0.jar</systemPath>
         </dependency>
+
+        <!-- Knife4j API文档工具 -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>

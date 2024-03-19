@@ -1,4 +1,4 @@
-package cn.wlih.sys.model;
+package cn.wlih.upms.model;
 
 import cn.wlih.core.base.model.BaseModel;
 import cn.wlih.core.myAnnotate.ClassComment;

@@ -1,9 +1,7 @@
-package cn.wlih.sys.service;
+package cn.wlih.upms.service;
 
 import cn.wlih.core.base.service.MyBaseService;
-import cn.wlih.sys.model.SysUser;
-
-import java.util.List;
+import cn.wlih.upms.model.SysUser;
 
 /**
  * 描述:

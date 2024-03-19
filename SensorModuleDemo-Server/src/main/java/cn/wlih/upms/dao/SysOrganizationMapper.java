@@ -1,7 +1,7 @@
-package cn.wlih.sys.dao;
+package cn.wlih.upms.dao;
 
 import cn.wlih.core.base.mapper.MyBaseMapper;
-import cn.wlih.sys.model.SysOrganization;
+import cn.wlih.upms.model.SysOrganization;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

@@ -1,4 +1,4 @@
-package cn.wlih.sys.util;
+package cn.wlih.upms.util;
 
 /**
  * 描述:

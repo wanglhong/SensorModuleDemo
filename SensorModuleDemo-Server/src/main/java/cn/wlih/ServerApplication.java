@@ -43,7 +43,7 @@ public class ServerApplication {
         LoggerUtil.logTitle(log, null, "SensorModuleDemo-Server",
                 "Service startup complete.",
                 "Startup time: " + stopWatch.getTotalTimeSeconds() + "s.",
-                "Program Access Address: http://127.0.0.1:" + urlSuffix + ".");
+                "Program Access Address: http://127.0.0.1:" + urlSuffix + "/doc.html.");
     }
 
 }

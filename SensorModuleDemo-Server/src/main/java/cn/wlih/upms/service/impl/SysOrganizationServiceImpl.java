@@ -1,10 +1,10 @@
-package cn.wlih.sys.service.impl;
+package cn.wlih.upms.service.impl;
 
 import cn.wlih.core.base.mapper.MyBaseMapper;
 import cn.wlih.core.base.service.impl.MyBaseServiceImpl;
-import cn.wlih.sys.dao.SysOrganizationMapper;
-import cn.wlih.sys.model.SysOrganization;
-import cn.wlih.sys.service.SysOrganizationService;
+import cn.wlih.upms.dao.SysOrganizationMapper;
+import cn.wlih.upms.model.SysOrganization;
+import cn.wlih.upms.service.SysOrganizationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
