@@ -14,4 +14,5 @@ class DbTableUtilTest {
         String constructCreateTableSql = DbTableUtil.constructCreateTableSql("cn.wlih");
         System.out.println(constructCreateTableSql);
     }
+
 }

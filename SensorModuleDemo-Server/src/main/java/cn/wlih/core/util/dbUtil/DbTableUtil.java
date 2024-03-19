@@ -37,9 +37,11 @@ public class DbTableUtil {
             if (!StrUtil.isBlank(tableName)) {
                 tableName = NameFormatConversionUtil.convertCamelToSnake(clazz.getSimpleName());
             }
+            createTableSql.append("\n");
             createTableSql.append("-- ------------------------------------------------------------").append("\n");
             createTableSql.append("-- ").append(tableName).append(" | ").append(tableDescription).append("\n");
             createTableSql.append("-- ------------------------------------------------------------").append("\n");
+            createTableSql.append("DROP TABLE IF EXISTS ").append(tableName).append(";").append("\n");
             createTableSql.append("CREATE TABLE IF NOT EXISTS ").append(tableName).append(" (").append("\n");
             // 设置表字段
             List<Map<String, String>> dbFieldList = new LinkedList<>();
