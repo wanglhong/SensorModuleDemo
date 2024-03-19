@@ -31,8 +31,16 @@ public class DbTableUtil {
         StringBuilder createTableSql = new StringBuilder();
         Set<Class<?>> annotatedClasses = findAnnotatedClasses(packageName, TableName.class);
         for (Class<?> clazz : annotatedClasses) {
-            String tableName = clazz.getAnnotation(TableName.class).value();
-            String tableDescription = clazz.getAnnotation(ClassComment.class).value();
+            TableName tableNameClazzAnnotation = clazz.getAnnotation(TableName.class);
+            if (tableNameClazzAnnotation == null) {
+                continue;
+            }
+            String tableName = tableNameClazzAnnotation.value();
+            ClassComment classCommentClazzAnnotation = clazz.getAnnotation(ClassComment.class);
+            if (classCommentClazzAnnotation == null) {
+                throw new RuntimeException("在[" + clazz.getName() + "]对象中未找到[@ClassComment]类注释！");
+            }
+            String tableDescription = classCommentClazzAnnotation.value();
             String primaryKeyID = "";
             if (!StrUtil.isBlank(tableName)) {
                 tableName = NameFormatConversionUtil.convertCamelToSnake(clazz.getSimpleName());
