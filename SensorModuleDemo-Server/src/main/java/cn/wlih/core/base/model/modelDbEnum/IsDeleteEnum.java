@@ -1,4 +1,4 @@
-package cn.wlih.core.base.model.dbEnum;
+package cn.wlih.core.base.model.modelDbEnum;
 
 import cn.wlih.core.myAnnotate.ClassComment;
 import cn.wlih.core.myAnnotate.VariableComment;

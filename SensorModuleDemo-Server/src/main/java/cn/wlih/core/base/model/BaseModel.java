@@ -2,7 +2,7 @@ package cn.wlih.core.base.model;
 
 import cn.wlih.core.myAnnotate.DbBaseField;
 import cn.wlih.core.myEnum.DbBaseFieldType;
-import cn.wlih.core.base.model.dbEnum.IsDeleteEnum;
+import cn.wlih.core.base.model.modelDbEnum.IsDeleteEnum;
 import cn.wlih.core.myAnnotate.ClassComment;
 import cn.wlih.core.myAnnotate.VariableComment;
 import com.baomidou.mybatisplus.annotation.*;

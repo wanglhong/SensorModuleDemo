@@ -1,4 +1,4 @@
-import cn.wlih.core.base.model.dbEnum.IsDeleteEnum;
+import cn.wlih.core.base.model.modelDbEnum.IsDeleteEnum;
 import cn.wlih.upms.model.SysUser;
 import org.junit.jupiter.api.Test;
 
