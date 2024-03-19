@@ -42,7 +42,7 @@ public class DbTableUtil {
             }
             String tableDescription = classCommentClazzAnnotation.value();
             String primaryKeyID = "";
-            if (!StrUtil.isBlank(tableName)) {
+            if (StrUtil.isBlank(tableName)) {
                 tableName = NameFormatConversionUtil.convertCamelToSnake(clazz.getSimpleName());
             }
             createTableSql.append("\n");
