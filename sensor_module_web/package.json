@@ -1,18 +1,20 @@
 {
-  "name": "sensor_module_web",
+  "name": "layui-vue-sample",
   "version": "0.0.0",
-  "private": true,
-  "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.15"
+    "@layui/layui-vue": "^2.0.5",
+    "vue": "^3.2.45"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.0.3",
-    "vite": "^5.0.11"
+    "@vitejs/plugin-vue": "^1.9.3",
+    "@vue/compiler-sfc": "^3.2.45",
+    "typescript": "^4.4.3",
+    "vue-tsc": "^0.0.24",
+    "vite": "^2.6.5"
   }
 }
