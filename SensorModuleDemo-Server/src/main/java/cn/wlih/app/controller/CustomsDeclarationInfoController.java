@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @Tag(name = "报关清关信息管理")
-@RequestMapping("/api/app/customsClearanceInfo")
+@RequestMapping("/api/app/customsDeclarationInfo")
 public class CustomsDeclarationInfoController extends MyBaseController<CustomsDeclarationInfo, CustomsDeclarationInfoDto, CustomsDeclarationInfoVo> {
 
     @Autowired
