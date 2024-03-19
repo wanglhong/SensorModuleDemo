@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@TableName("turnover_box")
+@TableName("sm_turnover_box")
 @ClassComment("周转箱信息表")
 @EqualsAndHashCode(callSuper = true)
 public class TurnoverBox extends BaseModel {

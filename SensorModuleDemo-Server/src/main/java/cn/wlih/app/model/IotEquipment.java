@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@TableName("iot_equipment")
+@TableName("sm_iot_equipment")
 @ClassComment("物联网设备信息表")
 @EqualsAndHashCode(callSuper = true)
 public class IotEquipment extends BaseModel {

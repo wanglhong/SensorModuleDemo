@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@TableName("transport_info")
+@TableName("sm_transport_info")
 @ClassComment("运输信息表")
 @EqualsAndHashCode(callSuper = true)
 public class TransportInfo extends BaseModel {

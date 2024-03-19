@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@TableName("transport_info_turnover_box_goods")
+@TableName("sm_transport_info_turnover_box_goods")
 @ClassComment("运输信息-周转箱-货物关联表（1*N*M）")
 @EqualsAndHashCode(callSuper = true)
 public class TransportInfoTurnoverBoxGoods extends BaseModel {

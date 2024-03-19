@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 import java.math.BigDecimal;
 
 @Data
-@TableName("goods")
+@TableName("sm_goods")
 @ClassComment("货物信息表")
 @EqualsAndHashCode(callSuper = true)
 public class Goods extends BaseModel {

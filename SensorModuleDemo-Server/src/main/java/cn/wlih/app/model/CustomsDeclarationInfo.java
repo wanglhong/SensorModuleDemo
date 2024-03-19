@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-@TableName("customs_declaration_info")
+@TableName("sm_customs_declaration_info")
 @ClassComment("海关报关信息表")
 @EqualsAndHashCode(callSuper = true)
 public class CustomsDeclarationInfo extends BaseModel {
