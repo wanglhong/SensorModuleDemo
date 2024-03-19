@@ -19,11 +19,22 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class SysUser extends BaseModel {
 
+    @VariableComment("所属部门ID（SysDept表主键ID）")
+    private String deptId;
+
+    @VariableComment("用户名称")
+    private String userName;
+
     @VariableComment("登录名")
     private String loginName;
+
     @VariableComment("密码")
     private String password;
+
     @VariableComment("电话号码")
     private String phoneNumber;
+
+    @VariableComment("邮箱")
+    private String email;
 
 }

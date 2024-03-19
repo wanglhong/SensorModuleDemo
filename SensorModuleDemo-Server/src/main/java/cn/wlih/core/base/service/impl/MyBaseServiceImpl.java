@@ -33,6 +33,9 @@ public abstract class MyBaseServiceImpl<M> extends ServiceImpl<MyBaseMapper<M>, 
         modelClass = (Class<M>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
+    /**
+     * @return 当前Service的主表Mapper对象
+     */
     @VariableComment("获取子类中注入的Mapper类")
     protected abstract MyBaseMapper<M> mapper();
 

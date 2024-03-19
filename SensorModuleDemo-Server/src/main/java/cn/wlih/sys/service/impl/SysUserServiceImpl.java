@@ -2,9 +2,10 @@ package cn.wlih.sys.service.impl;
 
 import cn.wlih.core.base.mapper.MyBaseMapper;
 import cn.wlih.core.base.service.impl.MyBaseServiceImpl;
-import cn.wlih.sys.mapper.SysUserMapper;
+import cn.wlih.sys.dao.SysUserMapper;
 import cn.wlih.sys.model.SysUser;
 import cn.wlih.sys.service.SysUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @date 2023/9/20 17:19
  * @path SensorModuleDemo-cn.wlih.sys.service.impl-SysUserServiceImpl
  */
+@Slf4j
 @Service("sysUserService")
 public class SysUserServiceImpl extends MyBaseServiceImpl<SysUser> implements SysUserService {
 
@@ -21,8 +23,7 @@ public class SysUserServiceImpl extends MyBaseServiceImpl<SysUser> implements Sy
     private SysUserMapper sysUserMapper;
 
     /**
-     * 返回当前Service的主表Mapper对象
-     * @return
+     * @return 当前Service的主表Mapper对象
      */
     @Override
     protected MyBaseMapper<SysUser> mapper() {
