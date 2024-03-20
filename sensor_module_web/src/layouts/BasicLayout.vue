@@ -131,14 +131,13 @@
                 <lay-icon type="layui-icon-website"></lay-icon>
                 <template #content>
                   <lay-dropdown-menu>
-                    <lay-dropdown-menu-item
-                      @click="() => (appStore.locale = 'zh_CN')"
-                    >
+                    <lay-dropdown-menu-item @click="() => (appStore.locale = 'zh_CN')">
                       <template #default>中文</template>
                     </lay-dropdown-menu-item>
-                    <lay-dropdown-menu-item
-                      @click="() => (appStore.locale = 'en_US')"
-                    >
+                    <lay-dropdown-menu-item @click="() => (appStore.locale = 'vi_VN')">
+                      <template #default>越文</template>
+                    </lay-dropdown-menu-item>
+                    <lay-dropdown-menu-item @click="() => (appStore.locale = 'en_US')">
                       <template #default>英文</template>
                     </lay-dropdown-menu-item>
                   </lay-dropdown-menu>
@@ -203,6 +202,7 @@ import GlobalMessageTab from './global/GlobalMessageTab.vue'
 import { useRouter } from 'vue-router'
 import { useMenu } from './composable/useMenu'
 import zh_CN from '../lang/zh_CN'
+import vi_VN from '../lang/vi_VN'
 import en_US from '../lang/en_US'
 
 export default {
@@ -274,6 +274,7 @@ export default {
 
     const locales = [
       { name: 'zh_CN', locale: zh_CN, merge: true },
+      { name: 'vi_VN', locale: vi_VN, merge: true },
       { name: 'en_US', locale: en_US, merge: true }
     ]
 
