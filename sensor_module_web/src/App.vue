@@ -1,7 +1,16 @@
 <template>
-  <HelloWorld></HelloWorld>
+  <router-view></router-view>
 </template>
+<style>
+@import "./styles/index.css";
 
-<script lang="ts" setup>
-import HelloWorld from "./components/HelloWorld.vue"
-</script>
+#app {
+  height: 100%;
+}
+body {
+  height: 100%;
+}
+html {
+  height: 100%;
+}
+</style>

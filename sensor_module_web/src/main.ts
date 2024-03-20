@@ -1,7 +1,14 @@
 import { createApp } from 'vue'
+import Router from './router'
+import Store from './store'
 import App from './App.vue'
-import layui from '@layui/layui-vue'
-import "@layui/layui-vue/lib/index.css";
+import { permission } from "./directives/permission";
+import './mockjs'
 
-createApp(App).use(layui).mount('#app')
+const app = createApp(App)
 
+app.use(Store);
+app.use(Router);
+
+app.directive("permission",permission);
+app.mount('#app');

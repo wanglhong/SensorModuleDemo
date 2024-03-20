@@ -1,27 +1,48 @@
-# Vue 3 + Typescript + Vite
+<div align="center">
+<br/>
 
-This template should help get you started developing with Vue 3 and Typescript in Vite.
+  <h1 align="center">
+    layui vue admin
+  </h1>
 
-## Recommended IDE Setup
+  <h4 align="center">
+     开 箱 即 用 的 layui vue 企 业 级 前 端 模 板
+  </h4> 
 
-[VSCode](https://code.visualstudio.com/) + [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur). Make sure to enable `vetur.experimental.templateInterpolationService` in settings!
+  [官 网](http://www.layui-vue.com/) |   [预 览](http://admin.layui-vue.com/) 
 
-### If Using `<script setup>`
+</div>
 
-[`<script setup>`](https://github.com/vuejs/rfcs/pull/227) is a feature that is currently in RFC stage. To get proper IDE support for the syntax, use [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) instead of Vetur (and disable Vetur).
 
-## Type Support For `.vue` Imports in TS
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can use the following:
+### 🌈 项目概述
 
-### If Using Volar
+* 基于 Layui Vue 实现的通用前端模板。整合最新技术高效快速开发，前后端分离模式，开箱即用。
+* 核心模块包括：登录、工作空间、表单页面、列表页面、结果页面、异常页面 等功能。
+* 代码量少、学习简单、功能强大、轻量级、易扩展，轻松开发从现在开始！
 
-Run `Volar: Switch TS Plugin on/off` from VSCode command palette.
+### 开始使用
 
-### If Using Vetur
+```
 
-1. Install and add `@vuedx/typescript-plugin-vue` to the [plugins section](https://www.typescriptlang.org/tsconfig#plugins) in `tsconfig.json`
-2. Delete `src/shims-vue.d.ts` as it is no longer needed to provide module info to Typescript
-3. Open `src/main.ts` in VSCode
-4. Open the VSCode command palette
-5. Search and run "Select TypeScript version" -> "Use workspace version"
+切换环境
+
+nvm install 16.0.0
+
+nvm use 16.0.0
+
+安装依赖
+
+npm install -g pnpm
+
+pnpm install
+
+启动项目
+
+npm run dev
+
+打包项目
+
+npm run build
+
+```
