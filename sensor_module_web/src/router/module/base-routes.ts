@@ -4,7 +4,9 @@ import Login from '../../views/login/index.vue';
 
 export default [
   {
+    // 根地址
     path: '/',
+    // 重定向地址
     redirect: '/workSpace'
   },
   {

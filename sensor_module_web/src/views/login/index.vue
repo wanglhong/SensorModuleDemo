@@ -118,14 +118,8 @@ export default defineComponent({
     })
 
     const loginSubmit = async () => {
-      console.log("进入登录01");
-      console.log("loginForm --> " + loginForm.account + "---" + loginForm.password + "--" + loginForm.vercode);
       loging.value = true;
       login(loginForm).then(({ data, code, msg }) => {
-        console.log("进入登录02");
-        console.log("data --> " + data);
-        console.log("code --> " + code);
-        console.log("code --> " + msg);
         setTimeout(() => {
           loging.value = false;
           if (code == 200) {
