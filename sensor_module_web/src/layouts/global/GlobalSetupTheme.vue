@@ -43,7 +43,9 @@ const props = withDefaults(defineProps<ColorProps>(), {
 const emits = defineEmits(['update:modelValue'])
 
 const handlerChange = function(color: string) {
+  console.log("改变主题！--> " + color);
   if(!props.disabled) {
+    console.log("改变主题002！--> " + color);
     emits('update:modelValue', color);
   }
 }

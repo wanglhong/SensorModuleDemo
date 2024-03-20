@@ -1,10 +1,9 @@
 <template>
   <lay-layer :title="false" :closeBtn="false" type="drawer" area="300px" v-model="visible">
     <div class="global-setup">
-      <div class="global-setup-title">Overall style</div>
+      <div class="global-setup-title">整体风格</div>
       <global-setup-theme v-model="appStore.sideTheme"></global-setup-theme>
-      <global-setup-theme v-model="appStore.subfieldPosition" :options="groupOptions"
-        :disabled="!appStore.subfield"></global-setup-theme>
+      <global-setup-theme v-model="appStore.subfieldPosition" :options="groupOptions" :disabled="!appStore.subfield"></global-setup-theme>
       <global-color v-model="appStore.themeVariable['--global-primary-color']"></global-color>
       <lay-line></lay-line>
       <global-setup-item label="多选项卡">

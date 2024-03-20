@@ -9,16 +9,16 @@
         <div class="login-container">
           <div class="login-side">
             <div class="login-bg-title">
-              <h1>layui vue admin</h1>
+              <h1>跨境（中越）物流信息监控系统</h1>
 
               <h3 style="margin: 20px auto">
-                开 箱 即 用 的 layui vue 企 业 级 前 端 模 板
+                跨越边境，精准洞察 —— 中越物流，让信息流动无障碍
               </h3>
             </div>
           </div>
           <div class="login-ID">
             <div style="font-size: 22px; margin-bottom: 15px; margin-top: 5px">
-              🎯 Sign in
+              🎯 登录
             </div>
             <lay-tab type="brief" v-model="method">
               <lay-tab-item title="用户名" id="1">
@@ -48,44 +48,45 @@
                   </lay-form-item>
                 </div>
               </lay-tab-item>
-              <lay-tab-item title="二维码" id="2">
-                <div style="width: 200px; height: 250px; margin: 0 auto">
-                  <lay-qrcode text="http://www.layui-vue.com" :width="200" color="#000"
-                    style="margin: 10px 0 20px"></lay-qrcode>
-                  <div style="text-align: center; cursor: pointer" @click="toRefreshQrcode">
-                    <lay-icon type="layui-icon-refresh-three"> </lay-icon>
-                    刷新二维码
-                  </div>
-                </div>
-              </lay-tab-item>
+              <!-- 二维码登录 -->
+<!--              <lay-tab-item title="二维码" id="2">-->
+<!--                <div style="width: 200px; height: 250px; margin: 0 auto">-->
+<!--                  <lay-qrcode text="http://www.layui-vue.com" :width="200" color="#000"-->
+<!--                    style="margin: 10px 0 20px"></lay-qrcode>-->
+<!--                  <div style="text-align: center; cursor: pointer" @click="toRefreshQrcode">-->
+<!--                    <lay-icon type="layui-icon-refresh-three"> </lay-icon>-->
+<!--                    刷新二维码-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </lay-tab-item>-->
             </lay-tab>
-            <lay-line style="margin: 34px 0px;">Other login methods</lay-line>
-            <ul class="other-ways">
-              <li>
-                <div class="line-container">
-                  <img class="icon" src="../../assets/login/w.svg" />
-                  <p class="text">微信</p>
-                </div>
-              </li>
-              <li>
-                <div class="line-container">
-                  <img class="icon" src="../../assets/login/q.svg" />
-                  <p class="text">钉钉</p>
-                </div>
-              </li>
-              <li>
-                <div class="line-container">
-                  <img class="icon" src="../../assets/login/a.svg" />
-                  <p class="text">Gitee</p>
-                </div>
-              </li>
-              <li>
-                <div class="line-container">
-                  <img class="icon" src="../../assets/login/f.svg" />
-                  <p class="text">Github</p>
-                </div>
-              </li>
-            </ul>
+<!--            <lay-line style="margin: 34px 0px;">其他登录方式</lay-line>-->
+<!--            <ul class="other-ways">-->
+<!--              <li>-->
+<!--                <div class="line-container">-->
+<!--                  <img class="icon" src="../../assets/login/w.svg" />-->
+<!--                  <p class="text">微信</p>-->
+<!--                </div>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <div class="line-container">-->
+<!--                  <img class="icon" src="../../assets/login/q.svg" />-->
+<!--                  <p class="text">钉钉</p>-->
+<!--                </div>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <div class="line-container">-->
+<!--                  <img class="icon" src="../../assets/login/a.svg" />-->
+<!--                  <p class="text">Gitee</p>-->
+<!--                </div>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <div class="line-container">-->
+<!--                  <img class="icon" src="../../assets/login/f.svg" />-->
+<!--                  <p class="text">Github</p>-->
+<!--                </div>-->
+<!--              </li>-->
+<!--            </ul>-->
           </div>
         </div>
       </div>
@@ -117,8 +118,14 @@ export default defineComponent({
     })
 
     const loginSubmit = async () => {
+      console.log("进入登录01");
+      console.log("loginForm --> " + loginForm.account + "---" + loginForm.password + "--" + loginForm.vercode);
       loging.value = true;
       login(loginForm).then(({ data, code, msg }) => {
+        console.log("进入登录02");
+        console.log("data --> " + data);
+        console.log("code --> " + code);
+        console.log("code --> " + msg);
         setTimeout(() => {
           loging.value = false;
           if (code == 200) {
