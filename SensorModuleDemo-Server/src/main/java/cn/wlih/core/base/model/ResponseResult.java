@@ -14,9 +14,11 @@ public class ResponseResult<T> {
     private static final ResponseResult<Void> OK = new ResponseResult<>();
 
     @VariableComment("请求成功与否")
-    private boolean success = true;
+    private Boolean success = true;
+    @VariableComment("响应代码")
+    private Integer code = 200;
     @VariableComment("响应信息")
-    private String msg = "SUCCESS";
+    private String msg = "success";
     @VariableComment("响应数据")
     private T data;
 
@@ -47,6 +49,7 @@ public class ResponseResult<T> {
     public static <T> ResponseResult<T> error() {
         ResponseResult<T> responseResult = new ResponseResult<>();
         responseResult.success = false;
+        responseResult.code = 500;
         responseResult.msg = "NO-MESSAGE";
         return responseResult;
     }
@@ -60,6 +63,14 @@ public class ResponseResult<T> {
     public static <T> ResponseResult<T> error(String msg) {
         ResponseResult<T> resp = new ResponseResult<>();
         resp.success = false;
+        resp.code = 500;
+        resp.msg = msg;
+        return resp;
+    }
+    public static <T> ResponseResult<T> error(Integer code, String msg) {
+        ResponseResult<T> resp = new ResponseResult<>();
+        resp.success = false;
+        resp.code = code;
         resp.msg = msg;
         return resp;
     }

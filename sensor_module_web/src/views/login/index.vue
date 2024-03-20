@@ -25,7 +25,7 @@
                 <div style="height: 250px">
                   <lay-form-item :label-width="0">
                     <lay-input :allow-clear="true" prefix-icon="layui-icon-username" placeholder="用户名"
-                      v-model="loginForm.account"></lay-input>
+                      v-model="loginForm.loginName"></lay-input>
                   </lay-form-item>
                   <lay-form-item :label-width="0">
                     <lay-input :allow-clear="true" prefix-icon="layui-icon-password" placeholder="密码" password
@@ -48,45 +48,7 @@
                   </lay-form-item>
                 </div>
               </lay-tab-item>
-              <!-- 二维码登录 -->
-<!--              <lay-tab-item title="二维码" id="2">-->
-<!--                <div style="width: 200px; height: 250px; margin: 0 auto">-->
-<!--                  <lay-qrcode text="http://www.layui-vue.com" :width="200" color="#000"-->
-<!--                    style="margin: 10px 0 20px"></lay-qrcode>-->
-<!--                  <div style="text-align: center; cursor: pointer" @click="toRefreshQrcode">-->
-<!--                    <lay-icon type="layui-icon-refresh-three"> </lay-icon>-->
-<!--                    刷新二维码-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </lay-tab-item>-->
             </lay-tab>
-<!--            <lay-line style="margin: 34px 0px;">其他登录方式</lay-line>-->
-<!--            <ul class="other-ways">-->
-<!--              <li>-->
-<!--                <div class="line-container">-->
-<!--                  <img class="icon" src="../../assets/login/w.svg" />-->
-<!--                  <p class="text">微信</p>-->
-<!--                </div>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <div class="line-container">-->
-<!--                  <img class="icon" src="../../assets/login/q.svg" />-->
-<!--                  <p class="text">钉钉</p>-->
-<!--                </div>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <div class="line-container">-->
-<!--                  <img class="icon" src="../../assets/login/a.svg" />-->
-<!--                  <p class="text">Gitee</p>-->
-<!--                </div>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <div class="line-container">-->
-<!--                  <img class="icon" src="../../assets/login/f.svg" />-->
-<!--                  <p class="text">Github</p>-->
-<!--                </div>-->
-<!--              </li>-->
-<!--            </ul>-->
           </div>
         </div>
       </div>
@@ -95,7 +57,7 @@
 </template>
 
 <script lang="ts">
-import { login } from '../../api/module/user'
+import { login } from '../../api/module/loginController'
 import { verificationImg, loginQrcode } from '../../api/module/commone'
 import { defineComponent, onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
@@ -112,17 +74,17 @@ export default defineComponent({
     const loginQrcodeText = ref('')
     const remember = ref(false)
     const loginForm = reactive({
-      account: 'admin',
+      loginName: 'admin',
       password: '123456',
       vercode: 'DqJFN'
     })
 
     const loginSubmit = async () => {
       loging.value = true;
-      login(loginForm).then(({ data, code, msg }) => {
+      login(loginForm).then(({ success, msg, data }) => {
         setTimeout(() => {
           loging.value = false;
-          if (code == 200) {
+          if (success) {
             layer.msg(msg, { icon: 1 }, async () => {
               userStore.token = data.token
               await userStore.loadMenus()
@@ -366,4 +328,4 @@ export default defineComponent({
 :deep(.layui-tab-title .layui-this) {
   background-color: transparent;
 }
-</style>
+</style>../../api/module/loginController
