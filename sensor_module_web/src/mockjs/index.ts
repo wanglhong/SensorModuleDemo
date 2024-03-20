@@ -2,19 +2,19 @@
 import Mock from'mockjs';
 import user from './user';
 
-Mock.mock(/\/user\/login/,'post',(req: any,res: any) =>{
+Mock.mock(/\/api\/upms\/sys\/login/,'post',(req: any,res: any) =>{
     return user.getLogin(req,res)
 });
 
-Mock.mock(/\/user\/info/,'post',(req: any,res: any) =>{
+Mock.mock(/\/api\/upms\/sys\/info/,'post',(req: any,res: any) =>{
     return user.getInfo(req,res)
 });
 
-Mock.mock(/\/user\/menu/,'get',(req: any,res: any) =>{
+Mock.mock(/\/api\/upms\/sys\/menu/,'get',(req: any,res: any) =>{
     return user.getMenu(req,res)
 });
 
-Mock.mock(/\/user\/permission/,'get',(req: any,res: any) =>{
+Mock.mock(/\/api\/upms\/sys\/permission/,'get',(req: any,res: any) =>{
     return user.getPermission(req,res)
 });
 

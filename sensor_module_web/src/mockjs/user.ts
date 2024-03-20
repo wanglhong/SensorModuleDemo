@@ -8,6 +8,18 @@ let user: User = {
 
 const menus = [
   {
+    "id": "/baseInfo",
+    "icon": "layui-icon-home",
+    "title": "基础信息管理",
+    "children": [
+      {
+        "id": "/baseInfo/goods",
+        "icon": "layui-icon-util",
+        "title": "货物管理"
+      }
+    ]
+  },
+  {
     id: "/workspace",
     icon: "layui-icon-home",
     title: "工作空间",

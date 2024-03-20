@@ -14,6 +14,22 @@ export default [
     component: Login,
     meta: { title: '登录页面' },
   },
+  /* 基础信息管理 */
+  {
+    path: '/baseInfo',
+    redirect: '/baseInfo/goods',
+    component: BasicLayout,
+    meta: { title: '基础信息管理' },
+    children: [
+      {
+        path: '/baseInfo/goods',
+        name: 'goods',
+        component: () => import('../../views/baseInfo/goods/index.vue'),
+        meta: { title: '货物管理', requireAuth: true, affix: true, closable: false },
+      }
+    ]
+  },
+  /* 工作空间 */
   {
     path: '/workspace',
     redirect: '/workspace/workbench',
@@ -42,7 +58,9 @@ export default [
         meta: { title: '监控页', requireAuth: true },
       }
     ]
-  }, {
+  },
+  /* 请求错误页面 */
+  {
     path: '/error',
     component: BasicLayout,
     meta: { title: '错误页面' },
@@ -68,7 +86,9 @@ export default [
         meta: { title: '500' },
       }
     ]
-  }, {
+  },
+  /* 系统管理 */
+  {
     path: '/system',
     component: BasicLayout,
     meta: { title: '系统管理' },
@@ -114,7 +134,9 @@ export default [
         meta: { title: '操作日志', requireAuth: true },
       },
     ]
-  }, {
+  },
+  /* 错误页面 */
+  {
     path: '/result',
     component: BasicLayout,
     meta: { title: '错误页面' },
@@ -130,7 +152,9 @@ export default [
         meta: { title: '失败页面', requireAuth: true },
       },
     ]
-  }, {
+  },
+  /* 列表页面 */
+  {
     path: '/list',
     component: BasicLayout,
     meta: { title: '列表页面' },
@@ -156,7 +180,9 @@ export default [
         meta: { title: '文章列表', requireAuth: true },
       }
     ]
-  }, {
+  },
+  /* 表单页面 */
+  {
     path: '/form',
     component: BasicLayout,
     meta: { title: '表单页面' },
@@ -184,7 +210,9 @@ export default [
         meta: { title: '分步表单', requireAuth: true },
       },
     ]
-  }, {
+  },
+  /* 内置指令 */
+  {
     path: '/directive',
     component: BasicLayout,
     meta: { title: '内置指令' },
@@ -195,7 +223,9 @@ export default [
         meta: { title: '权限指令', requireAuth: true },
       },
     ]
-  }, {
+  },
+  /* 常用组件 */
+  {
     path: '/component',
     component: BasicLayout,
     meta: { title: '常用组件' },
@@ -216,7 +246,9 @@ export default [
         meta: { title: '下拉树', requireAuth: true },
       },
     ]
-  }, {
+  },
+  /* 个人中心 */
+  {
     path: '/enrollee',
     component: BasicLayout,
     meta: { title: '个人中心' },
@@ -233,7 +265,5 @@ export default [
       },
 
     ]
-  },
-
-
+  }
 ]
