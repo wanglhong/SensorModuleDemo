@@ -25,7 +25,7 @@ export default [
         path: '/baseInfo/goods',
         name: 'goods',
         component: () => import('../../views/baseInfo/goods/index.vue'),
-        meta: { title: '货物管理', requireAuth: true, affix: true, closable: false },
+        meta: { title: '货物管理', requireAuth: true },
       }
     ]
   },

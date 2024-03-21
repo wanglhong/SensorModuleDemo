@@ -324,10 +324,11 @@ const getMenu = (req: any, res: any) => {
 
 const getLogin = (req: any, res: any) => {
   let item = JSON.parse(req.body);
-  let account = item.account;
+  let loginName = item.loginName;
   let password = item.password;
-  if (account === 'admin' && password === '123456') {
+  if (loginName === 'admin' && password === '123456') {
     return {
+      'success': true,
       'code': 200,
       'msg': '登陆成功',
       'data': {
@@ -337,6 +338,7 @@ const getLogin = (req: any, res: any) => {
     }
   } else {
     return {
+      'success': false,
       'code': 500,
       'msg': '登陆失败,账号密码不正确'
     }
