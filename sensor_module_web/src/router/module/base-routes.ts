@@ -7,7 +7,7 @@ export default [
     // 根地址
     path: '/',
     // 重定向地址
-    redirect: '/workSpace'
+    redirect: '/baseInfo'
   },
   {
     path: '/login',
@@ -25,7 +25,7 @@ export default [
         path: '/baseInfo/goods',
         name: 'goods',
         component: () => import('../../views/baseInfo/goods/index.vue'),
-        meta: { title: '货物管理', requireAuth: true },
+        meta: { title: '货物管理', requireAuth: true, affix: true, closable: false },
       }
     ]
   },
@@ -40,7 +40,7 @@ export default [
         path: '/workspace/workbench',
         name: 'Workbench',
         component: () => import('../../views/workSpace/workbench/index.vue'),
-        meta: { title: '工作台', requireAuth: true, affix: true, closable: false },
+        meta: { title: '工作台', requireAuth: true },
       },
       {
         path: '/workspace/console',
