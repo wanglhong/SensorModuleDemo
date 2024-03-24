@@ -5,7 +5,9 @@
       <div v-if="!appStore.collapse" class="layui-layer-shade hidden-sm-and-up" @click="collapse"></div>
       <!-- 核心菜单  -->
       <lay-side :width="sideWidth" :class="appStore.sideTheme == 'dark' ? 'dark changeBgc' : 'light'">
-        <lay-logo v-if="appStore.logo"></lay-logo>
+        <lay-logo v-if="appStore.logo">
+          <span class="title">中越跨境物流信息监控系统</span>
+        </lay-logo>
         <div class="side-menu-wrapper">
           <div class="side-menu1" v-if="appStore.subfield && appStore.subfieldPosition == 'side'">
             <global-main-menu :collapse="true" :menus="mainMenus" :selectedKey="mainSelectedKey" @changeSelectedKey="changeMainSelectedKey"></global-main-menu>

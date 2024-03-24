@@ -22,9 +22,15 @@ export const useAppStore = defineStore({
             tagsTheme: "underpainting",
             keepAliveList: [],
             themeVariable: {
+                // "--global-checked-color": "#5fb878",
+                // "--global-primary-color": "#009688",
+                // "--global-normal-color": "#1e9fff",
+                // "--global-danger-color": "#ff5722",
+                // "--global-warm-color": "#ffb800",
+                // "--global-border-radius": "4px"
                 "--global-checked-color": "#5fb878",
-                "--global-primary-color": "#009688",
-                "--global-normal-color": "#1e9fff",
+                "--global-primary-color": "#1e9fff",
+                "--global-normal-color": "#009688",
                 "--global-danger-color": "#ff5722",
                 "--global-warm-color": "#ffb800",
                 "--global-border-radius": "4px"
