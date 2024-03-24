@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 import supie.common.sequence.wrapper.IdGeneratorWrapper;
 
 import java.lang.reflect.ParameterizedType;
@@ -77,6 +78,7 @@ public abstract class MyBaseServiceImpl<M> extends ServiceImpl<MyBaseMapper<M>, 
      * @return 成功返回true，失败返回false
      */
     @Override
+    @Transactional
     public M add(M m) {
         this.buildBaseFieldsValue(m, true);
         if (mapper().insert(m) == 0) {
@@ -91,6 +93,7 @@ public abstract class MyBaseServiceImpl<M> extends ServiceImpl<MyBaseMapper<M>, 
      * @return 返回查询结果
      */
     @Override
+    @Transactional
     public List<M> selectList(M m) {
         return mapper().selectList(new QueryWrapper<M>(m));
     }
