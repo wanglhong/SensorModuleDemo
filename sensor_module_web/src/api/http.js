@@ -1,7 +1,7 @@
 import axios from "axios"
-import { useUserStore } from "../store/user"
 import { layer } from "@layui/layui-vue"
-import router from "../router/index.js"
+import { useUserStore } from "@/store/user.js"
+import router from "@/router/index.js"
 
 const config = {
     timeout: 5000,

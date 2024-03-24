@@ -1,8 +1,8 @@
 import { createRouter, createWebHashHistory } from "vue-router"
-import routes from "./module/base-routes"
 import NProgress from "nprogress"
 import "nprogress/nprogress.css"
-import { useUserStore } from "@/store/user"
+import routes from "@/router/module/base-routes.js"
+import { useUserStore } from "@/store/user.js"
 
 NProgress.configure({ showSpinner: false })
 

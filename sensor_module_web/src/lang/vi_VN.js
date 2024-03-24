@@ -1,6 +1,6 @@
 export default {
     input: {
-        placeholder: "vui lòng nhập vào",
+        placeholder: "vui lòng nhập vào"
     },
     page: {
         previous: "trước",
@@ -9,12 +9,12 @@ export default {
         confirm: "xác nhận",
         page: "trang",
         item: "mục",
-        total: "tổng cộng",
+        total: "tổng cộng"
     },
     table: {
         filter: "lọc",
         export: "xuất",
-        print: "in",
+        print: "in"
     },
     datePicker: {
         year: "",
@@ -46,10 +46,10 @@ export default {
         cancel: "hủy bỏ",
         now: "bây giờ",
         startTime: "thời gian bắt đầu",
-        endTime: "thời gian kết thúc",
+        endTime: "thời gian kết thúc"
     },
     empty: {
-        description: "Không có dữ liệu",
+        description: "Không có dữ liệu"
     },
     upload: {
         text: "Tải lên tệp",
@@ -59,11 +59,13 @@ export default {
         numberErrorMsg: "Số lượng tệp tải lên vượt quá số lượng quy định",
         cutInitErrorMsg: "Khởi tạo plug-in cắt thất bại",
         uploadSuccess: "Tải lên thành công",
-        cannotSupportCutMsg: "Phiên bản hiện tại không hỗ trợ cắt nhiều tệp đơn lẻ. Hãy thử đặt nhiều thành false và nhận đối tượng tệp được trả về thông qua @ done",
-        occurFileSizeErrorMsg: "Cảnh báo kích thước tệp, Kích thước tệp tối đa không vượt quá KB mục tiêu",
+        cannotSupportCutMsg:
+            "Phiên bản hiện tại không hỗ trợ cắt nhiều tệp đơn lẻ. Hãy thử đặt nhiều thành false và nhận đối tượng tệp được trả về thông qua @ done",
+        occurFileSizeErrorMsg:
+            "Cảnh báo kích thước tệp, Kích thước tệp tối đa không vượt quá KB mục tiêu",
         startUploadMsg: "Bắt đầu tải lên",
         confirmBtn: "xác nhận",
         cancelBtn: "hủy bỏ",
-        title: "tiêu đề",
-    },
-};
+        title: "tiêu đề"
+    }
+}

@@ -16,8 +16,8 @@ export default {
 <script setup>
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import { getParents } from "../../library/treeUtil.js";
-import { useUserStore } from "../../store/user";
+import { getParents } from "@/library/treeUtil.js";
+import { useUserStore } from "@/store/user.js";
 
 const userStore = useUserStore();
 const route = useRoute();

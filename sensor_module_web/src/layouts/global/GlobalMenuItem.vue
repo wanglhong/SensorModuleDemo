@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import GlobalMenuItem from "./GlobalMenuItem.vue"
 import { defineComponent } from "vue";
 
 export default defineComponent({

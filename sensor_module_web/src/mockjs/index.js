@@ -1,6 +1,6 @@
 // @ts-ignore
 import Mock from "mockjs"
-import user from "./user"
+import user from "@/mockjs/user.js"
 
 Mock.mock(/\/api\/upms\/sys\/login/, "post", (req, res) => {
     return user.getLogin(req, res)

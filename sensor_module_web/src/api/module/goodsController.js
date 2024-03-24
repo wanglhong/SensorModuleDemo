@@ -1,4 +1,4 @@
-import Http from "../http"
+import Http from "@/api/http.js"
 
 export const add = function(removeObject) {
     return Http.post("/api/app/goods/add", removeObject)

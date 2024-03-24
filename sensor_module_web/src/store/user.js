@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { menu, permission } from "../api/module/loginController"
+import { menu, permission } from "@/api/module/loginController.js"
 
 export const useUserStore = defineStore({
     id: "user",

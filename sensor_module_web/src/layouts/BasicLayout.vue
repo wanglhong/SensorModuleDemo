@@ -139,20 +139,20 @@
 
 <script setup>
 import { computed, onMounted, ref } from 'vue'
-import { useAppStore } from '../store/app'
-import { useUserStore } from '../store/user'
-import GlobalSetup from './global/GlobalSetup.vue'
-import GlobalContent from './global/GlobalContent.vue'
-import GlobalBreadcrumb from './global/GlobalBreadcrumb.vue'
-import GlobalTab from './global/GlobalTab.vue'
-import GlobalMenu from './global/GlobalMenu.vue'
-import GlobalMainMenu from './global/GlobalMainMenu.vue'
-import GlobalMessageTab from './global/GlobalMessageTab.vue'
 import { useRouter } from 'vue-router'
-import { useMenu } from './composable/useMenu'
-import zh_CN from '../lang/zh_CN'
-import vi_VN from '../lang/vi_VN'
-import en_US from '../lang/en_US'
+import { useAppStore } from '@/store/app.js'
+import { useUserStore } from '@/store/user.js'
+import { useMenu } from '@/layouts/composable/useMenu.js'
+import GlobalSetup from '@/layouts/global/GlobalSetup.vue'
+import GlobalContent from '@/layouts/global/GlobalContent.vue'
+import GlobalBreadcrumb from '@/layouts/global/GlobalBreadcrumb.vue'
+import GlobalTab from '@/layouts/global/GlobalTab.vue'
+import GlobalMenu from '@/layouts/global/GlobalMenu.vue'
+import GlobalMainMenu from '@/layouts/global/GlobalMainMenu.vue'
+import GlobalMessageTab from '@/layouts/global/GlobalMessageTab.vue'
+import zh_CN from '@/lang/zh_CN.js'
+import vi_VN from '@/lang/vi_VN.js'
+import en_US from '@/lang/en_US.js'
 const appStore = useAppStore()
 const userInfoStore = useUserStore()
 const fullscreenRef = ref()

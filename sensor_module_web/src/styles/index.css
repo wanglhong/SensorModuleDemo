@@ -1,7 +1,7 @@
-@import url(./admin.css);
-@import url(./display.css);
-@import url(./mobile.css);
-@import url(./reset.css);
+@import url(@/styles/admin.css);
+@import url(@/styles/display.css);
+@import url(@/styles/mobile.css);
+@import url(@/styles/reset.css);
 
 .global-css {
     font-family: 'Courier New', Courier, monospace;

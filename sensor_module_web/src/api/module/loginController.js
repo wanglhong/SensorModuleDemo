@@ -1,4 +1,4 @@
-import Http from "../http"
+import Http from "@/api/http.js"
 
 export const login = function(loginForm) {
     return Http.post("/api/upms/sys/login", loginForm)

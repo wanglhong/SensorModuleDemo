@@ -46,8 +46,8 @@ export default {
 
 <script setup>
 import { useRoute } from "vue-router"
-import { useAppStore } from "../../store/app"
-import { useTab } from "../composable/useTab"
+import { useAppStore } from "@/store/app.js"
+import { useTab } from "@/layouts/composable/useTab.js"
 
 const appStore = useAppStore()
 const route = useRoute()

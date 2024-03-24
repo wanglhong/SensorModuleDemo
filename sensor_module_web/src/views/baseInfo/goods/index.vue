@@ -68,7 +68,7 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { layer } from '@layui/layer-vue'
-import { list } from '../../../api/module/goodsController.js'
+import { list } from '@/api/module/goodsController.js'
 
 
 const loading = ref(false)

@@ -1,6 +1,6 @@
 export default {
     input: {
-        placeholder: "请输入",
+        placeholder: "请输入"
     },
     page: {
         previous: "上一页",
@@ -9,12 +9,12 @@ export default {
         confirm: "确认",
         page: "页",
         item: "条",
-        total: "共",
+        total: "共"
     },
     table: {
         filter: "筛选",
         export: "导出",
-        print: "打印",
+        print: "打印"
     },
     datePicker: {
         year: "年",
@@ -46,10 +46,10 @@ export default {
         cancel: "取消",
         now: "现在",
         startTime: "开始时间",
-        endTime: "结束时间",
+        endTime: "结束时间"
     },
     empty: {
-        description: "无数据",
+        description: "无数据"
     },
     upload: {
         text: "上传文件",
@@ -66,6 +66,6 @@ export default {
         startUploadMsg: "开始上传",
         confirmBtn: "确认",
         cancelBtn: "取消",
-        title: "标题",
-    },
-};
+        title: "标题"
+    }
+}

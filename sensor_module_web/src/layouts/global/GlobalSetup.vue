@@ -38,8 +38,8 @@
       </global-setup-item>
       <global-setup-item label="选项卡风格">
         <lay-select v-model="appStore.tagsTheme" style="width: 100px;" size="xs">
-          <lay-select-option value="concise">concise</lay-select-option>
           <lay-select-option value="underpainting">underpainting</lay-select-option>
+          <lay-select-option value="concise">concise</lay-select-option>
           <lay-select-option value="designer">designer</lay-select-option>
         </lay-select>
       </global-setup-item>
@@ -57,8 +57,8 @@ export default {
 </script>
 
 <script setup>
-import { useAppStore } from "@/store/app.js"
 import { ref, watch } from "vue"
+import { useAppStore } from "@/store/app.js"
 import GlobalSetupItem from "@/layouts/global/GlobalSetupItem.vue";
 import GlobalSetupTheme from "@/layouts/global/GlobalSetupTheme.vue";
 import GlobalColor from "@/layouts/global/GlobalColor.vue";

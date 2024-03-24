@@ -100,12 +100,12 @@ const props = defineProps({
 
 const informList = ref([
   {
-    img: "../assets/messageSlot/info1.png",
+    img: "@/assets/messageSlot/info1.png",
     title: "您有一条新的通知",
     time: "2021-08-09 12:00:00"
   },
   {
-    img: "../assets/messageSlot/info1.png",
+    img: "@/assets/messageSlot/info1.png",
     title: "您有一条新的通知",
     time: "2021-08-09 12:00:00"
   },

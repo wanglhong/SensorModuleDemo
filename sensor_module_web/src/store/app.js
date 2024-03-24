@@ -18,8 +18,8 @@ export const useAppStore = defineStore({
             sideWidth: "220px",
             sideTheme: "dark",
             greyMode: false,
-            accordion: true,
-            tagsTheme: "concise",
+            accordion: false,
+            tagsTheme: "underpainting",
             keepAliveList: [],
             themeVariable: {
                 "--global-checked-color": "#5fb878",

@@ -1,5 +1,5 @@
-import BasicLayout from "../../layouts/BasicLayout.vue"
-import Login from "../../views/login/index.vue"
+import BasicLayout from "@/layouts/BasicLayout.vue"
+import Login from "@/views/login/index.vue"
 
 export default [
     {

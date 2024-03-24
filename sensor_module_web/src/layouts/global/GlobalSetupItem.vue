@@ -16,17 +16,12 @@ export default {
 </script>
 
 <script setup>
-// const props = withDefaults(defineProps(), {
-//   label: "标题"
-// })
-
 const props = defineProps({
   label: {
     type: String,
     default: '标题'
   }
 })
-
 </script>
 
 <style scoped>

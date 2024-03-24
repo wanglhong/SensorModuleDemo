@@ -14,7 +14,7 @@ export default {
 const props = defineProps({
   modelValue: {
     type: String,
-    default: '#009688'
+    default: '#2d8cf0'
   },
   options: {
     type: Array,

@@ -1,6 +1,6 @@
 export default {
     input: {
-        placeholder: "please input",
+        placeholder: "please input"
     },
     page: {
         previous: "previous",
@@ -9,12 +9,12 @@ export default {
         confirm: "confirm",
         page: "page",
         item: "item",
-        total: "total",
+        total: "total"
     },
     table: {
         filter: "filter",
         export: "export",
-        print: "print",
+        print: "print"
     },
     datePicker: {
         year: "",
@@ -46,10 +46,10 @@ export default {
         cancel: "cancel",
         now: "now",
         startTime: "start time",
-        endTime: "end time",
+        endTime: "end time"
     },
     empty: {
-        description: "No data",
+        description: "No data"
     },
     upload: {
         text: "Upload files",
@@ -66,6 +66,6 @@ export default {
         startUploadMsg: "Upload Start",
         confirmBtn: "confirm",
         cancelBtn: "cancel",
-        title: "title",
-    },
-};
+        title: "title"
+    }
+}
