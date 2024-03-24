@@ -137,7 +137,7 @@
   </lay-config-provider>
 </template>
 
-<script lang="ts">
+<script setup>
 import { computed, onMounted, ref } from 'vue'
 import { useAppStore } from '../store/app'
 import { useUserStore } from '../store/user'
@@ -153,120 +153,80 @@ import { useMenu } from './composable/useMenu'
 import zh_CN from '../lang/zh_CN'
 import vi_VN from '../lang/vi_VN'
 import en_US from '../lang/en_US'
-
-export default {
-  components: {
-    GlobalSetup,
-    GlobalContent,
-    GlobalTab,
-    GlobalMenu,
-    GlobalBreadcrumb,
-    GlobalMainMenu,
-    GlobalMessageTab
-  },
-  setup() {
-    const appStore = useAppStore()
-    const userInfoStore = useUserStore()
-    const fullscreenRef = ref()
-    const visible = ref(false)
-    const sideWidth = computed(() =>
-      appStore.collapse
+const appStore = useAppStore()
+const userInfoStore = useUserStore()
+const fullscreenRef = ref()
+const visible = ref(false)
+const sideWidth = computed(() =>
+    appStore.collapse
         ? '60px'
         : appStore.subfield && appStore.subfieldPosition == 'side'
-        ? '280px'
-        : '220px'
-    )
-    const router = useRouter()
+            ? '280px'
+            : '220px'
+)
+const router = useRouter()
 
-    const {
-      selectedKey,
-      openKeys,
-      menus,
-      mainMenus,
-      mainSelectedKey,
-      changeMainSelectedKey,
-      changeSelectedKey,
-      changeOpenKeys
-    } = useMenu()
+const {
+  selectedKey,
+  openKeys,
+  menus,
+  mainMenus,
+  mainSelectedKey,
+  changeMainSelectedKey,
+  changeSelectedKey,
+  changeOpenKeys
+} = useMenu()
 
-    onMounted(() => {
-      if (document.body.clientWidth < 768) {
-        appStore.collapse = true
-      }
-      userInfoStore.loadMenus()
-      userInfoStore.loadPermissions()
-    })
-
-    const changeVisible = () => {
-      visible.value = !visible.value
-    }
-
-    const currentIndex = ref('1')
-
-    const collapse = () => {
-      appStore.collapse = !appStore.collapse
-    }
-
-    const refresh = () => {
-      appStore.routerAlive = false
-      setTimeout(function () {
-        appStore.routerAlive = true
-      }, 500)
-    }
-
-    const logOut = () => {
-      const userInfoStore = useUserStore()
-      userInfoStore.token = ''
-      userInfoStore.userInfo = {}
-      router.push('/login')
-    }
-
-    const locales = [
-      { name: 'zh_CN', locale: zh_CN, merge: true },
-      { name: 'vi_VN', locale: vi_VN, merge: true },
-      { name: 'en_US', locale: en_US, merge: true }
-    ]
-
-    function toUserInfo() {
-      router.push('/enrollee/profile')
-    }
-
-    function toSystemSet() {
-      router.push('/system/menu')
-    }
-
-    const flag = ref(false)
-
-    function changeDropdown() {
-      flag.value = !flag.value
-    }
-
-    return {
-      sideWidth,
-      mainSelectedKey,
-      fullscreenRef,
-      appStore,
-      visible,
-      menus,
-      mainMenus,
-      userInfoStore,
-      currentIndex,
-      selectedKey,
-      openKeys,
-      collapse,
-      changeOpenKeys,
-      changeSelectedKey,
-      changeMainSelectedKey,
-      changeVisible,
-      refresh,
-      logOut,
-      locales,
-      toUserInfo,
-      toSystemSet,
-      changeDropdown,
-      flag
-    }
+onMounted(() => {
+  if (document.body.clientWidth < 768) {
+    appStore.collapse = true
   }
+  userInfoStore.loadMenus()
+  userInfoStore.loadPermissions()
+})
+
+const changeVisible = () => {
+  visible.value = !visible.value
+}
+
+const currentIndex = ref('1')
+
+const collapse = () => {
+  appStore.collapse = !appStore.collapse
+}
+
+const refresh = () => {
+  appStore.routerAlive = false
+  setTimeout(function () {
+    appStore.routerAlive = true
+  }, 500)
+}
+
+const logOut = () => {
+  const userInfoStore = useUserStore()
+  userInfoStore.token = ''
+  userInfoStore.userInfo = {}
+  router.push('/login')
+}
+
+const locales = [
+  { name: 'zh_CN', locale: zh_CN, merge: true },
+  { name: 'vi_VN', locale: vi_VN, merge: true },
+  { name: 'en_US', locale: en_US, merge: true }
+]
+
+function toUserInfo() {
+  router.push('/enrollee/profile')
+}
+
+function toSystemSet() {
+  router.push('/system/menu')
+}
+
+const flag = ref(false)
+
+function changeDropdown() {
+  flag.value = !flag.value
 }
 </script>
 

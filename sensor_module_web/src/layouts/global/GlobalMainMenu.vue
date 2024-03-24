@@ -12,33 +12,37 @@
   </lay-menu>
 </template>
 
-<script lang="ts">
+<script>
 export default {
   name: "GlobalMenu",
 };
 </script>
 
-<script lang="ts" setup>
-import { useAppStore } from "../../store/app";
-import GlobalMainMenuItem from "./GlobalMainMenuItem.vue";
+<script setup>import { useAppStore } from "../../store/app"
+import GlobalMainMenuItem from "@/layouts/global/GlobalMainMenuItem.vue";
 
-const appStore = useAppStore();
+const appStore = useAppStore()
 
-interface MenuProps {
-  collapse: boolean;
-  menus: any[];
-  selectedKey: string;
+const props = defineProps({
+  collapse: {
+    type: Boolean,
+    default: false
+  },
+  menus: {
+    type: Array,
+    default: () => []
+  },
+  selectedKey: {
+    type: String,
+    default: ''
+  }
+})
+
+const emits = defineEmits(["changeSelectedKey"])
+
+const changeSelectedKey = key => {
+  emits("changeSelectedKey", key)
 }
-
-const props = withDefaults(defineProps<MenuProps>(), {
-  collapse: false,
-});
-
-const emits = defineEmits(['changeSelectedKey'])
-
-const changeSelectedKey = (key: string) => {
-  emits("changeSelectedKey", key);
-};
 
 </script>
 

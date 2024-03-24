@@ -8,14 +8,14 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 export default {
   name: 'GlobalContent'
 }
 </script>
 
-<script lang="ts" setup>
-import { useAppStore } from '../../store/app'
+<script setup>
+import { useAppStore } from '@/store/app.js'
 
 const appStore = useAppStore()
 </script>

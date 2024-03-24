@@ -9,21 +9,24 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
+<script>
 export default {
   name: "GlobalSetupItem",
 };
 </script>
 
-<script lang="ts" setup>
-interface SetupItemProps {
-  label: string;
-}
+<script setup>
+// const props = withDefaults(defineProps(), {
+//   label: "标题"
+// })
 
-const props = withDefaults(defineProps<SetupItemProps>(), {
-  label: "标题",
-});
+const props = defineProps({
+  label: {
+    type: String,
+    default: '标题'
+  }
+})
+
 </script>
 
 <style scoped>

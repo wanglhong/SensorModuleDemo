@@ -6,17 +6,17 @@
     </lay-breadcrumb>
 </template>
 
-<script lang="ts">
+<script>
 export default {
     name: "GlobalBreadcrumb"
 }
 </script>
 
 
-<script lang="ts" setup>
+<script setup>
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import { getParents } from "../../library/treeUtil";
+import { getParents } from "../../library/treeUtil.js";
 import { useUserStore } from "../../store/user";
 
 const userStore = useUserStore();

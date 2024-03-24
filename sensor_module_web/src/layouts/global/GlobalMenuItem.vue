@@ -20,16 +20,17 @@
     </template>
 </template>
 
-<script lang="ts">
+<script>
 import GlobalMenuItem from "./GlobalMenuItem.vue"
 import { defineComponent } from "vue";
 
 export default defineComponent({
-    name:  "GlobalMenuItem",
-    props: {
-        menus: {
-            type: Object
-        }
+  name:  "GlobalMenuItem",
+  props: {
+    menus: {
+      type: Array,
+      default: () => [] // 提供默认值为一个空数组
     }
+  }
 })
 </script>

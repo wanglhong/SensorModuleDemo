@@ -9,15 +9,17 @@
   </template>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script>
+import { defineComponent } from "vue"
 
 export default defineComponent({
   name: "GlobalMainMenuItem",
   props: {
     menus: {
-      type: Object,
-    },
-  },
-});
+      type: Array,
+      default: () => [] // 提供默认值为一个空数组
+    }
+  }
+})
+
 </script>

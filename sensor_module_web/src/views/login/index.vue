@@ -56,76 +56,27 @@
   </div>
 </template>
 
-<script lang="ts">
-import { login } from '../../api/module/loginController'
-import { verificationImg, loginQrcode } from '../../api/module/commone'
-import { defineComponent, onMounted, reactive, ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useUserStore } from '../../store/user'
+<script setup>
 import { layer } from '@layui/layer-vue'
+import {reactive, ref} from "vue";
 
-export default defineComponent({
-  setup() {
-    const router = useRouter()
-    const userStore = useUserStore()
-    const method = ref('1')
-    const verificationImgUrl = ref('')
-    const loging = ref(false);
-    const loginQrcodeText = ref('')
-    const remember = ref(false)
-    const loginForm = reactive({
-      loginName: 'admin',
-      password: '123456',
-      vercode: 'DqJFN'
-    })
-
-    const loginSubmit = async () => {
-      loging.value = true;
-      login(loginForm).then(({ success, msg, data }) => {
-        setTimeout(() => {
-          loging.value = false;
-          if (success) {
-            layer.msg(msg, { icon: 1 }, async () => {
-              userStore.token = data.token
-              await userStore.loadMenus()
-              await userStore.loadPermissions()
-              router.push('/')
-            })
-          } else {
-            layer.msg(msg, { icon: 2 })
-          }
-        }, 1000)
-      })
-    }
-
-    const toRefreshImg = async () => {
-      let { data, code, msg } = await verificationImg()
-      if (code == 200) {
-        verificationImgUrl.value = data.data
-      } else {
-        layer.msg(msg, { icon: 2 })
-      }
-    }
-    const toRefreshQrcode = async () => {
-      let { data, code, msg } = await loginQrcode()
-      if (code == 200) {
-        loginQrcodeText.value = data.data
-      } else {
-        layer.msg(msg, { icon: 2 })
-      }
-    }
-
-    return {
-      toRefreshQrcode,
-      toRefreshImg,
-      loginSubmit,
-      loginForm,
-      remember,
-      method,
-      loging
-    }
-  }
+const method = ref('1');
+const loging = ref(false);
+const remember = ref(false);
+const loginForm = reactive({
+  loginName: 'admin',
+  password: '123456',
+  vercode: 'DqJFN'
 })
+
+const loginSubmit = async () => {
+  layer.msg("loginSubmit()", { icon: 2 })
+}
+
+const toRefreshImg = async () => {
+  layer.msg("toRefreshImg()", { icon: 2 })
+}
+
 </script>
 
 <style scoped>

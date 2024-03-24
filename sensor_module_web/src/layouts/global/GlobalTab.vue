@@ -38,26 +38,33 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 export default {
   name: 'GlobalTab'
 }
 </script>
 
-<script lang="ts" setup>
-import { ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { useAppStore } from '../../store/app'
-import { useTab } from '../composable/useTab'
+<script setup>
+import { useRoute } from "vue-router"
+import { useAppStore } from "../../store/app"
+import { useTab } from "../composable/useTab"
 
 const appStore = useAppStore()
 const route = useRoute()
 
-const { tabs, to, close, closeAll, closeOther, closeCurrent, currentPath } =
-  useTab()
-function toChangPage(id: any) {
+const {
+  tabs,
+  to,
+  close,
+  closeAll,
+  closeOther,
+  closeCurrent,
+  currentPath
+} = useTab()
+function toChangPage(id) {
   to(id)
 }
+
 </script>
 
 <style lang="less">

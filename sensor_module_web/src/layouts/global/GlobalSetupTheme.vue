@@ -10,7 +10,7 @@
         <div>
           <span class="side" :style="[{'background-color': option.side}]"></span>
           <span class="body" :style="[{'background-color': option.body}]">
-            <lay-icon v-if="option.value == modelValue" type="layui-icon-ok"></lay-icon>
+            <lay-icon v-if="option.value === modelValue" type="layui-icon-ok"></lay-icon>
           </span>
         </div>
       </a>
@@ -19,36 +19,53 @@
   </ul>
 </template>
 
-<script lang="ts">
+<script>
 export default {
   name: "GlobalSetupTheme",
 };
 </script>
 
-<script lang="ts" setup>
-interface ColorProps {
-  modelValue: string;
-  options?: any [];
-  disabled?: boolean;
-}
+<script setup>
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: "#009688"
+  },
+  options: {
+    type: Array,
+    default: [
+      {
+        logo: "#28333e",
+        head: "white",
+        side: "#28333e",
+        body: "#f4f5f7",
+        value: "dark"
+      },
+      {
+        logo: "white",
+        head: "white",
+        side: "white",
+        body: "#f4f5f7",
+        value: "light"
+      }
+    ]
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  }
+})
 
-const props = withDefaults(defineProps<ColorProps>(), {
-  modelValue: "#009688",
-  options: () => [
-    {logo:'#28333e',head:'white',side:'#28333e',body:'#f4f5f7',value: 'dark'},
-    {logo:'white',head:'white',side:'white',body:'#f4f5f7', value: 'light'}
-  ]
-});
+const emits = defineEmits(["update:modelValue"])
 
-const emits = defineEmits(['update:modelValue'])
-
-const handlerChange = function(color: string) {
-  console.log("改变主题！--> " + color);
-  if(!props.disabled) {
-    console.log("改变主题002！--> " + color);
-    emits('update:modelValue', color);
+const handlerChange = function(color) {
+  console.log("改变主题！--> " + color)
+  if (!props.disabled) {
+    console.log("改变主题002！--> " + color)
+    emits("update:modelValue", color)
   }
 }
+
 </script>
 
 <style lang="less" scoped>
