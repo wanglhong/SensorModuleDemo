@@ -35,7 +35,6 @@
       <lay-col :md="24">
         <lay-card>
           <lay-table
-            :page="page"
             :columns="columns"
             :dataSource="dataSource"
             :loading="loading"
@@ -43,6 +42,7 @@
             v-model:selectedKeys="selectedKeys"
             @row="rowClick"
             @change="change"
+            style="height: 660px;"
           >
             <template v-slot:toolbar>
               <lay-button size="sm" type="primary">新增</lay-button>
@@ -55,10 +55,13 @@
               <lay-button size="xs" type="primary">修改</lay-button>
               <lay-button size="xs">删除</lay-button>
             </template>
-            <!-- <template v-slot:footer>
-              {{ selectedKeys }}
-            </template> -->
+            <template v-slot:footer>
+<!--              {{ selectedKeys }}-->
+              <lay-page v-model="page.current"  :layout="page.layout" v-model:limit="page.limit" :pages="page.pages" :total="page.total" @change="change"></lay-page>
+            </template>
           </lay-table>
+<!--          <br/>-->
+<!--          <lay-page v-model="page.current"  :layout="page.layout" v-model:limit="page.limit" :pages="page.pages" :total="page.total" @change="change"></lay-page>-->
         </lay-card>
       </lay-col>
     </lay-row>
@@ -66,7 +69,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { onMounted, ref } from 'vue'
 import { layer } from '@layui/layer-vue'
 import { list } from '@/api/module/goodsController.js'
 
@@ -75,7 +78,18 @@ const loading = ref(false)
 const selectedKeys = ref([])
 const checkbox = ref(true)
 const defaultToolbar = ref(true)
-const page = ref({ total: 100, limit: 10, current: 2 })
+const page = ref({
+  // 当前页
+  current: 6,
+  // 每页数量
+  limit: 10,
+  // 总条数
+  total: 100,
+  // 显示切页按钮数量
+  pages: 3,
+  // 不同部分的展示（count -> 总条数, page -> 页码选择器, prev -> 上一页, next -> 下一页, limits -> 每页的数量选择, refresh -> 刷新,  skip -> 跳页,）。
+  layout: ref(['count', 'prev', 'page', 'next', 'limits',  'refresh', 'skip'])
+})
 
 const columns = [
   {title:"复选",width:"50px",type:"checkbox",fixed:"left",align:"center"},
@@ -89,6 +103,24 @@ const columns = [
 ]
 
 let dataSource = ref([])
+
+const loadDataSource02 = async () => {
+  loading.value = true
+  try {
+    const { success, code, msg, data } = await list({ page: page.value.current, limit: page.value.limit })
+    if (success) {
+      dataSource.value = data
+      // page.value.total = data.total // 假设后端返回的data中包含总条目数
+    } else {
+      layer.msg(msg, { icon: 2 })
+    }
+  } catch (error) {
+    console.error("加载数据失败", error)
+    layer.msg('加载数据失败', { icon: 2 })
+  } finally {
+    loading.value = false
+  }
+}
 
 const loadDataSource = (page, pageSize) => {
   var response = ref([])
@@ -115,11 +147,11 @@ const rowDoubleClick = function(data) {}
 // 分页事件
 const change = function({ current, limit }) {
   layer.msg("current:" + current + " limit:" + limit)
-  loading.value = true
-  setTimeout(() => {
-    dataSource.value = loadDataSource(current, limit)
-    loading.value = false
-  }, 1000)
+  // loading.value = true
+  // setTimeout(() => {
+  //   dataSource.value = loadDataSource(current, limit)
+  //   loading.value = false
+  // }, 1000)
 }
 function toSearch() {
   layer.load(2, { time: 3000 })
@@ -131,18 +163,23 @@ function toReset() {
   searchEmail.value = ""
 }
 
-loading.value = false
-
-list({}).then(({ success, code, msg, data }) => {
-  setTimeout(() => {
-    if (success) {
-      console.log("data --> " + JSON.stringify(data))
-      dataSource = data
-      console.log("dataSource --> " + JSON.stringify(dataSource))
-    } else {
-      layer.msg(msg, { icon: 2 })
-    }
-  }, 1000)
+// 使用onMounted生命周期钩子在组件挂载完成后加载数据
+onMounted(() => {
+  loadDataSource02()
 })
 
 </script>
+
+<style scoped>
+
+.table-box {
+  margin-top: 10px;
+  padding: 10px;
+  height: 700px;
+  width: 100%;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+</style>
