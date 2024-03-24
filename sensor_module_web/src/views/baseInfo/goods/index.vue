@@ -42,7 +42,7 @@
             v-model:selectedKeys="selectedKeys"
             @row="rowClick"
             @change="change"
-            style="height: 660px;"
+            style="height: 700px;"
           >
             <template v-slot:toolbar>
               <lay-button size="sm" type="primary">新增</lay-button>
