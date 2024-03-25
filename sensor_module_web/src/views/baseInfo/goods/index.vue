@@ -43,15 +43,25 @@
             style="height: 700px;"
           >
             <template v-slot:toolbar>
-              <lay-button size="sm" type="primary" @click="change">新增</lay-button>
-              <lay-button size="sm" @click="removeList">删除</lay-button>
+              <lay-button size="sm" type="primary" @click="displayFromLay('新增')">
+                <lay-icon class="layui-icon-addition"/> 新增
+              </lay-button>
+              <lay-button size="sm" @click="removeList">
+                <lay-icon class="layui-icon-delete"/> 删除
+              </lay-button>
             </template>
             <template v-slot:goodsUnitValue="{ data }">
               {{ (data.goodsUnitValue/100).toFixed(2) }}
             </template>
             <template v-slot:operator="{ data }">
               <lay-button size="xs" type="primary">修改</lay-button>
-              <lay-button size="xs" @click="removeOne(data.id)">删除</lay-button>
+              <lay-popconfirm
+                  content="确定要删除此数据吗?"
+                  @confirm="removeOne(data.id)"
+                  @cancel="cancel"
+              >
+                <lay-button size="xs" border="red" border-style="dashed">删除</lay-button>
+              </lay-popconfirm>
             </template>
             <template v-slot:footer>
               <lay-page v-model="page.pageNum"  :layout="page.layout" v-model:limit="page.pageSize" :pages="page.pages" :total="page.total" @change="change"></lay-page>
@@ -60,18 +70,22 @@
         </lay-card>
       </lay-col>
     </lay-row>
+    <from-lay :displayFrom="displayFrom" :title="fromTitle" :model="modelDto"/>
   </lay-container>
 </template>
 
 <script setup>
   import { onMounted, ref, reactive } from 'vue';
   import { layer } from '@layui/layer-vue';
+  import FromLay from '@/views/baseInfo/goods/formLay.vue';
   import { add, list, update, remove, removeByIdList } from '@/api/module/goodsController.js';
 
   const loading = ref(false);
   const selectedIdList  = ref([]);
   const checkbox = ref(true);
   const defaultToolbar = ref(true);
+  const displayFrom = false;
+  const fromTitle = ref('新增');
   const page = reactive({
     // 当前页
     pageNum: 1,
@@ -145,14 +159,20 @@
 
   // 删除选中数据
   function removeOne(id) {
+    let load = layer.load;
     remove({ id: id}).then(({ success, code, msg, data }) => {
+      layer.close(load);
       if (success) {
-        layer.msg("删除成功！", { icon: 1 });
+        layer.msg(msg);
         loadDataSource();
       } else {
         layer.msg(msg, { icon: 2 });
       }
     });
+  }
+
+  function cancel() {
+    layer.msg('您已取消操作')
   }
 
   // 删除选中数据
@@ -170,6 +190,14 @@
         }
       });
     }
+  }
+
+  /**
+   * displayFromLay
+   */
+  function displayFromLay(title) {
+    title.value = title;
+    displayFrom.value = true;
   }
 
   // 使用onMounted生命周期钩子在组件挂载完成后加载数据
