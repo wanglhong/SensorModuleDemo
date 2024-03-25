@@ -5,6 +5,7 @@ import cn.wlih.core.base.model.Page;
 import cn.wlih.core.base.model.ResponseResult;
 import cn.wlih.core.base.service.MyBaseService;
 import cn.wlih.core.config.ApplicationContextHolder;
+import cn.wlih.core.myAnnotate.MyRequestBody;
 import cn.wlih.core.util.MyModelUtil;
 import cn.wlih.core.util.NameFormatConversionUtil;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -118,8 +119,8 @@ public abstract class MyBaseController<M, MDTO, MVO> {
      */
     @Operation(summary = "基础查询接口")
     @PostMapping("/list")
-    public ResponseResult<Page<M, MVO>> selectList(@RequestBody MDTO mDto, @RequestBody Page<M, MVO> page) {
-        M m = MyModelUtil.copyTo(mDto, modelClass);
+    public ResponseResult<Page<M, MVO>> selectList(@MyRequestBody MDTO modelDto, @MyRequestBody Page<M, MVO> page) {
+        M m = MyModelUtil.copyTo(modelDto, modelClass);
         PageHelper.startPage(page.getPageNum(), page.getPageSize());
         List<M> list = getBaseService().selectList(m);
         Page.setPageInfo(page, list, modelVoClass);
