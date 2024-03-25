@@ -57,9 +57,7 @@ public class MyRequestBodyArgumentResolver implements HandlerMethodArgumentResol
      */
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-
         String jsonBody = getRequestBody(webRequest);
-
         JSONObject jsonObject = JSON.parseObject(jsonBody);
         // 根据@MultiRequestBody注解value作为json解析的key
         MyRequestBody parameterAnnotation = parameter.getParameterAnnotation(MyRequestBody.class);

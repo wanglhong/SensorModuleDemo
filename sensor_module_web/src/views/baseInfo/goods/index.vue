@@ -56,12 +56,9 @@
               <lay-button size="xs">删除</lay-button>
             </template>
             <template v-slot:footer>
-<!--              {{ selectedKeys }}-->
               <lay-page v-model="page.pageNum"  :layout="page.layout" v-model:limit="page.pageSize" :pages="page.pages" :total="page.total" @change="change"></lay-page>
             </template>
           </lay-table>
-<!--          <br/>-->
-<!--          <lay-page v-model="page.pageNum"  :layout="page.layout" v-model:limit="page.pageSize" :pages="page.pages" :total="page.total" @change="change"></lay-page>-->
         </lay-card>
       </lay-col>
     </lay-row>
@@ -69,22 +66,21 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, reactive } from 'vue'
 import { layer } from '@layui/layer-vue'
 import { list } from '@/api/module/goodsController.js'
-
 
 const loading = ref(false)
 const selectedKeys = ref([])
 const checkbox = ref(true)
 const defaultToolbar = ref(true)
-const page = ref({
+const page = reactive({
   // 当前页
-  pageNum: 6,
+  pageNum: 1,
   // 每页数量
   pageSize: 10,
   // 总条数
-  total: 100,
+  total: 0,
   // 显示切页按钮数量
   pages: 3,
   // 不同部分的展示（count -> 总条数, page -> 页码选择器, prev -> 上一页, next -> 下一页, limits -> 每页的数量选择, refresh -> 刷新,  skip -> 跳页,）。
@@ -92,52 +88,29 @@ const page = ref({
 })
 
 const columns = [
-  {title:"复选",width:"50px",type:"checkbox",fixed:"left",align:"center"},
-  {title:"编码",key:"goodsCode",width:"200px",align:"center"},
-  {title:"名称",key:"goodsName",width:"200px",align:"center"},
-  {title:"单位价值（单位：元）",key:"goodsUnitValue",customSlot:"goodsUnitValue",width:"180px",align:"center"},
-  {title:"体积（单位：cm³）",key:"goodsUnitVolume",width:"180px",align:"center"},
-  {title:"重量（单位：克）",key:"goodsUnitWeight",width:"180px",align:"center"},
-  {title:"描述",key:"goodsDescription",ellipsisTooltip:true,align:"center"},
-  {title:"操作",width:"180px",customSlot:"operator",key:"operator",fixed:"right",align:"center"}
+  {title: "复选", width: "50px", type: "checkbox", fixed: "left", align: "center"},
+  {title: "编码", key: "goodsCode", width: "130px", align: "center"},
+  {title: "名称", key: "goodsName", width: "130px", align: "center"},
+  {title: "单位价值（单位：元）", key: "goodsUnitValue", customSlot: "goodsUnitValue", width: "180px", align: "center"},
+  {title: "体积（单位：cm³）", key: "goodsUnitVolume", width: "180px", align: "center"},
+  {title: "重量（单位：克）", key: "goodsUnitWeight", width: "180px", align: "center"},
+  {title: "描述", key: "goodsDescription", ellipsisTooltip: true, align: "center"},
+  {title: "操作", width: "180px", customSlot: "operator", key: "operator", fixed: "right", align: "center"}
 ]
 
 let dataSource = ref([])
 
-const loadDataSource02 = async () => {
+const loadDataSource = async (modelDto) => {
   loading.value = true
-  try {
-    const { success, code, msg, data } = await list({ page: page.value.pageNum, pageSize: page.value.pageSize })
+  list({ modelDto: modelDto, page: page }).then(({ success, code, msg, data }) => {
+    loading.value = false
     if (success) {
-      dataSource.value = data
-      // page.value.total = data.total // 假设后端返回的data中包含总条目数
+      dataSource.value = data.data;
+      page.total = data.total;
     } else {
       layer.msg(msg, { icon: 2 })
     }
-  } catch (error) {
-    console.error("加载数据失败", error)
-    layer.msg('加载数据失败', { icon: 2 })
-  } finally {
-    loading.value = false
-  }
-}
-
-const loadDataSource = (page, pageSize) => {
-  var response = ref([])
-  var startIndex = (page - 1) * pageSize + 1
-  var endIndex = page * pageSize
-
-  list({}).then(({ success, code, msg, data }) => {
-    setTimeout(() => {
-      // loading.value = false;
-      if (success) {
-        response.value = data
-      } else {
-        layer.msg(msg, { icon: 2 })
-      }
-    }, 1000)
   })
-  return response
 }
 
 // 行单击事件
@@ -145,16 +118,11 @@ const rowClick = function(data) {}
 // 行双击事件
 const rowDoubleClick = function(data) {}
 // 分页事件
-const change = function({ pageNum, pageSize }) {
-  layer.msg("pageNum:" + pageNum + " pageSize:" + pageSize)
-  // loading.value = true
-  // setTimeout(() => {
-  //   dataSource.value = loadDataSource(pageNum, pageSize)
-  //   loading.value = false
-  // }, 1000)
+const change = function() {
+  loadDataSource(null)
 }
 function toSearch() {
-  layer.load(2, { time: 3000 })
+  layer.load(2, { time: 2000 })
 }
 const searchAccount = ref("")
 const searchEmail = ref("")
@@ -165,7 +133,7 @@ function toReset() {
 
 // 使用onMounted生命周期钩子在组件挂载完成后加载数据
 onMounted(() => {
-  loadDataSource02()
+  loadDataSource(null)
 })
 
 </script>
