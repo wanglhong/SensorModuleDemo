@@ -64,14 +64,14 @@
 </template>
 
 <script setup>
-  import { onMounted, ref, reactive } from 'vue'
-  import { layer } from '@layui/layer-vue'
-  import { add, list, update, remove, removeByIdList } from '@/api/module/goodsController.js'
+  import { onMounted, ref, reactive } from 'vue';
+  import { layer } from '@layui/layer-vue';
+  import { add, list, update, remove, removeByIdList } from '@/api/module/goodsController.js';
 
-  const loading = ref(false)
-  const selectedIdList  = ref([])
-  const checkbox = ref(true)
-  const defaultToolbar = ref(true)
+  const loading = ref(false);
+  const selectedIdList  = ref([]);
+  const checkbox = ref(true);
+  const defaultToolbar = ref(true);
   const page = reactive({
     // 当前页
     pageNum: 1,
@@ -83,7 +83,7 @@
     pages: 3,
     // 不同部分的展示（count -> 总条数, page -> 页码选择器, prev -> 上一页, next -> 下一页, limits -> 每页的数量选择, refresh -> 刷新,  skip -> 跳页,）。
     layout: ref(['count', 'prev', 'page', 'next', 'limits',  'refresh', 'skip'])
-  })
+  });
   const modelDto = reactive({
     // 编码
     goodsCode: null,
@@ -97,7 +97,7 @@
     goodsUnitWeight: null,
     // 描述
     goodsDescription: null
-  })
+  });
   const columns = [
     {title: "复选", width: "50px", type: "checkbox", fixed: "left", align: "center"},
     {title: "编码", key: "goodsCode", ellipsisTooltip: true, align: "center"},
@@ -107,20 +107,20 @@
     {title: "重量（单位：克）", key: "goodsUnitWeight", ellipsisTooltip: true, align: "center"},
     {title: "备注", key: "goodsDescription", ellipsisTooltip: true, align: "center"},
     {title: "操作", ellipsisTooltip: true, customSlot: "operator", key: "operator", fixed: "right", align: "center"}
-  ]
-  let dataSource = ref([])
+  ];
+  let dataSource = ref([]);
 
   const loadDataSource = async () => {
     loading.value = true;
     list({ modelDto: modelDto, page: page }).then(({ success, code, msg, data }) => {
-      loading.value = false
+      loading.value = false;
       if (success) {
         dataSource.value = data.data;
         page.total = data.total;
       } else {
-        layer.msg(msg, { icon: 2 })
+        layer.msg(msg, { icon: 2 });
       }
-    })
+    });
   }
 
   // 改变事件
@@ -147,18 +147,18 @@
   function removeOne(id) {
     remove({ id: id}).then(({ success, code, msg, data }) => {
       if (success) {
-        layer.msg("删除成功！", { icon: 1 })
+        layer.msg("删除成功！", { icon: 1 });
         loadDataSource();
       } else {
-        layer.msg(msg, { icon: 2 })
+        layer.msg(msg, { icon: 2 });
       }
-    })
+    });
   }
 
   // 删除选中数据
   function removeList() {
     if (selectedIdList.value.length < 1) {
-      layer.msg('请选择要删除的数据', { icon: 2 })
+      layer.msg('请选择要删除的数据', { icon: 2 });
     } else {
       removeByIdList({ idList: selectedIdList.value }).then(({ success, code, msg, data }) => {
         if (success) {
@@ -166,9 +166,9 @@
           selectedIdList.value = [];
           loadDataSource();
         } else {
-          layer.msg(msg, { icon: 2 })
+          layer.msg(msg, { icon: 2 });
         }
-      })
+      });
     }
   }
 
