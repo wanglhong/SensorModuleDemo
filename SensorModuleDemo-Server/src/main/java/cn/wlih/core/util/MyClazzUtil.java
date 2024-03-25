@@ -65,6 +65,21 @@ public class MyClazzUtil {
         // 在所有类中都未找到符合条件的字段
         return null;
     }
+    public static Field getDbBaseField(Class<?> clzz, DbBaseFieldType dbBaseFieldType) {
+        while (clzz != null && clzz != Object.class) {
+            Field[] fields = clzz.getDeclaredFields();
+            for (Field field : fields) {
+                if (field.isAnnotationPresent(DbBaseField.class)) {
+                    if (field.getAnnotation(DbBaseField.class).type().equals(dbBaseFieldType)) {
+                        return field;
+                    }
+                }
+            }
+            clzz = clzz.getSuperclass(); // 继续查找父类
+        }
+        // 在所有类中都未找到符合条件的字段
+        return null;
+    }
 
     /**
      * 设置数据库基础字段的值

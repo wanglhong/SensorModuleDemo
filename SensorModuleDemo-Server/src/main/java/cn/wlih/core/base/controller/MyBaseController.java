@@ -107,9 +107,18 @@ public abstract class MyBaseController<M, MDTO, MVO> {
      */
     @Operation(summary = "基础删除接口（通过ID）")
     @PostMapping("/delete")
-    public ResponseResult<Void> delete(@RequestBody MDTO mDto) {
-        M m = MyModelUtil.copyTo(mDto, modelClass);
-        getBaseService().removeById(m);
+    public ResponseResult<Void> delete(@MyRequestBody Long id) {
+        getBaseService().removeById(id);
+        return ResponseResult.success();
+    }
+
+    /**
+     * 基础删除接口
+     */
+    @Operation(summary = "基础删除接口（通过ID集合）")
+    @PostMapping("/removeByIdList")
+    public ResponseResult<Void> removeByIdList(@MyRequestBody List<Long> idList) {
+        getBaseService().removeByIdList(idList);
         return ResponseResult.success();
     }
 

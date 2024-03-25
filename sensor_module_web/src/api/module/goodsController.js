@@ -15,3 +15,7 @@ export const update = function(updateObject) {
 export const remove = function(removeObject) {
     return Http.post("/api/app/goods/delete", removeObject)
 }
+
+export const removeByIdList = function(removeObject) {
+    return Http.post("/api/app/goods/removeByIdList", removeObject)
+}

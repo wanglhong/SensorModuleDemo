@@ -21,4 +21,7 @@ public interface MyBaseService<M> extends IService<M> {
      * @return 返回查询结果
      */
     List<M> selectList(M m);
+
+    Boolean removeByIdList(List<Long> idList);
+
 }

@@ -6,6 +6,7 @@ import cn.wlih.core.config.ApplicationContextHolder;
 import cn.wlih.core.myAnnotate.VariableComment;
 import cn.wlih.core.myEnum.DbBaseFieldType;
 import cn.wlih.core.base.model.modelDbEnum.IsDeleteEnum;
+import cn.wlih.core.myError.BizException;
 import cn.wlih.core.util.MyClazzUtil;
 import cn.wlih.core.util.dbUtil.DbTableUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -15,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import supie.common.sequence.wrapper.IdGeneratorWrapper;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.util.*;
 
@@ -96,6 +98,16 @@ public abstract class MyBaseServiceImpl<M> extends ServiceImpl<MyBaseMapper<M>, 
     @Transactional
     public List<M> selectList(M m) {
         return mapper().selectList(new QueryWrapper<M>(m));
+    }
+
+    @Override
+    public Boolean removeByIdList(List<Long> idList) {
+        Field dbIdField = MyClazzUtil.getDbBaseField(modelClass, DbBaseFieldType.ID);
+        if (dbIdField == null) {
+            throw new BizException("Model主键ID为配置！");
+        }
+        mapper().delete(new QueryWrapper<M>().in(dbIdField.getName(), idList));
+        return true;
     }
 
     /**
