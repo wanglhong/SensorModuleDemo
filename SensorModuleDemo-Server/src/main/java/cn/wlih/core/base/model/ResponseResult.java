@@ -2,6 +2,7 @@ package cn.wlih.core.base.model;
 
 import cn.wlih.core.myAnnotate.ClassComment;
 import cn.wlih.core.myAnnotate.VariableComment;
+import cn.wlih.core.myError.ExceptionEnum;
 import lombok.Data;
 
 @Data
@@ -72,6 +73,13 @@ public class ResponseResult<T> {
         resp.success = false;
         resp.code = code;
         resp.msg = msg;
+        return resp;
+    }
+    public static <T> ResponseResult<T> error(ExceptionEnum exceptionEnum) {
+        ResponseResult<T> resp = new ResponseResult<>();
+        resp.success = false;
+        resp.code = exceptionEnum.getResultCode();
+        resp.msg = exceptionEnum.getResultMsg();
         return resp;
     }
 

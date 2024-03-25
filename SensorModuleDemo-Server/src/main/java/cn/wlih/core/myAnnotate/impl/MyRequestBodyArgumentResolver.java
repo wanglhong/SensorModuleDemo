@@ -71,7 +71,7 @@ public class MyRequestBodyArgumentResolver implements HandlerMethodArgumentResol
             value = jsonObject.get(key);
             // 如果设置了value但是解析不到，报错
             if (value == null && parameterAnnotation.required()) {
-                throw new IllegalArgumentException(String.format("required param %s is not present", key));
+                throw new IllegalArgumentException(String.format("必需的参数[%s]不存在！", key));
             }
         } else {
             // 注解为设置value则用参数名当做json的key
@@ -101,7 +101,7 @@ public class MyRequestBodyArgumentResolver implements HandlerMethodArgumentResol
         // 解析不到则将整个json串解析为当前参数类型
         if (isBasicDataTypes(parameterType)) {
             if (parameterAnnotation.required()) {
-                throw new IllegalArgumentException(String.format("required param %s is not present", key));
+                throw new IllegalArgumentException(String.format("必需的参数[%s]不存在！", key));
             } else {
                 return null;
             }
@@ -111,7 +111,7 @@ public class MyRequestBodyArgumentResolver implements HandlerMethodArgumentResol
         if (!parameterAnnotation.parseAllFields()) {
             // 如果是必传参数抛异常
             if (parameterAnnotation.required()) {
-                throw new IllegalArgumentException(String.format("required param %s is not present", key));
+                throw new IllegalArgumentException(String.format("必需的参数[%s]不存在！", key));
             }
             // 否则返回null
             return null;
@@ -139,7 +139,7 @@ public class MyRequestBodyArgumentResolver implements HandlerMethodArgumentResol
                 }
             }
             if (!haveValue) {
-                throw new IllegalArgumentException(String.format("required param %s is not present", key));
+                throw new IllegalArgumentException(String.format("必需的参数[%s]不存在！", key));
             }
             return result;
         }
