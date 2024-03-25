@@ -7,19 +7,18 @@
           <lay-form style="margin-top: 20px">
             <lay-row>
               <lay-col :md="6">
-                <lay-form-item label="账号：" label-width="50">
-                  <lay-input
-                    v-model="searchAccount"
-                    style="width: 90%"
-                  ></lay-input>
+                <lay-form-item label="编号：" label-width="50">
+                  <lay-input v-model="modelDto.goodsCode" style="width: 90%"/>
                 </lay-form-item>
               </lay-col>
               <lay-col :md="6">
-                <lay-form-item label="邮箱：" label-width="50">
-                  <lay-input
-                    v-model="searchEmail"
-                    style="width: 90%"
-                  ></lay-input>
+                <lay-form-item label="名称：" label-width="50">
+                  <lay-input v-model="modelDto.goodsName" style="width: 90%"/>
+                </lay-form-item>
+              </lay-col>
+              <lay-col :md="6">
+                <lay-form-item label="备注：" label-width="50">
+                  <lay-input v-model="modelDto.goodsDescription" style="width: 90%"/>
                 </lay-form-item>
               </lay-col>
               <lay-col :md="6">
@@ -40,7 +39,6 @@
             :loading="loading"
             :default-toolbar="defaultToolbar"
             v-model:selectedKeys="selectedKeys"
-            @row="rowClick"
             @change="change"
             style="height: 700px;"
           >
@@ -86,22 +84,34 @@ const page = reactive({
   // 不同部分的展示（count -> 总条数, page -> 页码选择器, prev -> 上一页, next -> 下一页, limits -> 每页的数量选择, refresh -> 刷新,  skip -> 跳页,）。
   layout: ref(['count', 'prev', 'page', 'next', 'limits',  'refresh', 'skip'])
 })
-
+const modelDto = reactive({
+  // 编码
+  goodsCode: null,
+  // 名称
+  goodsName: null,
+  // 单位价值
+  goodsUnitValue: null,
+  // 体积
+  goodsUnitVolume: null,
+  // 重量
+  goodsUnitWeight: null,
+  // 描述
+  goodsDescription: null
+})
 const columns = [
   {title: "复选", width: "50px", type: "checkbox", fixed: "left", align: "center"},
-  {title: "编码", key: "goodsCode", width: "130px", align: "center"},
-  {title: "名称", key: "goodsName", width: "130px", align: "center"},
+  {title: "编码", key: "goodsCode", ellipsisTooltip: true, align: "center"},
+  {title: "名称", key: "goodsName", ellipsisTooltip: true, align: "center"},
   {title: "单位价值（单位：元）", key: "goodsUnitValue", customSlot: "goodsUnitValue", width: "180px", align: "center"},
-  {title: "体积（单位：cm³）", key: "goodsUnitVolume", width: "180px", align: "center"},
-  {title: "重量（单位：克）", key: "goodsUnitWeight", width: "180px", align: "center"},
-  {title: "描述", key: "goodsDescription", ellipsisTooltip: true, align: "center"},
-  {title: "操作", width: "180px", customSlot: "operator", key: "operator", fixed: "right", align: "center"}
+  {title: "体积（单位：cm³）", key: "goodsUnitVolume", ellipsisTooltip: true, align: "center"},
+  {title: "重量（单位：克）", key: "goodsUnitWeight", ellipsisTooltip: true, align: "center"},
+  {title: "备注", key: "goodsDescription", ellipsisTooltip: true, align: "center"},
+  {title: "操作", ellipsisTooltip: true, customSlot: "operator", key: "operator", fixed: "right", align: "center"}
 ]
-
 let dataSource = ref([])
 
-const loadDataSource = async (modelDto) => {
-  loading.value = true
+const loadDataSource = async () => {
+  loading.value = true;
   list({ modelDto: modelDto, page: page }).then(({ success, code, msg, data }) => {
     loading.value = false
     if (success) {
@@ -113,27 +123,33 @@ const loadDataSource = async (modelDto) => {
   })
 }
 
-// 行单击事件
-const rowClick = function(data) {}
-// 行双击事件
-const rowDoubleClick = function(data) {}
-// 分页事件
+// 改变事件
 const change = function() {
-  loadDataSource(null)
+  loadDataSource();
 }
+
+// 查询
 function toSearch() {
-  layer.load(2, { time: 2000 })
+  // layer.close(load);
+  // setTimeout(() => {
+  //   layer.close(load);
+  // }, 1000);
+  loadDataSource();
 }
-const searchAccount = ref("")
-const searchEmail = ref("")
+
+// 重置
 function toReset() {
-  searchAccount.value = ""
-  searchEmail.value = ""
+  modelDto.goodsCode = null;
+  modelDto.goodsName = null;
+  modelDto.goodsUnitValue = null;
+  modelDto.goodsUnitVolume = null;
+  modelDto.goodsUnitWeight = null;
+  modelDto.goodsDescription = null;
 }
 
 // 使用onMounted生命周期钩子在组件挂载完成后加载数据
 onMounted(() => {
-  loadDataSource(null)
+  loadDataSource();
 })
 
 </script>
