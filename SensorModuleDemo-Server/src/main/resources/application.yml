@@ -32,6 +32,14 @@ spring:
         min-idle: 2
         #连接超时时间
       timeout: 10000
+
+# 自动分页的配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: false
+  params: count=countSql
+
 mybatis-plus:
   configuration:
     # 开启驼峰转下划线（默认为true）
@@ -74,4 +82,3 @@ common-swagger:
   title: 跨境（中越）物流信息监控系统
   description: 跨境（中越）物流信息监控系统详情
   version: 1.0
-

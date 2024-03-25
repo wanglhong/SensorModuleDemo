@@ -5,4 +5,7 @@
     <content url="file://$MODULE_DIR$/sensor_module_web" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="de8f3fec-229d-4c9b-8470-fd0306a8422d" />
+  </component>
 </module>

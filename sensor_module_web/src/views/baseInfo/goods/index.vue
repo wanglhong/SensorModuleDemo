@@ -57,11 +57,11 @@
             </template>
             <template v-slot:footer>
 <!--              {{ selectedKeys }}-->
-              <lay-page v-model="page.current"  :layout="page.layout" v-model:limit="page.limit" :pages="page.pages" :total="page.total" @change="change"></lay-page>
+              <lay-page v-model="page.pageNum"  :layout="page.layout" v-model:limit="page.pageSize" :pages="page.pages" :total="page.total" @change="change"></lay-page>
             </template>
           </lay-table>
 <!--          <br/>-->
-<!--          <lay-page v-model="page.current"  :layout="page.layout" v-model:limit="page.limit" :pages="page.pages" :total="page.total" @change="change"></lay-page>-->
+<!--          <lay-page v-model="page.pageNum"  :layout="page.layout" v-model:limit="page.pageSize" :pages="page.pages" :total="page.total" @change="change"></lay-page>-->
         </lay-card>
       </lay-col>
     </lay-row>
@@ -80,9 +80,9 @@ const checkbox = ref(true)
 const defaultToolbar = ref(true)
 const page = ref({
   // 当前页
-  current: 6,
+  pageNum: 6,
   // 每页数量
-  limit: 10,
+  pageSize: 10,
   // 总条数
   total: 100,
   // 显示切页按钮数量
@@ -107,7 +107,7 @@ let dataSource = ref([])
 const loadDataSource02 = async () => {
   loading.value = true
   try {
-    const { success, code, msg, data } = await list({ page: page.value.current, limit: page.value.limit })
+    const { success, code, msg, data } = await list({ page: page.value.pageNum, pageSize: page.value.pageSize })
     if (success) {
       dataSource.value = data
       // page.value.total = data.total // 假设后端返回的data中包含总条目数
@@ -145,11 +145,11 @@ const rowClick = function(data) {}
 // 行双击事件
 const rowDoubleClick = function(data) {}
 // 分页事件
-const change = function({ current, limit }) {
-  layer.msg("current:" + current + " limit:" + limit)
+const change = function({ pageNum, pageSize }) {
+  layer.msg("pageNum:" + pageNum + " pageSize:" + pageSize)
   // loading.value = true
   // setTimeout(() => {
-  //   dataSource.value = loadDataSource(current, limit)
+  //   dataSource.value = loadDataSource(pageNum, pageSize)
   //   loading.value = false
   // }, 1000)
 }

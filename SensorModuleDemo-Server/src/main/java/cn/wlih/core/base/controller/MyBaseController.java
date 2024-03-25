@@ -1,12 +1,15 @@
 package cn.wlih.core.base.controller;
 
 import cn.hutool.core.util.ReflectUtil;
+import cn.wlih.core.base.model.Page;
 import cn.wlih.core.base.model.ResponseResult;
 import cn.wlih.core.base.service.MyBaseService;
 import cn.wlih.core.config.ApplicationContextHolder;
 import cn.wlih.core.util.MyModelUtil;
 import cn.wlih.core.util.NameFormatConversionUtil;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.extern.slf4j.Slf4j;
@@ -115,14 +118,12 @@ public abstract class MyBaseController<M, MDTO, MVO> {
      */
     @Operation(summary = "基础查询接口")
     @PostMapping("/list")
-    public ResponseResult<List<MVO>> selectList(@RequestBody MDTO mDto) {
+    public ResponseResult<Page<M, MVO>> selectList(@RequestBody MDTO mDto, @RequestBody Page<M, MVO> page) {
         M m = MyModelUtil.copyTo(mDto, modelClass);
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
         List<M> list = getBaseService().selectList(m);
-        List<MVO> listVo = new ArrayList<>();
-        for (M m1 : list) {
-            listVo.add(MyModelUtil.copyTo(m1, modelVoClass));
-        }
-        return ResponseResult.success(listVo);
+        Page.setPageInfo(page, list, modelVoClass);
+        return ResponseResult.success(page);
     }
 
 }
