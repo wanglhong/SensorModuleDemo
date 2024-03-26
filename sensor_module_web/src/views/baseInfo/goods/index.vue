@@ -161,9 +161,9 @@
     fromTitle.value = title;
     displayFrom.value = true;
   }
-  const toCancel = (key) => {
+  const toCancel = () => {
     fromTitle.value = '标题';
-    displayFrom.value = key;
+    displayFrom.value = false;
   }
 
   // 使用onMounted生命周期钩子在组件挂载完成后加载数据

@@ -1,5 +1,5 @@
 <template>
-  <lay-layer v-model="displayFrom" :title="title" :close="toCancel" :area="['500px', '550px']">
+  <lay-layer v-model="displayFrom" :title="title" :closeBtn="false" :area="['500px', '550px']">
     <div style="padding: 20px">
       <lay-form :model="model" ref="layFormRef11" required>
         <lay-form-item label="编码" prop="goodsCode">
