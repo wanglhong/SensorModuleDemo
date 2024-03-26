@@ -135,6 +135,9 @@
       } else {
         layer.msg(msg, { icon: 2 });
       }
+    }).catch((err) => {
+      loading.value = false;
+      layer.msg(err, { icon: 2, time: 2000 });
     });
   }
 
@@ -169,6 +172,8 @@
       } else {
         layer.msg(msg, { icon: 2 });
       }
+    }).catch((err) => {
+      layer.msg(err, { icon: 2, time: 2000 });
     });
   }
 
@@ -189,6 +194,8 @@
         } else {
           layer.msg(msg, { icon: 2 });
         }
+      }).catch((err) => {
+        layer.msg(err, { icon: 2, time: 2000 });
       });
     }
   }
