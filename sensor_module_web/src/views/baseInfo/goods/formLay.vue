@@ -1,5 +1,5 @@
 <template>
-  <lay-layer v-model="displayFrom" :title="title" :area="['500px', '550px']">
+  <lay-layer v-model="displayFrom" :title="title" :close="toCancel" :area="['500px', '550px']">
     <div style="padding: 20px">
       <lay-form :model="model" ref="layFormRef11" required>
         <lay-form-item label="编码" prop="goodsCode">
@@ -32,35 +32,30 @@
 </template>
 
 <script setup>
-  import {ref, defineProps, defineEmits } from 'vue';
+import {toRefs, defineProps, defineEmits, ref} from 'vue';
   import { layer } from '@layui/layui-vue';
 
   const props = defineProps({
     displayFrom: Boolean,
-    title: {
-      type: String,
-      default: '标题'
-    },
+    title: String,
     model: {
-      type: Object,
-      default: () => {
-        return {
-          // 编码
-          goodsCode: null,
-          // 名称
-          goodsName: null,
-          // 描述
-          goodsUnitValue: null,
-          // 体积
-          goodsUnitVolume: null,
-          // 重量
-          goodsUnitWeight: null,
-          // 描述
-          goodsDescription: null
-        }
-      }
+      // 编码
+      goodsCode: null,
+      // 名称
+      goodsName: null,
+      // 描述
+      goodsUnitValue: null,
+      // 体积
+      goodsUnitVolume: null,
+      // 重量
+      goodsUnitWeight: null,
+      // 描述
+      goodsDescription: null
     }
   });
+
+  const { displayFrom, title, model } = toRefs(props)
+  const emits = defineEmits(["toCancel"])
 
   /**
    * 提交
@@ -73,14 +68,7 @@
    * 取消
    */
   function toCancel() {
-    layer.msg('取消');
-    displayFrom.value = false;
-  }
-
-  const emits = defineEmits(["displayFrom"])
-
-  const displayFrom = key => {
-    emits("displayFrom", key)
+    emits("toCancel", false);
   }
 
 </script>

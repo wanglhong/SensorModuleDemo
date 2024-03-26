@@ -54,7 +54,7 @@
               {{ (data.goodsUnitValue/100).toFixed(2) }}
             </template>
             <template v-slot:operator="{ data }">
-              <lay-button size="xs" type="primary">修改</lay-button>
+              <lay-button size="xs" type="primary" @click="displayFromLay('修改')">修改</lay-button>
               <lay-popconfirm
                   content="确定要删除此数据吗?"
                   @confirm="removeOne(data.id)"
@@ -70,7 +70,7 @@
         </lay-card>
       </lay-col>
     </lay-row>
-    <from-lay :displayFrom="displayFrom" :title="fromTitle" :model="modelDto"/>
+    <from-lay :displayFrom="displayFrom" :title="fromTitle" :model="modelDto" @toCancel="toCancel"/>
   </lay-container>
 </template>
 
@@ -79,12 +79,13 @@
   import { layer } from '@layui/layer-vue';
   import FromLay from '@/views/baseInfo/goods/formLay.vue';
   import { add, list, update, remove, removeByIdList } from '@/api/module/goodsController.js';
+  import {title} from "mockjs/src/mock/random/text.js";
 
   const loading = ref(false);
   const selectedIdList  = ref([]);
   const checkbox = ref(true);
   const defaultToolbar = ref(true);
-  const displayFrom = false;
+  const displayFrom = ref(false);
   const fromTitle = ref('新增');
   const page = reactive({
     // 当前页
@@ -196,8 +197,12 @@
    * displayFromLay
    */
   function displayFromLay(title) {
-    title.value = title;
+    fromTitle.value = title;
     displayFrom.value = true;
+  }
+  const toCancel = (key) => {
+    fromTitle.value = '标题';
+    displayFrom.value = key;
   }
 
   // 使用onMounted生命周期钩子在组件挂载完成后加载数据
