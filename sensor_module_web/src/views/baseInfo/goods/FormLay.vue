@@ -90,7 +90,7 @@
   function submitAdd() {
     add({ modelDto : modelDto }).then(({ success, code, msg, data }) => {
       if (success) {
-        layer.msg(msg);
+        layer.msg(msg, { icon: 1 });
         toCancel();
         emits("loadDataSource");
       } else {
@@ -107,7 +107,7 @@
   function submitUpdate() {
     update({ modelDto : modelDto }).then(({ success, code, msg, data }) => {
       if (success) {
-        layer.msg(msg);
+        layer.msg(msg, { icon: 1 });
         toCancel();
         emits("loadDataSource");
       } else {

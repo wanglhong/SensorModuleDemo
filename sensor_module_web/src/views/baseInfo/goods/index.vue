@@ -47,7 +47,7 @@
 </template>
 
 <script setup>
-  import FromLay from '@/views/baseInfo/goods/formLay.vue';
+  import FromLay from '@/views/baseInfo/goods/FormLay.vue';
   import SearchBox from '@/views/baseInfo/goods/SearchBox.vue';
   import { onMounted, ref, reactive } from 'vue';
   import { layer } from '@layui/layer-vue';
@@ -93,7 +93,7 @@
         dataSource.value = data.data;
         page.total = data.total;
       } else {
-        layer.msg(msg, { icon: 2 });
+        layer.msg(msg, { icon: 2, time: 2000 });
       }
     }).catch((err) => {
       loading.value = false;
@@ -121,10 +121,10 @@
     remove({ id: id}).then(({ success, code, msg, data }) => {
       layer.close(load);
       if (success) {
-        layer.msg(msg);
+        layer.msg(msg, { icon: 1 });
         loadDataSource();
       } else {
-        layer.msg(msg, { icon: 2 });
+        layer.msg(msg, { icon: 2, time: 2000 });
       }
     }).catch((err) => {
       layer.msg(err, { icon: 2, time: 2000 });
@@ -138,15 +138,15 @@
   // 删除选中数据
   function removeList() {
     if (selectedIdList.value.length < 1) {
-      layer.msg('请选择要删除的数据', { icon: 2 });
+      layer.msg('请选择要删除的数据', { icon: 7, time: 2000 });
     } else {
       removeByIdList({ idList: selectedIdList.value }).then(({ success, code, msg, data }) => {
         if (success) {
-          layer.msg("删除成功！", { icon: 1 });
+          layer.msg(msg, { icon: 1 });
           selectedIdList.value = [];
           loadDataSource();
         } else {
-          layer.msg(msg, { icon: 2 });
+          layer.msg(msg, { icon: 2, time: 2000 });
         }
       }).catch((err) => {
         layer.msg(err, { icon: 2, time: 2000 });
