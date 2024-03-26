@@ -7,13 +7,12 @@
       <lay-col :md="24">
         <lay-card>
           <lay-table
-            :columns="columns"
-            :dataSource="dataSource"
+            :columns="columns" :dataSource="dataSource"
             :loading="loading"
-            :default-toolbar="defaultToolbar"
+            :default-toolbar="true"
             v-model:selectedKeys="selectedIdList "
             @change="change"
-            style="height: 700px;"
+            class="table-box"
           >
             <template v-slot:toolbar>
               <lay-button size="sm" type="primary" @click="displayFromLay('新增')">
@@ -58,7 +57,6 @@
   const loading = ref(false);
   const selectedIdList  = ref([]);
   const checkbox = ref(true);
-  const defaultToolbar = ref(true);
   const displayFrom = ref(false);
   const fromTitle = ref('新增');
   const page = reactive({
