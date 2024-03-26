@@ -2,34 +2,7 @@
   <lay-container fluid="true" style="padding: 10px">
     <lay-row :space="10">
       <lay-col :md="24">
-        <lay-card>
-          <!-- 查询搜索框 -->
-          <lay-form style="margin-top: 20px">
-            <lay-row>
-              <lay-col :md="6">
-                <lay-form-item label="编号：" label-width="50">
-                  <lay-input v-model="modelDto.goodsCode" style="width: 90%"/>
-                </lay-form-item>
-              </lay-col>
-              <lay-col :md="6">
-                <lay-form-item label="名称：" label-width="50">
-                  <lay-input v-model="modelDto.goodsName" style="width: 90%"/>
-                </lay-form-item>
-              </lay-col>
-              <lay-col :md="6">
-                <lay-form-item label="备注：" label-width="50">
-                  <lay-input v-model="modelDto.goodsDescription" style="width: 90%"/>
-                </lay-form-item>
-              </lay-col>
-              <lay-col :md="6">
-                <lay-form-item label-width="0">
-                  <lay-button type="primary" @click="toSearch">查询</lay-button>
-                  <lay-button @click="toReset">重置</lay-button>
-                </lay-form-item>
-              </lay-col>
-            </lay-row>
-          </lay-form>
-        </lay-card>
+        <search-box @toSearch="toSearch" @renewalModelDto="renewalModelDto"></search-box>
       </lay-col>
       <lay-col :md="24">
         <lay-card>
@@ -75,12 +48,13 @@
 </template>
 
 <script setup>
+  import FromLay from '@/views/baseInfo/goods/formLay.vue';
+  import SearchBox from '@/views/baseInfo/goods/SearchBox.vue';
   import { onMounted, ref, reactive } from 'vue';
   import { layer } from '@layui/layer-vue';
-  import FromLay from '@/views/baseInfo/goods/formLay.vue';
   import { add, list, update, remove, removeByIdList } from '@/api/module/goodsController.js';
-  import {title} from "mockjs/src/mock/random/text.js";
 
+  let modelDto = reactive({});
   const loading = ref(false);
   const selectedIdList  = ref([]);
   const checkbox = ref(true);
@@ -99,20 +73,6 @@
     // 不同部分的展示（count -> 总条数, page -> 页码选择器, prev -> 上一页, next -> 下一页, limits -> 每页的数量选择, refresh -> 刷新,  skip -> 跳页,）。
     layout: ref(['count', 'prev', 'page', 'next', 'limits',  'refresh', 'skip'])
   });
-  const modelDto = reactive({
-    // 编码
-    goodsCode: null,
-    // 名称
-    goodsName: null,
-    // 单位价值
-    goodsUnitValue: null,
-    // 体积
-    goodsUnitVolume: null,
-    // 重量
-    goodsUnitWeight: null,
-    // 描述
-    goodsDescription: null
-  });
   const columns = [
     {title: "复选", width: "50px", type: "checkbox", fixed: "left", align: "center"},
     {title: "编码", key: "goodsCode", ellipsisTooltip: true, align: "center"},
@@ -125,7 +85,7 @@
   ];
   let dataSource = ref([]);
 
-  const loadDataSource = async () => {
+  function loadDataSource() {
     loading.value = true;
     list({ modelDto: modelDto, page: page }).then(({ success, code, msg, data }) => {
       loading.value = false;
@@ -151,14 +111,8 @@
     loadDataSource();
   }
 
-  // 重置
-  function toReset() {
-    modelDto.goodsCode = null;
-    modelDto.goodsName = null;
-    modelDto.goodsUnitValue = null;
-    modelDto.goodsUnitVolume = null;
-    modelDto.goodsUnitWeight = null;
-    modelDto.goodsDescription = null;
+  function renewalModelDto(newModelDto) {
+    modelDto = newModelDto;
   }
 
   // 删除选中数据

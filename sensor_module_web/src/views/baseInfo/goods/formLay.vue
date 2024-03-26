@@ -32,25 +32,18 @@
 </template>
 
 <script setup>
-import {toRefs, defineProps, defineEmits, ref} from 'vue';
-  import { layer } from '@layui/layui-vue';
+  import {toRefs} from 'vue';
+  import {layer} from '@layui/layui-vue';
+  import {goodsDto} from "@/model/ModelDto.js";
 
   const props = defineProps({
     displayFrom: Boolean,
     title: String,
     model: {
-      // 编码
-      goodsCode: null,
-      // 名称
-      goodsName: null,
-      // 描述
-      goodsUnitValue: null,
-      // 体积
-      goodsUnitVolume: null,
-      // 重量
-      goodsUnitWeight: null,
-      // 描述
-      goodsDescription: null
+      type: Object,
+      default: () => {
+        return goodsDto();
+      }
     }
   });
 
