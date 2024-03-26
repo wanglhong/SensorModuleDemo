@@ -2,6 +2,8 @@ import {reactive} from "vue";
 
 export function goodsDto() {
     return reactive({
+        // 货物id
+        id: null,
         // 货物编码
         goodsCode: null,
         // 货物名称

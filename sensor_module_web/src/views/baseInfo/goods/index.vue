@@ -15,7 +15,7 @@
             class="table-box"
           >
             <template v-slot:toolbar>
-              <lay-button size="sm" type="primary" @click="displayFromLay('新增')">
+              <lay-button size="sm" type="primary" @click="displayFromLay('新增', goodsDto())">
                 <lay-icon class="layui-icon-addition"/> 新增
               </lay-button>
               <lay-button size="sm" @click="removeList">
@@ -26,7 +26,7 @@
               {{ (data.goodsUnitValue/100).toFixed(2) }}
             </template>
             <template v-slot:operator="{ data }">
-              <lay-button size="xs" type="primary" @click="displayFromLay('修改')">修改</lay-button>
+              <lay-button size="xs" type="primary" @click="displayFromLay('修改', data)">修改</lay-button>
               <lay-popconfirm
                   content="确定要删除此数据吗?"
                   @confirm="removeOne(data.id)"
@@ -42,7 +42,7 @@
         </lay-card>
       </lay-col>
     </lay-row>
-    <from-lay :displayFrom="displayFrom" :title="fromTitle" :model="modelDto" @toCancel="toCancel"/>
+    <from-lay :displayFrom="displayFrom" :title="fromTitle" :modelData="modelData" @toCancel="toCancel" @loadDataSource="loadDataSource"/>
   </lay-container>
 </template>
 
@@ -51,9 +51,11 @@
   import SearchBox from '@/views/baseInfo/goods/SearchBox.vue';
   import { onMounted, ref, reactive } from 'vue';
   import { layer } from '@layui/layer-vue';
-  import { add, list, update, remove, removeByIdList } from '@/api/module/goodsController.js';
+  import { list, remove, removeByIdList } from '@/api/module/goodsController.js';
+  import {goodsDto} from "@/model/ModelDto.js";
 
   let modelDto = reactive({});
+  let modelData = reactive({});
   const loading = ref(false);
   const selectedIdList  = ref([]);
   const checkbox = ref(true);
@@ -155,9 +157,10 @@
   /**
    * displayFromLay
    */
-  function displayFromLay(title) {
+  function displayFromLay(title, data) {
     fromTitle.value = title;
     displayFrom.value = true;
+    modelData = data;
   }
   const toCancel = () => {
     fromTitle.value = '标题';

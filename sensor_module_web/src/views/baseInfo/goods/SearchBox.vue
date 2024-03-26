@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import {watchEffect} from "vue";
+  import {watchEffect} from "vue";
   import {goodsDto} from "@/model/ModelDto.js";
 
   // 创建本地的响应式变量 localModelDto，并将其初始化为父组件传入的 modelDto 的值

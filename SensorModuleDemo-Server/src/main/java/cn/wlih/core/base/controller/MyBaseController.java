@@ -6,6 +6,9 @@ import cn.wlih.core.base.model.ResponseResult;
 import cn.wlih.core.base.service.MyBaseService;
 import cn.wlih.core.config.ApplicationContextHolder;
 import cn.wlih.core.myAnnotate.MyRequestBody;
+import cn.wlih.core.myEnum.DbBaseFieldType;
+import cn.wlih.core.myError.BizException;
+import cn.wlih.core.util.MyClazzUtil;
 import cn.wlih.core.util.MyModelUtil;
 import cn.wlih.core.util.NameFormatConversionUtil;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -79,13 +82,13 @@ public abstract class MyBaseController<M, MDTO, MVO> {
 
     /**
      * 基础新增接口
-     * @param mDto 实体
+     * @param modelDto 实体
      */
     @Operation(summary = "基础新增接口")
     @PostMapping("/add")
-    public ResponseResult<MVO> add(@Parameter(description = "需要新增的对象信息") @RequestBody MDTO mDto) {
+    public ResponseResult<MVO> add(@Parameter(description = "需要新增的对象信息") @MyRequestBody MDTO modelDto) {
         // TODO 统一异常处理
-        M m = MyModelUtil.copyTo(mDto, modelClass);
+        M m = MyModelUtil.copyTo(modelDto, modelClass);
         M mResult = getBaseService().add(m);
         MVO mVo = MyModelUtil.copyTo(mResult, modelVoClass);
         return ResponseResult.success(mVo);
@@ -96,8 +99,21 @@ public abstract class MyBaseController<M, MDTO, MVO> {
      */
     @Operation(summary = "基础修改接口（通过ID）")
     @PostMapping("/updateById")
-    public ResponseResult<Void> updateById(@RequestBody MDTO mDto) {
-        M m = MyModelUtil.copyTo(mDto, modelClass);
+    public ResponseResult<Void> updateById(@MyRequestBody MDTO modelDto) {
+        M m = MyModelUtil.copyTo(modelDto, modelClass);
+        Field dbIdField = MyClazzUtil.getDbBaseField(modelClass, DbBaseFieldType.ID);
+        if (dbIdField == null) {
+            return ResponseResult.error("Id不能为空！");
+        }
+        // 提高访问权限
+        try {
+            dbIdField.setAccessible(true);
+            if (null == dbIdField.get(m)) {
+                return ResponseResult.error("Id不能为空！");
+            }
+        } catch (IllegalAccessException e) {
+            return ResponseResult.error("Id不能为空！");
+        }
         getBaseService().updateById(m);
         return ResponseResult.success();
     }
