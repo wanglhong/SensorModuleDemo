@@ -15,7 +15,8 @@ export function useMenu() {
     const openKeys = ref([])
     const isAccordion = computed(() => appStore.accordion)
     const isSubfield = computed(() => appStore.subfield)
-    const mainSelectedKey = ref("/workspace")
+    // TODO 初始页张开路由
+    const mainSelectedKey = ref("/baseInfo")
 
     const menus = computed(() => {
         if (isSubfield.value) {
