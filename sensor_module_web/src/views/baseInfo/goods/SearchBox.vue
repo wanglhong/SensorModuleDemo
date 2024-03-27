@@ -37,12 +37,16 @@
   let localModelDto = goodsDto();
   const emits = defineEmits(["toSearch", "renewalModelDto"])
 
-  // 查询
+  /**
+   * 查询
+   */
   function toSearch() {
     emits("toSearch");
   }
 
-  // 重置
+  /**
+   * 重置
+   */
   function toReset() {
     // 通过Object.assign方法或通过遍历keys来重置属性值
     Object.assign(localModelDto, goodsDto());
@@ -53,7 +57,9 @@
     emits("renewalModelDto", localModelDto);
   }
 
-  // 监听 localModelDto 的变化，当其变化时更新父组件的变量 modelDto 的值
+  /**
+   * 监听 localModelDto 的变化，当其变化时更新父组件的变量 modelDto 的值
+   */
   watchEffect(() => {
     renewalModelDto();
   })

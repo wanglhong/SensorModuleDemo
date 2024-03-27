@@ -42,15 +42,15 @@
         </lay-card>
       </lay-col>
     </lay-row>
-    <from-lay :displayFrom="displayFrom" :title="fromTitle" :modelData="modelData" @toCancel="toCancel" @loadDataSource="loadDataSource"/>
+    <from-lay :displayFrom="displayFrom" :title="fromTitle" :modelData="modelData" @toCancel="closeFromLay" @loadDataSource="loadDataSource"/>
   </lay-container>
 </template>
 
 <script setup>
-  import FromLay from '@/views/baseInfo/goods/FormLay.vue';
-  import SearchBox from '@/views/baseInfo/goods/SearchBox.vue';
   import { onMounted, ref, reactive } from 'vue';
   import { layer } from '@layui/layer-vue';
+  import FromLay from '@/views/baseInfo/goods/FormLay.vue';
+  import SearchBox from '@/views/baseInfo/goods/SearchBox.vue';
   import { list, remove, removeByIdList } from '@/api/module/goodsController.js';
   import {goodsDto} from "@/model/ModelDto.js";
 
@@ -101,21 +101,32 @@
     });
   }
 
-  // 改变事件
+  /**
+   * 改变事件
+   */
   const change = function() {
     loadDataSource();
   }
 
-  // 查询
+  /**
+   * 查询
+   */
   function toSearch() {
     loadDataSource();
   }
 
+  /**
+   * 更新modelDto
+   * @param newModelDto 新的modelDto
+   */
   function renewalModelDto(newModelDto) {
     modelDto = newModelDto;
   }
 
-  // 删除选中数据
+  /**
+   * 删除选中数据
+   * @param id 需要删除的数据的id
+   */
   function removeOne(id) {
     let load = layer.load;
     remove({ id: id}).then(({ success, code, msg, data }) => {
@@ -131,11 +142,16 @@
     });
   }
 
+  /**
+   * 取消
+   */
   function cancel() {
     layer.msg('您已取消操作')
   }
 
-  // 删除选中数据
+  /**
+   * 删除选中数据
+   */
   function removeList() {
     if (selectedIdList.value.length < 1) {
       layer.msg('请选择要删除的数据', { icon: 7, time: 2000 });
@@ -155,19 +171,25 @@
   }
 
   /**
-   * displayFromLay
+   * 显示 From Lay
    */
   function displayFromLay(title, data) {
     fromTitle.value = title;
     displayFrom.value = true;
     modelData = data;
   }
-  const toCancel = () => {
+
+  /**
+   * 关闭 From Lay
+   */
+  const closeFromLay = () => {
     fromTitle.value = '标题';
     displayFrom.value = false;
   }
 
-  // 使用onMounted生命周期钩子在组件挂载完成后加载数据
+  /**
+   * 使用 onMounted 生命周期钩子在组件挂载完成后加载数据
+   */
   onMounted(() => {
     loadDataSource();
   })
