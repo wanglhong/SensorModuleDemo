@@ -1,12 +1,26 @@
 import axios from "axios"
-import { layer } from "@layui/layui-vue"
-import { useUserStore } from "@/store/user.js"
+import {layer} from "@layui/layui-vue"
+import {useUserStore} from "@/store/user.js"
 import router from "@/router/index.js"
+import JSONBIG from "json-bigint"
 
 const config = {
     timeout: 5000,
     baseURL: "http://localhost:8080"
 }
+
+/**
+ * 解决Long类型精度失真
+ * @type {(function(*): *)[]}
+ */
+axios.defaults.transformResponse = [
+    function (data) {
+        const json = JSONBIG({
+            storeAsString: true
+        })
+        return json.parse(data);
+    }
+]
 
 class Http {
     constructor(config) {

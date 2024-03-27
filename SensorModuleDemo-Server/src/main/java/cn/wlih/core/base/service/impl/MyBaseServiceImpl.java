@@ -90,6 +90,17 @@ public abstract class MyBaseServiceImpl<M> extends ServiceImpl<MyBaseMapper<M>, 
     }
 
     /**
+     * 根据 ID 选择修改
+     *
+     * @param entity 实体对象
+     */
+    @Override
+    public boolean updateById(M entity) {
+        this.buildBaseFieldsValue(entity, false);
+        return mapper().updateById(entity) == 1;
+    }
+
+    /**
      * 查询所有数据
      *
      * @return 返回查询结果

@@ -4,7 +4,9 @@ import cn.wlih.core.myAnnotate.ClassComment;
 import cn.wlih.core.myAnnotate.VariableComment;
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.Getter;
 
+@Getter
 @ClassComment("周转箱状态（1：闲置中、2：使用中、3：废弃）")
 public enum TurnoverBoxState {
 
@@ -28,11 +30,4 @@ public enum TurnoverBoxState {
     @JsonValue
     private final String display;
 
-    public Integer getKey() {
-        return key;
-    }
-
-    public String getDisplay() {
-        return display;
-    }
 }

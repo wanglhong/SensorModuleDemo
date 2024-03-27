@@ -138,6 +138,7 @@
         layer.msg(msg, { icon: 2, time: 2000 });
       }
     }).catch((err) => {
+      layer.close(load);
       layer.msg(err, { icon: 2, time: 2000 });
     });
   }
@@ -156,7 +157,9 @@
     if (selectedIdList.value.length < 1) {
       layer.msg('请选择要删除的数据', { icon: 7, time: 2000 });
     } else {
+      let load = layer.load;
       removeByIdList({ idList: selectedIdList.value }).then(({ success, code, msg, data }) => {
+        layer.close(load);
         if (success) {
           layer.msg(msg, { icon: 1 });
           selectedIdList.value = [];
@@ -165,6 +168,7 @@
           layer.msg(msg, { icon: 2, time: 2000 });
         }
       }).catch((err) => {
+        layer.close(load);
         layer.msg(err, { icon: 2, time: 2000 });
       });
     }

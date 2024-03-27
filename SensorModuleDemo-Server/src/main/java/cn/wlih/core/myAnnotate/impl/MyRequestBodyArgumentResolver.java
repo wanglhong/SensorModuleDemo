@@ -188,7 +188,15 @@ public class MyRequestBodyArgumentResolver implements HandlerMethodArgumentResol
      */
     private Object parseBasicTypeWrapper(Class<?> parameterType, Object value) {
         if (Number.class.isAssignableFrom(parameterType)) {
-            Number number = (Number) value;
+            Number number = null;
+            try {
+                number = (Number) value;
+            } catch (Exception e) {
+                if (Long.class.isAssignableFrom(parameterType)) {
+                    return Long.valueOf(value.toString());
+                }
+                throw new RuntimeException(e);
+            }
             if (parameterType == Integer.class) {
                 return number.intValue();
             } else if (parameterType == Short.class) {

@@ -87,7 +87,6 @@ public abstract class MyBaseController<M, MDTO, MVO> {
     @Operation(summary = "基础新增接口")
     @PostMapping("/add")
     public ResponseResult<MVO> add(@Parameter(description = "需要新增的对象信息") @MyRequestBody MDTO modelDto) {
-        // TODO 统一异常处理
         M m = MyModelUtil.copyTo(modelDto, modelClass);
         M mResult = getBaseService().add(m);
         MVO mVo = MyModelUtil.copyTo(mResult, modelVoClass);
@@ -108,8 +107,13 @@ public abstract class MyBaseController<M, MDTO, MVO> {
         // 提高访问权限
         try {
             dbIdField.setAccessible(true);
-            if (null == dbIdField.get(m)) {
+            Long id = (Long) dbIdField.get(m);
+            if (null == id) {
                 return ResponseResult.error("Id不能为空！");
+            }
+            M mOriginal = getBaseService().getById(id);
+            if (mOriginal == null) {
+                return ResponseResult.error("数据不存在，无法修改！");
             }
         } catch (IllegalAccessException e) {
             return ResponseResult.error("Id不能为空！");
@@ -124,8 +128,17 @@ public abstract class MyBaseController<M, MDTO, MVO> {
     @Operation(summary = "基础删除接口（通过ID）")
     @PostMapping("/delete")
     public ResponseResult<Void> delete(@MyRequestBody Long id) {
-        getBaseService().removeById(id);
-        return ResponseResult.success();
+        if (id == null) {
+            return ResponseResult.error("Id不能为空！");
+        }
+        M m = getBaseService().getById(id);
+        if (m == null) {
+            return ResponseResult.error("数据不存在，无法删除！");
+        }
+        if (getBaseService().removeById(id)) {
+            return ResponseResult.success();
+        }
+        return ResponseResult.error("修改失败，请重试！");
     }
 
     /**
@@ -134,13 +147,17 @@ public abstract class MyBaseController<M, MDTO, MVO> {
     @Operation(summary = "基础删除接口（通过ID集合）")
     @PostMapping("/removeByIdList")
     public ResponseResult<Void> removeByIdList(@MyRequestBody List<Long> idList) {
-        getBaseService().removeByIdList(idList);
-        return ResponseResult.success();
+        if (idList == null || idList.isEmpty()) {
+            return ResponseResult.error("idList不能为空！");
+        }
+        if (getBaseService().removeByIdList(idList)) {
+            return ResponseResult.success();
+        }
+        return ResponseResult.error("删除失败，请重试！");
     }
 
     /**
      * 基础查询接口
-     * TODO 分页查询
      */
     @Operation(summary = "基础查询接口")
     @PostMapping("/list")
