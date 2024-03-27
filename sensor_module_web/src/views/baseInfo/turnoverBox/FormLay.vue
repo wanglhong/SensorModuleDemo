@@ -1,6 +1,6 @@
 <template>
-  <lay-layer v-model="displayFrom" :title="title" :success="layerLoad" :end="layerClose" :closeBtn="false" :area="['500px', '550px']">
-    <div style="padding: 20px">
+  <lay-layer v-model="displayFrom" :title="title" :success="layerLoad" :end="layerClose" :closeBtn="false" :area="['500px', 'auto']">
+    <div style="padding: 20px; max-height: 600px">
       <lay-form :model="modelDto" ref="layFormRef11" required>
         <lay-form-item label="RFID编码" prop="rfidCode">
           <lay-input placeholder="请输入RFID编码" v-model="modelDto.rfidCode"/>
@@ -18,11 +18,9 @@
           <lay-input placeholder="请输入重量（单位：克）	" v-model="modelDto.turnoverBoxWeight"/>
         </lay-form-item>
         <lay-form-item label="状态" prop="turnoverBoxState">
-          <lay-select placeholder="请选择使用状态" v-model="modelDto.turnoverBoxState">
-            <lay-select-option value="闲置中">闲置中</lay-select-option>
-            <lay-select-option value="使用中">使用中</lay-select-option>
-            <lay-select-option value="废弃">废弃</lay-select-option>
-          </lay-select>
+          <lay-radio v-model="modelDto.turnoverBoxState" name="turnoverBoxState" :value="'闲置中'" label="闲置中"/>
+          <lay-radio v-model="modelDto.turnoverBoxState" name="turnoverBoxState" :value="'使用中'" label="使用中"/>
+          <lay-radio v-model="modelDto.turnoverBoxState" name="turnoverBoxState" :value="'废弃'" label="废弃"/>
         </lay-form-item>
         <lay-form-item label="描述" prop="turnoverBoxRemark">
           <lay-textarea placeholder="请输入备注" v-model="modelDto.turnoverBoxRemark"/>
@@ -32,6 +30,7 @@
         <lay-button size="sm" type="primary" @click="toSubmit">提交</lay-button>
         <lay-button size="sm" @click="toCancel">取消</lay-button>
       </div>
+      <br/>
     </div>
   </lay-layer>
 </template>

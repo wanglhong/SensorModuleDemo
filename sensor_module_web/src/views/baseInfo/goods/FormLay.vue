@@ -1,5 +1,5 @@
 <template>
-  <lay-layer v-model="displayFrom" :title="title" :success="layerLoad" :end="layerClose" :closeBtn="false" :area="['500px', '550px']">
+  <lay-layer v-model="displayFrom" :title="title" :success="layerLoad" :end="layerClose" :closeBtn="false" :area="['500px', 'auto']">
     <div style="padding: 20px">
       <lay-form :model="modelDto" ref="layFormRef11" required>
         <lay-form-item label="编码" prop="goodsCode">
@@ -25,6 +25,7 @@
         <lay-button size="sm" type="primary" @click="toSubmit">提交</lay-button>
         <lay-button size="sm" @click="toCancel">取消</lay-button>
       </div>
+      <br/>
     </div>
   </lay-layer>
 </template>
