@@ -4,18 +4,27 @@
     <lay-form style="margin-top: 20px">
       <lay-row>
         <lay-col :md="6">
-          <lay-form-item label="编号：" label-width="50">
-            <lay-input v-model="localModelDto.goodsCode" style="width: 90%"/>
+          <lay-form-item label="RFID编号：" label-width="50">
+            <lay-input v-model="localModelDto.rfidCode" style="width: 90%"/>
           </lay-form-item>
         </lay-col>
         <lay-col :md="6">
           <lay-form-item label="名称：" label-width="50">
-            <lay-input v-model="localModelDto.goodsName" style="width: 90%"/>
+            <lay-input v-model="localModelDto.turnoverBoxName" style="width: 90%"/>
+          </lay-form-item>
+        </lay-col>
+        <lay-col :md="6">
+          <lay-form-item label="使用状态" label-width="50">
+            <lay-select placeholder="请选择使用状态" v-model="localModelDto.turnoverBoxState">
+              <lay-select-option value="闲置中">闲置中</lay-select-option>
+              <lay-select-option value="使用中">使用中</lay-select-option>
+              <lay-select-option value="废弃">废弃</lay-select-option>
+            </lay-select>
           </lay-form-item>
         </lay-col>
         <lay-col :md="6">
           <lay-form-item label="备注：" label-width="50">
-            <lay-input v-model="localModelDto.goodsRemark" style="width: 90%"/>
+            <lay-input v-model="localModelDto.turnoverBoxRemark" style="width: 90%"/>
           </lay-form-item>
         </lay-col>
         <lay-col :md="6">

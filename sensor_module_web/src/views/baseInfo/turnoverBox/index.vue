@@ -15,15 +15,12 @@
             class="table-box"
           >
             <template v-slot:toolbar>
-              <lay-button size="sm" type="primary" @click="displayFromLay('新增', goodsDto())">
+              <lay-button size="sm" type="primary" @click="displayFromLay('新增', turnoverBoxDto())">
                 <lay-icon class="layui-icon-addition"/> 新增
               </lay-button>
               <lay-button size="sm" @click="removeList">
                 <lay-icon class="layui-icon-delete"/> 删除
               </lay-button>
-            </template>
-            <template v-slot:goodsUnitValue="{ data }">
-              {{ (data.goodsUnitValue/100).toFixed(2) }}
             </template>
             <template v-slot:operator="{ data }">
               <lay-button size="xs" type="primary" @click="displayFromLay('修改', data)">修改</lay-button>
@@ -49,10 +46,10 @@
 <script setup>
   import { onMounted, ref, reactive } from 'vue';
   import { layer } from '@layui/layer-vue';
-  import FromLay from '@/views/baseInfo/goods/FormLay.vue';
-  import SearchBox from '@/views/baseInfo/goods/SearchBox.vue';
-  import { list, remove, removeByIdList } from '@/api/module/GoodsController.js';
-  import {goodsDto} from "@/model/ModelDto.js";
+  import FromLay from '@/views/baseInfo/turnoverBox/FormLay.vue';
+  import SearchBox from '@/views/baseInfo/turnoverBox/SearchBox.vue';
+  import { list, remove, removeByIdList } from '@/api/module/TurnoverBoxController.js';
+  import {turnoverBoxDto} from "@/model/ModelDto.js";
 
   let modelDto = reactive({});
   let modelData = reactive({});
@@ -75,12 +72,13 @@
   });
   const columns = [
     {title: "复选", width: "50px", type: "checkbox", fixed: "left", align: "center"},
-    {title: "编码", key: "goodsCode", ellipsisTooltip: true, align: "center"},
-    {title: "名称", key: "goodsName", ellipsisTooltip: true, align: "center"},
-    {title: "单位价值（单位：元）", key: "goodsUnitValue", customSlot: "goodsUnitValue", width: "180px", align: "center"},
-    {title: "体积（单位：cm³）", key: "goodsUnitVolume", ellipsisTooltip: true, align: "center"},
-    {title: "重量（单位：克）", key: "goodsUnitWeight", ellipsisTooltip: true, align: "center"},
-    {title: "备注", key: "goodsRemark", ellipsisTooltip: true, align: "center"},
+    {title: "RFID编码", key: "rfidCode", ellipsisTooltip: true, align: "center"},
+    {title: "名称", key: "turnoverBoxName", ellipsisTooltip: true, align: "center"},
+    {title: "体积（单位：cm³）", key: "turnoverBoxVolume", width: "180px", align: "center"},
+    {title: "容积（单位：cm³）", key: "turnoverBoxContainer", ellipsisTooltip: true, align: "center"},
+    {title: "重量（单位：克）", key: "turnoverBoxWeight", ellipsisTooltip: true, align: "center"},
+    {title: "状态", key: "turnoverBoxState", ellipsisTooltip: true, align: "center"},
+    {title: "备注", key: "turnoverBoxRemark", ellipsisTooltip: true, align: "center"},
     {title: "操作", ellipsisTooltip: true, customSlot: "operator", key: "operator", fixed: "right", align: "center"}
   ];
   let dataSource = ref([]);

@@ -27,7 +27,7 @@ public class GoodsVo extends BaseModelVo {
     @Schema(defaultValue = "货物重量（单位：克）")
     private BigDecimal goodsUnitWeight;
 
-    @Schema(defaultValue = "货物描述")
-    private String goodsDescription;
+    @Schema(defaultValue = "货物备注")
+    private String goodsRemark;
 
 }

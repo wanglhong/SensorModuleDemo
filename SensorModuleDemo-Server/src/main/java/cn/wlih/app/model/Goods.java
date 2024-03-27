@@ -30,7 +30,7 @@ public class Goods extends BaseModel {
     @VariableComment("货物重量（单位：克）")
     private BigDecimal goodsUnitWeight;
 
-    @VariableComment("货物描述")
-    private String goodsDescription;
+    @VariableComment("货物备注")
+    private String goodsRemark;
 
 }

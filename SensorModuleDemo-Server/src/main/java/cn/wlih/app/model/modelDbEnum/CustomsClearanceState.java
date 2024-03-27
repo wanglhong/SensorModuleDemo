@@ -16,9 +16,9 @@ public enum CustomsClearanceState {
     ALLOWED(3, "已放行");
 
     @EnumValue
-    private Integer key;
+    private final Integer key;
     @JsonValue
-    private String display;
+    private final String display;
 
     CustomsClearanceState(Integer key, String display) {
         this.key = key;

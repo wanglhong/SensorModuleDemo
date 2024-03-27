@@ -16,9 +16,9 @@ public enum CustomsDeclarationState {
     PASSED(3, "已通过");
 
     @EnumValue
-    private Integer key;
+    private final Integer key;
     @JsonValue
-    private String display;
+    private final String display;
 
     CustomsDeclarationState(Integer key, String display) {
         this.key = key;

@@ -27,8 +27,19 @@ export default [
                 meta: {
                     title: "货物管理",
                     requireAuth: true,
+                    // 是否固定面包板
                     affix: true,
+                    // 是否可关闭
                     closable: false
+                }
+            },
+            {
+                path: "/baseInfo/turnoverBox",
+                name: "turnoverBox",
+                component: () => import("../../views/baseInfo/turnoverBox/index.vue"),
+                meta: {
+                    title: "周转箱管理",
+                    requireAuth: true
                 }
             }
         ]
