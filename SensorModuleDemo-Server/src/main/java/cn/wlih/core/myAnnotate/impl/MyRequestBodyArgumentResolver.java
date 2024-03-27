@@ -1,6 +1,7 @@
 package cn.wlih.core.myAnnotate.impl;
 
 import cn.wlih.core.myAnnotate.MyRequestBody;
+import cn.wlih.core.util.JsonUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
@@ -93,7 +94,7 @@ public class MyRequestBodyArgumentResolver implements HandlerMethodArgumentResol
                 return value.toString();
             }
             // 其他复杂对象
-            return JSON.parseObject(value.toString(), parameterType);
+            return JsonUtil.jsonToObject(value.toString(), parameterType);
         }
 
         // 解析不到则将整个json串解析为当前参数类型
