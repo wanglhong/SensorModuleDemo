@@ -5,17 +5,17 @@
       <lay-row>
         <lay-col :md="6">
           <lay-form-item label="编号：" label-width="50">
-            <lay-input v-model="localModelDto.goodsCode" style="width: 90%"/>
+            <lay-input v-model="localModelDto.goodsCode" style="width: 90%;"/>
           </lay-form-item>
         </lay-col>
         <lay-col :md="6">
           <lay-form-item label="名称：" label-width="50">
-            <lay-input v-model="localModelDto.goodsName" style="width: 90%"/>
+            <lay-input v-model="localModelDto.goodsName" style="width: 90%;"/>
           </lay-form-item>
         </lay-col>
         <lay-col :md="6">
           <lay-form-item label="备注：" label-width="50">
-            <lay-input v-model="localModelDto.goodsRemark" style="width: 90%"/>
+            <lay-input v-model="localModelDto.goodsRemark" style="width: 90%;"/>
           </lay-form-item>
         </lay-col>
         <lay-col :md="6">
