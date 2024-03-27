@@ -1,6 +1,6 @@
 package cn.wlih.app.model;
 
-import cn.wlih.app.model.modelDbEnum.TurnoverBoxState;
+import cn.wlih.app.model.modelDbEnum.EquipmentState;
 import cn.wlih.core.base.model.BaseModel;
 import cn.wlih.core.myAnnotate.ClassComment;
 import cn.wlih.core.myAnnotate.VariableComment;
@@ -32,7 +32,7 @@ public class TurnoverBox extends BaseModel {
     private BigDecimal turnoverBoxWeight;
 
     @VariableComment("周转箱状态（1：闲置中、2：使用中、3：废弃）")
-    private TurnoverBoxState turnoverBoxState;
+    private EquipmentState turnoverBoxState;
 
     @VariableComment("周转箱描述")
     private String turnoverBoxRemark;

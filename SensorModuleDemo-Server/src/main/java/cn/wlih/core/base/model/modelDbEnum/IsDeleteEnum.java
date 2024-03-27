@@ -4,6 +4,8 @@ import cn.wlih.core.myAnnotate.ClassComment;
 import cn.wlih.core.myAnnotate.VariableComment;
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * 描述: 逻辑删除
@@ -12,10 +14,14 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * @date 2023/10/7 9:46
  * @path SensorModuleDemo-cn.wlih.core.dbEnum.baseEnum-IsDeleteEnum
  */
+@Getter
+@AllArgsConstructor
 @ClassComment("逻辑删除")
 public enum IsDeleteEnum {
+
     @VariableComment("存在状态")
     EXIST(1, "存在"),
+
     @VariableComment("删除状态")
     DELETE(-1, "删除");
 
@@ -38,15 +44,4 @@ public enum IsDeleteEnum {
     @JsonValue
     private String display;
 
-    IsDeleteEnum(Integer key, String display) {
-        this.key = key;
-        this.display = display;
-    }
-
-    public Integer getKey() {
-        return key;
-    }
-    public String getDisplay() {
-        return display;
-    }
 }

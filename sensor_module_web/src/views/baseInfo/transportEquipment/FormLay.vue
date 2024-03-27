@@ -2,28 +2,34 @@
   <lay-layer v-model="displayFrom" :title="title" :success="layerLoad" :end="layerClose" :closeBtn="false" :area="['500px', 'auto']">
     <div style="padding: 20px; max-height: 600px">
       <lay-form :model="modelDto" ref="layFormRef11" required>
-        <lay-form-item label="RFID编码" prop="rfidCode">
-          <lay-input placeholder="请输入RFID编码" v-model="modelDto.rfidCode"/>
+        <lay-form-item label="设备编码" prop="equipmentCode">
+          <lay-input placeholder="请输入设备编码" v-model="modelDto.equipmentCode"/>
         </lay-form-item>
-        <lay-form-item label="名称" prop="turnoverBoxName">
-          <lay-input placeholder="请输入名称" v-model="modelDto.turnoverBoxName"/>
+        <lay-form-item label="设备名称" prop="equipmentName">
+          <lay-input placeholder="请输入设备名称" v-model="modelDto.equipmentName"/>
         </lay-form-item>
-        <lay-form-item label="体积" prop="turnoverBoxVolume">
-          <lay-input placeholder="请输入体积（单位：cm³）" v-model="modelDto.turnoverBoxVolume"/>
+        <lay-form-item label="设备类型" prop="equipmentType">
+          <lay-select placeholder="请选择设备类型" v-model="modelDto.equipmentType" style="width: 100%;">
+            <lay-select-option value="飞机">飞机</lay-select-option>
+            <lay-select-option value="火车">火车</lay-select-option>
+            <lay-select-option value="卡车">卡车</lay-select-option>
+            <lay-select-option value="轮船">轮船</lay-select-option>
+          </lay-select>
         </lay-form-item>
-        <lay-form-item label="容积" prop="turnoverBoxContainer">
-          <lay-input placeholder="请输入容积（单位：cm³）" v-model="modelDto.turnoverBoxContainer"/>
+        <lay-form-item label="设备型号" prop="equipmentModel">
+          <lay-input placeholder="请输入设备型号" v-model="modelDto.equipmentModel"/>
         </lay-form-item>
-        <lay-form-item label="重量" prop="turnoverBoxWeight">
-          <lay-input placeholder="请输入重量（单位：克）	" v-model="modelDto.turnoverBoxWeight"/>
+        <lay-form-item label="设备品牌" prop="equipmentBrand">
+          <lay-input placeholder="请输入设备品牌" v-model="modelDto.equipmentBrand"/>
         </lay-form-item>
-        <lay-form-item label="状态" prop="turnoverBoxState">
-          <lay-radio v-model="modelDto.turnoverBoxState" name="turnoverBoxState" :value="'闲置中'" label="闲置中"/>
-          <lay-radio v-model="modelDto.turnoverBoxState" name="turnoverBoxState" :value="'使用中'" label="使用中"/>
-          <lay-radio v-model="modelDto.turnoverBoxState" name="turnoverBoxState" :value="'废弃'" label="废弃"/>
+        <lay-form-item label="状态" prop="equipmentState">
+          <lay-radio v-model="modelDto.equipmentState" name="equipmentState" :value="'闲置中'" label="闲置中"/>
+          <lay-radio v-model="modelDto.equipmentState" name="equipmentState" :value="'使用中'" label="使用中"/>
+          <lay-radio v-model="modelDto.equipmentState" name="equipmentState" :value="'废弃'" label="废弃"/>
+          <lay-radio v-model="modelDto.equipmentState" name="equipmentState" :value="'维修中'" label="维修中"/>
         </lay-form-item>
-        <lay-form-item label="备注" prop="turnoverBoxRemark">
-          <lay-textarea placeholder="请输入备注" v-model="modelDto.turnoverBoxRemark"/>
+        <lay-form-item label="设备备注" prop="equipmentRemark">
+          <lay-textarea placeholder="请输入设备备注" v-model="modelDto.equipmentRemark"/>
         </lay-form-item>
       </lay-form>
       <div style="width: 100%; text-align: center">
@@ -38,8 +44,8 @@
 <script setup>
   import {toRefs} from 'vue';
   import {layer} from '@layui/layui-vue';
-  import {turnoverBoxDto} from "@/model/ModelDto.js";
-  import { add, update } from '@/api/module/TurnoverBoxController.js';
+  import {transportEquipmentDto} from "@/model/ModelDto.js";
+  import { add, update } from '@/api/module/TransportEquipmentController.js';
 
   const props = defineProps({
     displayFrom: Boolean,
@@ -47,14 +53,14 @@
     modelData: {
       type: Object,
       default: () => {
-        return turnoverBoxDto();
+        return transportEquipmentDto();
       }
     }
   });
   const { displayFrom, title, modelData } = toRefs(props);
   const emits = defineEmits(["toCancel", "loadDataSource"]);
 
-  let modelDto = turnoverBoxDto();
+  let modelDto = transportEquipmentDto();
 
   /**
    * 弹窗加载后执行
@@ -76,7 +82,7 @@
    */
   function layerClose() {
     // 清空数据
-    Object.assign(modelDto, turnoverBoxDto());
+    Object.assign(modelDto, transportEquipmentDto());
   }
 
   /**

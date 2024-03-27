@@ -17,7 +17,7 @@
         <lay-form-item label="重量" prop="goodsUnitWeight">
           <lay-input placeholder="请输入重量（单位：克）	" v-model="modelDto.goodsUnitWeight"/>
         </lay-form-item>
-        <lay-form-item label="描述" prop="goodsRemark">
+        <lay-form-item label="备注" prop="goodsRemark">
           <lay-textarea placeholder="请输入备注" v-model="modelDto.goodsRemark"/>
         </lay-form-item>
       </lay-form>

@@ -23,7 +23,7 @@ export default [
             {
                 path: "/baseInfo/goods",
                 name: "goods",
-                component: () => import("../../views/baseInfo/goods/index.vue"),
+                component: () => import("@/views/baseInfo/goods/index.vue"),
                 meta: {
                     title: "货物管理",
                     requireAuth: true,
@@ -36,9 +36,18 @@ export default [
             {
                 path: "/baseInfo/turnoverBox",
                 name: "turnoverBox",
-                component: () => import("../../views/baseInfo/turnoverBox/index.vue"),
+                component: () => import("@/views/baseInfo/turnoverBox/index.vue"),
                 meta: {
                     title: "周转箱管理",
+                    requireAuth: true
+                }
+            },
+            {
+                path: "/baseInfo/transportEquipment",
+                name: "transportEquipment",
+                component: () => import("@/views/baseInfo/transportEquipment/index.vue"),
+                meta: {
+                    title: "运输设备管理",
                     requireAuth: true
                 }
             }

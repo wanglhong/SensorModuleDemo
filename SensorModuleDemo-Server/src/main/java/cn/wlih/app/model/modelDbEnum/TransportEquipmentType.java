@@ -9,17 +9,20 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-@ClassComment("报关状态（1：待审核、2：审核中、3：已通过）")
-public enum CustomsDeclarationState {
+@ClassComment("运输设备类型（1：飞机、2：火车、3：卡车、4：轮船）")
+public enum TransportEquipmentType {
 
-    @VariableComment("待审核")
-    WAIT_AUDIT(1, "待审核"),
+    @VariableComment("飞机")
+    PLANE(1, "飞机"),
 
-    @VariableComment("审核中")
-    AUDITING(2, "审核中"),
+    @VariableComment("火车")
+    TRAIN(2, "火车"),
 
-    @VariableComment("已通过")
-    PASSED(3, "已通过");
+    @VariableComment("卡车")
+    TRUCK(3, "卡车"),
+
+    @VariableComment("轮船")
+    SHIP(4, "轮船");
 
     @EnumValue
     private final Integer key;

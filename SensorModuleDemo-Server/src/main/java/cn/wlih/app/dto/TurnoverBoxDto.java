@@ -1,6 +1,6 @@
 package cn.wlih.app.dto;
 
-import cn.wlih.app.model.modelDbEnum.TurnoverBoxState;
+import cn.wlih.app.model.modelDbEnum.EquipmentState;
 import cn.wlih.core.base.dto.BaseModelDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -29,7 +29,7 @@ public class TurnoverBoxDto extends BaseModelDto {
     private BigDecimal turnoverBoxWeight;
 
     @Schema(defaultValue = "周转箱状态（1：闲置中、2：使用中、3：废弃）")
-    private TurnoverBoxState turnoverBoxState;
+    private EquipmentState turnoverBoxState;
 
     @Schema(defaultValue = "周转箱描述")
     private String turnoverBoxRemark;

@@ -18,6 +18,11 @@ const menus = [
                 id: "/baseInfo/turnoverBox",
                 icon: "layui-icon-util",
                 title: "周转箱管理"
+            },
+            {
+                id: "/baseInfo/transportEquipment",
+                icon: "layui-icon-util",
+                title: "运输设备管理"
             }
         ]
     },

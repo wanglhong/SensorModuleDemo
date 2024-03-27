@@ -60,7 +60,7 @@
 import { reactive, ref } from "vue"
 import { useRouter } from "vue-router"
 import { layer } from "@layui/layer-vue"
-import { login } from "@/api/module/loginController.js"
+import { login } from "@/api/module/LoginController.js"
 import { useUserStore } from "@/store/user.js"
 
 const router = useRouter()

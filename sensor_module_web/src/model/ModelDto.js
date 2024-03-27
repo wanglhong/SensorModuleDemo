@@ -46,3 +46,27 @@ export function turnoverBoxDto() {
         turnoverBoxRemark: null
     })
 }
+
+/**
+ * 运输设备DTO
+ */
+export function transportEquipmentDto() {
+    return reactive({
+        // 运输设备id
+        id: null,
+        // 设备编码
+        equipmentCode: null,
+        // 设备名称
+        equipmentName: null,
+        // 运输设备类型（1：飞机、2：火车、3：卡车、4：轮船）
+        equipmentType: null,
+        // 设备型号
+        equipmentModel: null,
+        // 设备品牌
+        equipmentBrand: null,
+        // 设备状态（1：闲置中、2：使用中、3：废弃、4：维修中）
+        equipmentState: null,
+        // 设备备注
+        equipmentRemark: null
+    })
+}
