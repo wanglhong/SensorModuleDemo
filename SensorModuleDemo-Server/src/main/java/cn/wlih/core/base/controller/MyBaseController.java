@@ -101,7 +101,7 @@ public abstract class MyBaseController<M, MDTO, MVO> {
     @ApiOperationSupport(order = 2)
     @Operation(summary = "基础 - 查询接口")
     @PostMapping("/list")
-    public ResponseResult<Page<M, MVO>> selectList(@Parameter(description = "查询条件") @MyRequestBody(required = false) MDTO modelDto, @Parameter(description = "分页信息") @MyRequestBody Page<M, MVO> page) {
+    public ResponseResult<Page<M, MVO>> selectList(@MyRequestBody(required = false) MDTO modelDto, @MyRequestBody Page<M, MVO> page) {
         M m = MyModelUtil.copyTo(modelDto, modelClass);
         PageHelper.startPage(page.getPageNum(), page.getPageSize());
         List<M> list = getBaseService().selectList(m);
