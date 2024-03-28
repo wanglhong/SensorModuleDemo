@@ -1,8 +1,8 @@
 package cn.wlih.upms.config;
 
+import cn.wlih.core.sequence.wrapper.IdGeneratorWrapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import supie.common.sequence.wrapper.IdGeneratorWrapper;
 
 /**
  * 手动注入配置

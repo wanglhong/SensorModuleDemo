@@ -97,3 +97,7 @@ common-swagger:
   title: 跨境（中越）物流信息监控系统
   description: 跨境（中越）物流信息监控系统详情
   version: 1.0
+
+# ID生成策略
+common-sequence:
+  snowflakeWorkNode: 1

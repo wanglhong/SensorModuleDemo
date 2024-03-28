@@ -20,7 +20,7 @@ export function goodsDto() {
         goodsUnitWeight: null,
         // 货物描述
         goodsRemark: null
-    })
+    });
 }
 
 /**
@@ -44,7 +44,7 @@ export function turnoverBoxDto() {
         turnoverBoxState: null,
         // 周转箱备注
         turnoverBoxRemark: null
-    })
+    });
 }
 
 /**
@@ -68,5 +68,54 @@ export function transportEquipmentDto() {
         equipmentState: null,
         // 设备备注
         equipmentRemark: null
-    })
+    });
+}
+
+/**
+ * 运输信息DTO
+ */
+export function TransportInfo() {
+    return reactive({
+        // 主键ID
+        id: null,
+        // 运输人ID
+        userId: null,
+        // 运输人信息
+        user: null,
+        // 运输工具ID
+        transportEquipmentId: null,
+        // 运输工具信息
+        transportEquipment: null,
+        // 运输方式
+        transportMode: null,
+        // 发货公司ID
+        sendOrganizationId: null,
+        // 发货公司信息
+        sendOrganization: null,
+        // 收货公司ID
+        receiveOrganizationId: null,
+        // 收货公司信息
+        receiveOrganization: null,
+        // 起运国
+        sendCountry: null,
+        // 目的地国
+        receiveCountry: null,
+        // 起运城市
+        sendCity: null,
+        // 目的地城市
+        receiveCity: null,
+        // 起运时间
+        sendTime: null,
+        // 到达时间
+        receiveTime: null,
+        // 货物信息
+        goods: null,
+        // 货物id
+        goodsId: null,
+        // 货物数量
+        goodsNumber: null,
+        // 货物体积（单位：cm³）
+        goodsVolume: null,
+
+    });
 }
