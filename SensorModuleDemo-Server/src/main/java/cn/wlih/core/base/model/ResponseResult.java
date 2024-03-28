@@ -1,12 +1,11 @@
 package cn.wlih.core.base.model;
 
-import cn.wlih.core.myAnnotate.ClassComment;
-import cn.wlih.core.myAnnotate.VariableComment;
 import cn.wlih.core.myError.ExceptionEnum;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
-@ClassComment("统一响应对象")
+@Schema(defaultValue = "统一响应对象")
 public class ResponseResult<T> {
 
     /**
@@ -14,13 +13,16 @@ public class ResponseResult<T> {
      */
     private static final ResponseResult<Void> OK = new ResponseResult<>();
 
-    @VariableComment("请求成功与否")
+    @Schema(defaultValue = "请求结果（true or false）")
     private Boolean success = true;
-    @VariableComment("响应代码")
+
+    @Schema(defaultValue = "响应代码")
     private Integer code = 200;
-    @VariableComment("响应信息")
+
+    @Schema(defaultValue = "响应信息")
     private String msg = "success";
-    @VariableComment("响应数据")
+
+    @Schema(defaultValue = "响应数据")
     private T data;
 
     /**

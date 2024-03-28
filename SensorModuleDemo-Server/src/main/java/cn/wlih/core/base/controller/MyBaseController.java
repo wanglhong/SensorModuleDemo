@@ -14,6 +14,7 @@ import cn.wlih.core.util.NameFormatConversionUtil;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.extern.slf4j.Slf4j;
@@ -68,25 +69,26 @@ public abstract class MyBaseController<M, MDTO, MVO> {
         return this.baseService;
     }
 
-    /**
-     * 获取基础数据对象JSON数据
-     */
-    @Deprecated
-    @Operation(summary = "获取对象的JSON描述接口", description = "方便用于传参")
-    @GetMapping("/getModelJson")
-    @ResponseBody
-    public ResponseResult<Map<String, String>> getModelJson() {
-        Map<String, String> resultData = getBaseService().getModelJson(modelClass);
-        return ResponseResult.success(resultData);
-    }
+//    /**
+//     * 获取基础数据对象JSON数据
+//     */
+//    @Deprecated
+//    @Operation(summary = "获取对象的JSON描述接口", description = "方便用于传参")
+//    @GetMapping("/getModelJson")
+//    @ResponseBody
+//    public ResponseResult<Map<String, String>> getModelJson() {
+//        Map<String, String> resultData = getBaseService().getModelJson(modelClass);
+//        return ResponseResult.success(resultData);
+//    }
 
     /**
      * 基础新增接口
      * @param modelDto 实体
      */
-    @Operation(summary = "基础新增接口")
+    @ApiOperationSupport(order = 1)
+    @Operation(summary = "基础 - 新增接口")
     @PostMapping("/add")
-    public ResponseResult<MVO> add(@Parameter(description = "需要新增的对象信息") @MyRequestBody MDTO modelDto) {
+    public ResponseResult<MVO> add(@Parameter(description = "新增的对象信息") @MyRequestBody MDTO modelDto) {
         M m = MyModelUtil.copyTo(modelDto, modelClass);
         M mResult = getBaseService().add(m);
         MVO mVo = MyModelUtil.copyTo(mResult, modelVoClass);
@@ -94,11 +96,26 @@ public abstract class MyBaseController<M, MDTO, MVO> {
     }
 
     /**
+     * 基础查询接口
+     */
+    @ApiOperationSupport(order = 2)
+    @Operation(summary = "基础 - 查询接口")
+    @PostMapping("/list")
+    public ResponseResult<Page<M, MVO>> selectList(@Parameter(description = "查询条件") @MyRequestBody(required = false) MDTO modelDto, @Parameter(description = "分页信息") @MyRequestBody Page<M, MVO> page) {
+        M m = MyModelUtil.copyTo(modelDto, modelClass);
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<M> list = getBaseService().selectList(m);
+        Page.setPageInfo(page, list, modelVoClass);
+        return ResponseResult.success(page);
+    }
+
+    /**
      * 基础修改接口
      */
-    @Operation(summary = "基础修改接口（通过ID）")
+    @ApiOperationSupport(order = 3)
+    @Operation(summary = "基础 - 修改接口（通过ID）")
     @PostMapping("/updateById")
-    public ResponseResult<Void> updateById(@MyRequestBody MDTO modelDto) {
+    public ResponseResult<Void> updateById(@Parameter(description = "修改的对象信息") @MyRequestBody MDTO modelDto) {
         M m = MyModelUtil.copyTo(modelDto, modelClass);
         Field dbIdField = MyClazzUtil.getDbBaseField(modelClass, DbBaseFieldType.ID);
         if (dbIdField == null) {
@@ -125,9 +142,10 @@ public abstract class MyBaseController<M, MDTO, MVO> {
     /**
      * 基础删除接口
      */
-    @Operation(summary = "基础删除接口（通过ID）")
+    @ApiOperationSupport(order = 4)
+    @Operation(summary = "基础 - 删除接口（通过ID）")
     @PostMapping("/delete")
-    public ResponseResult<Void> delete(@MyRequestBody Long id) {
+    public ResponseResult<Void> delete(@Parameter(description = "删除的对象ID") @MyRequestBody Long id) {
         if (id == null) {
             return ResponseResult.error("Id不能为空！");
         }
@@ -144,9 +162,10 @@ public abstract class MyBaseController<M, MDTO, MVO> {
     /**
      * 基础删除接口
      */
-    @Operation(summary = "基础删除接口（通过ID集合）")
+    @ApiOperationSupport(order = 5)
+    @Operation(summary = "基础 - 删除接口（通过ID集合）")
     @PostMapping("/removeByIdList")
-    public ResponseResult<Void> removeByIdList(@MyRequestBody List<Long> idList) {
+    public ResponseResult<Void> removeByIdList(@Parameter(description = "删除的对象ID集合") @MyRequestBody List<Long> idList) {
         if (idList == null || idList.isEmpty()) {
             return ResponseResult.error("idList不能为空！");
         }
@@ -154,19 +173,6 @@ public abstract class MyBaseController<M, MDTO, MVO> {
             return ResponseResult.success();
         }
         return ResponseResult.error("删除失败，请重试！");
-    }
-
-    /**
-     * 基础查询接口
-     */
-    @Operation(summary = "基础查询接口")
-    @PostMapping("/list")
-    public ResponseResult<Page<M, MVO>> selectList(@MyRequestBody(required = false) MDTO modelDto, @MyRequestBody Page<M, MVO> page) {
-        M m = MyModelUtil.copyTo(modelDto, modelClass);
-        PageHelper.startPage(page.getPageNum(), page.getPageSize());
-        List<M> list = getBaseService().selectList(m);
-        Page.setPageInfo(page, list, modelVoClass);
-        return ResponseResult.success(page);
     }
 
 }
