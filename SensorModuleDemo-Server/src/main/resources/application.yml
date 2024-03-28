@@ -17,16 +17,16 @@ spring:
     # 连接池
     hikari:
       #连接池名
-      pool-name: DateHikariCP
+      pool-name: cn_wlih_sensor_module
       #最小空闲连接数
-      minimum-idle: 5
-      # 空闲连接存活最大时间，默认600000（10分钟）
-      idle-timeout: 180000
+      minimum-idle: 10
+      # 空闲连接存活最大时间3分50秒（数据库会删除4分钟内没有请求的连接，故而该值最好小于4分钟），默认600000（10分钟）
+      idle-timeout: 230000
       # 连接池最大连接数，默认是10
-      maximum-pool-size: 10
+      maximum-pool-size: 20
       # 此属性控制从池返回的连接的默认自动提交行为,默认值：true
       auto-commit: true
-      # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+      # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟。（数据库会删除4分钟内没有请求的连接，故而该值最好小于4分钟）
       max-lifetime: 1800000
       # 数据库连接超时时间,默认30秒，即30000
       connection-timeout: 30000
