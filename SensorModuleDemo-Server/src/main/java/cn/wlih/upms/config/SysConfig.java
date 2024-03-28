@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SysConfig {
 
-    @Bean
-    public IdGeneratorWrapper idGeneratorWrapper() {
-        // 初始化IdGeneratorWrapper的实例
-        return new IdGeneratorWrapper();
-    }
+//    @Bean
+//    public IdGeneratorWrapper idGeneratorWrapper() {
+//        // 初始化IdGeneratorWrapper的实例
+//        return new IdGeneratorWrapper();
+//    }
 
 }
