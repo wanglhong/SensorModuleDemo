@@ -74,7 +74,7 @@ export function transportEquipmentDto() {
 /**
  * 运输信息DTO
  */
-export function TransportInfo() {
+export function transportInfoDto() {
     return reactive({
         // 主键ID
         id: null,
@@ -100,22 +100,13 @@ export function TransportInfo() {
         sendCountry: null,
         // 目的地国
         receiveCountry: null,
-        // 起运城市
-        sendCity: null,
-        // 目的地城市
-        receiveCity: null,
         // 起运时间
-        sendTime: null,
-        // 到达时间
-        receiveTime: null,
-        // 货物信息
-        goods: null,
-        // 货物id
-        goodsId: null,
-        // 货物数量
-        goodsNumber: null,
-        // 货物体积（单位：cm³）
-        goodsVolume: null,
-
+        sendDate: null,
+        // 预计过境时间
+        estimateDate: null,
+        // 实际过境时间
+        actualDate: null,
+        // 备注
+        remark: null
     });
 }

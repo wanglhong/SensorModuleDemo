@@ -15,7 +15,7 @@
             class="table-box"
           >
             <template v-slot:toolbar>
-              <lay-button size="sm" type="primary" @click="displayFromLay('新增', turnoverBoxDto())">
+              <lay-button size="sm" type="primary" @click="displayFromLay('新增', transportInfoDto())">
                 <lay-icon class="layui-icon-addition"/> 新增
               </lay-button>
               <lay-button size="sm" @click="removeList">
@@ -46,10 +46,10 @@
 <script setup>
   import { onMounted, ref, reactive } from 'vue';
   import { layer } from '@layui/layer-vue';
-  import FromLay from '@/views/baseInfo/turnoverBox/FormLay.vue';
-  import SearchBox from '@/views/baseInfo/turnoverBox/SearchBox.vue';
-  import { list, remove, removeByIdList } from '@/api/module/TurnoverBoxApi.js';
-  import {turnoverBoxDto} from "@/model/ModelDto.js";
+  import FromLay from '@/views/transportManagement/transportInfo/FormLay.vue';
+  import SearchBox from '@/views/transportManagement/transportInfo/SearchBox.vue';
+  import { list, remove, removeByIdList } from '@/api/module/TransportInfoApi.js';
+  import {transportInfoDto} from "@/model/ModelDto.js";
 
   let modelDto = reactive({});
   let modelData = reactive({});
@@ -71,15 +71,23 @@
     layout: ref(['count', 'prev', 'page', 'next', 'limits',  'refresh', 'skip'])
   });
   const columns = [
-    {title: "复选", width: "50px", type: "checkbox", fixed: "left", align: "center"},
-    {title: "RFID编码", key: "rfidCode", ellipsisTooltip: true, align: "center"},
-    {title: "名称", key: "turnoverBoxName", ellipsisTooltip: true, align: "center"},
-    {title: "体积（单位：cm³）", key: "turnoverBoxVolume", width: "180px", align: "center"},
-    {title: "容积（单位：cm³）", key: "turnoverBoxContainer", ellipsisTooltip: true, align: "center"},
-    {title: "重量（单位：克）", key: "turnoverBoxWeight", ellipsisTooltip: true, align: "center"},
-    {title: "状态", key: "turnoverBoxState", ellipsisTooltip: true, align: "center"},
-    {title: "备注", key: "turnoverBoxRemark", ellipsisTooltip: true, align: "center"},
-    {title: "操作", ellipsisTooltip: true, customSlot: "operator", key: "operator", fixed: "right", align: "center"}
+      {title: "复选", width: "50px", type: "checkbox", fixed: "left", align: "center"},
+      {title: "运输人ID", key: "userId", ellipsisTooltip: true, align: "center"},
+      {title: "运输人信息", key: "user", ellipsisTooltip: true, align: "center"},
+      {title: "运输工具ID", key: "transportEquipmentId", ellipsisTooltip: true, align: "center"},
+      {title: "运输工具信息", key: "transportEquipment", ellipsisTooltip: true, align: "center"},
+      {title: "运输方式", key: "transportMode", ellipsisTooltip: true, align: "center"},
+      {title: "发货公司ID", key: "sendOrganizationId", ellipsisTooltip: true, align: "center"},
+      {title: "发货公司信息", key: "sendOrganization", ellipsisTooltip: true, align: "center"},
+      {title: "收货公司ID", key: "receiveOrganizationId", ellipsisTooltip: true, align: "center"},
+      {title: "收货公司信息", key: "receiveOrganization", ellipsisTooltip: true, align: "center"},
+      {title: "起运国", key: "sendCountry", ellipsisTooltip: true, align: "center"},
+      {title: "目的地国", key: "receiveCountry", ellipsisTooltip: true, align: "center"},
+      {title: "起运时间", key: "sendDate", ellipsisTooltip: true, align: "center"},
+      {title: "预计过境时间", key: "estimateDate", ellipsisTooltip: true, align: "center"},
+      {title: "实际过境时间", key: "actualDate", ellipsisTooltip: true, align: "center"},
+      {title: "备注", key: "remark", ellipsisTooltip: true, align: "center"},
+      {title: "操作", ellipsisTooltip: true, customSlot: "operator", key: "operator", fixed: "right", align: "center"}
   ];
   let dataSource = ref([]);
 

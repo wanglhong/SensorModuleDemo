@@ -27,6 +27,18 @@ const menus = [
         ]
     },
     {
+        id: "/transportManagement",
+        icon: "layui-icon-unlink",
+        title: "运输管理",
+        children: [
+            {
+                id: "/transportManagement/transportInfo",
+                icon: "layui-icon-not-found",
+                title: "运输信息管理"
+            }
+        ]
+    },
+    {
         id: "/error",
         icon: "layui-icon-unlink",
         title: "异常页面",

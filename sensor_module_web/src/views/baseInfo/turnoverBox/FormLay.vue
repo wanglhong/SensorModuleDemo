@@ -39,7 +39,7 @@
   import {toRefs} from 'vue';
   import {layer} from '@layui/layui-vue';
   import {turnoverBoxDto} from "@/model/ModelDto.js";
-  import { add, update } from '@/api/module/TurnoverBoxController.js';
+  import { add, update } from '@/api/module/TurnoverBoxApi.js';
 
   const props = defineProps({
     displayFrom: Boolean,

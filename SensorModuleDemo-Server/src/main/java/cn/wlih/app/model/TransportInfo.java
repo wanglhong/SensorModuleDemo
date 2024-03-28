@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.Date;
+
 @Data
 @TableName("sm_transport_info")
 @ClassComment("运输信息表")
@@ -33,5 +35,17 @@ public class TransportInfo extends BaseModel {
 
     @VariableComment("目的国")
     private String receiveCountry;
+
+    @VariableComment("起运时间")
+    private Date sendDate;
+
+    @VariableComment("预计过境时间")
+    private Date estimateDate;
+
+    @VariableComment("实际过境时间")
+    private Date actualDate;
+
+    @VariableComment("备注")
+    private String remark;
 
 }

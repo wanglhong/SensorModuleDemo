@@ -45,7 +45,7 @@
   import {toRefs} from 'vue';
   import {layer} from '@layui/layui-vue';
   import {transportEquipmentDto} from "@/model/ModelDto.js";
-  import { add, update } from '@/api/module/TransportEquipmentController.js';
+  import { add, update } from '@/api/module/TransportEquipmentApi.js';
 
   const props = defineProps({
     displayFrom: Boolean,

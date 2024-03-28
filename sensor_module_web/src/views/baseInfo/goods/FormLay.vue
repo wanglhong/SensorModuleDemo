@@ -34,7 +34,7 @@
   import {toRefs} from 'vue';
   import {layer} from '@layui/layui-vue';
   import {goodsDto} from "@/model/ModelDto.js";
-  import { add, update } from '@/api/module/GoodsController.js';
+  import { add, update } from '@/api/module/GoodsApi.js';
 
   const props = defineProps({
     displayFrom: Boolean,

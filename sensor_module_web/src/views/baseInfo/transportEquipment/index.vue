@@ -48,7 +48,7 @@
   import { layer } from '@layui/layer-vue';
   import FromLay from '@/views/baseInfo/transportEquipment/FormLay.vue';
   import SearchBox from '@/views/baseInfo/transportEquipment/SearchBox.vue';
-  import { list, remove, removeByIdList } from '@/api/module/TransportEquipmentController.js';
+  import { list, remove, removeByIdList } from '@/api/module/TransportEquipmentApi.js';
   import {transportEquipmentDto} from "@/model/ModelDto.js";
 
   let modelDto = reactive({});

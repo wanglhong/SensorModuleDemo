@@ -51,7 +51,7 @@
   import { layer } from '@layui/layer-vue';
   import FromLay from '@/views/baseInfo/goods/FormLay.vue';
   import SearchBox from '@/views/baseInfo/goods/SearchBox.vue';
-  import { list, remove, removeByIdList } from '@/api/module/GoodsController.js';
+  import { list, remove, removeByIdList } from '@/api/module/GoodsApi.js';
   import {goodsDto} from "@/model/ModelDto.js";
 
   let modelDto = reactive({});

@@ -53,6 +53,23 @@ export default [
             }
         ]
     },
+    /* 运输管理 */
+    {
+        path: "/transportManagement",
+        component: BasicLayout,
+        meta: { title: "运输管理" },
+        children: [
+            {
+                path: "/transportManagement/transportInfo",
+                name: "transportInfo",
+                component: () => import("@/views/transportManagement/transportInfo/index.vue"),
+                meta: {
+                    title: "运输信息管理",
+                    requireAuth: true
+                }
+            }
+        ]
+    },
     /* 请求错误页面 */
     {
         path: "/error",
@@ -61,17 +78,17 @@ export default [
         children: [
             {
                 path: "/error/401",
-                component: () => import("../../views/error/401.vue"),
+                component: () => import("@/views/error/401.vue"),
                 meta: { title: "401" }
             },
             {
                 path: "/error/403",
-                component: () => import("../../views/error/403.vue"),
+                component: () => import("@/views/error/403.vue"),
                 meta: { title: "403" }
             },
             {
                 path: "/error/404",
-                component: () => import("../../views/error/404.vue"),
+                component: () => import("@/views/error/404.vue"),
                 meta: { title: "404" }
             },
             {

@@ -5,6 +5,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.Date;
+
 @Data
 @Schema(defaultValue = "运输信息表")
 @EqualsAndHashCode(callSuper = true)
@@ -30,5 +32,17 @@ public class TransportInfoDto extends BaseModelDto {
 
     @Schema(defaultValue = "目的国")
     private String receiveCountry;
+
+    @Schema(defaultValue = "起运时间")
+    private Date sendDate;
+
+    @Schema(defaultValue = "预计过境时间")
+    private Date estimateDate;
+
+    @Schema(defaultValue = "实际过境时间")
+    private Date actualDate;
+
+    @Schema(defaultValue = "备注")
+    private String remark;
 
 }
