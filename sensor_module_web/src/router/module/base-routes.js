@@ -6,17 +6,45 @@ export default [
         // 根地址
         path: "/",
         // 重定向地址
-        redirect: "/baseInfo"
+        redirect: "/workspace"
     },
     {
         path: "/login",
         component: Login,
         meta: { title: "登录页面" }
     },
+    /* 工作空间 */
+    {
+        path: '/workspace',
+        redirect: '/workspace/middleMonitor',
+        component: BasicLayout,
+        meta: { title: '工作空间' },
+        children: [
+            {
+                path: '/workspace/middleMonitor',
+                name: 'middleMonitor',
+                component: () => import('@/views/workspace/middleMonitor/index.vue'),
+                meta: {
+                    title: '中央监控',
+                    requireAuth: true,
+                    affix: true,
+                    closable: false
+                }
+            },
+            {
+                path: '/workspace/inTransitGoodsMonitor',
+                name: 'inTransitGoodsMonitor',
+                component: () => import('@/views/workspace/inTransitGoodsMonitor/index.vue'),
+                meta: {
+                    title: '在途货物监控',
+                    requireAuth: true
+                }
+            }
+        ]
+    },
     /* 基础信息管理 */
     {
         path: "/baseInfo",
-        redirect: "/baseInfo/goods",
         component: BasicLayout,
         meta: { title: "基础信息管理" },
         children: [
@@ -26,11 +54,7 @@ export default [
                 component: () => import("@/views/baseInfo/goods/index.vue"),
                 meta: {
                     title: "货物管理",
-                    requireAuth: true,
-                    // 是否固定面包板
-                    affix: true,
-                    // 是否可关闭
-                    closable: false
+                    requireAuth: true
                 }
             },
             {

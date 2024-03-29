@@ -5,6 +5,23 @@ let user = {
 
 const menus = [
     {
+        id: "/workspace",
+        icon: "layui-icon-home",
+        title: "工作空间",
+        children: [
+            {
+                id: "/workspace/middleMonitor",
+                icon: "layui-icon-util",
+                title: "中央监控"
+            },
+            {
+                id: "/workspace/inTransitGoodsMonitor",
+                icon: "layui-icon-util",
+                title: "在途货物监控"
+            }
+        ]
+    },
+    {
         id: "/baseInfo",
         icon: "layui-icon-home",
         title: "基础信息管理",
