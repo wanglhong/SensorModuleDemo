@@ -35,6 +35,33 @@ const menus = [
                 id: "/transportManagement/transportInfo",
                 icon: "layui-icon-not-found",
                 title: "运输信息管理"
+            },
+            {
+                id: "/transportManagement/goodsToTurnoverBox",
+                icon: "layui-icon-not-found",
+                title: "货物装箱"
+            },
+            {
+                id: "/transportManagement/urnoverBoxTotransportEquipment",
+                icon: "layui-icon-not-found",
+                title: "货物装车"
+            }
+        ]
+    },
+    {
+        id: "/custom",
+        icon: "layui-icon-unlink",
+        title: "通关管理",
+        children: [
+            {
+                id: "/custom/customsDeclarationInfo",
+                icon: "layui-icon-not-found",
+                title: "海关报关信息管理"
+            },
+            {
+                id: "/custom/customsClearanceInfo",
+                icon: "layui-icon-not-found",
+                title: "海关清关信息管理"
             }
         ]
     },

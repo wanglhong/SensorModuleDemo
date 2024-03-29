@@ -67,6 +67,50 @@ export default [
                     title: "运输信息管理",
                     requireAuth: true
                 }
+            },
+            {
+                path: "/transportManagement/goodsToTurnoverBox",
+                name: "goodsToTurnoverBox",
+                component: () => import("@/views/transportManagement/goodsToTurnoverBox/index.vue"),
+                meta: {
+                    title: "货物装箱",
+                    requireAuth: true
+                }
+            },
+            {
+                path: "/transportManagement/urnoverBoxTotransportEquipment",
+                name: "urnoverBoxTotransportEquipment",
+                component: () => import("@/views/transportManagement/urnoverBoxTotransportEquipment/index.vue"),
+                meta: {
+                    title: "运输设备管理",
+                    requireAuth: true
+                }
+            }
+        ]
+    },,
+    /* 通关管理 */
+    {
+        path: "/custom",
+        component: BasicLayout,
+        meta: { title: "通关管理" },
+        children: [
+            {
+                path: "/custom/customsDeclarationInfo",
+                name: "customsDeclarationInfo",
+                component: () => import("@/views/custom/customsDeclarationInfo/index.vue"),
+                meta: {
+                    title: "海关报关信息管理",
+                    requireAuth: true
+                }
+            },
+            {
+                path: "/custom/customsClearanceInfo",
+                name: "customsClearanceInfo",
+                component: () => import("@/views/custom/customsClearanceInfo/index.vue"),
+                meta: {
+                    title: "海关清关信息管理",
+                    requireAuth: true
+                }
             }
         ]
     },
