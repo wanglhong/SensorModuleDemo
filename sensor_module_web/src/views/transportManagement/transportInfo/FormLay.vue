@@ -47,7 +47,7 @@
         <lay-form-item label="发货公司" prop="sendOrganizationId">
           <lay-select placeholder="请选择发货公司" v-model="modelDto.sendOrganizationId" style="width: 100%;">
             <template v-for="sendOrganization in sendOrganizationList">
-              <lay-select-option value="{{ sendOrganization.id }}">
+              <lay-select-option :value="sendOrganization.id">
                 {{ sendOrganization.name }}
               </lay-select-option>
             </template>
@@ -56,7 +56,7 @@
         <lay-form-item label="收货公司" prop="receiveOrganizationId">
           <lay-select placeholder="请选择收货公司" v-model="modelDto.receiveOrganizationId" style="width: 100%;">
             <template v-for="receiveOrganization in receiveOrganizationList">
-              <lay-select-option value="{{ receiveOrganization.id }}">
+              <lay-select-option :value="receiveOrganization.id">
                 {{ receiveOrganization.name }}
               </lay-select-option>
             </template>
@@ -69,13 +69,13 @@
           <lay-input placeholder="请输入目的地国" v-model="modelDto.receiveCountry"/>
         </lay-form-item>
         <lay-form-item label="起运时间" prop="sendDate">
-          <lay-date-picker placeholder="请输入起运时间" v-model="modelDto.sendDate" type="datetime" style="width: 100%;"/>
+          <lay-date-picker placeholder="请输入起运时间" v-model="modelDto.sendDate" :format="'YYYY-MM-DD HH:mm:ss'" type="datetime" style="width: 100%;"/>
         </lay-form-item>
         <lay-form-item label="预计过境时间" prop="estimateDate">
-          <lay-date-picker placeholder="请输入预计过境时间" v-model="modelDto.estimateDate" type="datetime" style="width: 100%;"/>
+          <lay-date-picker placeholder="请输入预计过境时间" v-model="modelDto.estimateDate" :format="'YYYY-MM-DD HH:mm:ss'" type="datetime" style="width: 100%;"/>
         </lay-form-item>
         <lay-form-item label="实际过境时间" prop="actualDate">
-          <lay-date-picker placeholder="请输入实际过境时间" v-model="modelDto.actualDate" type="datetime" style="width: 100%;"/>
+          <lay-date-picker placeholder="请输入实际过境时间" v-model="modelDto.actualDate" :format="'YYYY-MM-DD HH:mm:ss'" type="datetime" style="width: 100%;"/>
         </lay-form-item>
         <lay-form-item label="备注" prop="remark">
           <lay-textarea placeholder="请输入备注" v-model="modelDto.remark"/>
@@ -152,11 +152,11 @@ import {ref, toRefs} from 'vue';
           disabled: true,
           children: [
             {
-              title: '测试员工01',
+              title: '运输工具01',
               id: 10001,
             },
             {
-              title: '测试员工02',
+              title: '运输工具02',
               id: 10002
             },
           ],

@@ -22,13 +22,18 @@
                 <lay-icon class="layui-icon-delete"/> 删除
               </lay-button>
             </template>
+            <template v-slot:sendDate="{ data }">
+              {{ dayjs(data.sendDate).format('YYYY-MM-DD HH:mm') }}
+            </template>
+            <template v-slot:estimateDate="{ data }">
+              {{ dayjs(data.estimateDate).format('YYYY-MM-DD HH:mm') }}
+            </template>
+            <template v-slot:actualDate="{ data }">
+              {{ dayjs(data.actualDate).format('YYYY-MM-DD HH:mm') }}
+            </template>
             <template v-slot:operator="{ data }">
               <lay-button size="xs" type="primary" @click="displayFromLay('修改', data)">修改</lay-button>
-              <lay-popconfirm
-                  content="确定要删除此数据吗?"
-                  @confirm="removeOne(data.id)"
-                  @cancel="cancel"
-              >
+              <lay-popconfirm content="确定要删除此数据吗?" @confirm="removeOne(data.id)" @cancel="cancel">
                 <lay-button size="xs" border="red" border-style="dashed">删除</lay-button>
               </lay-popconfirm>
             </template>
@@ -45,6 +50,7 @@
 
 <script setup>
   import { onMounted, ref, reactive } from 'vue';
+  import dayjs from 'dayjs';
   import { layer } from '@layui/layer-vue';
   import FromLay from '@/views/transportManagement/transportInfo/FormLay.vue';
   import SearchBox from '@/views/transportManagement/transportInfo/SearchBox.vue';
@@ -83,9 +89,9 @@
       {title: "收货公司信息", key: "receiveOrganization", ellipsisTooltip: true, align: "center"},
       {title: "起运国", key: "sendCountry", ellipsisTooltip: true, align: "center"},
       {title: "目的地国", key: "receiveCountry", ellipsisTooltip: true, align: "center"},
-      {title: "起运时间", key: "sendDate", ellipsisTooltip: true, align: "center"},
-      {title: "预计过境时间", key: "estimateDate", ellipsisTooltip: true, align: "center"},
-      {title: "实际过境时间", key: "actualDate", ellipsisTooltip: true, align: "center"},
+      {title: "起运时间", key: "sendDate", customSlot: "sendDate", ellipsisTooltip: true, align: "center"},
+      {title: "预计过境时间", key: "estimateDate", customSlot: "estimateDate", ellipsisTooltip: true, align: "center"},
+      {title: "实际过境时间", key: "actualDate", customSlot: "actualDate", ellipsisTooltip: true, align: "center"},
       {title: "备注", key: "remark", ellipsisTooltip: true, align: "center"},
       {title: "操作", ellipsisTooltip: true, customSlot: "operator", key: "operator", fixed: "right", align: "center"}
   ];
@@ -94,7 +100,6 @@
   function loadDataSource() {
     loading.value = true;
     list({ modelDto: modelDto, page: page }).then(({ success, code, msg, data }) => {
-      console.log("data --> " + JSON.stringify(data));
       loading.value = false;
       if (success) {
         dataSource.value = data.data;
