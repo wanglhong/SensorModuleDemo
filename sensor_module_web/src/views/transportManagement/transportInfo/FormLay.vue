@@ -2,28 +2,6 @@
   <lay-layer v-model="displayFrom" :title="title" :success="layerLoad" :end="layerClose" :closeBtn="false" :area="['500px', 'auto']">
     <div style="padding: 20px; max-height: 600px">
       <lay-form :model="modelDto" ref="layFormRef11" required>
-        <!--
-        // 发货公司ID
-        sendOrganizationId: null,
-        // 发货公司信息
-        sendOrganization: null,
-        // 收货公司ID
-        receiveOrganizationId: null,
-        // 收货公司信息
-        receiveOrganization: null,
-        // 起运国
-        sendCountry: null,
-        // 目的地国
-        receiveCountry: null,
-        // 起运时间
-        sendDate: null,
-        // 预计过境时间
-        estimateDate: null,
-        // 实际过境时间
-        actualDate: null,
-        // 备注
-        remark: null
-        -->
         <lay-form-item label="运输人" prop="userId">
           <lay-tree-select placeholder="请选择运输人" :data="treeDataOfTransportUser" v-model="modelDto.userId" :search="true" style="width: 100%">
             <template #title="{data}">
