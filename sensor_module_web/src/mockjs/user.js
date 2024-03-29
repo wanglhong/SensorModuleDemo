@@ -49,19 +49,36 @@ const menus = [
         ]
     },
     {
-        id: "/custom",
+        id: "/customInfo",
         icon: "layui-icon-unlink",
-        title: "通关管理",
+        title: "通关信息管理",
         children: [
             {
-                id: "/custom/customsDeclarationInfo",
+                id: "/customInfo/customsDeclarationInfo",
                 icon: "layui-icon-not-found",
-                title: "海关报关信息管理"
+                title: "报关信息管理"
             },
             {
-                id: "/custom/customsClearanceInfo",
+                id: "/customInfo/customsClearanceInfo",
                 icon: "layui-icon-not-found",
-                title: "海关清关信息管理"
+                title: "清关信息管理"
+            }
+        ]
+    },
+    {
+        id: "/customApproval",
+        icon: "layui-icon-unlink",
+        title: "通关审批管理",
+        children: [
+            {
+                id: "/customApproval/customsDeclarationApproval",
+                icon: "layui-icon-not-found",
+                title: "报关审批管理"
+            },
+            {
+                id: "/customApproval/customsClearanceApproval",
+                icon: "layui-icon-not-found",
+                title: "清关审批管理"
             }
         ]
     },

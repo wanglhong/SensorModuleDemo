@@ -87,28 +87,54 @@ export default [
                 }
             }
         ]
-    },,
-    /* 通关管理 */
+    },
+    /* 通关信息管理 */
     {
-        path: "/custom",
+        path: "/customInfo",
         component: BasicLayout,
-        meta: { title: "通关管理" },
+        meta: { title: "通关信息管理" },
         children: [
             {
-                path: "/custom/customsDeclarationInfo",
+                path: "/customInfo/customsDeclarationInfo",
                 name: "customsDeclarationInfo",
-                component: () => import("@/views/custom/customsDeclarationInfo/index.vue"),
+                component: () => import("@/views/customInfo/customsDeclarationInfo/index.vue"),
                 meta: {
-                    title: "海关报关信息管理",
+                    title: "报关信息管理",
                     requireAuth: true
                 }
             },
             {
-                path: "/custom/customsClearanceInfo",
+                path: "/customInfo/customsClearanceInfo",
                 name: "customsClearanceInfo",
-                component: () => import("@/views/custom/customsClearanceInfo/index.vue"),
+                component: () => import("@/views/customInfo/customsClearanceInfo/index.vue"),
                 meta: {
-                    title: "海关清关信息管理",
+                    title: "清关信息管理",
+                    requireAuth: true
+                }
+            }
+        ]
+    },
+    /* 通关审批管理 */
+    {
+        path: "/customApproval",
+        component: BasicLayout,
+        meta: { title: "通关审批管理" },
+        children: [
+            {
+                path: "/customApproval/customsDeclarationApproval",
+                name: "customsDeclarationApproval",
+                component: () => import("@/views/customApproval/customsDeclarationApproval/index.vue"),
+                meta: {
+                    title: "报关审批管理",
+                    requireAuth: true
+                }
+            },
+            {
+                path: "/customApproval/customsClearanceApproval",
+                name: "customsClearanceApproval",
+                component: () => import("@/views/customApproval/customsClearanceApproval/index.vue"),
+                meta: {
+                    title: "清关审批管理",
                     requireAuth: true
                 }
             }
