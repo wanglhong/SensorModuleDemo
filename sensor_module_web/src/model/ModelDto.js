@@ -2,7 +2,6 @@ import {reactive} from "vue";
 
 /**
  * 货物DTO
- * @returns {reactive({goodsUnitWeight: null, id: null, goodsCode: null, goodsName: null, goodsUnitValue: null, goodsUnitVolume: null, goodsRemark: null})}
  */
 export function goodsDto() {
     return reactive({
@@ -68,6 +67,28 @@ export function transportEquipmentDto() {
         equipmentState: null,
         // 设备备注
         equipmentRemark: null
+    });
+}
+
+/**
+ * 物联网设备DTO
+ */
+export function iotEquipmentDto() {
+    return reactive({
+        // 主键ID
+        id: null,
+        // 物联网设备ID
+        transportEquipmentId: null,
+        // 物联网设备名称
+        iotName: null,
+        // 物联网设备编号
+        iotCode: null,
+        // 物联网设备key
+        iotKey: null,
+        // 物联网设备状态（1：闲置中、2：使用中、3：废弃、4：维修中）
+        iotState: null,
+        // 物联网设备备注
+        iotRemark: null
     });
 }
 

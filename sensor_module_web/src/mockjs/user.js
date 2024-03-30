@@ -40,6 +40,11 @@ const menus = [
                 id: "/baseInfo/transportEquipment",
                 icon: "layui-icon-util",
                 title: "运输设备管理"
+            },
+            {
+                id: "/baseInfo/iotEquipment",
+                icon: "layui-icon-util",
+                title: "物联网设备管理"
             }
         ]
     },

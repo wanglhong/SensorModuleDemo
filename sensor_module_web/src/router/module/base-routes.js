@@ -74,6 +74,15 @@ export default [
                     title: "运输设备管理",
                     requireAuth: true
                 }
+            },
+            {
+                path: "/baseInfo/iotEquipment",
+                name: "iotEquipment",
+                component: () => import("@/views/baseInfo/iotEquipment/index.vue"),
+                meta: {
+                    title: "物联网设备管理",
+                    requireAuth: true
+                }
             }
         ]
     },
