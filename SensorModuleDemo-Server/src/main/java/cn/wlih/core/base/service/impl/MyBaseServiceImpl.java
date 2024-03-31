@@ -1,14 +1,18 @@
 package cn.wlih.core.base.service.impl;
 
+import cn.hutool.core.util.ObjUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.wlih.core.base.mapper.MyBaseMapper;
 import cn.wlih.core.base.service.MyBaseService;
 import cn.wlih.core.config.ApplicationContextHolder;
+import cn.wlih.core.myAnnotate.RelationOneToOne;
 import cn.wlih.core.myAnnotate.VariableComment;
 import cn.wlih.core.myEnum.DbBaseFieldType;
 import cn.wlih.core.base.model.modelDbEnum.IsDeleteEnum;
 import cn.wlih.core.myError.BizException;
 import cn.wlih.core.sequence.wrapper.IdGeneratorWrapper;
 import cn.wlih.core.util.MyClazzUtil;
+import cn.wlih.core.util.MyModelUtil;
 import cn.wlih.core.util.dbUtil.DbTableUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -108,7 +112,9 @@ public abstract class MyBaseServiceImpl<M> extends ServiceImpl<MyBaseMapper<M>, 
     @Override
     @Transactional
     public List<M> selectList(M m) {
-        return mapper().selectList(new QueryWrapper<M>(m));
+        List<M> mList = mapper().selectList(new QueryWrapper<M>(m));
+        this.verifyImportForOneToOneRelation(mList);
+        return mList;
     }
 
     @Override
@@ -119,6 +125,33 @@ public abstract class MyBaseServiceImpl<M> extends ServiceImpl<MyBaseMapper<M>, 
         }
         mapper().delete(new QueryWrapper<M>().in(dbIdField.getName(), idList));
         return true;
+    }
+
+    /**
+     * 验证导入一对一关联数据
+     *
+     * @param modelDataList
+     */
+    @Override
+    public void verifyImportForOneToOneRelation(List<M> modelDataList) {
+        for (M m : modelDataList) {
+            Class<?> aClass = m.getClass();
+            for (Field field : aClass.getDeclaredFields()) {
+                if (field.isAnnotationPresent(RelationOneToOne.class)) {
+                    RelationOneToOne relationOneToOne = field.getAnnotation(RelationOneToOne.class);
+                    String masterIdField = relationOneToOne.masterIdField();
+                    String slaveIdField = relationOneToOne.slaveIdField();
+                    Object masterIdFieldValue = MyClazzUtil.getFieldValue(m, masterIdField);
+                    if (ObjUtil.isNull(masterIdFieldValue) || ObjUtil.isEmpty(masterIdFieldValue)) {
+                        continue;
+                    }
+                    String slaveServiceName = relationOneToOne.slaveServiceName();
+                    MyBaseService slaveService = ApplicationContextHolder.getBean(slaveServiceName);
+                    Object one = slaveService.getOne((QueryWrapper) new QueryWrapper().eq(slaveIdField, masterIdField));
+                    MyClazzUtil.setFieldValue(m, field, one);
+                }
+            }
+        }
     }
 
     /**

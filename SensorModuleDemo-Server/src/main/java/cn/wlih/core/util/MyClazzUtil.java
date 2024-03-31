@@ -115,4 +115,22 @@ public class MyClazzUtil {
         }
     }
 
+    public static <M> Object getFieldValue(M m, String fieldName) {
+        try {
+            Field field = m.getClass().getDeclaredField(fieldName);
+            return getFieldValue(m, field);
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static <M> Object getFieldValue(M m, Field field) {
+        try {
+            field.setAccessible(true);
+            return field.get(m);
+        } catch (IllegalAccessException e) {
+            return null;
+        }
+    }
+
 }

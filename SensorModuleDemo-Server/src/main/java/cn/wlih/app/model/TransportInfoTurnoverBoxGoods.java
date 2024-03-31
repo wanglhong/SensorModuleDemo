@@ -2,7 +2,10 @@ package cn.wlih.app.model;
 
 import cn.wlih.core.base.model.BaseModel;
 import cn.wlih.core.myAnnotate.ClassComment;
+import cn.wlih.core.myAnnotate.RelationOneToOne;
 import cn.wlih.core.myAnnotate.VariableComment;
+import cn.wlih.upms.model.SysUser;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,5 +27,34 @@ public class TransportInfoTurnoverBoxGoods extends BaseModel {
 
     @VariableComment("货物数量")
     private Integer goodsNum;
+
+    @VariableComment("货物装箱操作员ID")
+    private Long goodsToBoxUserId;
+
+    @VariableComment("周转箱装车操作员ID")
+    private Long boxToTransportEquipmentUserId;
+
+    @VariableComment("备注")
+    private String remark;
+
+    @TableField(exist = false)
+    @RelationOneToOne(
+            masterIdField = "goodsToBoxUserId",
+            slaveIdField = "goodsToBoxUserId",
+            slaveModelClass = SysUser.class,
+            slaveServiceName = "sysUserService"
+    )
+    @VariableComment("货物装箱操作员信息")
+    private SysUser goodsToBoxUser;
+
+    @TableField(exist = false)
+    @RelationOneToOne(
+            masterIdField = "goodsToBoxUserId",
+            slaveIdField = "goodsToBoxUserId",
+            slaveModelClass = SysUser.class,
+            slaveServiceName = "sysUserService"
+    )
+    @VariableComment("周转箱装车操作员信息")
+    private SysUser boxToTransportEquipmentUser;
 
 }

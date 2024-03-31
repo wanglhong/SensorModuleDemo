@@ -1,7 +1,7 @@
 package cn.wlih.app.vo;
 
 import cn.wlih.core.base.vo.BaseModelVo;
-import cn.wlih.core.myAnnotate.VariableComment;
+import cn.wlih.upms.model.SysUser;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,5 +22,20 @@ public class TransportInfoTurnoverBoxGoodsVo extends BaseModelVo {
 
     @Schema(defaultValue = "货物数量")
     private Integer goodsNum;
+
+    @Schema(defaultValue = "货物装箱操作员ID")
+    private Long goodsToBoxUserId;
+
+    @Schema(defaultValue = "周转箱装车操作员ID")
+    private Long boxToTransportEquipmentUserId;
+
+    @Schema(defaultValue = "备注")
+    private String remark;
+
+    @Schema(defaultValue = "货物装箱操作员信息")
+    private SysUser goodsToBoxUser;
+
+    @Schema(defaultValue = "周转箱装车操作员信息")
+    private SysUser boxToTransportEquipmentUser;
 
 }

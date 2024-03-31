@@ -25,22 +25,22 @@ public abstract class BaseModelVo {
     @Schema(defaultValue = "主键ID")
     private Long id;
 
-    @Schema(defaultValue = "创建时间")
-    private Date createTime;
-
-    @Schema(defaultValue = "创建者ID")
-    private Long createUserId;
-
-    @Schema(defaultValue = "修改时间")
-    private Date updateTime;
-
-    @Schema(defaultValue = "修改者ID")
-    private Long updateUserId;
-
-    @Schema(defaultValue = "数据所属人ID")
-    private Long dataUserId;
-
-    @Schema(defaultValue = "数据所属部门ID")
-    private Long dataDeptId;
+//    @Schema(defaultValue = "创建时间")
+//    private Date createTime;
+//
+//    @Schema(defaultValue = "创建者ID")
+//    private Long createUserId;
+//
+//    @Schema(defaultValue = "修改时间")
+//    private Date updateTime;
+//
+//    @Schema(defaultValue = "修改者ID")
+//    private Long updateUserId;
+//
+//    @Schema(defaultValue = "数据所属人ID")
+//    private Long dataUserId;
+//
+//    @Schema(defaultValue = "数据所属部门ID")
+//    private Long dataDeptId;
 
 }

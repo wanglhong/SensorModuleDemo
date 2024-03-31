@@ -69,17 +69,17 @@ public abstract class MyBaseController<M, MDTO, MVO> {
         return this.baseService;
     }
 
-//    /**
-//     * 获取基础数据对象JSON数据
-//     */
-//    @Deprecated
-//    @Operation(summary = "获取对象的JSON描述接口", description = "方便用于传参")
-//    @GetMapping("/getModelJson")
-//    @ResponseBody
-//    public ResponseResult<Map<String, String>> getModelJson() {
-//        Map<String, String> resultData = getBaseService().getModelJson(modelClass);
-//        return ResponseResult.success(resultData);
-//    }
+    /**
+     * 获取基础数据对象JSON数据
+     */
+    @Deprecated
+    @Operation(summary = "获取对象的JSON描述接口", description = "方便用于传参")
+    @GetMapping("/getModelJson")
+    @ResponseBody
+    public ResponseResult<Map<String, String>> getModelJson() {
+        Map<String, String> resultData = getBaseService().getModelJson(modelClass);
+        return ResponseResult.success(resultData);
+    }
 
     /**
      * 基础新增接口

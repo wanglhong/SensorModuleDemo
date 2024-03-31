@@ -24,4 +24,9 @@ public interface MyBaseService<M> extends IService<M> {
 
     Boolean removeByIdList(List<Long> idList);
 
+    /**
+     * 验证导入一对一关联数据
+     */
+    void verifyImportForOneToOneRelation(List<M> modelDataList);
+
 }
