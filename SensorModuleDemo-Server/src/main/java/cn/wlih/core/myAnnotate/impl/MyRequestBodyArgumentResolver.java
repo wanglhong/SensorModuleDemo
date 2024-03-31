@@ -1,5 +1,6 @@
 package cn.wlih.core.myAnnotate.impl;
 
+import cn.hutool.core.thread.ThreadException;
 import cn.wlih.core.myAnnotate.MyRequestBody;
 import cn.wlih.core.util.JsonUtil;
 import com.alibaba.fastjson.JSON;
@@ -67,6 +68,12 @@ public class MyRequestBodyArgumentResolver implements HandlerMethodArgumentResol
         Object value;
         // 如果@MultiRequestBody注解没有设置value，则取参数名FrameworkServlet作为json解析的key
         if (StringUtils.isNotEmpty(key)) {
+            if (jsonObject == null) {
+                if (!parameterAnnotation.required()) {
+                    return null;
+                }
+                throw new ThreadException("请传入参数[" + key + "]");
+            }
             value = jsonObject.get(key);
             // 如果设置了value但是解析不到，报错
             if (value == null && parameterAnnotation.required()) {
@@ -75,6 +82,12 @@ public class MyRequestBodyArgumentResolver implements HandlerMethodArgumentResol
         } else {
             // 注解为设置value则用参数名当做json的key
             key = parameter.getParameterName();
+            if (jsonObject == null) {
+                if (!parameterAnnotation.required()) {
+                    return null;
+                }
+                throw new ThreadException("请传入参数[" + key + "]");
+            }
             value = jsonObject.get(key);
         }
 
