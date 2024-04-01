@@ -9,20 +9,17 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-@ClassComment("审核状态（1：待审核、2：审核中、3：审核通过、4：审核驳回）")
-public enum AuditState {
+@ClassComment("运输状态（1：未开始、2：运输中、3：已结束）")
+public enum TransportState {
 
-    @VariableComment("待审核")
-    WAIT_AUDIT(1, "待审核"),
+    @VariableComment("未开始")
+    NOT_START(1, "未开始"),
 
-    @VariableComment("审核中")
-    AUDITING(2, "审核中"),
+    @VariableComment("运输中")
+    IN_TRANSIT(2, "运输中"),
 
-    @VariableComment("审核通过")
-    AUDIT_PASS(3, "审核通过"),
-
-    @VariableComment("审核驳回")
-    AUDIT_REJECT(4, "审核驳回");
+    @VariableComment("已结束")
+    END(3, "已结束");
 
     @EnumValue
     private final Integer key;

@@ -1,5 +1,6 @@
 package cn.wlih.app.dto;
 
+import cn.wlih.app.model.modelDbEnum.TransportState;
 import cn.wlih.core.base.dto.BaseModelDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -41,6 +42,9 @@ public class TransportInfoDto extends BaseModelDto {
 
     @Schema(title = "实际过境时间")
     private Date actualDate;
+
+    @Schema(title = "运输状态")
+    private TransportState transportState;
 
     @Schema(title = "备注")
     private String remark;

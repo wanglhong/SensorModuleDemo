@@ -1,5 +1,6 @@
 package cn.wlih.app.model;
 
+import cn.wlih.app.model.modelDbEnum.TransportState;
 import cn.wlih.core.base.model.BaseModel;
 import cn.wlih.core.myAnnotate.ClassComment;
 import cn.wlih.core.myAnnotate.VariableComment;
@@ -44,6 +45,9 @@ public class TransportInfo extends BaseModel {
 
     @VariableComment("实际过境时间")
     private Date actualDate;
+
+    @VariableComment("运输状态")
+    private TransportState transportState;
 
     @VariableComment("备注")
     private String remark;

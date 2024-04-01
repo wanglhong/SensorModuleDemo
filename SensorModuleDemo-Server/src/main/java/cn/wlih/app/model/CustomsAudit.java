@@ -33,6 +33,9 @@ public class CustomsAudit extends BaseModel {
     @VariableComment("审批状态")
     private AuditState auditState;
 
+    @VariableComment("备注")
+    private String remark;
+
     @VariableComment("审批组织ID")
     private Long organizationIdOfAudit;
 

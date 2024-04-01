@@ -30,6 +30,9 @@ public class CustomsAuditVo extends BaseModelVo {
     @Schema(title = "审批状态")
     private AuditState auditState;
 
+    @Schema(title = "备注")
+    private String remark;
+
     @Schema(title = "审批组织ID")
     private Long organizationIdOfAudit;
 
