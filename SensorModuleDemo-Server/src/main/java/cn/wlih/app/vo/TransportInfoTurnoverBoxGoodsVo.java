@@ -2,6 +2,7 @@ package cn.wlih.app.vo;
 
 import cn.wlih.core.base.vo.BaseModelVo;
 import cn.wlih.upms.model.SysUser;
+import cn.wlih.upms.vo.SysUserVo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -33,9 +34,9 @@ public class TransportInfoTurnoverBoxGoodsVo extends BaseModelVo {
     private String remark;
 
     @Schema(defaultValue = "货物装箱操作员信息")
-    private SysUser goodsToBoxUser;
+    private SysUserVo goodsToBoxUser;
 
     @Schema(defaultValue = "周转箱装车操作员信息")
-    private SysUser boxToTransportEquipmentUser;
+    private SysUserVo boxToTransportEquipmentUser;
 
 }

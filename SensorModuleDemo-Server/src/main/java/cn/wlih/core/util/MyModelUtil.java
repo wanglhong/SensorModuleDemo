@@ -98,9 +98,10 @@ public class MyModelUtil {
             return null;
         }
         try {
-            T target = targetClazz.newInstance();
-            BeanUtil.copyProperties(source, target);
-            return target;
+//            T target = targetClazz.newInstance();
+//            BeanUtil.copyProperties(source, target);
+//            return target;
+            return EntityMapperUtil.convert(source, targetClazz);
         } catch (Exception e) {
             log.error("Failed to call MyModelUtil.copyTo", e);
             return null;

@@ -25,9 +25,6 @@ public class SysUserVo extends BaseModelVo {
     @Schema(defaultValue = "登录名")
     private String loginName;
 
-    @Schema(defaultValue = "密码")
-    private String password;
-
     @Schema(defaultValue = "电话号码")
     private String phoneNumber;
 
