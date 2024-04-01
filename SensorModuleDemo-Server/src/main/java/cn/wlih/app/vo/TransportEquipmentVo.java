@@ -8,29 +8,29 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@Schema(defaultValue = "运输设备信息表")
+@Schema(title = "运输设备信息表")
 @EqualsAndHashCode(callSuper = true)
 public class TransportEquipmentVo extends BaseModelVo {
 
-    @Schema(defaultValue = "设备编码")
+    @Schema(title = "设备编码")
     private String equipmentCode;
 
-    @Schema(defaultValue = "设备名称")
+    @Schema(title = "设备名称")
     private String equipmentName;
 
-    @Schema(defaultValue = "设备类型")
+    @Schema(title = "设备类型")
     private TransportEquipmentType equipmentType;
 
-    @Schema(defaultValue = "设备型号")
+    @Schema(title = "设备型号")
     private String equipmentModel;
 
-    @Schema(defaultValue = "设备品牌")
+    @Schema(title = "设备品牌")
     private String equipmentBrand;
 
-    @Schema(defaultValue = "设备状态")
+    @Schema(title = "设备状态")
     private EquipmentState equipmentState;
 
-    @Schema(defaultValue = "备注")
+    @Schema(title = "备注")
     private String equipmentRemark;
 
 }

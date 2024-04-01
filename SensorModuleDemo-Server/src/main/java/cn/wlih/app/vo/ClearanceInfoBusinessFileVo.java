@@ -6,14 +6,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@Schema(defaultValue = "清关信息与附件多对多关联表")
+@Schema(title = "清关信息与附件多对多关联表")
 @EqualsAndHashCode(callSuper = true)
 public class ClearanceInfoBusinessFileVo extends BaseModelVo {
 
-    @Schema(defaultValue = "清关信息ID")
+    @Schema(title = "清关信息ID")
     private Long clearanceInfoId;
 
-    @Schema(defaultValue = "附件ID")
+    @Schema(title = "附件ID")
     private Long businessFileId;
 
 }

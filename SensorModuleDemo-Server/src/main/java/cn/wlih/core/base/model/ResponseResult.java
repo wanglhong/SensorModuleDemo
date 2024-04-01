@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
-@Schema(defaultValue = "统一响应对象")
+@Schema(title = "统一响应对象")
 public class ResponseResult<T> {
 
     /**
@@ -13,16 +13,16 @@ public class ResponseResult<T> {
      */
     private static final ResponseResult<Void> OK = new ResponseResult<>();
 
-    @Schema(defaultValue = "请求结果（true or false）")
+    @Schema(title = "请求结果（true or false）")
     private Boolean success = true;
 
-    @Schema(defaultValue = "响应代码")
+    @Schema(title = "响应代码")
     private Integer code = 200;
 
-    @Schema(defaultValue = "响应信息")
+    @Schema(title = "响应信息")
     private String msg = "success";
 
-    @Schema(defaultValue = "响应数据")
+    @Schema(title = "响应数据")
     private T data;
 
     /**

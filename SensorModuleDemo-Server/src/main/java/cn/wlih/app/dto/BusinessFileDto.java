@@ -7,20 +7,20 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@Schema(defaultValue = "基础附件表")
+@Schema(title = "基础附件表")
 @EqualsAndHashCode(callSuper = true)
 public class BusinessFileDto extends BaseModelDto {
 
-    @Schema(defaultValue = "文件名称")
+    @Schema(title = "文件名称")
     private String fileName;
 
-    @Schema(defaultValue = "文件类型")
+    @Schema(title = "文件类型")
     private FileType fileType;
 
-    @Schema(defaultValue = "文件大小")
+    @Schema(title = "文件大小")
     private Long fileSize;
 
-    @Schema(defaultValue = "文件Key")
+    @Schema(title = "文件Key")
     private String fileKey;
 
 }
