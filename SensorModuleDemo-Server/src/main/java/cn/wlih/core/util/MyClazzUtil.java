@@ -133,4 +133,23 @@ public class MyClazzUtil {
         }
     }
 
+    /**
+     * 获取包括父类在内的所有字段
+     *
+     * @param clazz 类的Class对象
+     * @return 包含所有字段的列表
+     */
+    public static List<Field> getAllFields(Class<?> clazz) {
+        List<Field> fields = new ArrayList<>();
+        while (clazz != null) {
+            // 添加当前类声明的字段
+            for (Field field : clazz.getDeclaredFields()) {
+                fields.add(field);
+            }
+            // 获取父类的Class对象
+            clazz = clazz.getSuperclass();
+        }
+        return fields;
+    }
+
 }

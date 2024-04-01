@@ -19,4 +19,7 @@ public class ClearanceInfoBusinessFile extends BaseModel {
     @VariableComment("附件ID")
     private Long businessFileId;
 
+    @VariableComment("备注")
+    private String remark;
+
 }

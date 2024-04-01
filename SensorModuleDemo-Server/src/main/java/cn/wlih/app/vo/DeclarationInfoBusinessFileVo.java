@@ -16,4 +16,7 @@ public class DeclarationInfoBusinessFileVo extends BaseModelVo {
     @Schema(title = "附件ID")
     private Long businessFileId;
 
+    @Schema(title = "备注")
+    private String remark;
+
 }

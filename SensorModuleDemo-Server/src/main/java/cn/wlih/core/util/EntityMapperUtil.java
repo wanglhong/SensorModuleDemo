@@ -1,13 +1,15 @@
 package cn.wlih.core.util;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EntityMapperUtil {
 
     public static <T, U> U convert(T source, Class<U> targetClass) throws InstantiationException, IllegalAccessException {
         U target = targetClass.newInstance();
-        Field[] sourceFields = source.getClass().getDeclaredFields();
-        Field[] targetFields = targetClass.getDeclaredFields();
+        List<Field> sourceFields = MyClazzUtil.getAllFields(source.getClass());
+        List<Field> targetFields = MyClazzUtil.getAllFields(targetClass);
         for (Field sourceField : sourceFields) {
             sourceField.setAccessible(true);
             String sourceFieldName = sourceField.getName();
