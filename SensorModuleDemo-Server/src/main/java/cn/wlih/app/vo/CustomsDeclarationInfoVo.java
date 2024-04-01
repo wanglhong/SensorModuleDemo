@@ -1,6 +1,5 @@
 package cn.wlih.app.vo;
 
-import cn.wlih.app.model.modelDbEnum.CustomsDeclarationState;
 import cn.wlih.core.base.vo.BaseModelVo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -25,9 +24,6 @@ public class CustomsDeclarationInfoVo extends BaseModelVo {
 
     @Schema(title = "货物价值（用于计算关税和税费）")
     private BigDecimal goodsValue;
-
-    @Schema(title = "报关状态")
-    private CustomsDeclarationState customsDeclarationState;
 
     @Schema(title = "预计过境日期")
     private Date estimatedTransitDate;

@@ -1,6 +1,5 @@
 package cn.wlih.app.model;
 
-import cn.wlih.app.model.modelDbEnum.CustomsDeclarationState;
 import cn.wlih.core.base.model.BaseModel;
 import cn.wlih.core.myAnnotate.ClassComment;
 import cn.wlih.core.myAnnotate.VariableComment;
@@ -28,9 +27,6 @@ public class CustomsDeclarationInfo extends BaseModel {
 
     @VariableComment("货物价值（用于计算关税和税费）")
     private BigDecimal goodsValue;
-
-    @VariableComment("报关状态")
-    private CustomsDeclarationState customsDeclarationState;
 
     @VariableComment("预计过境日期")
     private Date estimatedTransitDate;
