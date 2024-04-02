@@ -1,0 +1,13 @@
+
+†	java:S112<"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚ÒéüÿÿÿÿJ$fa46601d-e57f-44f9-8bc5-55867819cb4f
+‹
+java:S2095%"JUse try-with-resources or close this "ServerSocket" in a "finally" clause.(Å´ÆßşÿÿÿÿJ$23a2f7ba-7258-47f5-8d8a-714b4ca4933f
+c
+java:S2189(""Add an end condition to this loop.(˜ïˆÿÿÿÿÿJ$1454039d-6d2c-4627-8323-7d477899d873
+k	java:S106&"+Replace this use of System.out by a logger.(ñ…‡ÿÿÿÿÿJ$b5096baf-1ea1-4741-a4b6-f8624c3e3928
+|	java:S1250"<This block of commented-out lines of code should be removed.(»™ûÿÿÿÿJ$6494e1cf-d623-4ec9-8e6d-3d9d7039119e
+|	java:S125A"<This block of commented-out lines of code should be removed.(Ø«Ì™ÿÿÿÿÿJ$ef4a0e04-a1cd-4da6-932f-1d7bfbd35453
+k
+java:S2093."*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿJ$cc474096-5477-45bb-be0b-ec2162f430b9
+k
+java:S1144""*Remove this unused private "build" method.(¤òÎ²ÿÿÿÿÿJ$ff4269ee-195f-4612-b4ad-69c4506864c4

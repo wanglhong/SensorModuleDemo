@@ -1,0 +1,7 @@
+
+b
+java:S1192"MDefine a constant instead of duplicating this literal "VARCHAR(255)" 3 times.(´Øö
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ßÂßÏ
+U
+java:S1118
+":Add a private constructor to hide the implicit public one.(œü¦ıÿÿÿÿ

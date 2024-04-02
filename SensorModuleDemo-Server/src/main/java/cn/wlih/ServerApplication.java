@@ -20,8 +20,9 @@ import cn.hutool.core.util.StrUtil;
 @SpringBootApplication
 public class ServerApplication {
 
-    public static void main(String[] args) throws Exception {
-        new ServerApplication().runSpringBoot(args);
+    public static void main(String[] args) {
+        SpringApplication.run(ServerApplication.class, args);
+//        new ServerApplication().runSpringBoot(args);
     }
 
     public void ssh() throws Exception {

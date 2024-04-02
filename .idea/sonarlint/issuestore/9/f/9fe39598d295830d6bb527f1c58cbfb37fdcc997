@@ -1,0 +1,12 @@
+
+†	java:S1123"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚ÒéüÿÿÿÿJ$f202ade4-9be3-4232-be26-d2024c77a56a
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(—ş‘J$bbae2936-1781-4f5c-b32a-2bb3ed257497
+‹
+java:S2095"JUse try-with-resources or close this "ServerSocket" in a "finally" clause.(´ß®£şÿÿÿÿJ$61b2515f-8914-4def-bc29-33ae4b15aad0
+c
+java:S2189 ""Add an end condition to this loop.(˜ïˆÿÿÿÿÿJ$41e0e176-0ecd-4063-b577-fbb5b3bdf780
+k	java:S106"+Replace this use of System.out by a logger.(šîôÁüÿÿÿÿJ$20a5f244-7540-412e-88b2-fbd7d1aa99cf
+k	java:S106,"+Replace this use of System.out by a logger.(øºÑûúÿÿÿÿJ$0eb393f8-20d6-4a00-a384-878f30b862bb
+|	java:S1258"<This block of commented-out lines of code should be removed.(Ø«Ì™ÿÿÿÿÿJ$8e328181-0ff9-436a-8f4e-4c80986c0dbc
+k
+java:S2093&"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿJ$52701249-b83d-4e72-b04f-043066454d6b

@@ -1,0 +1,11 @@
+
+a	java:S112ï"FDefine and throw a dedicated exception instead of using a generic one.(ÌâÜ˜øÿÿÿÿ
+h
+java:S6204&"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(€À´­
+h
+java:S62042"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(œÚÌï
+N
+java:S1874I"3Remove this use of "newInstance"; it is deprecated.(Š›ì¢ùÿÿÿÿ
+Q	java:S125e"<This block of commented-out lines of code should be removed.(»èËŠ
+=
+java:S1452ê"&Remove usage of generic wildcard type.(¾áÛ¶

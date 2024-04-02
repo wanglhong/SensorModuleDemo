@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--混淆插件配置文件-->
+<config>
+    <!-- 输入和输出jar配置，out指向的是加密后的jar -->
+    <input>
+        <jar in="${project.build.finalName}.jar" out="${project.build.finalName}.jar"/>
+    </input>
+    <!--配置混淆的名称-->
+    <property name="packages-naming" value="custom(proguard.txt)"/>
+    <property name="classes-naming" value="custom(proguard.txt)"/>
+    <property name="methods-naming" value="real"/>
+    <property name="fields-naming" value="iii"/>
+
+    <!--方法参数名称保持不变，避免公共api接口等出现异常 -->
+    <property name="local-variables-naming" value="keep-parameters"/>
+    <!-- <keep-names>
+         &lt;!&ndash; protected/public的都保留名称 &ndash;&gt;
+         <class access="protected+">
+             <field access="protected+" />
+             <method access="protected+" />
+         </class>
+     </keep-names>-->
+
+    <!--keep-names 和 ignore-classes的区别是，
+    keep-names如果只是指定class，则该class不会纳入混淆、class下的method、field都会混淆。
+    ignore-classes是指定class包括method、field都不会纳入混淆
+    -->
+    <keep-names>
+        <class template="class cn.wlih.upms.controller.*"/>
+        <class template="class cn.wlih.upms.service.*"/>
+        <class template="class cn.wlih.app.controller.*"/>
+        <class template="class cn.wlih.app.service.*"/>
+        <class template="class cn.wlih.util.SshUtil"/>
+    </keep-names>
+
+    <ignore-classes>
+        <class template="class cn.wlih.ServerApplication"/>
+        <!-- 注意：spring的框架相关的文件需要排除，避免启动报错 -->
+        <class template="class *springframework*"/>
+        <class template="class cn.wlih.config.*"/>
+        <class template="class cn.wlih.core.config.*"/>
+        <class template="class cn.wlih.core.myAnnotate.*"/>
+        <class template="class cn.wlih.core.myError.*"/>
+        <class template="class cn.wlih.core.openApi.*"/>
+        <class template="class cn.wlih.core.sequence.*"/>
+        <class template="class cn.wlih.core.util.JsonUtil.*"/>
+        <class template="class cn.wlih.interceptor.*"/>
+        <class template="class cn.wlih.upms.config.*"/>
+        <class template="class cn.wlih.upms.dao.*"/>
+        <class template="class cn.wlih.app.dao.*"/>
+        <class template="class cn.wlih.app.model.*"/>
+    </ignore-classes>
+
+    <!-- 混淆的应用程序将过期且无法运行 -->
+    <expiry date="2024/08/01" string="EXPIRED!"/>
+</config>
