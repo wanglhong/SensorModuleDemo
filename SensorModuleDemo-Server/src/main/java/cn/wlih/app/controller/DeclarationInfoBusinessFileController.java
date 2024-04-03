@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@Tag(name = "海关清关信息管理")
+@Tag(name = "海关通关附件管理")
 @RequestMapping("/api/app/declarationInfoBusinessFile")
 public class DeclarationInfoBusinessFileController extends MyBaseController<DeclarationInfoBusinessFile, DeclarationInfoBusinessFileDto, DeclarationInfoBusinessFileVo> {
 
