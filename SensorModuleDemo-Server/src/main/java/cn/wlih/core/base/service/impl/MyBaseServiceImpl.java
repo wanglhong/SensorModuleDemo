@@ -10,6 +10,7 @@ import cn.wlih.core.myAnnotate.VariableComment;
 import cn.wlih.core.myEnum.DbBaseFieldType;
 import cn.wlih.core.base.model.modelDbEnum.IsDeleteEnum;
 import cn.wlih.core.myError.BizException;
+import cn.wlih.core.object.TokenData;
 import cn.wlih.core.sequence.wrapper.IdGeneratorWrapper;
 import cn.wlih.core.util.MyClazzUtil;
 import cn.wlih.core.util.MyModelUtil;
@@ -168,7 +169,7 @@ public abstract class MyBaseServiceImpl<M> extends ServiceImpl<MyBaseMapper<M>, 
      */
     private void buildBaseFieldsValue(M m, Boolean isAdd) {
         Date nowDate = new Date();
-        Long loginUserId = 1001L;
+        Long loginUserId = TokenData.takeFromRequest().getUserId();
         if (isAdd) {
             // 新增，需要设置 ID、创建时间、创建人ID、逻辑删除
             MyClazzUtil.setDbBaseFieldValue(m, DbBaseFieldType.ID, getNewId());
