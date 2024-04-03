@@ -17,6 +17,10 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         TokenData tokenData = new TokenData();
         tokenData.setUserId(1001L);
         tokenData.setLoginName("admin");
+        tokenData.setDeptId(2001L);
+        tokenData.setDeptName("管理总部");
+        tokenData.setOrganizationId(3001L);
+        tokenData.setOrganizationName("A公司");
         tokenData.setIsAdmin(true);
         TokenData.addToRequest(tokenData);
         return true;

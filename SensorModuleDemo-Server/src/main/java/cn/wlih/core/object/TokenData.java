@@ -39,6 +39,10 @@ public class TokenData {
      */
     private Long deptId;
     /**
+     * 用户所属组织ID
+     */
+    private Long organizationId;
+    /**
      * 用户所属岗位Id。多个岗位之间逗号分隔。仅当系统支持岗位时有值。
      */
     private String postIds;
@@ -67,6 +71,10 @@ public class TokenData {
      * 所在部门名。
      */
     private String deptName;
+    /**
+     * 所在组织名称
+     */
+    private String organizationName;
     /**
      * 设备类型。参考 AppDeviceType。
      */

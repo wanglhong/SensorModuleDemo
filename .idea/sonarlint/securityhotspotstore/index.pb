@@ -84,3 +84,7 @@ SSensorModuleDemo-Server/src/test/java/cn/wlih/core/util/dbUtil/DbTableUtilTest.
 NSensorModuleDemo-Server/src/main/java/cn/wlih/sensormodule/dto/GpsInfoDto.java,a\5\a58ccceb5a86bfb411a90c165af374be9662a0b3
 |
 LSensorModuleDemo-Server/src/main/java/cn/wlih/sensormodule/vo/GpsInfoVo.java,a\9\a92218db9e627f5f8b4f8180d2fe7d61d1aa68c9
+Ü
+VSensorModuleDemo-Server/src/main/java/cn/wlih/upms/service/SysOrganizationService.java,5\7\57e04686dff9e040f67e0a445a0a4372b02a4644
+è
+_SensorModuleDemo-Server/src/main/java/cn/wlih/upms/service/impl/SysOrganizationServiceImpl.java,4\a\4a9aa7d32dea0a469dba7266391087d159f73841

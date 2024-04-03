@@ -2,10 +2,13 @@ package cn.wlih.upms.controller;
 
 import cn.wlih.core.base.controller.MyBaseController;
 import cn.wlih.core.base.model.ResponseResult;
+import cn.wlih.core.object.TokenData;
 import cn.wlih.upms.dto.SysOrganizationDto;
 import cn.wlih.upms.model.SysOrganization;
 import cn.wlih.upms.service.SysOrganizationService;
 import cn.wlih.upms.vo.SysOrganizationVo;
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +30,20 @@ public class SysOrganizationController extends MyBaseController<SysOrganization,
     private SysOrganizationService sysOrganizationService;
 
     /**
-     * TODO 获取运输人选择树
+     * 获取运输人选择树
      */
+    @ApiOperationSupport(order = 6)
+    @Operation(summary = "获取运输人选择树")
     @GetMapping("/getUserTree")
     public ResponseResult<List<Map<String, Object>>> getUserTree() {
-        return ResponseResult.success(sysOrganizationService.getUserTree(Collections.singletonList(1001L)));
+        return ResponseResult.success(sysOrganizationService.getUserTree(Collections.singletonList(TokenData.takeFromRequest().getOrganizationId())));
     }
 
     /**
      * TODO 运输工具选择树
      */
+    @ApiOperationSupport(order = 7)
+    @Operation(summary = "获取运输人选择树")
     @GetMapping("/getEquipmentTree")
     public ResponseResult<List<Map<String, Object>>> getEquipmentTree() {
         return ResponseResult.success(sysOrganizationService.getEquipmentTree(Collections.singletonList(1001L)));

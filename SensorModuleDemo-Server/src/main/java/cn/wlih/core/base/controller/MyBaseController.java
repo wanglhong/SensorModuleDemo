@@ -85,6 +85,7 @@ public abstract class MyBaseController<M, MDTO, MVO> {
      * 获取基础数据对象JSON数据
      */
     @Deprecated
+    @ApiOperationSupport(order = 100)
     @Operation(summary = "获取对象的JSON描述接口", description = "方便用于传参")
     @GetMapping("/getModelJson")
     @ResponseBody
