@@ -1,2 +1,4 @@
 # git忽略日志记录文件
 /SysFile/**/*.log
+/SensorModuleDemo-Server/SysFile/**/*.log
+/SensorModuleDemo-Server/SysFile/**/*.log.gz

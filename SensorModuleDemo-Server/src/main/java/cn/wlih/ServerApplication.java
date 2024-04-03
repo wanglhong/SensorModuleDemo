@@ -3,6 +3,7 @@ package cn.wlih;
 import cn.wlih.core.util.LoggerUtil;
 import cn.wlih.util.JschUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
@@ -17,6 +18,7 @@ import cn.hutool.core.util.StrUtil;
  * @path SensorModuleDemo-cn.wlih-ServerApplication
  */
 @Slf4j
+@MapperScan({"cn.wlih.upms.dao", "cn.wlih.app.dao"})
 @SpringBootApplication
 public class ServerApplication {
 

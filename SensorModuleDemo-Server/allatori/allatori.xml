@@ -27,18 +27,18 @@
     ignore-classes是指定class包括method、field都不会纳入混淆
     -->
     <keep-names>
-        <class template="class cn.wlih.upms.controller.*"/>
-        <class template="class cn.wlih.upms.service.*"/>
-        <class template="class cn.wlih.app.controller.*"/>
-        <class template="class cn.wlih.app.service.*"/>
-        <class template="class cn.wlih.util.SshUtil"/>
     </keep-names>
 
     <ignore-classes>
         <class template="class cn.wlih.ServerApplication"/>
         <!-- 注意：spring的框架相关的文件需要排除，避免启动报错 -->
+        <class template="class cn.wlih.upms.controller.*"/>
+        <class template="class cn.wlih.upms.service.*"/>
+        <class template="class cn.wlih.app.controller.*"/>
+        <class template="class cn.wlih.app.service.*"/>
         <class template="class *springframework*"/>
         <class template="class cn.wlih.config.*"/>
+<!--        <class template="class cn.wlih.core.base.*"/>-->
         <class template="class cn.wlih.core.config.*"/>
         <class template="class cn.wlih.core.myAnnotate.*"/>
         <class template="class cn.wlih.core.myError.*"/>
