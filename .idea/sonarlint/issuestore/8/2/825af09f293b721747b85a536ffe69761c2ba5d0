@@ -1,8 +1,0 @@
-
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ªöÍ
-=
-java:S1165""Make this "errorCode" field final.(ø€èüÿÿÿÿ
-<
-java:S1165"!Make this "errorMsg" field final.(ÁìØ‹ûÿÿÿÿ
-d
-java:S3551F"IMake this method "synchronized" to match the parent class implementation.(ÈÒÄøÿÿÿÿ

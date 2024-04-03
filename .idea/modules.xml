@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/SensorModuleDemo.iml" filepath="$PROJECT_DIR$/.idea/SensorModuleDemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sensor_module_web.iml" filepath="$PROJECT_DIR$/sensor_module_web.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sensor_module_web_old.iml" filepath="$PROJECT_DIR$/sensor_module_web_old.iml" />
     </modules>
   </component>
 </project>

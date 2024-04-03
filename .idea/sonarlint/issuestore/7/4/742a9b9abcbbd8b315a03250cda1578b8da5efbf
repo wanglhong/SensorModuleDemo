@@ -1,23 +1,0 @@
-
-z
-java:S5993."9Change the visibility of this constructor to "protected".(¨¾•œûÿÿÿÿJ$0b894677-eabe-4bec-90ff-d2d80f53975a
-‰	java:S119"IRename this generic name to match the regular expression '^[A-Z][0-9]?$'.(ÕÕöııÿÿÿÿJ$548e947a-3793-4c28-b67b-e7fbce9da00c
-‰	java:S119"IRename this generic name to match the regular expression '^[A-Z][0-9]?$'.(ÕÕöııÿÿÿÿJ$db9cfb66-0ef7-4f26-86e6-fae861b71dc7
-„
-java:S6355F"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúšJ$02feeb55-4948-4045-bbbe-d0d8f9d649b1
-p
-java:S1133J"5Do not forget to remove this deprecated code someday.(˜åÂ'J$d5220635-0edf-48c7-a208-63d1a9a7e8a7
-c
-java:S1123J"(Add the missing @deprecated Javadoc tag.(˜åÂ'J$9b46321e-c070-496a-bb42-6c9afdded332
-n
-java:S1135V"2Complete the task associated to this TODO comment.(ÛÁJ$753817f2-51bd-4444-8077-c65409cf9508
-s
-java:S1135u"2Complete the task associated to this TODO comment.(ŒÈ€ÿÿÿÿÿJ$37e17fcd-b058-48ab-b148-d81080ac5c0b
-‹
-java:S3252{"OUse static access with "com.github.pagehelper.page.PageMethod" for "startPage".(ÔĞÓ˜J$ae1ecc13-2234-4d55-9347-26a1ef5772de
-|
-java:S1128";Remove this unused import 'com.github.pagehelper.PageInfo'.(‡Õ©šüÿÿÿÿJ$f79b1c40-1030-4f4f-b19e-cf6a640794c0
-l
-java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒJ$0436ab54-a779-4b67-9eb4-2a535e2303ff
-r
-java:S1068""1Remove this unused "modelDtoClass" private field.(Î²€øüÿÿÿÿJ$edb29be2-2734-4cc1-bff2-2ecad0d29d69

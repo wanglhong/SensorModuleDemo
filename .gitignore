@@ -2,3 +2,4 @@
 /SysFile/**/*.log
 /SensorModuleDemo-Server/SysFile/**/*.log
 /SensorModuleDemo-Server/SysFile/**/*.log.gz
+/.idea/**/**

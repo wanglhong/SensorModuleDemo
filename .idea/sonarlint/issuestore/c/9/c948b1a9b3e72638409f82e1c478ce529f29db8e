@@ -1,13 +1,0 @@
-
-`	java:S112)"FDefine and throw a dedicated exception instead of using a generic one.(ã‰ª²ÿÿÿÿÿ
-c
-java:S1192="MDefine a constant instead of duplicating this literal "fieldComment" 3 times.(÷°¬½
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ßÂßÏ
-O
-java:S1118":Add a private constructor to hide the implicit public one.(€Ñˆ
-m
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(¾ßåøÿÿÿÿ
-b
-java:S3252-"LUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isBlank".(–ÇÓ®
-e
-java:S3252J"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(­í§œ
