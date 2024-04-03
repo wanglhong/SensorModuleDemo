@@ -88,3 +88,5 @@ LSensorModuleDemo-Server/src/main/java/cn/wlih/sensormodule/vo/GpsInfoVo.java,a
 VSensorModuleDemo-Server/src/main/java/cn/wlih/upms/service/SysOrganizationService.java,5\7\57e04686dff9e040f67e0a445a0a4372b02a4644
 è
 _SensorModuleDemo-Server/src/main/java/cn/wlih/upms/service/impl/SysOrganizationServiceImpl.java,4\a\4a9aa7d32dea0a469dba7266391087d159f73841
+
+OSensorModuleDemo-Server/src/main/java/cn/wlih/app/model/TransportEquipment.java,f\4\f4f34d61b36d61cf80356793985254f8c5d2a490
