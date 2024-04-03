@@ -18,7 +18,7 @@ import cn.hutool.core.util.StrUtil;
  * @path SensorModuleDemo-cn.wlih-ServerApplication
  */
 @Slf4j
-@MapperScan({"cn.wlih.upms.dao", "cn.wlih.app.dao"})
+@MapperScan({"cn.wlih.upms.dao", "cn.wlih.app.dao", "cn.wlih.sensormodule.dao"})
 @SpringBootApplication
 public class ServerApplication {
 

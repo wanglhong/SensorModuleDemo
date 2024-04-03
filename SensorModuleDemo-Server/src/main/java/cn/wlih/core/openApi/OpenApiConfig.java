@@ -35,4 +35,13 @@ public class OpenApiConfig {
                 .packagesToScan(packagedToMatch).build();
     }
 
+    @Bean
+    public GroupedOpenApi sensormoduleApi(SwaggerProperties swaggerProperties) {
+        String[] paths = {"/api/sensormodule/**"};
+        String[] packagedToMatch = {swaggerProperties.getServiceBasePackage() + ".sensormodule.controller"};
+        return GroupedOpenApi.builder().group("物联网信息分组接口")
+                .pathsToMatch(paths)
+                .packagesToScan(packagedToMatch).build();
+    }
+
 }

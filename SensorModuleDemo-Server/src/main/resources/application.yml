@@ -58,8 +58,8 @@ pagehelper:
   params: count=countSql
 
 mybatis-plus:
-  mapper-locations: classpath:cn/wlih/upms/dao/mapper/*Mapper.xml,cn/wlih/app/dao/mapper/*Mapper.xml
-  type-aliases-package: cn.wlih.upms.model,cn.wlih.app.model
+  mapper-locations: classpath:cn/wlih/upms/dao/mapper/*Mapper.xml,cn/wlih/app/dao/mapper/*Mapper.xml,cn/wlih/sensormodule/dao/mapper/*Mapper.xml
+  type-aliases-package: cn.wlih.upms.model,cn.wlih.app.model,cn.wlih.sensormodule.model
   configuration:
     # 开启驼峰转下划线（默认为true）
     map-underscore-to-camel-case: true
