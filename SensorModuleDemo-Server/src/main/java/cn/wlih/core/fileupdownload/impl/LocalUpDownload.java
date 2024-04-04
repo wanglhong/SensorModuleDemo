@@ -10,6 +10,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * 存储本地文件的上传下载实现类
@@ -35,6 +40,29 @@ public class LocalUpDownload extends BaseUpDownload {
      */
     @Override
     public UpDownloadResult upload(Class<?> fileModelClass, MultipartFile multipartFile) {
-        return null;
+        UpDownloadResult upDownloadResult = new UpDownloadResult();
+        upDownloadResult.setFileKey(idGeneratorWrapper.nextStringId());
+        upDownloadResult.setFilePath(super.buildFilePath(fileModelClass));
+        String originalFileName = multipartFile.getOriginalFilename();
+        String fileExtension = null;
+        if (originalFileName != null && originalFileName.contains(".")) {
+            fileExtension = originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
+        }
+        String newFileName = upDownloadResult.getFileKey() + "." + fileExtension;
+        try {
+            // 构建目标路径
+            Path targetPath = Paths.get(System.getProperty("user.dir"), upDownloadResult.getFilePath());
+            // 确保目标路径存在，如果不存在则逐层创建
+            Files.createDirectories(targetPath);
+            // 将文件保存到目标路径下
+            multipartFile.transferTo(targetPath.resolve(newFileName).toFile());
+            upDownloadResult.setFilePath(upDownloadResult.getFilePath() + newFileName);
+        } catch (IOException e) {
+            upDownloadResult.setSuccess(false);
+            upDownloadResult.setMsg(e.getLocalizedMessage());
+            throw new RuntimeException(e);
+        }
+        return upDownloadResult;
     }
+
 }

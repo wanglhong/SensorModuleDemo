@@ -16,7 +16,7 @@ public class UpDownloadFactory {
     private final Map<UploadStoreTypeEnum, BaseUpDownload> upDownloaderMap = new EnumMap<>(UploadStoreTypeEnum.class);
 
     public static UploadFlagColumn getUploadFlagColumn(Class<?> modelDtoClass) {
-        Field[] fields = modelDtoClass.getFields();
+        Field[] fields = modelDtoClass.getDeclaredFields();
         UploadFlagColumn uploadFlagColumn = null;
         for (Field field : fields) {
             uploadFlagColumn = field.getAnnotation(UploadFlagColumn.class);

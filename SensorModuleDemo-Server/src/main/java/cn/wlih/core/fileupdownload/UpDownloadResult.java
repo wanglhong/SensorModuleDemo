@@ -5,7 +5,9 @@ import lombok.Data;
 @Data
 public class UpDownloadResult {
 
-    private Boolean Success;
+    private Boolean success = true;
+
+    private String msg = "SUCCESS";
 
     private String fileKey;
 

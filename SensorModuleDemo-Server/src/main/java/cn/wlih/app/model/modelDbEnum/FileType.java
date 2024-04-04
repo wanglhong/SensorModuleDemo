@@ -1,5 +1,6 @@
 package cn.wlih.app.model.modelDbEnum;
 
+import cn.hutool.core.util.StrUtil;
 import cn.wlih.core.myAnnotate.ClassComment;
 import cn.wlih.core.myAnnotate.VariableComment;
 import com.baomidou.mybatisplus.annotation.EnumValue;
@@ -31,12 +32,33 @@ public enum FileType {
     RAR("rar", "压缩文件"),
     Z7("7z", "压缩文件"),
     MP3("mp3", "音频文件"),
-    MP4("mp4", "视频文件");
+    MP4("mp4", "视频文件"),
+    NULL("", "未知文件");
 
     @EnumValue
     @JsonValue
     private final String suffix;
 
     private final String display;
+
+    public static FileType getFileTypeByFileName(String originalFilename) {
+        String fileSuffix = null;
+        if (originalFilename != null && originalFilename.contains(".")) {
+            fileSuffix = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
+        }
+        return getFileTypeBySuffix(fileSuffix);
+    }
+
+    public static FileType getFileTypeBySuffix(String suffix) {
+        if (StrUtil.isBlank(suffix)) {
+            return FileType.NULL;
+        }
+        for (FileType fileType : FileType.values()) {
+            if (fileType.getSuffix().equalsIgnoreCase(suffix)) {
+                return fileType;
+            }
+        }
+        return FileType.NULL; // 如果找不到匹配的文件类型，则返回未知文件类型
+    }
 
 }

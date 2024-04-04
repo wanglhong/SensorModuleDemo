@@ -154,16 +154,8 @@ z
 JSensorModuleDemo-Server/src/main/java/cn/wlih/app/dto/BusinessFileDto.java,9\a\9aeff39c05f7b7063807d20dc89dfb0d5edafb21
 Å
 QSensorModuleDemo-Server/src/main/java/cn/wlih/app/model/modelDbEnum/FileType.java,5\8\58f3f7ea0433591ee4617c4d16c5b38c5cf9f651
-Ö
-USensorModuleDemo-Server/src/main/java/cn/wlih/core/fileupdownload/FileUpDownload.java,8\4\8450a0b83dae8744737323990d79d256e6013290
-å
-\SensorModuleDemo-Server/src/main/java/cn/wlih/core/fileupdownload/FileUpDownloadFactory.java,f\e\feaf0fd17f7e821011b1c0c6474b8542c5f53464
 ä
 ZSensorModuleDemo-Server/src/main/java/cn/wlih/core/fileupdownload/UploadStoreTypeEnum.java,8\e\8eba554da18e459d1a5ab1acc526d72ed2e2ce47
-Ç
-RSensorModuleDemo-Server/src/main/java/cn/wlih/core/upload/UploadStoreTypeEnum.java,7\8\7897e892118e7ed43f905012be849b78d07c4468
-É
-SSensorModuleDemo-Server/src/main/java/cn/wlih/core/myAnnotate/UploadFlagColumn.java,8\f\8f786915d17c9a7c2d8f45206ca0bfdd838844ef
 á
 WSensorModuleDemo-Server/src/main/java/cn/wlih/core/fileupdownload/UploadFlagColumn.java,f\6\f695607f7fcf3701fe8fdf8240e21c122656ff3a
 ã
@@ -180,3 +172,9 @@ RSensorModuleDemo-Server/src/main/java/cn/wlih/app/model/modelDbEnum/AuditType.j
 SSensorModuleDemo-Server/src/main/java/cn/wlih/app/model/modelDbEnum/AuditState.java,f\f\ff981e3b4958d41d8901202488a1a0d20fbebbee
 à
 XSensorModuleDemo-Server/src/main/java/cn/wlih/app/controller/CustomsAuditController.java,7\9\79f978d3e0fe3e49d99af2feee0f27aa73158247
+é
+^SensorModuleDemo-Server/src/main/java/cn/wlih/core/fileupdownload/config/UpDownloadConfig.java,7\9\796dff3f8ac2dce1f04a427b6f693b7f790c2be6
+Ç
+RSensorModuleDemo-Server/src/main/java/cn/wlih/core/base/service/MyBaseService.java,6\d\6de6f1ad49f3e5d6dafc6d96faf8508b24872e8b
+g
+7SensorModuleDevFile/BusinessFile/1775905888377245696.ts,7\a\7a8fae96ae00b908cb353fbd7e987a33b7752ade
