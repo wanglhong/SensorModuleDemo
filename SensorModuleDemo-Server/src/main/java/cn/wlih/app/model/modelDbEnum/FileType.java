@@ -27,6 +27,8 @@ public enum FileType {
     PPT("ppt", "Ppt文件"),
     PPTX("pptx", "Ppt文件"),
     TXT("txt", "文本文件"),
+    LOG("log", "日志文件"),
+    TS("ts", "ts文件"),
     MD("md", "markdown文件"),
     ZIP("zip", "压缩文件"),
     RAR("rar", "压缩文件"),

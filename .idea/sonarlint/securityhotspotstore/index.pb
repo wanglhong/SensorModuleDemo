@@ -178,3 +178,5 @@ XSensorModuleDemo-Server/src/main/java/cn/wlih/app/controller/CustomsAuditContro
 RSensorModuleDemo-Server/src/main/java/cn/wlih/core/base/service/MyBaseService.java,6\d\6de6f1ad49f3e5d6dafc6d96faf8508b24872e8b
 g
 7SensorModuleDevFile/BusinessFile/1775905888377245696.ts,7\a\7a8fae96ae00b908cb353fbd7e987a33b7752ade
+Å
+QSensorModuleDemo-Server/src/main/java/cn/wlih/core/base/model/ResponseResult.java,4\1\41226db0161c88779222b346157a9c0db461c3ae

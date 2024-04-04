@@ -1,9 +1,17 @@
 package cn.wlih.core.base.model;
 
 import cn.wlih.core.myError.ExceptionEnum;
+import cn.wlih.core.util.ContextUtil;
+import com.alibaba.fastjson.JSON;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+@Slf4j
 @Data
 @Schema(title = "统一响应对象")
 public class ResponseResult<T> {
@@ -83,6 +91,38 @@ public class ResponseResult<T> {
         resp.code = exceptionEnum.getResultCode();
         resp.msg = exceptionEnum.getResultMsg();
         return resp;
+    }
+
+    public static void output(int httpStatus) throws IOException {
+        output(httpStatus, null);
+    }
+
+    public static <T> void output(ResponseResult<T> responseResult) throws IOException {
+        output(HttpServletResponse.SC_OK, responseResult);
+    }
+
+    /**
+     * 通过HttpServletResponse直接输出应该信息的工具方法。
+     *
+     * @param httpStatus     http状态码。
+     * @param responseResult 应答内容。
+     * @param <T>            数据对象类型。
+     * @throws IOException 异常错误。
+     */
+    public static <T> void output(int httpStatus, ResponseResult<T> responseResult) throws IOException {
+        if (httpStatus != HttpServletResponse.SC_OK) {
+            log.error(JSON.toJSONString(responseResult));
+        } else {
+            log.info(JSON.toJSONString(responseResult));
+        }
+        HttpServletResponse response = ContextUtil.getHttpResponse();
+        response.setContentType("application/json; charset=utf-8");
+        PrintWriter out = response.getWriter();
+        response.setStatus(httpStatus);
+        if (responseResult != null) {
+            out.print(JSON.toJSONString(responseResult));
+        }
+        out.flush();
     }
 
 }

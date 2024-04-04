@@ -23,7 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Slf4j
 @RestController
@@ -48,8 +52,6 @@ public class BusinessFileController extends MyBaseController<BusinessFile, Busin
 
     /**
      * 基础新增接口
-     *
-     * @param modelDto 实体
      */
     @ApiOperationSupport(order = 6)
     @Operation(summary = "文件上传接口")
@@ -75,6 +77,26 @@ public class BusinessFileController extends MyBaseController<BusinessFile, Busin
         businessFile.setFileSize(uploadFile.getSize());
         businessFile = businessFileService.add(businessFile);
         return ResponseResult.success(MyModelUtil.copyTo(businessFile, BusinessFileVo.class));
+    }
+
+    @ApiOperationSupport(order = 7)
+    @Operation(summary = "文件下载接口")
+    @PostMapping("/download")
+    public void download(
+            @Parameter(description = "文件ID") Long id,
+            HttpServletResponse response) throws IOException {
+        BusinessFile businessFile = businessFileService.getById(id);
+        if (businessFile == null) {
+            ResponseResult.output(HttpServletResponse.SC_FORBIDDEN);
+            return;
+        }
+        UploadFlagColumn uploadFlagColumn = UpDownloadFactory.getUploadFlagColumn(BusinessFile.class);
+        BaseUpDownload baseUpDownload = upDownloadFactory.get(uploadFlagColumn.storeType());
+        try {
+            baseUpDownload.download(businessFile.getFileName(), businessFile.getFileKey(), businessFile.getFileType().getSuffix(), response, BusinessFile.class);
+        } catch (Exception e) {
+            ResponseResult.output(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ResponseResult.error(e.getMessage()));
+        }
     }
 
 }

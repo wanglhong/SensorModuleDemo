@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -42,7 +43,6 @@ public class LocalUpDownload extends BaseUpDownload {
     public UpDownloadResult upload(Class<?> fileModelClass, MultipartFile multipartFile) {
         UpDownloadResult upDownloadResult = new UpDownloadResult();
         upDownloadResult.setFileKey(idGeneratorWrapper.nextStringId());
-        upDownloadResult.setFilePath(super.buildFilePath(fileModelClass));
         String originalFileName = multipartFile.getOriginalFilename();
         String fileExtension = null;
         if (originalFileName != null && originalFileName.contains(".")) {
@@ -50,12 +50,8 @@ public class LocalUpDownload extends BaseUpDownload {
         }
         String newFileName = upDownloadResult.getFileKey() + "." + fileExtension;
         try {
-            // 构建目标路径
-            Path targetPath = Paths.get(System.getProperty("user.dir"), upDownloadResult.getFilePath());
-            // 确保目标路径存在，如果不存在则逐层创建
-            Files.createDirectories(targetPath);
             // 将文件保存到目标路径下
-            multipartFile.transferTo(targetPath.resolve(newFileName).toFile());
+            multipartFile.transferTo(Paths.get(super.getSysPath(), super.buildFilePath(fileModelClass)).resolve(newFileName).toFile());
             upDownloadResult.setFilePath(upDownloadResult.getFilePath() + newFileName);
         } catch (IOException e) {
             upDownloadResult.setSuccess(false);
@@ -65,4 +61,17 @@ public class LocalUpDownload extends BaseUpDownload {
         return upDownloadResult;
     }
 
+    @Override
+    public void download(String fileName, String fileKey, String suffix, HttpServletResponse response, Class<?> fileModelClass) throws IOException {
+        Path path = Paths.get(super.getSysPath(), super.buildFilePath(fileModelClass)).resolve(fileKey + "." + suffix);
+        if (!Files.exists(path)) {
+            throw new IOException("文件不存在！");
+        }
+        // 设置响应头
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+        // 读取文件内容并写入到响应流中
+        Files.copy(path, response.getOutputStream());
+        response.flushBuffer();
+    }
 }
