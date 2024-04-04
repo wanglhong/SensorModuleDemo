@@ -21,7 +21,7 @@ import java.util.Date;
 public class TransportInfo extends BaseModel {
 
     @VariableComment("运输名称")
-    private String transportInfoNrame;
+    private String transportInfoName;
 
     @VariableComment("运输人ID")
     private Long userId;

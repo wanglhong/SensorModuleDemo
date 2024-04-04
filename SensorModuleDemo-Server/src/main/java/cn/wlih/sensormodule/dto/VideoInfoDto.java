@@ -1,6 +1,6 @@
-package cn.wlih.sensormodule.vo;
+package cn.wlih.sensormodule.dto;
 
-import cn.wlih.core.base.vo.BaseModelVo;
+import cn.wlih.core.base.dto.BaseModelDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @Schema(title = "视频信息表")
 @EqualsAndHashCode(callSuper = true)
-public class VideoInfoVo extends BaseModelVo {
+public class VideoInfoDto extends BaseModelDto {
 
     @Schema(title = "运输信息ID")
     Long transportInfoId;

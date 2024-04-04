@@ -14,7 +14,7 @@ import java.util.Date;
 public class TransportInfoDto extends BaseModelDto {
 
     @Schema(title = "运输名称")
-    private String transportInfoNrame;
+    private String transportInfoName;
 
     @Schema(title = "运输人ID")
     private Long userId;

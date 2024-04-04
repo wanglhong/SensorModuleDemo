@@ -16,7 +16,7 @@ import java.util.Date;
 public class TransportInfoVo extends BaseModelVo {
 
     @Schema(title = "运输名称")
-    private String transportInfoNrame;
+    private String transportInfoName;
 
     @Schema(title = "运输人ID")
     private Long userId;
