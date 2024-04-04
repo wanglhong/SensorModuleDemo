@@ -32,10 +32,19 @@ public class TransportInfoTurnoverBoxGoodsVo extends BaseModelVo {
     @Schema(title = "备注")
     private String remark;
 
+    @Schema(title = "运输信息")
+    private TransportInfoVo transportInfo;
+
+    @Schema(title = "周转箱")
+    private TurnoverBoxVo turnoverBox;
+
+    @Schema(title = "货物")
+    private GoodsVo goods;
+
     @Schema(title = "货物装箱操作员信息")
-    private SysUserVo goodsToBoxUser = new SysUserVo();
+    private SysUserVo goodsToBoxUser;
 
     @Schema(title = "周转箱装车操作员信息")
-    private SysUserVo boxToTransportEquipmentUser = new SysUserVo();
+    private SysUserVo boxToTransportEquipmentUser;
 
 }

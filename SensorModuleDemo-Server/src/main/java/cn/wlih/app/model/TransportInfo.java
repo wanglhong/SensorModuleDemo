@@ -3,7 +3,11 @@ package cn.wlih.app.model;
 import cn.wlih.app.model.modelDbEnum.TransportState;
 import cn.wlih.core.base.model.BaseModel;
 import cn.wlih.core.myAnnotate.ClassComment;
+import cn.wlih.core.myAnnotate.RelationOneToOne;
 import cn.wlih.core.myAnnotate.VariableComment;
+import cn.wlih.upms.model.SysOrganization;
+import cn.wlih.upms.model.SysUser;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,6 +19,9 @@ import java.util.Date;
 @ClassComment("运输信息表")
 @EqualsAndHashCode(callSuper = true)
 public class TransportInfo extends BaseModel {
+
+    @VariableComment("运输名称")
+    private String transportInfoNrame;
 
     @VariableComment("运输人ID")
     private Long userId;
@@ -51,5 +58,45 @@ public class TransportInfo extends BaseModel {
 
     @VariableComment("备注")
     private String remark;
+
+    @VariableComment("运输人信息")
+    @TableField(exist = false)
+    @RelationOneToOne(
+            masterIdField = "userId",
+            slaveIdField = "id",
+            slaveModelClass = SysUser.class,
+            slaveServiceName = "sysUserService"
+    )
+    private SysUser transportUser;
+
+    @VariableComment("运输工具信息")
+    @TableField(exist = false)
+    @RelationOneToOne(
+            masterIdField = "transportEquipmentId",
+            slaveIdField = "id",
+            slaveModelClass = TransportEquipment.class,
+            slaveServiceName = "transportEquipmentService"
+    )
+    private TransportEquipment transportEquipment;
+
+    @VariableComment("发货公司信息")
+    @TableField(exist = false)
+    @RelationOneToOne(
+            masterIdField = "sendOrganizationId",
+            slaveIdField = "id",
+            slaveModelClass = SysOrganization.class,
+            slaveServiceName = "sysOrganizationService"
+    )
+    private SysOrganization sendOrganization;
+
+    @VariableComment("收货公司信息")
+    @TableField(exist = false)
+    @RelationOneToOne(
+            masterIdField = "receiveOrganizationId",
+            slaveIdField = "id",
+            slaveModelClass = SysOrganization.class,
+            slaveServiceName = "sysOrganizationService"
+    )
+    private SysOrganization receiveOrganization;
 
 }

@@ -37,6 +37,37 @@ public class TransportInfoTurnoverBoxGoods extends BaseModel {
     @VariableComment("备注")
     private String remark;
 
+    @VariableComment("运输信息")
+    @TableField(exist = false)
+    @RelationOneToOne(
+            masterIdField = "transportInfoId",
+            slaveIdField = "id",
+            slaveModelClass = TransportInfo.class,
+            slaveServiceName = "transportInfoService"
+    )
+    private TransportInfo transportInfo;
+
+    @VariableComment("周转箱")
+    @TableField(exist = false)
+    @RelationOneToOne(
+            masterIdField = "turnoverBoxId",
+            slaveIdField = "id",
+            slaveModelClass = TurnoverBox.class,
+            slaveServiceName = "turnoverBoxService"
+    )
+    private TurnoverBox turnoverBox;
+
+    @VariableComment("货物信息")
+    @TableField(exist = false)
+    @RelationOneToOne(
+            masterIdField = "goodsId",
+            slaveIdField = "id",
+            slaveModelClass = Goods.class,
+            slaveServiceName = "goodsService"
+    )
+    private Goods goods;
+
+    @VariableComment("货物装箱操作员信息")
     @TableField(exist = false)
     @RelationOneToOne(
             masterIdField = "goodsToBoxUserId",
@@ -44,9 +75,9 @@ public class TransportInfoTurnoverBoxGoods extends BaseModel {
             slaveModelClass = SysUser.class,
             slaveServiceName = "sysUserService"
     )
-    @VariableComment("货物装箱操作员信息")
     private SysUser goodsToBoxUser;
 
+    @VariableComment("周转箱装车操作员信息")
     @TableField(exist = false)
     @RelationOneToOne(
             masterIdField = "boxToTransportEquipmentUserId",
@@ -54,7 +85,6 @@ public class TransportInfoTurnoverBoxGoods extends BaseModel {
             slaveModelClass = SysUser.class,
             slaveServiceName = "sysUserService"
     )
-    @VariableComment("周转箱装车操作员信息")
     private SysUser boxToTransportEquipmentUser;
 
 }

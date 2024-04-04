@@ -13,6 +13,9 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 public class TransportInfoDto extends BaseModelDto {
 
+    @Schema(title = "运输名称")
+    private String transportInfoNrame;
+
     @Schema(title = "运输人ID")
     private Long userId;
 

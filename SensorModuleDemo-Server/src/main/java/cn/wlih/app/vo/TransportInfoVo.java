@@ -2,6 +2,8 @@ package cn.wlih.app.vo;
 
 import cn.wlih.app.model.modelDbEnum.TransportState;
 import cn.wlih.core.base.vo.BaseModelVo;
+import cn.wlih.upms.vo.SysOrganizationVo;
+import cn.wlih.upms.vo.SysUserVo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,6 +14,9 @@ import java.util.Date;
 @Schema(title = "运输信息表")
 @EqualsAndHashCode(callSuper = true)
 public class TransportInfoVo extends BaseModelVo {
+
+    @Schema(title = "运输名称")
+    private String transportInfoNrame;
 
     @Schema(title = "运输人ID")
     private Long userId;
@@ -48,5 +53,17 @@ public class TransportInfoVo extends BaseModelVo {
 
     @Schema(title = "备注")
     private String remark;
+
+    @Schema(title = "运输人信息")
+    private SysUserVo transportUser;
+
+    @Schema(title = "运输工具信息")
+    private TransportEquipmentVo transportEquipment;
+
+    @Schema(title = "发货公司信息")
+    private SysOrganizationVo sendOrganization;
+
+    @Schema(title = "收货公司信息")
+    private SysOrganizationVo receiveOrganization;
 
 }

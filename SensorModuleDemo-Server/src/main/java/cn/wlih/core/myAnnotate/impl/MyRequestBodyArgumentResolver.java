@@ -51,7 +51,6 @@ public class MyRequestBodyArgumentResolver implements HandlerMethodArgumentResol
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
         // 支持带@MultiRequestBody注解的参数
-        Annotation[] parameterAnnotations = parameter.getParameterAnnotations();
         return parameter.hasParameterAnnotation(MyRequestBody.class);
     }
 
