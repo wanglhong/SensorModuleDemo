@@ -5,6 +5,10 @@ import cn.wlih.app.model.TransportInfoTurnoverBoxGoods;
 import cn.wlih.app.service.TransportInfoTurnoverBoxGoodsService;
 import cn.wlih.app.vo.TransportInfoTurnoverBoxGoodsVo;
 import cn.wlih.core.base.controller.MyBaseController;
+import cn.wlih.core.base.model.ResponseResult;
+import cn.wlih.core.myAnnotate.MyRequestBody;
+import cn.wlih.core.object.TokenData;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,4 +24,34 @@ public class TransportInfoTurnoverBoxGoodsController extends MyBaseController<Tr
     @Autowired
     private TransportInfoTurnoverBoxGoodsService transportInfoTurnoverBoxGoodsService;
 
+    /**
+     * 基础新增接口
+     *
+     * @param modelDto 实体
+     */
+    @Override
+    public ResponseResult<TransportInfoTurnoverBoxGoodsVo> add(TransportInfoTurnoverBoxGoodsDto modelDto) {
+        modelDto.setGoodsToBoxUserId(TokenData.takeFromRequest().getUserId());
+        return super.add(modelDto);
+    }
+
+    /**
+     * 基础修改接口
+     *
+     * @param modelDto
+     */
+    @Override
+    public ResponseResult<Void> updateById(@Parameter(description = "修改的对象信息", required = true) @MyRequestBody TransportInfoTurnoverBoxGoodsDto modelDto) {
+        if (modelDto.getId() == null) {
+            return ResponseResult.error("ID不能为空");
+        }
+        TransportInfoTurnoverBoxGoods originModel = transportInfoTurnoverBoxGoodsService.getById(modelDto.getId());
+        if (originModel == null) {
+            return ResponseResult.error("数据不存在！");
+        }
+        if (originModel.getBoxToTransportEquipmentUserId() == null) {
+            modelDto.setBoxToTransportEquipmentUserId(TokenData.takeFromRequest().getUserId());
+        }
+        return super.updateById(modelDto);
+    }
 }

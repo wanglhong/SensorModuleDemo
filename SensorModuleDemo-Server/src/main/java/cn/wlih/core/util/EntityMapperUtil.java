@@ -7,6 +7,9 @@ import java.util.List;
 public class EntityMapperUtil {
 
     public static <T, U> U convert(T source, Class<U> targetClass) throws InstantiationException, IllegalAccessException {
+        if (source == null) {
+            return null;
+        }
         U target = targetClass.newInstance();
         List<Field> sourceFields = MyClazzUtil.getAllFields(source.getClass());
         List<Field> targetFields = MyClazzUtil.getAllFields(targetClass);
