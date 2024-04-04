@@ -14,6 +14,7 @@ import cn.wlih.core.object.TokenData;
 import cn.wlih.core.sequence.wrapper.IdGeneratorWrapper;
 import cn.wlih.core.util.MyClazzUtil;
 import cn.wlih.core.util.MyModelUtil;
+import cn.wlih.core.util.NameFormatConversionUtil;
 import cn.wlih.core.util.dbUtil.DbTableUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -148,7 +149,8 @@ public abstract class MyBaseServiceImpl<M> extends ServiceImpl<MyBaseMapper<M>, 
                     }
                     String slaveServiceName = relationOneToOne.slaveServiceName();
                     MyBaseService slaveService = ApplicationContextHolder.getBean(slaveServiceName);
-                    Object one = slaveService.getOne((QueryWrapper) new QueryWrapper().eq(slaveIdField, masterIdField));
+                    String slaveIdDbField = NameFormatConversionUtil.convertCamelToSnake(slaveIdField);
+                    Object one = slaveService.getOne((QueryWrapper) new QueryWrapper().eq(slaveIdDbField, masterIdFieldValue));
                     MyClazzUtil.setFieldValue(m, field, one);
                 }
             }

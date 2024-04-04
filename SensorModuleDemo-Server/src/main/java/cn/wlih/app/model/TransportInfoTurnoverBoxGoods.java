@@ -40,7 +40,7 @@ public class TransportInfoTurnoverBoxGoods extends BaseModel {
     @TableField(exist = false)
     @RelationOneToOne(
             masterIdField = "goodsToBoxUserId",
-            slaveIdField = "goodsToBoxUserId",
+            slaveIdField = "id",
             slaveModelClass = SysUser.class,
             slaveServiceName = "sysUserService"
     )
@@ -49,8 +49,8 @@ public class TransportInfoTurnoverBoxGoods extends BaseModel {
 
     @TableField(exist = false)
     @RelationOneToOne(
-            masterIdField = "goodsToBoxUserId",
-            slaveIdField = "goodsToBoxUserId",
+            masterIdField = "boxToTransportEquipmentUserId",
+            slaveIdField = "id",
             slaveModelClass = SysUser.class,
             slaveServiceName = "sysUserService"
     )
