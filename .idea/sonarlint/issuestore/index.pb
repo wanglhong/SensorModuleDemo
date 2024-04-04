@@ -112,8 +112,6 @@ ISensorModuleDemo-Server/src/main/java/cn/wlih/app/vo/TransportInfoVo.java,3\9\
 YSensorModuleDemo-Server/src/main/java/cn/wlih/app/vo/TransportInfoTurnoverBoxGoodsVo.java,1\2\12358382c675d50d12b179eed815f5d57b679373
 {
 KSensorModuleDemo-Server/src/main/java/cn/wlih/app/dto/TransportInfoDto.java,0\b\0b656ef555f6ba3a07f35395b38c56b0be56312d
-
-OSensorModuleDemo-Server/src/main/java/cn/wlih/sensormodule/dto/VideoInfoVo.java,2\5\25e13d24b67713ac484e216dad92082ff305324c
 ƒ
 SSensorModuleDemo-Server/src/main/java/cn/wlih/sensormodule/dao/VideoInfoMapper.java,c\7\c7339aeabee77c3454caeb749385cf0c76ab9dec
 ‰

@@ -2,7 +2,10 @@ package cn.wlih.app.model;
 
 import cn.wlih.core.base.model.BaseModel;
 import cn.wlih.core.myAnnotate.ClassComment;
+import cn.wlih.core.myAnnotate.RelationOneToOne;
 import cn.wlih.core.myAnnotate.VariableComment;
+import cn.wlih.upms.model.SysOrganization;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,8 +31,8 @@ public class CustomsClearanceInfo extends BaseModel {
     @VariableComment("清关单号")
     private String customsClearanceNumber;
 
-    @VariableComment("审批机构ID")
-    private Long organizationId;
+    @VariableComment("检验检疫机构ID")
+    private Long inspectionOrganizationId;
 
     @VariableComment("检验检疫结果")
     private String inspectionResult;
@@ -42,5 +45,35 @@ public class CustomsClearanceInfo extends BaseModel {
 
     @VariableComment("备注")
     private String remark;
+
+    @VariableComment("运输信息")
+    @TableField(exist = false)
+    @RelationOneToOne(
+            masterIdField = "transportInfoId",
+            slaveIdField = "id",
+            slaveModelClass = TransportInfo.class,
+            slaveServiceName = "transportInfoService"
+    )
+    private TransportInfo transportInfo;
+
+    @VariableComment("报关信息")
+    @TableField(exist = false)
+    @RelationOneToOne(
+            masterIdField = "customsDeclarationInfoId",
+            slaveIdField = "id",
+            slaveModelClass = CustomsDeclarationInfo.class,
+            slaveServiceName = "customsDeclarationInfoService"
+    )
+    private CustomsDeclarationInfo customsDeclarationInfo;
+
+    @VariableComment("检验检疫机构信息")
+    @TableField(exist = false)
+    @RelationOneToOne(
+            masterIdField = "inspectionOrganizationId",
+            slaveIdField = "id",
+            slaveModelClass = SysOrganization.class,
+            slaveServiceName = "sysOrganizationService"
+    )
+    private SysOrganization inspectionOrganization;
 
 }

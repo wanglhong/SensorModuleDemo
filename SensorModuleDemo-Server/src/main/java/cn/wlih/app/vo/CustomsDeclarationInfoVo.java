@@ -34,4 +34,7 @@ public class CustomsDeclarationInfoVo extends BaseModelVo {
     @Schema(title = "实际过境日期")
     private Date actualTransitDate;
 
+    @Schema(title = "运输信息")
+    private TransportInfoVo transportInfo;
+
 }

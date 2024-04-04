@@ -25,8 +25,8 @@ public class CustomsClearanceInfoDto extends BaseModelDto {
     @Schema(title = "清关单号")
     private String customsClearanceNumber;
 
-    @Schema(title = "审批机构ID")
-    private Long organizationId;
+    @Schema(title = "检验检疫机构ID")
+    private Long inspectionOrganizationId;
 
     @Schema(title = "检验检疫结果")
     private String inspectionResult;

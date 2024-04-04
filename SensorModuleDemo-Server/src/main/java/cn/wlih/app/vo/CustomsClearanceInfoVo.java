@@ -1,6 +1,7 @@
 package cn.wlih.app.vo;
 
 import cn.wlih.core.base.vo.BaseModelVo;
+import cn.wlih.upms.vo.SysOrganizationVo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,8 +26,8 @@ public class CustomsClearanceInfoVo extends BaseModelVo {
     @Schema(title = "清关单号")
     private String customsClearanceNumber;
 
-    @Schema(title = "审批机构ID")
-    private Long organizationId;
+    @Schema(title = "检验检疫机构ID")
+    private Long inspectionOrganizationId;
 
     @Schema(title = "检验检疫结果")
     private String inspectionResult;
@@ -39,5 +40,14 @@ public class CustomsClearanceInfoVo extends BaseModelVo {
 
     @Schema(title = "备注")
     private String remark;
+
+    @Schema(title = "运输信息")
+    private TransportInfoVo transportInfo;
+
+    @Schema(title = "报关信息")
+    private CustomsDeclarationInfoVo customsDeclarationInfo;
+
+    @Schema(title = "检验检疫机构信息")
+    private SysOrganizationVo inspectionOrganization;
 
 }

@@ -2,7 +2,9 @@ package cn.wlih.app.model;
 
 import cn.wlih.core.base.model.BaseModel;
 import cn.wlih.core.myAnnotate.ClassComment;
+import cn.wlih.core.myAnnotate.RelationOneToOne;
 import cn.wlih.core.myAnnotate.VariableComment;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -36,5 +38,16 @@ public class CustomsDeclarationInfo extends BaseModel {
 
     @VariableComment("实际过境日期")
     private Date actualTransitDate;
+
+    @VariableComment("运输信息")
+    @TableField(exist = false)
+    @RelationOneToOne(
+            masterIdField = "transportInfoId",
+            slaveIdField = "id",
+            slaveModelClass = TransportInfo.class,
+            slaveServiceName = "transportInfoService"
+    )
+    private TransportInfo transportInfo;
+
 
 }
