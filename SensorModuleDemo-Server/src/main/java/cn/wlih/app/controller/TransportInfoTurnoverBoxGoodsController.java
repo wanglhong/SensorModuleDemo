@@ -30,7 +30,8 @@ public class TransportInfoTurnoverBoxGoodsController extends MyBaseController<Tr
      * @param modelDto 实体
      */
     @Override
-    public ResponseResult<TransportInfoTurnoverBoxGoodsVo> add(TransportInfoTurnoverBoxGoodsDto modelDto) {
+    public ResponseResult<TransportInfoTurnoverBoxGoodsVo> add(
+            @Parameter(description = "新增的对象信息") @MyRequestBody TransportInfoTurnoverBoxGoodsDto modelDto) {
         modelDto.setGoodsToBoxUserId(TokenData.takeFromRequest().getUserId());
         return super.add(modelDto);
     }
@@ -41,7 +42,8 @@ public class TransportInfoTurnoverBoxGoodsController extends MyBaseController<Tr
      * @param modelDto
      */
     @Override
-    public ResponseResult<Void> updateById(@Parameter(description = "修改的对象信息", required = true) @MyRequestBody TransportInfoTurnoverBoxGoodsDto modelDto) {
+    public ResponseResult<Void> updateById(
+            @Parameter(description = "修改的对象信息", required = true) @MyRequestBody TransportInfoTurnoverBoxGoodsDto modelDto) {
         if (modelDto.getId() == null) {
             return ResponseResult.error("ID不能为空");
         }

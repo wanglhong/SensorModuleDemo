@@ -90,3 +90,11 @@ VSensorModuleDemo-Server/src/main/java/cn/wlih/upms/service/SysOrganizationServi
 _SensorModuleDemo-Server/src/main/java/cn/wlih/upms/service/impl/SysOrganizationServiceImpl.java,4\a\4a9aa7d32dea0a469dba7266391087d159f73841
 
 OSensorModuleDemo-Server/src/main/java/cn/wlih/app/model/TransportEquipment.java,f\4\f4f34d61b36d61cf80356793985254f8c5d2a490
+•
+eSensorModuleDemo-Server/src/main/java/cn/wlih/core/myAnnotate/impl/MyRequestBodyArgumentResolver.java,9\b\9b2e72e06bf4f0e321378f11ab0c9d89c4576921
+™
+iSensorModuleDemo-Server/src/main/java/cn/wlih/app/controller/TransportInfoTurnoverBoxGoodsController.java,1\6\1622ecc31611cec4f0b17502fd75f937604a3655
+y
+ISensorModuleDemo-Server/src/main/java/cn/wlih/upms/config/CorsConfig.java,9\9\99178b87aa963d887dedf26a2717890413d9a7fb
+x
+HSensorModuleDemo-Server/src/main/java/cn/wlih/core/config/WebConfig.java,3\2\32814bea1352596e6768ed343739a917b5eb986b
