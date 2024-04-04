@@ -16,6 +16,9 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 public class CustomsDeclarationInfo extends BaseModel {
 
+    @VariableComment("报关信息名称")
+    private String customsDeclarationName;
+
     @VariableComment("运输信息ID")
     private Long transportInfoId;
 

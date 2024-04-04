@@ -12,6 +12,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class CustomsAuditVo extends BaseModelVo {
 
+    @Schema(title = "审批名称")
+    private String auditName;
+
     @Schema(title = "审批提交组织ID")
     private Long organizationIdOfSubmit;
 

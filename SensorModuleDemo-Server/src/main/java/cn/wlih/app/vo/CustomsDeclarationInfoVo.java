@@ -13,6 +13,9 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 public class CustomsDeclarationInfoVo extends BaseModelVo {
 
+    @Schema(title = "报关信息名称")
+    private String customsDeclarationName;
+
     @Schema(title = "运输信息ID")
     private Long transportInfoId;
 

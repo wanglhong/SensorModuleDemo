@@ -13,6 +13,9 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 public class CustomsClearanceInfoDto extends BaseModelDto {
 
+    @Schema(title = "清关信息名称")
+    private String customsClearanceName;
+
     @Schema(title = "运输信息ID")
     private Long transportInfoId;
 

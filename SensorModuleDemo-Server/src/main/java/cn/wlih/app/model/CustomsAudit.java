@@ -15,6 +15,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class CustomsAudit extends BaseModel {
 
+    @VariableComment("审批名称")
+    private String auditName;
+
     @VariableComment("审批提交组织ID")
     private Long organizationIdOfSubmit;
 
