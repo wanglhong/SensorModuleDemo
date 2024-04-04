@@ -36,12 +36,6 @@ public class CustomsAuditDto extends BaseModelDto {
     @Schema(title = "备注")
     private String remark;
 
-    @Schema(title = "审批组织ID")
-    private Long organizationIdOfAudit;
-
-    @Schema(title = "审批部门ID")
-    private Long deptIdOfAudit;
-
     @Schema(title = "审批人ID")
     private Long userIdOfAudit;
 

@@ -1,4 +1,4 @@
-package cn.wlih.core.upload;
+package cn.wlih.core.fileupdownload;
 
 import cn.wlih.core.myAnnotate.ClassComment;
 import cn.wlih.core.myAnnotate.VariableComment;

@@ -18,12 +18,6 @@ public class CustomsAuditVo extends BaseModelVo {
     @Schema(title = "审批名称")
     private String auditName;
 
-    @Schema(title = "审批提交组织ID")
-    private Long organizationIdOfSubmit;
-
-    @Schema(title = "审批提交部门ID")
-    private Long deptIdOfSubmit;
-
     @Schema(title = "审批提交人ID")
     private Long userIdOfSubmit;
 
@@ -38,12 +32,6 @@ public class CustomsAuditVo extends BaseModelVo {
 
     @Schema(title = "备注")
     private String remark;
-
-    @Schema(title = "审批组织ID")
-    private Long organizationIdOfAudit;
-
-    @Schema(title = "审批部门ID")
-    private Long deptIdOfAudit;
 
     @Schema(title = "审批人ID")
     private Long userIdOfAudit;
@@ -62,12 +50,6 @@ public class CustomsAuditVo extends BaseModelVo {
 
     @Schema(title = "清关信息")
     private CustomsClearanceInfoVo customsClearanceInfo;
-
-    @Schema(title = "审批组织信息")
-    private SysOrganizationVo organizationOfAudit;
-
-    @Schema(title = "审批部门信息")
-    private SysDeptVo deptOfAudit;
 
     @Schema(title = "审批人信息")
     private SysUserVo userOfAudit;

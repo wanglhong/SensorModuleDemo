@@ -47,12 +47,6 @@ public class CustomsAudit extends BaseModel {
     @VariableComment("备注")
     private String remark;
 
-    @VariableComment("审批组织ID")
-    private Long organizationIdOfAudit;
-
-    @VariableComment("审批部门ID")
-    private Long deptIdOfAudit;
-
     @VariableComment("审批人ID")
     private Long userIdOfAudit;
 
@@ -105,26 +99,6 @@ public class CustomsAudit extends BaseModel {
             slaveServiceName = "customsClearanceInfoService"
     )
     private CustomsClearanceInfo customsClearanceInfo;
-
-    @VariableComment("审批组织信息")
-    @TableField(exist = false)
-    @RelationOneToOne(
-            masterIdField = "organizationIdOfAudit",
-            slaveIdField = "id",
-            slaveModelClass = SysOrganization.class,
-            slaveServiceName = "sysOrganizationService"
-    )
-    private SysOrganization organizationOfAudit;
-
-    @VariableComment("审批部门信息")
-    @TableField(exist = false)
-    @RelationOneToOne(
-            masterIdField = "deptIdOfAudit",
-            slaveIdField = "id",
-            slaveModelClass = SysDept.class,
-            slaveServiceName = "sysDeptService"
-    )
-    private SysDept deptOfAudit;
 
     @VariableComment("审批人信息")
     @TableField(exist = false)

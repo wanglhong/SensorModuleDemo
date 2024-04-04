@@ -1,6 +1,6 @@
-package cn.wlih.core.myAnnotate;
+package cn.wlih.core.fileupdownload;
 
-import cn.wlih.core.upload.UploadStoreTypeEnum;
+import cn.wlih.core.fileupdownload.UploadStoreTypeEnum;
 
 import java.lang.annotation.*;
 
