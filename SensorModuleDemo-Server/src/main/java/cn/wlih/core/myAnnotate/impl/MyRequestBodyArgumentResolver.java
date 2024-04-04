@@ -16,6 +16,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
@@ -50,6 +51,7 @@ public class MyRequestBodyArgumentResolver implements HandlerMethodArgumentResol
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
         // 支持带@MultiRequestBody注解的参数
+        Annotation[] parameterAnnotations = parameter.getParameterAnnotations();
         return parameter.hasParameterAnnotation(MyRequestBody.class);
     }
 

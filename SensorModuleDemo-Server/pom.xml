@@ -18,6 +18,7 @@
         <proguard.maven.plugin.version>2.6.0</proguard.maven.plugin.version>
         <proguard.version>7.4.1</proguard.version>
         <proguard.version.core>9.1.1</proguard.version.core>
+        <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -65,6 +66,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- api参数验证 -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
         </dependency>
 
         <!-- jwt依赖 -->
