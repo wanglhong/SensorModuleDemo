@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Schema(title = "海关清关信息表")
@@ -49,5 +50,8 @@ public class CustomsClearanceInfoVo extends BaseModelVo {
 
     @Schema(title = "检验检疫机构信息")
     private SysOrganizationVo inspectionOrganization;
+
+    @Schema(title = "清关附件信息集合")
+    private List<BusinessFileVo> businessFileList;
 
 }

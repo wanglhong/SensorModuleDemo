@@ -96,8 +96,8 @@ common-swagger:
   basePackage: cn
   # 工程服务的基础包名。
   serviceBasePackage: cn.wlih
-  title: 跨境（中越）物流信息监控系统
-  description: 跨境（中越）物流信息监控系统详情
+  title: 毕业设计 —— 跨境（中越）物流信息监控系统
+  description: 跨境（中越）物流信息监控系统 毕设后端API文档
   version: 1.0
 
 # ID生成策略

@@ -210,3 +210,11 @@ aSensorModuleDemo-Server/src/main/java/cn/wlih/sensormodule/dao/mapper/UserProxi
 iSensorModuleDemo-Server/src/main/java/cn/wlih/sensormodule/service/impl/UserProximityInfoServiceImpl.java,d\a\da8934d0d21299753e5d0783e40d18dca1aed542
 ñ
 fSensorModuleDemo-Server/src/main/java/cn/wlih/sensormodule/controller/UserProximityInfoController.java,7\8\78af6b4e76f8f74d7712f02864c69748a1ad588c
+è
+_SensorModuleDemo-Server/src/main/java/cn/wlih/app/service/ClearanceInfoBusinessFileService.java,5\6\56876c83c0d5f0fec84ed0811c5ac2dc66a7a801
+ò
+hSensorModuleDemo-Server/src/main/java/cn/wlih/app/service/impl/ClearanceInfoBusinessFileServiceImpl.java,3\7\37d290d513a36f2ab36ccf5f7ce27a462c8f6dde
+ì
+cSensorModuleDemo-Server/src/main/java/cn/wlih/app/service/impl/CustomsClearanceInfoServiceImpl.java,0\d\0d24a526201b5722ae6e494206dc31898b3928be
+x
+HSensorModuleDemo-Server/src/main/java/cn/wlih/core/util/MyModelUtil.java,5\7\578c37b1d5c6b018b88a3689a5054fdb39290bce
