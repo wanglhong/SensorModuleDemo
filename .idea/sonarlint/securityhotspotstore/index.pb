@@ -196,3 +196,17 @@ WSensorModuleDemo-Server/src/main/java/cn/wlih/app/vo/DeclarationInfoBusinessFil
 YSensorModuleDemo-Server/src/main/java/cn/wlih/app/dto/DeclarationInfoBusinessFileDto.java,9\8\98dbc713d50c7100adec94f447b7af78dfe99b35
 á
 WSensorModuleDemo-Server/src/main/java/cn/wlih/app/dto/ClearanceInfoBusinessFileDto.java,9\a\9a426b2c5656a1caad2e8848127c670eaf5e5e26
+Ü
+VSensorModuleDemo-Server/src/main/java/cn/wlih/sensormodule/vo/UserProximityInfoVo.java,6\e\6ee66d0718bd6be24270835b8d355dd404fbb35b
+à
+XSensorModuleDemo-Server/src/main/java/cn/wlih/sensormodule/dto/UserProximityInfoDto.java,a\e\aed042cb45e5eac8d4d2eac82bf056f744af9de5
+ã
+[SensorModuleDemo-Server/src/main/java/cn/wlih/sensormodule/dao/UserProximityInfoMapper.java,1\b\1b8cac2371468239a4e423631cc45ed495e81666
+ë
+aSensorModuleDemo-Server/src/main/java/cn/wlih/sensormodule/dao/mapper/UserProximityInfoMapper.xml,2\9\29ebe4df04f212098433b3656dc9722e3de296c1
+ê
+`SensorModuleDemo-Server/src/main/java/cn/wlih/sensormodule/service/UserProximityInfoService.java,4\d\4d765854cda32447166c524760860c147fabfc6e
+ô
+iSensorModuleDemo-Server/src/main/java/cn/wlih/sensormodule/service/impl/UserProximityInfoServiceImpl.java,d\a\da8934d0d21299753e5d0783e40d18dca1aed542
+ñ
+fSensorModuleDemo-Server/src/main/java/cn/wlih/sensormodule/controller/UserProximityInfoController.java,7\8\78af6b4e76f8f74d7712f02864c69748a1ad588c
