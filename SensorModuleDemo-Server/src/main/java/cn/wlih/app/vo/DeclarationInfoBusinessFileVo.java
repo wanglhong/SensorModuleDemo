@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class DeclarationInfoBusinessFileVo extends BaseModelVo {
 
-    @Schema(title = "清关信息ID")
+    @Schema(title = "报关信息ID")
     private Long declarationInfoId;
 
     @Schema(title = "附件ID")

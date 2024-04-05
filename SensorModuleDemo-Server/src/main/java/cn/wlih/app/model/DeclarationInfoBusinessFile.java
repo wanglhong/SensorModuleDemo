@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class DeclarationInfoBusinessFile extends BaseModel {
 
-    @VariableComment("清关信息ID")
+    @VariableComment("报关信息ID")
     private Long declarationInfoId;
 
     @VariableComment("附件ID")
