@@ -83,7 +83,7 @@ public class BusinessFileController extends MyBaseController<BusinessFile, Busin
     @Operation(summary = "文件下载接口")
     @PostMapping("/download")
     public void download(
-            @Parameter(description = "文件ID") Long id,
+            @Parameter(description = "文件ID") @MyRequestBody Long id,
             HttpServletResponse response) throws IOException {
         BusinessFile businessFile = businessFileService.getById(id);
         if (businessFile == null) {

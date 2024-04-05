@@ -218,3 +218,5 @@ hSensorModuleDemo-Server/src/main/java/cn/wlih/app/service/impl/ClearanceInfoBus
 cSensorModuleDemo-Server/src/main/java/cn/wlih/app/service/impl/CustomsClearanceInfoServiceImpl.java,0\d\0d24a526201b5722ae6e494206dc31898b3928be
 x
 HSensorModuleDemo-Server/src/main/java/cn/wlih/core/util/MyModelUtil.java,5\7\578c37b1d5c6b018b88a3689a5054fdb39290bce
+Q
+!sensor_module_web/src/api/http.js,1\e\1e5e142321e5aa0d57e3774d2e8db6d1712f4c41

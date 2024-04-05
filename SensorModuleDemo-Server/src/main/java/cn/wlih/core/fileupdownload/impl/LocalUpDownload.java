@@ -11,8 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -67,11 +66,26 @@ public class LocalUpDownload extends BaseUpDownload {
         if (!Files.exists(path)) {
             throw new IOException("文件不存在！");
         }
-        // 设置响应头
+        File file = path.toFile();
+        if (!file.exists()) {
+            log.warn("Download file [" + (super.buildFilePath(fileModelClass)) + fileKey + "." + suffix + "] failed, no file found!");
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
+        response.setHeader("content-type", "application/octet-stream");
         response.setContentType("application/octet-stream");
-        response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-        // 读取文件内容并写入到响应流中
-        Files.copy(path, response.getOutputStream());
-        response.flushBuffer();
+        response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+        byte[] buff = new byte[2048];
+        try (OutputStream os = response.getOutputStream();
+             BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
+            int i = bis.read(buff);
+            while (i != -1) {
+                os.write(buff, 0, i);
+                os.flush();
+                i = bis.read(buff);
+            }
+        } catch (IOException e) {
+            log.error("Failed to call LocalUpDownloader.doDownload", e);
+        }
     }
 }
