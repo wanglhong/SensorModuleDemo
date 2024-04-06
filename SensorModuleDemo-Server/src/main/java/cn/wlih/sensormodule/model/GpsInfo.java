@@ -18,6 +18,9 @@ public class GpsInfo extends BaseModel {
     @VariableComment("运输信息ID")
     private Long transportInfoId;
 
+    @VariableComment("序号")
+    private Integer serialNumber;
+
     /**
      * DECIMAL(10, 7) 总共10位数字，其中7位是小数部分
      */

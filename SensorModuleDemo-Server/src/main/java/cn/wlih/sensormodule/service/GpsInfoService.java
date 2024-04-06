@@ -16,4 +16,12 @@ public interface GpsInfoService extends MyBaseService<GpsInfo> {
      */
     Map<String, List<List<Object>>> getTransportRoute(Long transportInfoId);
 
+    /**
+     * WebSocket获取运输路线
+     *
+     * @param transportInfoId    运输信息ID
+     * @param serialNumber       信息序号
+     */
+    Map<String, List<List<Object>>> getTransportRouteOfWebSocket(Long transportInfoId, Integer serialNumber);
+
 }

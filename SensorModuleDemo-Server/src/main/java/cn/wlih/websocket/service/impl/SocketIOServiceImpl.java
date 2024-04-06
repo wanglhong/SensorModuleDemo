@@ -1,6 +1,10 @@
 package cn.wlih.websocket.service.impl;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.json.JSONUtil;
+import cn.wlih.core.base.model.ResponseResult;
+import cn.wlih.core.myError.BizException;
+import cn.wlih.sensormodule.service.GpsInfoService;
 import cn.wlih.websocket.service.ISocketIOService;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.corundumstudio.socketio.SocketIOClient;
@@ -28,9 +32,15 @@ public class SocketIOServiceImpl implements ISocketIOService {
      * 自定义事件`push_data_event`,用于服务端与客户端通信
      */
     private static final String PUSH_DATA_EVENT = "push_data_event";
+    /**
+     * 获取运输路线 getTransportRoute
+     */
+    private static final String GET_TRANSPORT_ROUTE = "GET_TRANSPORT_ROUTE";
 
     @Autowired
     private SocketIOServer socketIOServer;
+    @Autowired
+    private GpsInfoService gpsInfoService;
 
     /**
      * Spring IoC容器创建之后，在加载SocketIOServiceImpl Bean之后启动
@@ -78,6 +88,37 @@ public class SocketIOServiceImpl implements ISocketIOService {
             String clientIp = getIpByClient(client);
             String paramsByClient = getParamsByClient(client);
             log.debug(paramsByClient + " ************ 客户端：" + data);
+        });
+
+        // 监听的'GET_TRANSPORT_ROUTE'事件
+        socketIOServer.addEventListener(GET_TRANSPORT_ROUTE, String.class, (client, data, ackSender) -> {
+            Map<String, List<String>> urlParams = client.getHandshakeData().getUrlParams();
+            if (!urlParams.containsKey("transportInfoId")) {
+                client.sendEvent(GET_TRANSPORT_ROUTE, JSONUtil.toJsonStr(ResponseResult.error("transportInfoId is null")));
+                client.disconnect();
+            }
+            List<String> list = urlParams.get("transportInfoId");
+            if (list == null || list.isEmpty()) {
+                client.sendEvent(GET_TRANSPORT_ROUTE, JSONUtil.toJsonStr(ResponseResult.error("transportInfoId is null")));
+                client.disconnect();
+            }
+            Long transportInfoId = Long.valueOf(list.get(0));
+            new Thread(() -> {
+                Integer serialNumber = 1;
+                while (client.isChannelOpen()) {
+                    Map<String, List<List<Object>>> transportRoute = gpsInfoService.getTransportRouteOfWebSocket(transportInfoId, serialNumber);
+                    if (transportRoute == null) {
+                        try {
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        continue;
+                    }
+                    client.sendEvent(GET_TRANSPORT_ROUTE, JSONUtil.toJsonStr(ResponseResult.success(transportRoute)));
+                    serialNumber++;
+                }
+            }).start();
         });
 
         // 启动服务
