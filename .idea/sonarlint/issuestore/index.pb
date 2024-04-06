@@ -234,3 +234,13 @@ RSensorModuleDemo-Server/src/main/java/cn/wlih/app/service/CustomsAuditService.j
 TSensorModuleDemo-Server/src/main/java/cn/wlih/app/service/impl/CustomsAuditImpl.java,7\4\74aced483d0c10e47b8a00aae09f6cdc2bab7c48
 ì
 cSensorModuleDemo-Server/src/test/java/cn/wlih/sensormodule/service/impl/GpsInfoServiceImplTest.java,0\9\095c375ec41d64ad9bacae68c21b8e3da7f74597
+O
+SensorModuleDemo-Server/pom.xml,0\6\0696537c78006fac20d364b4b1d303b052adaffa
+Ç
+RSensorModuleDemo-Server/src/main/java/cn/wlih/websocket/config/SocketIOConfig.java,c\3\c30764bacaa8befc2804d45af4c473bcaf6274d0
+Ö
+USensorModuleDemo-Server/src/main/java/cn/wlih/websocket/service/ISocketIOService.java,0\6\0696da09ca11b65a3e33dd1108136422f6d3c0f7
+ç
+]SensorModuleDemo-Server/src/main/java/cn/wlih/websocket/service/impl/SocketIOServiceImpl.java,0\1\0127a08e8e87f7955a7d49004ad435464fbe8cd9
+Å
+QSensorModuleDemo-Server/src/main/java/cn/wlih/websocket/SocketIOClientLaunch.java,8\0\808c0be368a3dc10d38d16983184e690ff3a9a31
