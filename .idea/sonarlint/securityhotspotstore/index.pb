@@ -220,3 +220,7 @@ x
 HSensorModuleDemo-Server/src/main/java/cn/wlih/core/util/MyModelUtil.java,5\7\578c37b1d5c6b018b88a3689a5054fdb39290bce
 Q
 !sensor_module_web/src/api/http.js,1\e\1e5e142321e5aa0d57e3774d2e8db6d1712f4c41
+ê
+`SensorModuleDemo-Server/src/main/java/cn/wlih/app/controller/CustomsClearanceInfoController.java,9\4\94acda83ba063a532fdcf6dc044803abfcedf0ef
+ï
+eSensorModuleDemo-Server/src/main/java/cn/wlih/app/service/impl/CustomsDeclarationInfoServiceImpl.java,1\7\1705996f63ccc2beb1195cae084e26eda0018899

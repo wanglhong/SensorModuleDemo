@@ -1,5 +1,6 @@
 package cn.wlih.app.model;
 
+import cn.wlih.app.vo.BusinessFileVo;
 import cn.wlih.core.base.model.BaseModel;
 import cn.wlih.core.myAnnotate.ClassComment;
 import cn.wlih.core.myAnnotate.RelationOneToOne;
@@ -11,6 +12,7 @@ import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @TableName("sm_customs_declaration_info")
@@ -49,5 +51,8 @@ public class CustomsDeclarationInfo extends BaseModel {
     )
     private TransportInfo transportInfo;
 
+    @VariableComment("清关附件信息集合")
+    @TableField(exist = false)
+    private List<BusinessFileVo> businessFileList;
 
 }

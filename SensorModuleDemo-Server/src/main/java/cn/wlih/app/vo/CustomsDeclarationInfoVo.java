@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Schema(title = "海关报关信息表")
@@ -36,5 +37,8 @@ public class CustomsDeclarationInfoVo extends BaseModelVo {
 
     @Schema(title = "运输信息")
     private TransportInfoVo transportInfo;
+
+    @Schema(title = "清关附件信息集合")
+    private List<BusinessFileVo> businessFileList;
 
 }
