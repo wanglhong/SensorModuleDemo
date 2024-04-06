@@ -7,6 +7,8 @@ import cn.wlih.app.vo.ClearanceInfoBusinessFileVo;
 import cn.wlih.core.base.controller.MyBaseController;
 import cn.wlih.core.base.model.ResponseResult;
 import cn.wlih.core.myAnnotate.MyRequestBody;
+import cn.wlih.core.util.MyModelUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -27,11 +29,31 @@ public class ClearanceInfoBusinessFileController extends MyBaseController<Cleara
     private ClearanceInfoBusinessFileService clearanceInfoBusinessFileService;
 
     @ApiOperationSupport(order = 6)
-    @Operation(summary = "基础 - 删除接口（通过ID）")
+    @Operation(summary = "删除-通过[clearanceInfoId、businessFileId]")
     @PostMapping("/deleteFile")
-    public ResponseResult<Void> deleteFile(@Parameter(description = "删除的对象ID") @MyRequestBody ClearanceInfoBusinessFile clearanceInfoBusinessFile) {
-        // TODO clearanceInfoBusinessFile 1776184215423946752
-        return ResponseResult.error("修改失败，请重试！");
+    public ResponseResult<Void> deleteFile(
+            @Parameter(description = "删除的对象ID") @MyRequestBody ClearanceInfoBusinessFileDto clearanceInfoBusinessFileDto) {
+        if (clearanceInfoBusinessFileDto == null) {
+            return ResponseResult.error("缺少必要的参数[clearanceInfoId、businessFileId]");
+        }
+        if (clearanceInfoBusinessFileDto.getClearanceInfoId() == null) {
+            return ResponseResult.error("缺少必要的参数[clearanceInfoId]");
+        }
+        if (clearanceInfoBusinessFileDto.getBusinessFileId() == null) {
+            return ResponseResult.error("缺少必要的参数[businessFileId]");
+        }
+        ClearanceInfoBusinessFile clearanceInfoBusinessFile = MyModelUtil.copyTo(clearanceInfoBusinessFileDto, ClearanceInfoBusinessFile.class);
+        LambdaQueryWrapper<ClearanceInfoBusinessFile> queryWrapper = new LambdaQueryWrapper<ClearanceInfoBusinessFile>()
+                .eq(ClearanceInfoBusinessFile::getClearanceInfoId, clearanceInfoBusinessFile.getClearanceInfoId())
+                .eq(ClearanceInfoBusinessFile::getBusinessFileId, clearanceInfoBusinessFile.getBusinessFileId());
+        clearanceInfoBusinessFile = clearanceInfoBusinessFileService.getOne(queryWrapper);
+        if (clearanceInfoBusinessFile == null) {
+            return ResponseResult.error("数据不存在，无法删除！");
+        }
+        if (clearanceInfoBusinessFileService.remove(queryWrapper)) {
+            return ResponseResult.success();
+        }
+        return ResponseResult.error("删除失败，请重试！");
     }
 
 }

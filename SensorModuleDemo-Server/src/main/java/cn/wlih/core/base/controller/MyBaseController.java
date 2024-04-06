@@ -170,7 +170,7 @@ public abstract class MyBaseController<M, MDTO, MVO> {
         if (getBaseService().removeById(id)) {
             return ResponseResult.success();
         }
-        return ResponseResult.error("修改失败，请重试！");
+        return ResponseResult.error("删除失败，请重试！");
     }
 
     /**
