@@ -224,3 +224,11 @@ Q
 `SensorModuleDemo-Server/src/main/java/cn/wlih/app/controller/CustomsClearanceInfoController.java,9\4\94acda83ba063a532fdcf6dc044803abfcedf0ef
 •
 eSensorModuleDemo-Server/src/main/java/cn/wlih/app/service/impl/CustomsDeclarationInfoServiceImpl.java,1\7\1705996f63ccc2beb1195cae084e26eda0018899
+‡
+WSensorModuleDemo-Server/src/main/java/cn/wlih/app/model/modelDbEnum/TransportState.java,0\4\043b81ab3e3e0a450d54a9b808eaf8e62d9860ed
+‰
+YSensorModuleDemo-Server/src/main/java/cn/wlih/app/controller/TransportInfoController.java,1\3\137e42de85fcb1595eaf7327356926217d24152e
+‚
+RSensorModuleDemo-Server/src/main/java/cn/wlih/app/service/CustomsAuditService.java,4\0\408981b80a3d11d042c047ec35b423f974b7a8e3
+„
+TSensorModuleDemo-Server/src/main/java/cn/wlih/app/service/impl/CustomsAuditImpl.java,7\4\74aced483d0c10e47b8a00aae09f6cdc2bab7c48

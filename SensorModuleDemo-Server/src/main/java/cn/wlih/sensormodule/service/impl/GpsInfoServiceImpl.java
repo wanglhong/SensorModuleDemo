@@ -9,6 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 @Slf4j
 @Service("gpsInfoService")
 public class GpsInfoServiceImpl extends MyBaseServiceImpl<GpsInfo> implements GpsInfoService {
@@ -24,4 +27,14 @@ public class GpsInfoServiceImpl extends MyBaseServiceImpl<GpsInfo> implements Gp
         return gpsInfoMapper;
     }
 
+    /**
+     * 获取运输路线
+     *
+     * @param transportInfoId 运输信息ID
+     * @return {"center":[], "latlngs":[[],[]]}
+     */
+    @Override
+    public Map<String, List<Object>> getTransportRoute(Long transportInfoId) {
+        return null;
+    }
 }

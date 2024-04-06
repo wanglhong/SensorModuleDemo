@@ -6,9 +6,12 @@ import cn.wlih.core.base.vo.BaseModelVo;
 import cn.wlih.upms.vo.SysDeptVo;
 import cn.wlih.upms.vo.SysOrganizationVo;
 import cn.wlih.upms.vo.SysUserVo;
+import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.util.List;
 
 @Data
 @Schema(title = "海关审核表")
@@ -53,5 +56,9 @@ public class CustomsAuditVo extends BaseModelVo {
 
     @Schema(title = "审批人信息")
     private SysUserVo userOfAudit;
+
+    @Schema(title = "附件信息集合")
+    @TableField(exist = false)
+    private List<BusinessFileVo> businessFileList;
 
 }

@@ -2,6 +2,7 @@ package cn.wlih.app.model;
 
 import cn.wlih.app.model.modelDbEnum.AuditState;
 import cn.wlih.app.model.modelDbEnum.AuditType;
+import cn.wlih.app.vo.BusinessFileVo;
 import cn.wlih.core.base.model.BaseModel;
 import cn.wlih.core.myAnnotate.ClassComment;
 import cn.wlih.core.myAnnotate.RelationOneToOne;
@@ -13,6 +14,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.util.List;
 
 @Data
 @TableName("sm_customs_audit")
@@ -109,5 +112,9 @@ public class CustomsAudit extends BaseModel {
             slaveServiceName = "sysUserService"
     )
     private SysUser userOfAudit;
+
+    @VariableComment("附件信息集合")
+    @TableField(exist = false)
+    private List<BusinessFileVo> businessFileList;
 
 }

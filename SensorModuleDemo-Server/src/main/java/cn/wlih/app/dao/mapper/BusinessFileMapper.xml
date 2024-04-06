@@ -1,4 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.wlih.app.dao.BusinessFileMapper">
+
+    <select id="getBusinessFileListByDeclarationInfoIdList" resultType="cn.wlih.app.model.BusinessFile">
+        SELECT sm_business_file.* FROM sm_business_file
+        LEFT JOIN sm_declaration_info_business_file ON sm_declaration_info_business_file.business_file_id = sm_business_file.id
+        WHERE sm_business_file.is_delete = 1 AND sm_declaration_info_business_file.is_delete = 1
+        <choose>
+            <when test="declarationInfoIdList != null and declarationInfoIdList.size() > 0">
+                <foreach collection="declarationInfoIdList" item="item" index="index" separator="," open="AND sm_declaration_info_business_file.declaration_info_id IN (" close=")">
+                    #{item}
+                </foreach>
+            </when>
+            <otherwise>
+                AND sm_declaration_info_business_file.declaration_info_id = -1
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="getBusinessFileListByClearanceInfoIdList" resultType="cn.wlih.app.model.BusinessFile">
+        SELECT sm_business_file.* FROM sm_business_file
+        LEFT JOIN sm_clearance_info_business_file ON sm_clearance_info_business_file.business_file_id = sm_business_file.id
+        WHERE sm_business_file.is_delete = 1 AND sm_clearance_info_business_file.is_delete = 1
+        <choose>
+            <when test="clearanceInfoIdList != null and clearanceInfoIdList.size() > 0">
+                <foreach collection="clearanceInfoIdList" item="item" index="index" separator="," open="AND sm_clearance_info_business_file.clearance_info_id IN (" close=")">
+                    #{item}
+                </foreach>
+            </when>
+            <otherwise>
+                AND sm_clearance_info_business_file.clearance_info_id = -1
+            </otherwise>
+        </choose>
+    </select>
+
 </mapper>

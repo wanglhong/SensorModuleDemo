@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@TableName("declaration_info_business_file")
+@TableName("sm_declaration_info_business_file")
 @ClassComment("报关信息与附件多对多关联表")
 @EqualsAndHashCode(callSuper = true)
 public class DeclarationInfoBusinessFile extends BaseModel {
