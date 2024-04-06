@@ -252,3 +252,15 @@ O
 [SensorModuleDemo-Client/src/main/java/cn/wlih/appPublic/enums/ProgramInvocationPattern.java,6\e\6e8c3a5ceaf7daa1b01e4166ea02f9a32dc9c987
 b
 2SensorModuleDemo-Client/dependency-reduced-pom.xml,7\7\777568172886381ce7e21885663c9148b17cf843
+Å
+QSensorModuleDemo-Server/src/main/java/cn/wlih/websocket/config/ParamsKeyEnum.java,0\6\061188ad1ddf008d4c3442156c497dc4705721f5
+p
+@SensorModuleDemo-Client/src/main/java/cn/wlih/EventNameList.java,4\0\403f2d54523b9d15203f07a1b5b134403f01453c
+l
+<SensorModuleDemo-Client/src/main/java/cn/wlih/EventList.java,6\5\65db6f620c6e02048c21d09d545e3d490edf8276
+}
+MSensorModuleDemo-Server/src/main/java/cn/wlih/websocket/config/EventList.java,e\b\ebdebf3e8d357d4405231fe8e9276c8c45d7d97f
+Ä
+PSensorModuleDemo-Server/src/main/java/cn/wlih/websocket/config/ServiceEvent.java,9\8\982233db29cec4f3a0dae7638ff0bb20ca2895b5
+n
+>SensorModuleDemo-Client/src/main/java/cn/wlih/ClientEvent.java,c\d\cd6329add5b15dd4f0943e0fc1c2f1da8e24de1e

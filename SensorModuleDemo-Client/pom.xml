@@ -15,7 +15,7 @@
         <!-- 项目属性 -->
         <final.name>SensorModuleDemo-Client-1.0-SNAPSHOT</final.name>
         <main.class>cn.wlih.ClientApplication</main.class>
-        <main.args>--demo</main.args>
+        <main.args>main.wlih.cn</main.args>
         <!-- Raspberry 远程部署 -->
         <pi.hostname>raspberrypi</pi.hostname>
         <pi.ipnumber>pi.wlih.cn</pi.ipnumber>
