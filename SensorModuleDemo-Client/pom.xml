@@ -18,7 +18,7 @@
         <main.args>--demo</main.args>
         <!-- Raspberry 远程部署 -->
         <pi.hostname>raspberrypi</pi.hostname>
-        <pi.ipnumber>${pi.hostname}.local</pi.ipnumber>
+        <pi.ipnumber>pi.wlih.cn</pi.ipnumber>
         <pi.port>22</pi.port>
         <pi.username>pi</pi.username>
         <pi.password>raspberry</pi.password>
@@ -163,6 +163,12 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.8.24</version>
+        </dependency>
+        <!-- socket.io客户端 -->
+        <dependency>
+            <groupId>io.socket</groupId>
+            <artifactId>socket.io-client</artifactId>
+            <version>2.1.0</version>
         </dependency>
     </dependencies>
 
@@ -408,7 +414,7 @@
                                         <!-- 确保目标目录存在于 RaspPi 上 -->
                                         <sshexec host="${pi.ipnumber}" port="${pi.port}"
                                                  username="${pi.username}" password="${pi.password}"
-                                                 trust="true" command="mkdir --parents ${pi.deploydirectory}; rm -f ${pi.deploydirectory}/*"/>
+                                                 trust="true" command="mkdir --parents ${pi.deploydirectory}; sudo rm -f ${pi.deploydirectory}/*"/>
 
                                         <!-- 通过SCP传输项目到Raspberry Pi -->
                                         <scp trust="true"

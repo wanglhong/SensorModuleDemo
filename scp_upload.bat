@@ -2,9 +2,9 @@
 setlocal enabledelayedexpansion
 
 :: 设置变量
-set "source_file=./SensorModuleDemo-Client/target/SensorModuleDemoClient.jar"
-set "destination_file=//home/pi/MyApps/"
-set "destination_ip=192.168.50.37"
+set "source_file=./SensorModuleDemo-Client/target/SensorModuleDemo-Client-1.0-SNAPSHOT.jar"
+set "destination_file=//home/pi/SensorModuleDemo/"
+set "destination_ip=pi.wlih.cn"
 set "username=pi"
 set "password=raspberry"
 

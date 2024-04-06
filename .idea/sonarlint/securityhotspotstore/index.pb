@@ -244,3 +244,11 @@ USensorModuleDemo-Server/src/main/java/cn/wlih/websocket/service/ISocketIOServic
 ]SensorModuleDemo-Server/src/main/java/cn/wlih/websocket/service/impl/SocketIOServiceImpl.java,0\1\0127a08e8e87f7955a7d49004ad435464fbe8cd9
 Å
 QSensorModuleDemo-Server/src/main/java/cn/wlih/websocket/SocketIOClientLaunch.java,8\0\808c0be368a3dc10d38d16983184e690ff3a9a31
+w
+GSensorModuleDemo-Client/src/main/java/cn/wlih/ClientApplicationOld.java,4\4\443c6ad069ab2a7c2c0b8f26c43f358ac465662c
+O
+SensorModuleDemo-Client/pom.xml,1\f\1f8f169686bd42ce19cf1de8ca36cc4623198a1f
+ã
+[SensorModuleDemo-Client/src/main/java/cn/wlih/appPublic/enums/ProgramInvocationPattern.java,6\e\6e8c3a5ceaf7daa1b01e4166ea02f9a32dc9c987
+b
+2SensorModuleDemo-Client/dependency-reduced-pom.xml,7\7\777568172886381ce7e21885663c9148b17cf843

@@ -2,6 +2,7 @@ package cn.wlih;
 
 import cn.wlih.component.ComponentFactory;
 import cn.wlih.appPublic.enums.ProgramInvocationPattern;
+import cn.wlih.utils.LoggerUtil;
 import com.pi4j.Pi4J;
 import com.pi4j.context.Context;
 import com.pi4j.library.pigpio.PiGpio;
@@ -13,6 +14,8 @@ import com.pi4j.plugin.pigpio.provider.serial.PiGpioSerialProvider;
 import com.pi4j.plugin.pigpio.provider.spi.PiGpioSpiProvider;
 import com.pi4j.plugin.raspberrypi.platform.RaspberryPiPlatform;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Arrays;
 
 /**
  * 描述: 客户端启动类
@@ -31,8 +34,29 @@ public class ClientApplication {
      * @param args 命令行参数
      */
     public static void main(String[] args) {
-        new ClientApplication();
+        String argsStr = Arrays.toString(args);
+        LoggerUtil.logTitle(log, 100, "SensorModuleDemo-Client",
+                "ClientID -- 1774067734078820351",
+                "args --> " + argsStr);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public ClientApplication() {
         // 初始化 Pi4j 上下文

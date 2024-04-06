@@ -116,7 +116,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <!-- TRACE->DEBUG->INFO->WARN->ERROR -->
     <root level="INFO">
         <appender-ref ref="console" />
-        <appender-ref ref="file_log" />
+<!--        <appender-ref ref="file_log" />-->
     </root>
     <!-- 特定功能详细日志配置 -->
     <!-- cn.wlih.mapper包下使用该配置。additivity日志级别是否向上传递。level日志级别 -->

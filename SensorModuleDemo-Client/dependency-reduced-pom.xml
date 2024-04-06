@@ -283,7 +283,7 @@
     <junit.version>5.10.0</junit.version>
     <pi.deploydirectory>/home/pi/SensorModuleDemo</pi.deploydirectory>
     <maven-jar-plugin.version>3.2.1</maven-jar-plugin.version>
-    <pi.ipnumber>${pi.hostname}.local</pi.ipnumber>
+    <pi.ipnumber>pi.wlih.cn</pi.ipnumber>
     <main.class>cn.wlih.ClientApplication</main.class>
     <java.version>17</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
