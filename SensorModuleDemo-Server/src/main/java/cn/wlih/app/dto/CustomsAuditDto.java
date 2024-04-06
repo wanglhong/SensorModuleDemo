@@ -27,8 +27,11 @@ public class CustomsAuditDto extends BaseModelDto {
     @Schema(title = "审批类型")
     private AuditType auditType;
 
-    @Schema(title = "审批信息ID")
-    private Long auditInfoId;
+    @Schema(title = "报关信息ID")
+    private Long customsDeclarationInfoId;
+
+    @Schema(title = "清关信息ID")
+    private Long customsClearanceInfoId;
 
     @Schema(title = "审批状态")
     private AuditState auditState;
