@@ -58,8 +58,10 @@ class GpsInfoServiceImplTest {
         Long transportInfoId = 1775808128189730816L;
         Long userId = 1001L;
         List<List> list = JSONUtil.toList(JSONStr, List.class);
+        Integer serialNumber = 1;
         for (List list1 : list) {
             GpsInfo gpsInfo = new GpsInfo();
+            gpsInfo.setSerialNumber(serialNumber);
             gpsInfo.setTransportInfoId(transportInfoId);
             gpsInfo.setLongitude(new BigDecimal(list1.get(0).toString()));
             gpsInfo.setLatitude(new BigDecimal(list1.get(1).toString()));
@@ -70,6 +72,7 @@ class GpsInfoServiceImplTest {
             gpsInfo.setCreateTime(new Date());
             gpsInfo.setUpdateTime(new Date());
             gpsInfoMapper.insert(gpsInfo);
+            serialNumber++;
             ThreadUtil.sleep(1000);
         }
     }
