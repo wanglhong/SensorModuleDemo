@@ -9,11 +9,11 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-@ClassComment("审核状态（1：待审核、2：审核中、3：审核通过、4：审核驳回）")
+@ClassComment("审核状态（1：待提交审核、2：审核中、3：审核通过、4：审核驳回）")
 public enum AuditState {
 
-    @VariableComment("待审核")
-    WAIT_AUDIT(1, "待审核"),
+    @VariableComment("待提交审核")
+    WAIT_AUDIT(1, "待提交审核"),
 
     @VariableComment("审核中")
     AUDITING(2, "审核中"),
