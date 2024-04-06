@@ -35,7 +35,7 @@ public class GpsInfoController extends MyBaseController<GpsInfo, GpsInfoDto, Gps
     @ApiOperationSupport(order = 6)
     @Operation(summary = "获取运输路线")
     @PostMapping("/getTransportRoute")
-    public ResponseResult<Map<String, List<Object>>> getTransportRoute(
+    public ResponseResult<Map<String, List<List<Object>>>> getTransportRoute(
             @Parameter(description = "运输信息ID") @MyRequestBody Long transportInfoId) {
         return ResponseResult.success(gpsInfoService.getTransportRoute(transportInfoId));
     }

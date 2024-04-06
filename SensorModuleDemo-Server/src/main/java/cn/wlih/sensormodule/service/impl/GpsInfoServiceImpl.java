@@ -5,10 +5,13 @@ import cn.wlih.core.base.service.impl.MyBaseServiceImpl;
 import cn.wlih.sensormodule.dao.GpsInfoMapper;
 import cn.wlih.sensormodule.model.GpsInfo;
 import cn.wlih.sensormodule.service.GpsInfoService;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +37,24 @@ public class GpsInfoServiceImpl extends MyBaseServiceImpl<GpsInfo> implements Gp
      * @return {"center":[], "latlngs":[[],[]]}
      */
     @Override
-    public Map<String, List<Object>> getTransportRoute(Long transportInfoId) {
-        return null;
+    public Map<String, List<List<Object>>> getTransportRoute(Long transportInfoId) {
+        List<GpsInfo> gpsInfoList = gpsInfoMapper.selectList(new LambdaQueryWrapper<GpsInfo>()
+                .eq(GpsInfo::getTransportInfoId, transportInfoId)
+                .orderBy(true, true, GpsInfo::getCreateTime));
+        List<List<Object>> center = new LinkedList<>();
+        List<List<Object>> latlngs = new LinkedList<>();
+        List<Object> latlng = new LinkedList<>();
+        for (GpsInfo gpsInfo : gpsInfoList) {
+            latlng = new LinkedList<>();
+            latlng.add(gpsInfo.getLongitude());
+            latlng.add(gpsInfo.getLatitude());
+            latlngs.add(latlng);
+        }
+        center.add(latlng);
+        Map<String, List<List<Object>>> resultData = new HashMap<>();
+        resultData.put("center", center);
+        resultData.put("latlngs", latlngs);
+        return resultData;
     }
+
 }

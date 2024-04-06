@@ -232,3 +232,5 @@ YSensorModuleDemo-Server/src/main/java/cn/wlih/app/controller/TransportInfoContr
 RSensorModuleDemo-Server/src/main/java/cn/wlih/app/service/CustomsAuditService.java,4\0\408981b80a3d11d042c047ec35b423f974b7a8e3
 „
 TSensorModuleDemo-Server/src/main/java/cn/wlih/app/service/impl/CustomsAuditImpl.java,7\4\74aced483d0c10e47b8a00aae09f6cdc2bab7c48
+“
+cSensorModuleDemo-Server/src/test/java/cn/wlih/sensormodule/service/impl/GpsInfoServiceImplTest.java,0\9\095c375ec41d64ad9bacae68c21b8e3da7f74597

@@ -10,9 +10,10 @@ public interface GpsInfoService extends MyBaseService<GpsInfo> {
 
     /**
      * 获取运输路线
+     *
      * @param transportInfoId 运输信息ID
      * @return {"center":[], "":[[],[]]}
      */
-    Map<String, List<Object>> getTransportRoute(Long transportInfoId);
+    Map<String, List<List<Object>>> getTransportRoute(Long transportInfoId);
 
 }
