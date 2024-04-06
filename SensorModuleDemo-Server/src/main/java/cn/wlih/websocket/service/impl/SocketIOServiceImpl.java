@@ -1,7 +1,12 @@
 package cn.wlih.websocket.service.impl;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
+import cn.wlih.app.dao.TransportInfoMapper;
+import cn.wlih.app.model.TransportInfo;
+import cn.wlih.app.model.modelDbEnum.TransportState;
+import cn.wlih.app.service.TransportInfoService;
 import cn.wlih.core.base.model.ResponseResult;
 import cn.wlih.core.myError.BizException;
 import cn.wlih.sensormodule.service.GpsInfoService;
@@ -41,6 +46,8 @@ public class SocketIOServiceImpl implements ISocketIOService {
     private SocketIOServer socketIOServer;
     @Autowired
     private GpsInfoService gpsInfoService;
+    @Autowired
+    private TransportInfoService transportInfoService;
 
     /**
      * Spring IoC容器创建之后，在加载SocketIOServiceImpl Bean之后启动
@@ -92,17 +99,23 @@ public class SocketIOServiceImpl implements ISocketIOService {
 
         // 监听的'GET_TRANSPORT_ROUTE'事件
         socketIOServer.addEventListener(GET_TRANSPORT_ROUTE, String.class, (client, data, ackSender) -> {
-            Map<String, List<String>> urlParams = client.getHandshakeData().getUrlParams();
-            if (!urlParams.containsKey("transportInfoId")) {
-                client.sendEvent(GET_TRANSPORT_ROUTE, JSONUtil.toJsonStr(ResponseResult.error("transportInfoId is null")));
+            if (StrUtil.isBlank(data)) {
+                client.sendEvent(GET_TRANSPORT_ROUTE, JSONUtil.toJsonStr(ResponseResult.error("运输信息ID不能为空！")));
                 client.disconnect();
+                return;
             }
-            List<String> list = urlParams.get("transportInfoId");
-            if (list == null || list.isEmpty()) {
-                client.sendEvent(GET_TRANSPORT_ROUTE, JSONUtil.toJsonStr(ResponseResult.error("transportInfoId is null")));
+            Long transportInfoId = Long.valueOf(data);
+            TransportInfo transportInfo = transportInfoService.getById(transportInfoId);
+            if (transportInfo == null) {
+                client.sendEvent(GET_TRANSPORT_ROUTE, JSONUtil.toJsonStr(ResponseResult.error("该运输信息不存在，无法查看！")));
                 client.disconnect();
+                return;
             }
-            Long transportInfoId = Long.valueOf(list.get(0));
+            if (transportInfo.getTransportState().equals(TransportState.NOT_START)) {
+                client.sendEvent(GET_TRANSPORT_ROUTE, JSONUtil.toJsonStr(ResponseResult.error("该运输还为开始，无法查看！")));
+                client.disconnect();
+                return;
+            }
             new Thread(() -> {
                 Integer serialNumber = 1;
                 while (client.isChannelOpen()) {
@@ -111,12 +124,12 @@ public class SocketIOServiceImpl implements ISocketIOService {
                         try {
                             Thread.sleep(3000);
                         } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
+                            log.warn(e.getMessage());
                         }
                         continue;
                     }
                     client.sendEvent(GET_TRANSPORT_ROUTE, JSONUtil.toJsonStr(ResponseResult.success(transportRoute)));
-                    serialNumber++;
+                    serialNumber = serialNumber + transportRoute.get("latlngs").size();
                 }
             }).start();
         });

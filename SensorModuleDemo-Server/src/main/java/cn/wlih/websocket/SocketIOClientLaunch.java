@@ -20,7 +20,7 @@ public class SocketIOClientLaunch {
             // 连接超时时间(ms)
             options.timeout = 500;
             // userId: 唯一标识 传给服务端存储
-            final Socket socket = IO.socket(url + "?RequestType=RequestTypeTest", options);
+            final Socket socket = IO.socket(url, options);
 
             socket.on(Socket.EVENT_CONNECT, args1 -> socket.send("hello..."));
 
@@ -33,7 +33,11 @@ public class SocketIOClientLaunch {
             // 自定义事件`myBroadcast` -> 接收服务端广播消息
             socket.on("myBroadcast", objects -> log.debug("服务端：" + objects[0].toString()));
 
+            socket.on("GET_TRANSPORT_ROUTE", objects -> log.debug("来自服务端的消息：GET_TRANSPORT_ROUTE --> " + objects[0].toString()));
+
             socket.connect();
+
+            socket.emit("GET_TRANSPORT_ROUTE", 1775743480383934464L);
 
             while (true) {
                 Thread.sleep(3000);
