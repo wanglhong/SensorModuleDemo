@@ -61,7 +61,7 @@ public class SocketIOServiceImpl implements ISocketIOService {
         socketIOServer.addConnectListener(client -> {
             log.info("===============> 客户端 [" + getIpByClient(client) + "] 已连接 <===============");
             // 自定义事件`connected` -> 与客户端通信  （也可以使用内置事件，如：Socket.EVENT_CONNECT）
-            client.sendEvent("connected", "CONNECT_SUCCESS");
+            client.sendEvent(ServiceEvent.CONNECTED_EVENT, "CONNECT_SUCCESS");
             String id = getParamsByKey(client, ParamsKeyEnum.ID);
             if (id != null) {
                 clientMap.put(id, client);

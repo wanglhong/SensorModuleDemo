@@ -74,6 +74,10 @@ public class ClientApplication {
             // 接收服务端广播消息
             socket.on(ClientEvent.MY_BROADCAST_EVENT, objects -> log.debug("服务端：" + objects[0].toString()));
 
+            // 推送视频消息
+            socket.on(ClientEvent.PUSH_VIDEO_EVENT, objects -> {
+            });
+
             // 连接
             socket.connect();
 

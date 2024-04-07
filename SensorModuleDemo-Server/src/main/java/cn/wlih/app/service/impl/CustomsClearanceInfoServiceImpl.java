@@ -52,6 +52,11 @@ public class CustomsClearanceInfoServiceImpl extends MyBaseServiceImpl<CustomsCl
         if (customsClearanceInfoList.isEmpty()) {
             return customsClearanceInfoList;
         }
+        this.verifyImportBussissFile(customsClearanceInfoList);
+        return customsClearanceInfoList;
+    }
+
+    private void verifyImportBussissFile(List<CustomsClearanceInfo> customsClearanceInfoList) {
         List<Long> clearanceInfoIdList = new ArrayList<>();
         for (CustomsClearanceInfo clearanceInfo : customsClearanceInfoList) {
             clearanceInfoIdList.add(clearanceInfo.getId());
@@ -96,7 +101,26 @@ public class CustomsClearanceInfoServiceImpl extends MyBaseServiceImpl<CustomsCl
             }
             clearanceInfo.setBusinessFileList(businessFileVoList);
         }
-        return customsClearanceInfoList;
+    }
+
+    /**
+     * 通过运输信息ID查询清关信息
+     *
+     * @param transportInfoId 运输信息ID
+     * @return
+     */
+    @Override
+    public CustomsClearanceInfo viewByTransportInfo(Long transportInfoId) {
+        CustomsClearanceInfo customsClearanceInfo = customsClearanceInfoMapper.selectOne(new LambdaQueryWrapper<CustomsClearanceInfo>()
+                .eq(CustomsClearanceInfo::getTransportInfoId, transportInfoId));
+        if (customsClearanceInfo == null) {
+            return null;
+        }
+        this.verifyImportForOneToOneRelation(customsClearanceInfo);
+        List<CustomsClearanceInfo> customsClearanceInfoList = new ArrayList<>();
+        customsClearanceInfoList.add(customsClearanceInfo);
+        this.verifyImportBussissFile(customsClearanceInfoList);
+        return customsClearanceInfoList.get(0);
     }
 
 }

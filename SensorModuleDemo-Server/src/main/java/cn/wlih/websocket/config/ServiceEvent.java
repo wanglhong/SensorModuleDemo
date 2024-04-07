@@ -6,6 +6,11 @@ package cn.wlih.websocket.config;
 public class ServiceEvent {
 
     /**
+     * 连接成功事件后服务端发送的消息
+     */
+    public static final String CONNECTED_EVENT = "CONNECTED_EVENT";
+
+    /**
      * 推送消息至客户端
      */
     public static final String PUSH_DATA_EVENT = "PUSH_DATA_EVENT";

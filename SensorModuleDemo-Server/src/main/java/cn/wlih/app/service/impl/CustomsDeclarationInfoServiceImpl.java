@@ -50,6 +50,11 @@ public class CustomsDeclarationInfoServiceImpl extends MyBaseServiceImpl<Customs
         if (customsDeclarationInfoList.isEmpty()) {
             return customsDeclarationInfoList;
         }
+        this.verifyImportBussissFile(customsDeclarationInfoList);
+        return customsDeclarationInfoList;
+    }
+
+    private void verifyImportBussissFile(List<CustomsDeclarationInfo> customsDeclarationInfoList) {
         List<Long> declarationInfoIdList = new ArrayList<>();
         for (CustomsDeclarationInfo declarationInfo : customsDeclarationInfoList) {
             declarationInfoIdList.add(declarationInfo.getId());
@@ -94,7 +99,26 @@ public class CustomsDeclarationInfoServiceImpl extends MyBaseServiceImpl<Customs
             }
             declarationInfo.setBusinessFileList(businessFileVoList);
         }
-        return customsDeclarationInfoList;
+    }
+
+    /**
+     * 通过运输信息ID查询清关信息
+     *
+     * @param transportInfoId 运输信息ID
+     * @return
+     */
+    @Override
+    public CustomsDeclarationInfo viewByTransportInfo(Long transportInfoId) {
+        CustomsDeclarationInfo customsDeclarationInfo = customsDeclarationInfoMapper.selectOne(new LambdaQueryWrapper<CustomsDeclarationInfo>()
+                .eq(CustomsDeclarationInfo::getTransportInfoId, transportInfoId));
+        if (customsDeclarationInfo == null) {
+            return null;
+        }
+        this.verifyImportForOneToOneRelation(customsDeclarationInfo);
+        List<CustomsDeclarationInfo> customsDeclarationInfoList = new ArrayList<>();
+        customsDeclarationInfoList.add(customsDeclarationInfo);
+        this.verifyImportBussissFile(customsDeclarationInfoList);
+        return customsDeclarationInfoList.get(0);
     }
 
 }

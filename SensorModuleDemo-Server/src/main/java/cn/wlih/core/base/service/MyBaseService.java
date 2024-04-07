@@ -28,5 +28,9 @@ public interface MyBaseService<M> extends IService<M> {
      * 验证导入一对一关联数据
      */
     void verifyImportForOneToOneRelation(List<M> modelDataList);
+    /**
+     * 验证导入一对一关联数据
+     */
+    void verifyImportForOneToOneRelation(M modelDataList);
 
 }

@@ -137,22 +137,25 @@ public abstract class MyBaseServiceImpl<M> extends ServiceImpl<MyBaseMapper<M>, 
     @Override
     public void verifyImportForOneToOneRelation(List<M> modelDataList) {
         for (M m : modelDataList) {
-            Class<?> aClass = m.getClass();
-            for (Field field : aClass.getDeclaredFields()) {
-                if (field.isAnnotationPresent(RelationOneToOne.class)) {
-                    RelationOneToOne relationOneToOne = field.getAnnotation(RelationOneToOne.class);
-                    String masterIdField = relationOneToOne.masterIdField();
-                    String slaveIdField = relationOneToOne.slaveIdField();
-                    Object masterIdFieldValue = MyClazzUtil.getFieldValue(m, masterIdField);
-                    if (ObjUtil.isNull(masterIdFieldValue) || ObjUtil.isEmpty(masterIdFieldValue)) {
-                        continue;
-                    }
-                    String slaveServiceName = relationOneToOne.slaveServiceName();
-                    MyBaseService slaveService = ApplicationContextHolder.getBean(slaveServiceName);
-                    String slaveIdDbField = NameFormatConversionUtil.convertCamelToSnake(slaveIdField);
-                    Object one = slaveService.getOne((QueryWrapper) new QueryWrapper().eq(slaveIdDbField, masterIdFieldValue));
-                    MyClazzUtil.setFieldValue(m, field, one);
+            this.verifyImportForOneToOneRelation(m);
+        }
+    }
+    public void verifyImportForOneToOneRelation(M modelData) {
+        Class<?> aClass = modelData.getClass();
+        for (Field field : aClass.getDeclaredFields()) {
+            if (field.isAnnotationPresent(RelationOneToOne.class)) {
+                RelationOneToOne relationOneToOne = field.getAnnotation(RelationOneToOne.class);
+                String masterIdField = relationOneToOne.masterIdField();
+                String slaveIdField = relationOneToOne.slaveIdField();
+                Object masterIdFieldValue = MyClazzUtil.getFieldValue(modelData, masterIdField);
+                if (ObjUtil.isNull(masterIdFieldValue) || ObjUtil.isEmpty(masterIdFieldValue)) {
+                    continue;
                 }
+                String slaveServiceName = relationOneToOne.slaveServiceName();
+                MyBaseService slaveService = ApplicationContextHolder.getBean(slaveServiceName);
+                String slaveIdDbField = NameFormatConversionUtil.convertCamelToSnake(slaveIdField);
+                Object one = slaveService.getOne((QueryWrapper) new QueryWrapper().eq(slaveIdDbField, masterIdFieldValue));
+                MyClazzUtil.setFieldValue(modelData, field, one);
             }
         }
     }
