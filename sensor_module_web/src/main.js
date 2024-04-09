@@ -8,9 +8,9 @@ import Router from '@/router'
 import Store from '@/store'
 import '@/mockjs'
 
-const app = createApp(App);
+const app = createApp(App)
 
-app.use(Store);
-app.use(Router);
+app.use(Store)
+app.use(Router)
 
 app.use(Layui).mount('#app')

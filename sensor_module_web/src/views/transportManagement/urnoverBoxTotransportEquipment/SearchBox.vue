@@ -4,83 +4,71 @@
     <lay-form style="margin-top: 20px">
       <lay-row>
         <lay-col :md="6">
-          <lay-form-item label="运输人" prop="userId">
-            <lay-tree-select placeholder="运输人" :data="treeDataOfTransportUser" v-model="localModelDto.userId" :search="true" style="width: 90%">
-              <template #title="{data}">
-                <div>
-                  <lay-icon type="layui-icon-addition" v-if="!data.disabled"/>
-                  {{ data.title }}
-                </div>
-              </template>
-            </lay-tree-select>
-          </lay-form-item>
-        </lay-col>
-        <lay-col :md="6">
-          <lay-form-item label="运输工具" prop="transportEquipmentId">
-            <lay-tree-select placeholder="运输工具" :data="treeDataOfTransportEquipment" v-model="localModelDto.transportEquipmentId" :search="true" style="width: 90%">
-              <template #title="{data}">
-                <div>
-                  <lay-icon type="layui-icon-addition" v-if="!data.disabled"/>
-                  {{ data.title }}
-                </div>
-              </template>
-            </lay-tree-select>
-          </lay-form-item>
-        </lay-col>
-        <lay-col :md="6">
-          <lay-form-item label="发货公司" prop="sendOrganizationId">
-            <lay-select placeholder="发货公司" v-model="localModelDto.sendOrganizationId" style="width: 90%;">
-              <template v-for="sendOrganization in sendOrganizationList">
-                <lay-select-option :value="sendOrganization.id">
-                  {{ sendOrganization.name }}
+          <lay-form-item label="运输信息ID" prop="transportInfoId">
+            <lay-select
+              placeholder="请选择运输信息ID"
+              v-model="localModelDto.transportInfoId"
+              :search="true"
+              style="width: 90%"
+            >
+              <template v-for="box in transportInfoList">
+                <lay-select-option :value="box.id">
+                  {{ box.name }}
                 </lay-select-option>
               </template>
             </lay-select>
           </lay-form-item>
         </lay-col>
         <lay-col :md="6">
-          <lay-form-item label="收货公司" prop="receiveOrganizationId">
-            <lay-select placeholder="收货公司" v-model="localModelDto.receiveOrganizationId" style="width: 90%;">
-              <template v-for="receiveOrganization in receiveOrganizationList">
-                <lay-select-option :value="receiveOrganization.id">
-                  {{ receiveOrganization.name }}
+          <lay-form-item label="周转箱" prop="turnoverBoxId">
+            <lay-select
+              placeholder="请选择周转箱"
+              v-model="localModelDto.turnoverBoxId"
+              :search="true"
+              style="width: 90%"
+            >
+              <template v-for="box in turnoverBoxList">
+                <lay-select-option :value="box.id">
+                  {{ box.name }}
                 </lay-select-option>
               </template>
             </lay-select>
           </lay-form-item>
         </lay-col>
         <lay-col :md="6">
-          <lay-form-item label="起运国" prop="sendCountry">
-            <lay-input placeholder="起运国" v-model="localModelDto.sendCountry" style="width: 90%;"/>
+          <lay-form-item label="货物" prop="goodsId">
+            <lay-select
+              placeholder="货物"
+              v-model="localModelDto.goodsId"
+              style="width: 90%"
+            >
+              <template v-for="goods in goodsList">
+                <lay-select-option :value="goods.id">
+                  {{ goods.name }}
+                </lay-select-option>
+              </template>
+            </lay-select>
           </lay-form-item>
         </lay-col>
         <lay-col :md="6">
-          <lay-form-item label="目的地国" prop="receiveCountry">
-            <lay-input placeholder="目的地国" v-model="localModelDto.receiveCountry" style="width: 90%;"/>
+          <lay-form-item label="货物数量" prop="goodsNum">
+            <lay-input-number
+              v-model="localModelDto.goodsNum"
+              position="right"
+            ></lay-input-number>
           </lay-form-item>
         </lay-col>
-<!--        <lay-col :md="6">-->
-<!--          <lay-form-item label="起运时间" prop="sendDate">-->
-<!--            <lay-date-picker placeholder="请输入起运时间" v-model="localModelDto.sendDate" :format="'YYYY-MM-DD HH:mm:ss'" type="datetime" style="width: 90%;"/>-->
-<!--          </lay-form-item>-->
-<!--        </lay-col>-->
-<!--        <lay-col :md="6">-->
-<!--          <lay-form-item label="预计过境时间" prop="estimateDate">-->
-<!--            <lay-date-picker placeholder="请输入预计过境时间" v-model="localModelDto.estimateDate" :format="'YYYY-MM-DD HH:mm:ss'" type="datetime" style="width: 90%;"/>-->
-<!--          </lay-form-item>-->
-<!--        </lay-col>-->
-<!--        <lay-col :md="6">-->
-<!--          <lay-form-item label="实际过境时间" prop="actualDate">-->
-<!--            <lay-date-picker placeholder="请输入实际过境时间" v-model="localModelDto.actualDate" :format="'YYYY-MM-DD HH:mm:ss'" type="datetime" style="width: 90%;"/>-->
-<!--          </lay-form-item>-->
-<!--        </lay-col>-->
         <lay-col :md="6">
           <lay-form-item label="备注" prop="remark">
-            <lay-input placeholder="备注" v-model="localModelDto.remark" style="width: 90%;"/>
+            <lay-input
+              placeholder="备注"
+              v-model="localModelDto.remark"
+              style="width: 90%"
+            />
           </lay-form-item>
         </lay-col>
         <lay-col :md="6">
-          <lay-form-item label-width="0">
+          <lay-form-item label-width="0" style="text-align: right">
             <lay-button type="primary" @click="toSearch">查询</lay-button>
             <lay-button @click="toReset">重置</lay-button>
           </lay-form-item>
@@ -91,115 +79,93 @@
 </template>
 
 <script setup>
-  import {watchEffect, ref} from "vue";
-  import {transportInfoDto} from "@/model/ModelDto.js";
+import { watchEffect, ref, reactive } from 'vue'
+import { goodsToTurnoverBoxDto } from '@/model/ModelDto.js'
+import { list as turnoverBox } from '@/api/module/TurnoverBoxApi.js'
+import { list as goods } from '@/api/module/GoodsApi.js'
+import { list as transportInfo } from '@/api/module/TransportInfoApi.js'
 
-  // 创建本地的响应式变量 localModelDto，并将其初始化为父组件传入的 modelDto 的值
-  let localModelDto = transportInfoDto();
-  const emits = defineEmits(["toSearch", "renewalModelDto"])
+// 创建本地的响应式变量 localModelDto，并将其初始化为父组件传入的 modelDto 的值
+let localModelDto = goodsToTurnoverBoxDto()
+const emits = defineEmits(['toSearch', 'renewalModelDto'])
 
-  // TODO 运输人选择树
-  const treeDataOfTransportUser = ref([
-    {
-      title: '测试公司01',
-      disabled: true,
-      children: [
-        {
-          title: '测试部门01',
-          disabled: true
-        },
-        {
-          title: '测试部门02',
-          disabled: true,
-          children: [
-            {
-              title: '测试员工01',
-              id: 10001,
-            },
-            {
-              title: '测试员工02',
-              id: 10002
-            },
-          ],
-        }
-      ]
-    }
-  ]);
-  // TODO 运输工具选择树
-  const treeDataOfTransportEquipment = ref([
-    {
-      title: '测试公司01',
-      disabled: true,
-      children: [
-        {
-          title: '测试部门01',
-          disabled: true
-        },
-        {
-          title: '测试部门02',
-          disabled: true,
-          children: [
-            {
-              title: '运输工具01',
-              id: 10001,
-            },
-            {
-              title: '运输工具02',
-              id: 10002
-            },
-          ],
-        }
-      ]
-    }
-  ]);
-  // TODO 发货公司数据集
-  const sendOrganizationList = ref([
-    {
-      id: 10001,
-      name: '发货公司-01'
-    },
-    {
-      id: 10002,
-      name: '发货公司-02'
-    }
-  ]);
-  // TODO 收货公司数据集
-  const receiveOrganizationList = ref([
-    {
-      id: 10001,
-      name: '收货公司-01'
-    },
-    {
-      id: 10002,
-      name: '收货公司-02'
-    }
-  ]);
+// TODO 运输信息
+const transportInfoList = ref([])
+// TODO 周转箱
+const turnoverBoxList = ref([])
+// TODO 货物
+const goodsList = ref([])
+const page = reactive({
+  // 当前页
+  pageNum: 1,
+  // 每页数量
+  pageSize: 100,
+})
 
-  /**
-   * 查询
-   */
-  function toSearch() {
-    emits("toSearch");
+transportInfo({ page }).then(({ success, code, msg, data }) => {
+  if (success) {
+    console.log('data', data.data)
+    transportInfoList.value = data.data.map((item) => {
+      return {
+        ...item,
+        name: item.transportInfoName,
+      }
+    })
+  } else {
+    layer.msg(msg, { icon: 2, time: 2000 })
   }
+})
 
-  /**
-   * 重置
-   */
-  function toReset() {
-    // 通过Object.assign方法或通过遍历keys来重置属性值
-    Object.assign(localModelDto, transportInfoDto());
-    renewalModelDto();
+turnoverBox({ page }).then(({ success, code, msg, data }) => {
+  if (success) {
+    turnoverBoxList.value = data.data.map((item) => {
+      return {
+        ...item,
+        name: item.turnoverBoxName,
+      }
+    })
+  } else {
+    layer.msg(msg, { icon: 2, time: 2000 })
   }
+})
 
-  function renewalModelDto() {
-    emits("renewalModelDto", localModelDto);
+goods({ page }).then(({ success, code, msg, data }) => {
+  if (success) {
+    goodsList.value = data.data.map((item) => {
+      return {
+        ...item,
+        name: item.goodsName,
+      }
+    })
+  } else {
+    layer.msg(msg, { icon: 2, time: 2000 })
   }
+})
 
-  /**
-   * 监听 localModelDto 的变化，当其变化时更新父组件的变量 modelDto 的值
-   */
-  watchEffect(() => {
-    renewalModelDto();
-  })
+/**
+ * 查询
+ */
+function toSearch() {
+  emits('toSearch')
+}
 
+/**
+ * 重置
+ */
+function toReset() {
+  // 通过Object.assign方法或通过遍历keys来重置属性值
+  Object.assign(localModelDto, goodsToTurnoverBoxDto())
+  renewalModelDto()
+}
+
+function renewalModelDto() {
+  emits('renewalModelDto', localModelDto)
+}
+
+/**
+ * 监听 localModelDto 的变化，当其变化时更新父组件的变量 modelDto 的值
+ */
+watchEffect(() => {
+  renewalModelDto()
+})
 </script>
