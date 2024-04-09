@@ -6,7 +6,7 @@ import JSONbig from 'json-bigint'
 
 const JSONbigString = new JSONbig({ storeAsString: true })
 
-export const baseURL = 'http://localhost:8080'
+export const baseURL = 'http://yun.wlih.cn:8080'
 
 const config = {
   timeout: 5000,

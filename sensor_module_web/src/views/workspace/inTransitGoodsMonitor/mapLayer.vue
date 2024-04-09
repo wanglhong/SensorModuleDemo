@@ -180,7 +180,7 @@ function layerLoad() {
   // darwLine()
   const transportInfoId = mapData.value.id
 
-  socket = io('ws://main.wlih.cn:8081', {
+  socket = io('ws://yun.wlih.cn:8081', {
     transports: ['websocket'],
   })
 

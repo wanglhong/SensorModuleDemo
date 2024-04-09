@@ -106,7 +106,7 @@ common-sequence:
 
 # netty-socketio 配置
 socketio:
-  host: main.wlih.cn
+  host: yun.wlih.cn
   port: 8081
   # 设置最大每帧处理数据的长度，防止他人利用大数据来攻击服务器
   maxFramePayloadLength: 1048576
