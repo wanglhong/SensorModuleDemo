@@ -23,7 +23,8 @@ export const useAppStore = defineStore({
             theme: "light",
             breadcrumb: true,
             sideWidth: "220px",
-            sideTheme: "dark",
+            // 主题（dark、light）
+            sideTheme: "light",
             // 灰色模式
             greyMode: false,
             // 手风琴

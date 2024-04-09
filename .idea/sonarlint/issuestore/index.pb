@@ -382,3 +382,11 @@ S
 #sensor_module_web/package-lock.json,b\3\b3e61dda398fe56163027313b1f3396dcd88533d
 M
 sensor_module_web/src/main.js,2\f\2fb9299c82673de19a3648d58adff6565d26bb9e
+]
+-sensor_module_web/src/layouts/BasicLayout.vue,1\7\17fb1e43e939a6e9e605688f6e7b1d0956b9afa4
+d
+4sensor_module_web/src/layouts/global/GlobalSetup.vue,0\7\07983d20ec2145d38ecc32369c2f7853c6beeed2
+i
+9sensor_module_web/src/layouts/global/GlobalSetupTheme.vue,3\3\335c4414a72aaef5b398882af77f9c478d76c85a
+R
+"sensor_module_web/src/store/app.js,3\f\3fd6261ccc5002af26a65c4fdc7df73dfff9ff54

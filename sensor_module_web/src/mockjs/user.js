@@ -99,28 +99,28 @@ const menus = [
       },
     ],
   },
-  {
-    id: '/error',
-    icon: 'layui-icon-unlink',
-    title: '异常页面',
-    children: [
-      {
-        id: '/error/403',
-        icon: 'layui-icon-not-found',
-        title: '403',
-      },
-      {
-        id: '/error/404',
-        icon: 'layui-icon-not-found',
-        title: '404',
-      },
-      {
-        id: '/error/500',
-        icon: 'layui-icon-not-found',
-        title: '500',
-      },
-    ],
-  },
+  // {
+  //   id: '/error',
+  //   icon: 'layui-icon-unlink',
+  //   title: '异常页面',
+  //   children: [
+  //     {
+  //       id: '/error/403',
+  //       icon: 'layui-icon-not-found',
+  //       title: '403',
+  //     },
+  //     {
+  //       id: '/error/404',
+  //       icon: 'layui-icon-not-found',
+  //       title: '404',
+  //     },
+  //     {
+  //       id: '/error/500',
+  //       icon: 'layui-icon-not-found',
+  //       title: '500',
+  //     },
+  //   ],
+  // },
 ]
 
 const getInfo = (req, res) => {
