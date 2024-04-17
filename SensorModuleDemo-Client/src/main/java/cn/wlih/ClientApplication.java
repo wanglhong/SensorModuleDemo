@@ -41,7 +41,7 @@ public class ClientApplication {
         LoggerUtil.logTitle(log, 100, "SensorModuleDemo-Client",
                 "ClientID -- " + appId,
                 "args --> " + argsStr);
-        String ip = "main.wlih.cn";
+        String ip = "wlih.cn";
         String port = "8081";
         if (args.length > 0 && args.length <= 2) {
             if (args.length == 2) {

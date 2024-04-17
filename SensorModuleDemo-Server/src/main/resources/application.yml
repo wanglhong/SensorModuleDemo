@@ -88,7 +88,7 @@ knife4j:
     language: zh_cn
     enable-footer: false
     enable-footer-custom: true
-    footer-custom-content: Copyright © [王立宏](http://wlih.cn/) 2023-2024
+    footer-custom-content: Copyright © [王立宏](http://wlih.cn/) 2023-2024 [滇ICP备2024027005号](https://beian.miit.gov.cn/)
 common-swagger:
   # 当enabled为false的时候，则可禁用swagger。
   enabled: true
@@ -106,7 +106,7 @@ common-sequence:
 
 # netty-socketio 配置
 socketio:
-  host: yun.wlih.cn
+  host: wlih.cn
   port: 8081
   # 设置最大每帧处理数据的长度，防止他人利用大数据来攻击服务器
   maxFramePayloadLength: 1048576

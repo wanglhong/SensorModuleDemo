@@ -36,7 +36,7 @@ public class VideoInfoController extends MyBaseController<VideoInfo, VideoInfoDt
             return ResponseResult.error("运输信息ID不能为空");
         }
         // TODO 获取监控地址
-        return ResponseResult.success("rtmp://yun.wlih.cn:1935/stream/123");
+        return ResponseResult.success("http://wlih.cn:8082/hls/1003.m3u8");
     }
 
 }

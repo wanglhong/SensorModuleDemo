@@ -295,7 +295,7 @@
     <pi.password>raspberry</pi.password>
     <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
     <pi.port>22</pi.port>
-    <main.args>--demo</main.args>
+    <main.args>main.wlih.cn</main.args>
     <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
   </properties>
 </project>
