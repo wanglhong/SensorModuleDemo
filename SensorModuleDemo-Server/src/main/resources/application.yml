@@ -6,11 +6,17 @@ logging:
 server:
   port: 8080
 spring:
-#  mvc:
+  servlet:
+    multipart:
+      # 设置单个文件的最大大小
+      max-file-size: 20MB
+      # 设置请求的最大大小（包含所有文件）
+      max-request-size: 35MB
+  #  mvc:
 #    pathmatch:
 #      matching-strategy: ant_path_matcher
   datasource:
-    url: jdbc:mysql://db.wlih.cn:3307/sensor_module?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://wlih.cn:3307/sensor_module?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8
     username: SensorModule
     password: SensorModule_mima202001040435
     driver-class-name: com.mysql.cj.jdbc.Driver
