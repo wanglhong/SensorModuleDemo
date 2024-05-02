@@ -9,13 +9,22 @@
   >
     <div style="padding: 20px">
       <div class="layer-content">
+<!--        <video-->
+<!--          :src="videoURL"-->
+<!--          autoplay="autoplay"-->
+<!--          loop-->
+<!--          controls-->
+<!--          style="width: 100%"-->
+<!--        ></video>-->
         <video
-          :src="videoURL"
-          autoplay="autoplay"
-          loop
-          controls
-          style="width: 100%"
-        ></video>
+            id="my-video"
+            class="video-js vjs-default-skin"
+            controls
+            preload="auto"
+            width="500px"
+        >
+          <source src="http://wlih.cn:8082/hls/1003.m3u8" type="application/x-mpegURL" />
+        </video>
       </div>
       <br />
       <div class="layer-footer">
@@ -28,6 +37,7 @@
 <script setup>
 import { ref, toRefs, reactive } from 'vue'
 import { info } from '@/api/module/videoInfo.js'
+import videojs from 'video.js'
 
 const props = defineProps({
   layerVisible: Boolean,
@@ -38,6 +48,22 @@ const { layerVisible, title, videoData } = toRefs(props)
 const emits = defineEmits(['toCancel'])
 
 const videoURL = ref('http://vjs.zencdn.net/v/oceans.mp4')
+
+function getVideo() {
+  videojs(
+      "my-video",
+      {
+        bigPlayButton: false,
+        textTrackDisplay: false,
+        posterImage: true,
+        errorDisplay: false,
+        controlBar: true
+      },
+      function() {
+        this.play();
+      }
+  );
+}
 
 /**
  * 弹窗加载后执行

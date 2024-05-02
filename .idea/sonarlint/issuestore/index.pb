@@ -420,3 +420,7 @@ k
 ;sensor_module_web/src/layouts/global/GlobalMainMenuItem.vue,f\5\f55376f572573ddc64ee871b7b53dd887f1c8343
 i
 9sensor_module_web/src/layouts/global/GlobalMessageTab.vue,5\e\5e7f91d86820c19b085e7e6fd23e3d160a892086
+„
+TSensorModuleDemo-Server/src/main/java/cn/wlih/core/util/dbUtil/JavaDatabaseType.java,4\9\49dab95b4ca6cf160704f0014df0e249d1aabf83
+
+OSensorModuleDemo-Server/src/main/java/cn/wlih/core/util/dbUtil/DbTableUtil.java,c\9\c948b1a9b3e72638409f82e1c478ce529f29db8e
