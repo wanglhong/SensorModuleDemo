@@ -9,21 +9,13 @@
   >
     <div style="padding: 20px">
       <div class="layer-content">
-<!--        <video-->
-<!--          :src="videoURL"-->
-<!--          autoplay="autoplay"-->
-<!--          loop-->
-<!--          controls-->
-<!--          style="width: 100%"-->
-<!--        ></video>-->
         <video
-            id="my-video"
-            class="video-js vjs-default-skin"
-            controls
+            ref="videoPlayer"
             preload="auto"
-            width="500px"
+            autoplay="autoplay"
+            style="width: 100%; height: 100%;"
         >
-          <source src="http://wlih.cn:8082/hls/1003.m3u8" type="application/x-mpegURL" />
+          <source :src="videoURL" type="application/x-mpegURL" />
         </video>
       </div>
       <br />
@@ -35,9 +27,10 @@
 </template>
 
 <script setup>
-import { ref, toRefs, reactive } from 'vue'
+import { ref, toRefs } from 'vue'
 import { info } from '@/api/module/videoInfo.js'
 import videojs from 'video.js'
+import 'video.js/dist/video-js.css';
 
 const props = defineProps({
   layerVisible: Boolean,
@@ -47,7 +40,9 @@ const props = defineProps({
 const { layerVisible, title, videoData } = toRefs(props)
 const emits = defineEmits(['toCancel'])
 
-const videoURL = ref('http://vjs.zencdn.net/v/oceans.mp4')
+const videoURL = ref('https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8')
+const videoPlayer = ref(null);
+let player = null;
 
 function getVideo() {
   videojs(
@@ -77,6 +72,16 @@ function layerLoad() {
     console.log('res', res);
     if (res.success && res.data) {
       videoURL.value = res.data
+      if (layerVisible.value) {
+        player = videojs(videoPlayer.value, {
+          autoplay: false,
+          controls: true,
+          sources: [{
+            src: videoURL.value,
+            type: 'application/x-mpegURL'
+          }]
+        });
+      }
     }
   })
 }
@@ -84,7 +89,11 @@ function layerLoad() {
 /**
  * 弹窗关闭后执行
  */
-function layerClose() {}
+function layerClose() {
+  if (player) {
+    player.dispose();
+  }
+}
 
 /**
  * 取消
