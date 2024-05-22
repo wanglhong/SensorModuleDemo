@@ -2,11 +2,10 @@ package cn.wlih.sensormodule.service.impl;
 
 import cn.wlih.core.base.mapper.MyBaseMapper;
 import cn.wlih.core.base.service.impl.MyBaseServiceImpl;
-import cn.wlih.core.object.TokenData;
 import cn.wlih.sensormodule.dao.GpsInfoMapper;
 import cn.wlih.sensormodule.model.GpsInfo;
 import cn.wlih.sensormodule.service.GpsInfoService;
-import cn.wlih.websocket.service.ISocketIOService;
+import cn.wlih.websocket.service.SocketIOService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class GpsInfoServiceImpl extends MyBaseServiceImpl<GpsInfo> implements Gp
     @Autowired
     private GpsInfoMapper gpsInfoMapper;
     @Autowired
-    private ISocketIOService socketIOService;
+    private SocketIOService socketIOService;
 
     /**
      * @return 当前Service的主表Mapper对象

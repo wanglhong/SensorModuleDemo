@@ -6,10 +6,11 @@ import cn.wlih.app.model.TransportInfo;
 import cn.wlih.app.model.modelDbEnum.TransportState;
 import cn.wlih.app.service.TransportInfoService;
 import cn.wlih.core.base.model.ResponseResult;
+import cn.wlih.core.myError.BizException;
 import cn.wlih.sensormodule.service.GpsInfoService;
 import cn.wlih.websocket.config.ServiceEvent;
 import cn.wlih.websocket.config.ParamsKeyEnum;
-import cn.wlih.websocket.service.ISocketIOService;
+import cn.wlih.websocket.service.SocketIOService;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
@@ -25,12 +26,12 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Service(value = "socketIOService")
-public class SocketIOServiceImpl implements ISocketIOService {
+public class SocketIOServiceImpl implements SocketIOService {
 
     /**
      * 存放已连接的客户端
      */
-    private static Map<String, SocketIOClient> clientMap = new ConcurrentHashMap<>();
+    private static Map<Long, SocketIOClient> clientMap = new ConcurrentHashMap<>();
 
     @Autowired
     private SocketIOServer socketIOServer;
@@ -64,7 +65,7 @@ public class SocketIOServiceImpl implements ISocketIOService {
             client.sendEvent(ServiceEvent.CONNECTED_EVENT, "CONNECT_SUCCESS");
             String id = getParamsByKey(client, ParamsKeyEnum.ID);
             if (id != null) {
-                clientMap.put(id, client);
+                clientMap.put(Long.valueOf(id), client);
             }
         });
         // 监听客户端断开连接
@@ -155,6 +156,21 @@ public class SocketIOServiceImpl implements ISocketIOService {
     private String getIpByClient(SocketIOClient client) {
         String sa = client.getRemoteAddress().toString();
         return sa.substring(1, sa.indexOf(":"));
+    }
+
+    /**
+     * 查看监控
+     *
+     * @param iotEquipmentId  物联网设备ID
+     * @param transportInfoId 运输信息ID
+     */
+    @Override
+    public void viewMonitor(Long iotEquipmentId, Long transportInfoId) {
+        SocketIOClient socketIOClient = clientMap.get(iotEquipmentId);
+        if (socketIOClient == null) {
+            throw new BizException("该设备未连接！");
+        }
+        socketIOClient.sendEvent(ServiceEvent.PUSH_VIDEO_EVENT, transportInfoId);
     }
 
 }

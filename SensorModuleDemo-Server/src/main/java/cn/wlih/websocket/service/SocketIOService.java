@@ -1,6 +1,6 @@
 package cn.wlih.websocket.service;
 
-public interface ISocketIOService {
+public interface SocketIOService {
 
     /**
      * 启动服务
@@ -19,5 +19,12 @@ public interface ISocketIOService {
      * @param msgContent: 消息内容
      */
     void pushMessageToUser(String userId, String msgContent);
+
+    /**
+     * 查看监控
+     * @param iotEquipmentId 物联网设备ID
+     * @param transportInfoId 运输信息ID
+     */
+    void viewMonitor(Long iotEquipmentId, Long transportInfoId);
 
 }

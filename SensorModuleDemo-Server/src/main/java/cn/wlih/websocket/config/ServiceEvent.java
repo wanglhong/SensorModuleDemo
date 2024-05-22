@@ -20,4 +20,9 @@ public class ServiceEvent {
      */
     public static final String GET_TRANSPORT_ROUTE = "GET_TRANSPORT_ROUTE";
 
+    /**
+     * 推送视频消息
+     */
+    public static final String PUSH_VIDEO_EVENT = "PUSH_VIDEO_EVENT";
+
 }

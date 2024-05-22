@@ -6,7 +6,7 @@ import { saveAs } from 'file-saver'
 
 const config = {
   timeout: 5000,
-  baseURL: 'http://localhost:8080',
+  baseURL: 'http://wlih.cn:8080',
 }
 
 /**

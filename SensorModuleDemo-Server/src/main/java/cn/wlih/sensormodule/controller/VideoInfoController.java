@@ -36,7 +36,8 @@ public class VideoInfoController extends MyBaseController<VideoInfo, VideoInfoDt
             return ResponseResult.error("运输信息ID不能为空");
         }
         // TODO 获取监控地址
-        return ResponseResult.success("http://wlih.cn:8082/hls/1003.m3u8");
+        // raspivid -w 640 -h 360 -b 15000000 -t 0 -a 12 -a 1024 -a "CAM-1 %Y-%m-%d %X" -ae 18,0xff,0x808000 -o - | ffmpeg -re -i - -s 640x360 -vcodec copy -acodec copy -b:v 800k -b:a 32k -f flv rtmp://wlih.cn:1935/stream/1003
+        return ResponseResult.success(videoInfoService.viewMonitor(transportInfoId));
     }
 
 }

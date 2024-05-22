@@ -71,17 +71,21 @@ function layerLoad() {
   info(param).then((res) => {
     console.log('res', res);
     if (res.success && res.data) {
-      videoURL.value = res.data
-      if (layerVisible.value) {
-        player = videojs(videoPlayer.value, {
-          autoplay: false,
-          controls: true,
-          sources: [{
-            src: videoURL.value,
-            type: 'application/x-mpegURL'
-          }]
-        });
-      }
+      // 系统休眠5秒
+      layer.msg("正在连接客户端", { icon : 16, time: 10000})
+      setTimeout(function() {
+        videoURL.value = res.data
+        if (layerVisible.value) {
+          player = videojs(videoPlayer.value, {
+            autoplay: false,
+            controls: true,
+            sources: [{
+              src: videoURL.value,
+              type: 'application/x-mpegURL'
+            }]
+          });
+        }
+      }, 10000);
     }
   })
 }

@@ -17,6 +17,9 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 
 /**
@@ -76,11 +79,33 @@ public class ClientApplication {
 
             // 推送视频消息
             socket.on(ClientEvent.PUSH_VIDEO_EVENT, objects -> {
+                // raspivid -w 640 -h 360 -b 15000000 -t 0 -a 12 -a 1024 -a "CAM-1 %Y-%m-%d %X" -ae 18,0xff,0x808000 -o - | ffmpeg -re -i - -s 640x360 -vcodec copy -acodec copy -b:v 800k -b:a 32k -f flv rtmp://wlih.cn:1935/stream/1003
+                // 执行命令
+                try {
+                    // 创建一个ProcessBuilder实例
+                    ProcessBuilder processBuilder = new ProcessBuilder();
+                    // 要执行的命令
+                    StringBuilder command = new StringBuilder("raspivid -w 640 -h 360 -b 15000000 -t 0 -a 12 -a 1024 -a \"CAM-1 %Y-%m-%d %X\" -ae 18,0xff,0x808000 -o - | ffmpeg -re -i - -s 640x360 -vcodec copy -acodec copy -b:v 800k -b:a 32k -f flv ");
+                    command.append("rtmp://").append("wlih.cn").append(":").append("1935").append("/stream/").append(objects[0].toString());
+                    log.info("command --> " + command);
+                    processBuilder.command("bash", "-c", command.toString());  // 对于Windows，可以使用 processBuilder.command("cmd.exe", "/c", "dir");
+                    // 启动进程
+                    Process process = processBuilder.start();
+                    // 获取命令执行的输出
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        log.info(line);
+                    }
+                    // 等待命令执行完成
+                    int exitCode = process.waitFor();
+                    log.info("Exit code: {}", exitCode);
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
+                }
             });
-
             // 连接
             socket.connect();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
