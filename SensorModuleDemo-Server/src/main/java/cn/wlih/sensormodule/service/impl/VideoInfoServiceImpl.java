@@ -2,6 +2,7 @@ package cn.wlih.sensormodule.service.impl;
 
 import cn.wlih.core.base.mapper.MyBaseMapper;
 import cn.wlih.core.base.service.impl.MyBaseServiceImpl;
+import cn.wlih.newwebsocket.WebSocket;
 import cn.wlih.sensormodule.dao.VideoInfoMapper;
 import cn.wlih.sensormodule.model.VideoInfo;
 import cn.wlih.sensormodule.service.VideoInfoService;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.IOException;
+import java.util.Map;
 
 @Slf4j
 @Service("videoInfoService")
@@ -37,8 +40,13 @@ public class VideoInfoServiceImpl extends MyBaseServiceImpl<VideoInfo> implement
      */
     @Override
     public String viewMonitor(Long transportInfoId) {
-        Long iotEquipmentId = 1774067734078820351L;
-        socketIOService.viewMonitor(iotEquipmentId, transportInfoId);
+        try {
+            WebSocket.triggerEvent("test_client_123", "viewMonitor", transportInfoId);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+//        Long iotEquipmentId = 1774067734078820351L;
+//        socketIOService.viewMonitor(iotEquipmentId, transportInfoId);
         // 系统休眠3秒
 //        try {
 //            Thread.sleep(5000);
