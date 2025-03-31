@@ -1,11 +1,19 @@
 gpio:
-  pir_pin: 17
-  buzzer_pin: 27
+  # 蜂鸣器引脚（IO引脚）
+  buzzer_pin: 16
+  # 人体红外传感器引脚（IO引脚）
+  pir_pin: 18
 websocket:
+  # websocket服务器地址
   server_url: wss://yourserver.com/ws
+  # 设备ID
   device_id: AI-CAM-001
 video:
+  # rtmp推流地址
   rtmp_url: rtmp://your-server/live/stream
+  # 摄像头设备ID
+  camera_id: 0
+  # 模型位置
   model_path: models/yolov5s_aipro.pt
 
 
