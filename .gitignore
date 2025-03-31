@@ -4,3 +4,4 @@
 /SensorModuleDemo-Server/SysFile/**/*.log.gz
 /.idea/**/**
 SensorModuleDevFile/**
+/AI-Monitoring-System/.idea/**/*
