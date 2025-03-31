@@ -1,0 +1,13 @@
+gpio:
+  pir_pin: 17
+  buzzer_pin: 27
+websocket:
+  server_url: wss://yourserver.com/ws
+  device_id: AI-CAM-001
+video:
+  rtmp_url: rtmp://your-server/live/stream
+  model_path: models/yolov5s_aipro.pt
+
+
+
+
